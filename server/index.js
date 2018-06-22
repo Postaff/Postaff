@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
+const routes = require("./routes.js");
 
 const app = express();
 const PORT = 3000;
@@ -13,6 +14,10 @@ app.use('/', (req, res)=>{
   res.status(200).send("hello from the server");
 });
 
+app.use('/', routes);
+
 app.listen(PORT, ()=>{
   console.log(`listening por: ${PORT}`)
 })
+
+exports.app = app;
