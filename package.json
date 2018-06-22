@@ -1,16 +1,20 @@
 {
-  "name": "webpack-4-quickstart",
+  "name": "Postaff",
   "version": "1.0.0",
-  "description": "",
+  "description": "Enterprise Staffing Solution",
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/index.js",
-    "react-dev": "webpack-dev-server --mode development ./client/src/index.js --output ./client/dist/bundle.js",
-    "react-build": "webpack --mode production ./client/src/index.js --output ./client/dist/bundle.js",
+    "react-dev": "webpack-dev-server --mode development ./client/src/index.jsx --output ./client/dist/bundle.js",
+    "react-build": "webpack --mode production ./client/src/index.jsx --output ./client/dist/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Postaff/Postaff.git"
+  },
   "keywords": [],
-  "author": "",
+  "author": "Ainslie Hsu, Feng Chen, Heshie London, Mayank Patel",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
