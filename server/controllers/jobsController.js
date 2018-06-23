@@ -1,7 +1,9 @@
+const jobDB = require("../../database/jobSchema");
+
 module.exports = {
 
   getAllJobs: function(req, res){
-
+    
   },
 
   createJob: function(req, res){
