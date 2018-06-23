@@ -4,7 +4,7 @@ class HomeLanding extends React.Component {
   render() {
     return (
       <div>
-        FILL_ME_IN
+        Hello World!
       </div>
     );
   }
