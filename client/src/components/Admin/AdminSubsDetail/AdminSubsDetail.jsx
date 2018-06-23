@@ -1,6 +1,6 @@
 import React from 'react';
 
-class AdminSubsDetailOverview extends React.Component {
+class AdminSubsDetail extends React.Component {
   render() {
     return (
       <div>
@@ -10,4 +10,4 @@ class AdminSubsDetailOverview extends React.Component {
   }
 }
 
-export default AdminSubsDetailOverview;
+export default AdminSubsDetail;

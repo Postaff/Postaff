@@ -1,6 +1,6 @@
 import React from 'react';
 
-class AdminLandingOverview extends React.Component {
+class AdminLanding extends React.Component {
   render() {
     return (
       <div>
@@ -10,4 +10,4 @@ class AdminLandingOverview extends React.Component {
   }
 }
 
-export default AdminLandingOverview;
+export default AdminLanding;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class SubJobDetailOverview extends React.Component {
+class SubJobDetail extends React.Component {
   render() {
     return (
       <div>
@@ -10,4 +10,4 @@ class SubJobDetailOverview extends React.Component {
   }
 }
 
-export default SubJobDetailOverview;
+export default SubJobDetail;

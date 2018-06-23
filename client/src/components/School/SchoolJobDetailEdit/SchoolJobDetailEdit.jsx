@@ -1,6 +1,6 @@
 import React from 'react';
 
-class SchoolJobDetailEditOverview extends React.Component {
+class SchoolJobDetailEdit extends React.Component {
   render() {
     return (
       <div>
@@ -10,4 +10,4 @@ class SchoolJobDetailEditOverview extends React.Component {
   }
 }
 
-export default SchoolJobDetailEditOverview;
+export default SchoolJobDetailEdit;
