@@ -1,7 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
-const routes = require("./routes.js");
+const helmet = require("helmet");
+const router = require("./routes.js");
 
 const app = express();
 const PORT = 3000;
@@ -9,12 +10,10 @@ const PORT = 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan("dev"));
-app.use(express.static(__dirname + '/../react-client/dist'))
-app.use('/', (req, res)=>{
-  res.status(200).send("hello from the server");
-});
+app.use(helmet())
+app.use(express.static(__dirname + '/../client/dist'))
 
-app.use('/', routes);
+app.use('/', router);
 
 app.listen(PORT, ()=>{
   console.log(`listening por: ${PORT}`)

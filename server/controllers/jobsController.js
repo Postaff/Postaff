@@ -1,9 +1,19 @@
+module.exports = {
 
-exports.getAllStaffs = (req, res) => {
+  getAllJobs: function(req, res){
+
+  },
+
+  createJob: function(req, res){
+
+  },
+
+  updateJob: function(req, res){
+
+  },
+
+  deleteJob: function(req, res){
+
+  },
 
 }
-
-exports.getStaffById = (req, res) => {
-
-}
-
