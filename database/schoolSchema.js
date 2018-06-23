@@ -1,23 +1,27 @@
-const db = require("./db.js");
+const db = require("./indexDb.js");
 
-const School = sequelize.define('school', { 
-    school_name: Sequelize.STRING,
-    username: Sequelize.STRING,
-    plain_text_password: Sequelize.STRING,
-    address_street: Sequelize.TEXT,
-    address_city: Sequelize.STRING,
-    adress_state: Sequelize.STRING,
-    address_zipcode: Sequelize.INTEGER,
-    contact_name: Sequelize.STRING,
-    contact_title: Sequelize.STRING,
-    contact_phone: Sequelize.INTEGER,
-    contact_email: Sequelize.STRING,
-    main_phone: Sequelize.INTEGER,
-    main_phone_ext: Sequelize.INTEGER,
-    total_jobs: Sequelize.INTEGER,
-    completed_jobs: Sequelize.INTEGER,
-    unclaimed_jobs: Sequelize.INTEGER,
-    rating: Sequelize.INTEGER,
-    notes: Sequelize.TEXT,
-    date_registered: Sequelize.DATEONLY
+const School = db.sequelize.define('school', { 
+    school_name: db.sequelize.Sequelize.STRING,
+    username: db.sequelize.Sequelize.STRING,
+    plain_text_password: db.sequelize.Sequelize.STRING,
+    address_street: db.sequelize.Sequelize.TEXT,
+    address_city: db.sequelize.Sequelize.STRING,
+    adress_state: db.sequelize.Sequelize.STRING,
+    address_zipcode: db.sequelize.Sequelize.INTEGER,
+    contact_name: db.sequelize.Sequelize.STRING,
+    contact_title: db.sequelize.Sequelize.STRING,
+    contact_phone: db.sequelize.Sequelize.INTEGER,
+    contact_email: db.sequelize.Sequelize.STRING,
+    main_phone: db.sequelize.Sequelize.INTEGER,
+    main_phone_ext: db.sequelize.Sequelize.INTEGER,
+    total_jobs: db.sequelize.Sequelize.INTEGER,
+    completed_jobs: db.sequelize.Sequelize.INTEGER,
+    unclaimed_jobs: db.sequelize.Sequelize.INTEGER,
+    rating: db.sequelize.Sequelize.INTEGER,
+    notes: db.sequelize.Sequelize.TEXT,
+    date_registered: db.sequelize.Sequelize.DATEONLY
 });
+
+School.sync();
+
+module.exports.School = School;

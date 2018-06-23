@@ -1,26 +1,30 @@
-const db = require("./db.js");
+const db = require("./indexDb.js");
 
-const Job = sequelize.define('job', { 
+const Job = db.sequelize.define('job', { 
     
-    description: Sequelize.TEXT,
-    School_id: Sequelize.INTEGER,
-    start_time: Sequelize.INTEGER,
-    end_time: Sequelize.INTEGER, 
-    start_date: Sequelize.DATEONLY,
-    end_date: Sequelize.DATEONLY,
-    subject: Sequelize.STRING,
-    grade: Sequelize.INTEGER,
-    notes: Sequelize.TEXT,
-    attachments: Sequelize.STRING,
-    rate: Sequelize.INTEGER,
-    approved: Sequelize.BOOLEAN,
-    claimed: Sequelize.BOOLEAN, 
-    complete: Sequelize.BOOLEAN,
-    hours_submitted: Sequelize.BOOLEAN,
-    hours_completed: Sequelize.INTEGER,
-    hours_approved: Sequelize.BOOLEAN,
-    school_rating: Sequelize.INTEGER,
-    sub_rating: Sequelize.INTEGER, 
-    paid: Sequelize.BOOLEAN
+    description: db.sequelize.Sequelize.TEXT,
+    School_id: db.sequelize.Sequelize.INTEGER,
+    start_time: db.sequelize.Sequelize.INTEGER,
+    end_time: db.sequelize.Sequelize.INTEGER, 
+    start_date: db.sequelize.Sequelize.DATEONLY,
+    end_date: db.sequelize.Sequelize.DATEONLY,
+    subject: db.sequelize.Sequelize.STRING,
+    grade: db.sequelize.Sequelize.INTEGER,
+    notes: db.sequelize.Sequelize.TEXT,
+    attachments: db.sequelize.Sequelize.STRING,
+    rate: db.sequelize.Sequelize.INTEGER,
+    approved: db.sequelize.Sequelize.BOOLEAN,
+    claimed: db.sequelize.Sequelize.BOOLEAN, 
+    complete: db.sequelize.Sequelize.BOOLEAN,
+    hours_submitted: db.sequelize.Sequelize.BOOLEAN,
+    hours_completed: db.sequelize.Sequelize.INTEGER,
+    hours_approved: db.sequelize.Sequelize.BOOLEAN,
+    school_rating: db.sequelize.Sequelize.INTEGER,
+    sub_rating: db.sequelize.Sequelize.INTEGER, 
+    paid: db.sequelize.Sequelize.BOOLEAN
     
 });
+
+Job.sync();
+
+module.exports.Job = Job;

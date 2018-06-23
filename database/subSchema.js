@@ -1,26 +1,30 @@
-const db = require("./db.js");
+const db = require("./indexDb.js");
 
-const Sub = sequelize.define('sub', {
+const Sub = db.sequelize.define('sub', {
 
-  name: Sequelize.STRING,
-  username: Sequelize.STRING,
-  plain_text_password: Sequelize.STRING,
-  phone: Sequelize.INTEGER,
-  phone_alt: Sequelize.INTEGER,
-  email: Sequelize.STRING,
-  photo_url: Sequelize.STRING,
-  address_street: Sequelize.TEXT,
-  address_city: Sequelize.STRING,
-  address_zipcode: Sequelize.STRING,
-  address_state: Sequelize.STRING,
-  fingerprint: Sequelize.DATE,
-  work_eligibility: Sequelize.BOOLEAN,
-  jobs_completed: Sequelize.INTEGER,
-  jobs_cancelled: Sequelize.INTEGER,
-  jobs_claimed: Sequelize.INTEGER,
-  credentialed: Sequelize.BOOLEAN,
-  special_ed: Sequelize.BOOLEAN,
-  permitted: Sequelize.BOOLEAN,
-  hire_date: Sequelize.DATE
+  name: db.sequelize.Sequelize.STRING,
+  username: db.sequelize.Sequelize.STRING,
+  plain_text_password: db.sequelize.Sequelize.STRING,
+  phone: db.sequelize.Sequelize.INTEGER,
+  phone_alt: db.sequelize.Sequelize.INTEGER,
+  email: db.sequelize.Sequelize.STRING,
+  photo_url: db.sequelize.Sequelize.STRING,
+  address_street: db.sequelize.Sequelize.TEXT,
+  address_city: db.sequelize.Sequelize.STRING,
+  address_zipcode: db.sequelize.Sequelize.STRING,
+  address_state: db.sequelize.Sequelize.STRING,
+  fingerprint: db.sequelize.Sequelize.DATE,
+  work_eligibility: db.sequelize.Sequelize.BOOLEAN,
+  jobs_completed: db.sequelize.Sequelize.INTEGER,
+  jobs_cancelled: db.sequelize.Sequelize.INTEGER,
+  jobs_claimed: db.sequelize.Sequelize.INTEGER,
+  credentialed: db.sequelize.Sequelize.BOOLEAN,
+  special_ed: db.sequelize.Sequelize.BOOLEAN,
+  permitted: db.sequelize.Sequelize.BOOLEAN,
+  hire_date: db.sequelize.Sequelize.DATE
 
 });
+
+Sub.sync();
+
+module.exports.Sub = Sub;
