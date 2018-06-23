@@ -1,6 +1,6 @@
 import React from 'react';
 
-class LoginLanding extends React.Component {
+class SharedJobsList extends React.Component {
   render() {
     return (
       <div>
@@ -10,4 +10,4 @@ class LoginLanding extends React.Component {
   }
 }
 
-export default LoginLanding;
+export default SharedJobsList;
