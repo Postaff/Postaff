@@ -1,6 +1,6 @@
 import React from 'react';
 
-class SubLandingOverview extends React.Component {
+class SubLanding extends React.Component {
   render() {
     return (
       <div>
@@ -10,4 +10,4 @@ class SubLandingOverview extends React.Component {
   }
 }
 
-export default SubLandingOverview;
+export default SubLanding;

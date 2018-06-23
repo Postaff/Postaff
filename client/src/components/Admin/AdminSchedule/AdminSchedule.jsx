@@ -1,6 +1,6 @@
 import React from 'react';
 
-class AdminScheduleOverview extends React.Component {
+class AdminSchedule extends React.Component {
   render() {
     return (
       <div>
@@ -10,4 +10,4 @@ class AdminScheduleOverview extends React.Component {
   }
 }
 
-export default AdminScheduleOverview;
+export default AdminSchedule;
