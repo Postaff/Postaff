@@ -1,7 +1,8 @@
 const Sequelize = require("sequelize");
+const DBAuth = require("./config.js")
 //const Admin = require("./Schemas/adminSchema");
 
-const sequelize = new Sequelize('postaff', "root", null, {
+const sequelize = new Sequelize('postaff', DBAuth.DBUSER, DBAuth.DBPASS, {
     host: 'localhost',
     dialect: 'mysql',
 })
