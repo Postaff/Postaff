@@ -17,12 +17,16 @@
   "author": "Ainslie Hsu, Feng Chen, Heshie London, Mayank Patel",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/core": "^1.2.3",
+    "@material-ui/icons": "^1.1.0",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "lodash": "^4.17.10",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "react-router-dom": "^4.3.1",
+    "sequelize": "^4.38.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
