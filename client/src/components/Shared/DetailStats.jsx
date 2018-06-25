@@ -1,13 +1,13 @@
 import React from 'react';
 
-class HomeLanding extends React.Component {
+class DetailStats extends React.Component {
   render() {
     return (
       <div>
-        Hello World!
+        FILL_ME_IN
       </div>
     );
   }
 }
 
-export default HomeLanding;
+export default DetailStats;
