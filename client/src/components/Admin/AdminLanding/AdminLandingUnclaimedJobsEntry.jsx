@@ -1,6 +1,6 @@
 import React from 'react';
 
-class AdminLandingPendingReviewEntry extends React.Component {
+class AdminLandingUnclaimedJobsEntry extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -16,4 +16,4 @@ class AdminLandingPendingReviewEntry extends React.Component {
   }
 }
 
-export default AdminLandingPendingReviewEntry;
+export default AdminLandingUnclaimedJobsEntry;
