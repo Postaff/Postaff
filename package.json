@@ -1,11 +1,11 @@
 {
-  "name": "Postaff",
+  "name": "postaff",
   "version": "1.0.0",
   "description": "Enterprise Staffing Solution",
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/index.js",
-    "react-dev": "webpack-dev-server --mode development ./client/src/index.jsx --output ./client/dist/bundle.js",
+    "react-dev": "webpack --mode development --watch ./client/src/index.jsx --output ./client/dist/bundle.js",
     "react-build": "webpack --mode production ./client/src/index.jsx --output ./client/dist/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,14 +19,24 @@
   "dependencies": {
     "@material-ui/core": "^1.2.3",
     "@material-ui/icons": "^1.1.0",
+    "apollo-boost": "^0.1.10",
+    "apollo-cache-inmemory": "^1.2.5",
+    "apollo-client": "^2.3.5",
+    "apollo-link": "^1.2.2",
+    "apollo-link-http": "^1.5.4",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
+    "express-graphql": "^0.6.12",
+    "express-session": "^1.15.6",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
     "helmet": "^3.12.1",
     "lodash": "^4.17.10",
     "morgan": "^1.9.0",
     "mysql2": "^1.5.3",
+    "react-apollo": "^2.1.6",
     "react-router-dom": "^4.3.1",
     "sequelize": "^4.38.0"
   },
