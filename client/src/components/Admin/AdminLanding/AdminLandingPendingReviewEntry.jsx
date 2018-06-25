@@ -1,11 +1,17 @@
 import React from 'react';
 
 class AdminLandingPendingReviewEntry extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
-      <div>
-        FILL_ME_IN
-      </div>
+      <tr>
+        <td>{this.props.entry}</td>
+        <td>Placeholder</td>
+        <td>8 AM</td>
+      </tr>
     );
   }
 }
