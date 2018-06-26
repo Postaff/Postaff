@@ -58,7 +58,7 @@ class Login extends React.Component {
         <div className={classes.wrapper}>
           <Button className={classes.button}><Typography variant="title" onClick={this.handleChange} aria-label="collapse">Login</Typography></Button>
           <Slide direction="down" in={clicked} mountOnEnter unmountOnExit>
-            <Paper elevation={4} className={classes.paper}>
+            <Paper elevation={6} className={classes.paper}>
               <Typography variant="display2">Please Log In</Typography>
                 <TextField
                 id="username-input"
