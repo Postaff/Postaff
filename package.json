@@ -15,7 +15,7 @@
   },
   "keywords": [],
   "author": "Ainslie Hsu, Feng Chen, Heshie London, Mayank Patel",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@material-ui/core": "^1.2.3",
     "@material-ui/icons": "^1.1.0",
