@@ -5,8 +5,8 @@ const Sub = db.sequelize.define('sub', {
   name: db.sequelize.Sequelize.STRING,
   plain_text_password: db.sequelize.Sequelize.STRING,
   username: db.sequelize.Sequelize.STRING,
-  phone: db.sequelize.Sequelize.INTEGER,
-  phone_alt: db.sequelize.Sequelize.INTEGER,
+  phone: db.sequelize.Sequelize.STRING,
+  phone_alt: db.sequelize.Sequelize.STRING,
   email: db.sequelize.Sequelize.STRING,
   photo_url: db.sequelize.Sequelize.STRING,
   address_street: db.sequelize.Sequelize.TEXT,
@@ -24,3 +24,22 @@ const Sub = db.sequelize.define('sub', {
   hire_date: db.sequelize.Sequelize.DATEONLY
 
 });
+
+// Sub.create({
+//   name: "Kenny Le",
+//   phone: "2546541254",
+//   email: "kenny123@hotmail.com"
+// })
+// Sub.create({
+//   name: "Ainslie Hsu",
+//   phone: "6543216541",
+//   email: "ainslie123@hotmail.com"
+// })
+// Sub.create({
+//   name: "Mayank Patel",
+//   phone: "2547771254",
+//   email: "mayank321@hotmail.com"
+// })
+
+Sub.sync()
+module.exports.Sub = Sub;

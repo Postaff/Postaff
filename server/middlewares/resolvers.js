@@ -1,5 +1,7 @@
 
 const {Job} = require("../../database/models/jobSchema");
+const {School} = require("../../database/models/schoolSchema");
+const {Sub} = require("../../database/models/subSchema");
 
 /**
  * jobs is the query we defined in schema file, 
@@ -11,7 +13,9 @@ const {Job} = require("../../database/models/jobSchema");
  * Then we'll call findAll() method from sequelize then return it to the user.
  */
 const Query = {
-  jobs: () => Job.findAll()
+  jobs: () => Job.findAll(),
+  schools: () => School.findAll(),
+  subs: () => Sub.findAll(),
 }
 
 module.exports = { Query };

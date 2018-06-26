@@ -8,7 +8,6 @@ const fs = require("fs");
 const expressJwt = require("express-jwt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv").config();
-//const schema = require("./middleware/schema");
 const path = require("path");
 
 
@@ -34,32 +33,9 @@ const resolvers = require("./middlewares/resolvers.js")
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-
 app.use(morgan("dev"));
 app.use(helmet());
 app.use(express.static(__dirname + "/../client/dist"));
-
-/**
- *  Create a new instance of ApolloServer using typeDefs and resolvers
- *  we declared on top.  Then we apply apollo server to our main server 
- */
-const server = new ApolloServer({typeDefs, resolvers});
-server.applyMiddleware({app});
-
-app.listen(PORT, ()=>{
-  console.log(`Server ready at port: ${PORT}`);
-});
-
-//app.use(morgan("dev"));
-//app.use(helmet());
-
-app.use(express.static(__dirname + '/../client/dist'));
-// app.use('/graphql', expressGraphQL({
-//   schema,
-//   graphiql:true
-// }))
-
-//app.use('/', router);
 
 //THIS IS FOR REACT ROUTER DONOT DELETE
 app.get('/*', function (req, res) {
@@ -69,6 +45,17 @@ app.get('/*', function (req, res) {
       res.status(500).send(err)
     }
   })
+})
+
+/**
+ *  Create a new instance of ApolloServer using typeDefs and resolvers
+ *  we declared on top.  Then we apply apollo server to our main server 
+ */
+const server = new ApolloServer({typeDefs, resolvers});
+server.applyMiddleware({app});
+
+app.listen(PORT, ()=>{
+  console.log(`listening port: ${PORT}`)
 })
 
 exports.app = app;
