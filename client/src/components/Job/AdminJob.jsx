@@ -1,24 +1,29 @@
 import React from 'react';
-import Image from './Image.jsx';
-import JobDetail from './JobDetail.jsx';
+import Profile from './Profile.jsx';
+import Detail from './Detail.jsx';
 import Attachments from './Attachments.jsx';
 import Notes from "./Notes.jsx";
-
+import Grid from '@material-ui/core/Grid';
 
 class AdminJob extends React.Component {
-
   render() {
-    console.log("Hey i am in AdminJob.jsx");
+    console.log("Hey I am in AdminJob.jsx");
     return (
       <div>
-        <div style={{display: "flex"}}>
-          <Image />     
-          <JobDetail />
-        </div>  
-        <div style={{display: "flex"}}>
-          <Attachments />
-          <Notes />
-        </div>
+        <Grid container spacing={24}>
+          <Grid item xs={6} sm={4}>
+            <Profile />
+          </Grid>
+          <Grid item xs={12} sm={8}>
+            <Detail />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Attachments />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Notes />
+          </Grid>
+        </Grid>
       </div>
     );
   }
