@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch} from "react-router-dom";
 import HomeLanding from "./Home/HomeLanding.jsx";
-import LoginLanding from "./Login/LoginLanding.jsx";
+import Login from "./Home/LoginComponent.jsx";
 import SchoolLanding from "./School/SchoolLanding/SchoolLanding.jsx";
 import SubLanding from "./Sub/SubLanding/SubLanding.jsx";
 import AdminLanding from "./Admin/AdminLanding/AdminLanding.jsx"
@@ -18,7 +18,7 @@ class App extends React.Component {
       <BrowserRouter> 
         <Switch>
           <Route exact path="/" component={HomeLanding} /> 
-          <Route path="/login" render={(props) => <LoginLanding {...props}/>} />
+          <Route path="/login" render={(props) => <Login {...props}/>} />
           <PrivateRoute path="/admin" component={AdminLanding} />
           <PrivateRoute path="/school" component={SchoolLanding} />
           <PrivateRoute path="/sub" component={SubLanding} />

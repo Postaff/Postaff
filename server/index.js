@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const router = require("./routes.js");
 <<<<<<< HEAD
+<<<<<<< HEAD
 const fs = require("fs");
 const expressJwt = require("express-jwt");
 const jwt = require("jsonwebtoken");
@@ -12,11 +13,15 @@ const dotenv = require("dotenv").config();
 const path = require('path');
 =======
 <<<<<<< HEAD
-const schema = require("./middleware/schema");
 =======
+>>>>>>> trying to rebase with main repo
+const schema = require("./middleware/schema");
 const path = require("path");
+<<<<<<< HEAD
 >>>>>>> adds routing to homeLanding and LoginLanding view
 >>>>>>> adds routing to homeLanding and LoginLanding view
+=======
+>>>>>>> trying to rebase with main repo
 
 const app = express();
 const PORT = 3000;
