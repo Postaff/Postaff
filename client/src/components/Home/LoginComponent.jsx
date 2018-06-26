@@ -87,8 +87,8 @@ class Login extends React.Component {
   }
 }
 
-LoginLanding.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+// LoginLanding.propTypes = {
+//   classes: PropTypes.object.isRequired,
+// };
 
 export default withStyles(styles)(Login);

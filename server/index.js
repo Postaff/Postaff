@@ -4,11 +4,24 @@ const {ApolloServer, gql} = require("apollo-server");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const router = require("./routes.js");
+<<<<<<< HEAD
+<<<<<<< HEAD
 const fs = require("fs");
 const expressJwt = require("express-jwt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv").config();
 const path = require('path');
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> trying to rebase with main repo
+const schema = require("./middleware/schema");
+const path = require("path");
+<<<<<<< HEAD
+>>>>>>> adds routing to homeLanding and LoginLanding view
+>>>>>>> adds routing to homeLanding and LoginLanding view
+=======
+>>>>>>> trying to rebase with main repo
 
 const app = express();
 const PORT = 3000;
@@ -34,6 +47,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan("dev"));
 app.use(helmet());
+<<<<<<< HEAD
 app.use(express.static(__dirname + "/../client/dist"));
 
 /**
@@ -46,4 +60,28 @@ server.applyMiddleware({app});
 app.listen(PORT, ()=>{
   console.log(`Server ready at port: ${PORT}`);
 });
+=======
+app.use(express.static(__dirname + '/../client/dist'));
+app.use('/graphql', expressGraphQL({
+  schema,
+  graphiql:true
+}))
+
+//app.use('/', router);
+
+//THIS IS FOR REACT ROUTER DONOT DELETE
+app.get('/*', function (req, res) {
+  console.log("Refresh Refresh");
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'), function (err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.listen(PORT, ()=>{
+  console.log(`listening port: ${PORT}`)
+})
+
+>>>>>>> adds routing to homeLanding and LoginLanding view
 exports.app = app;
