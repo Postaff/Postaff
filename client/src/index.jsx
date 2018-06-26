@@ -1,10 +1,11 @@
-import React from "react";
+import React, {Fragment} from "react";
 import ReactDOM from "react-dom";
 import { ApolloClient, HttpLink, InMemoryCache } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 
 import App from "./components/App.jsx";
 import JobListing from "./components/Shared/SharedJobsList.jsx";
+
 /**
  * Create a new instant of ApolloClient and apply cache middleware
  * dataIdFromObject is a function that takes a data object and return
@@ -13,10 +14,8 @@ import JobListing from "./components/Shared/SharedJobsList.jsx";
  * I would suggest this read if you're interest at reading more
  * https://www.apollographql.com/docs/react/advanced/caching.html#normalization
  */
-const endPointURL = 'http://localhost:3000/graphql';
-
 const client = new ApolloClient({
-  link: new HttpLink({uri: endPointURL}),
+  link: new HttpLink({uri: 'http://localhost:3000/graphql'}),
   dataIdFromObject: o => o.id,
   cache: new InMemoryCache()
 })
@@ -24,7 +23,10 @@ const client = new ApolloClient({
 const Root = () => {
   return (
     <ApolloProvider client={client}>
-      <App/>
+      <Fragment>
+        <App/>
+        <JobListing/>
+      </Fragment>
     </ApolloProvider>
   )
 };

@@ -1,22 +1,13 @@
-
+# You may understand type Query as the index of graphQL schema
+# Here we will define all the quries thats available to our graphQL server
+# The first example we have here simply tell the graphQL that
+# when we call query jobs, we're expecting an array of Job back
+# We will then define the property of Job Type right below
 type Query {
-  # company(id: ID!): Company
-  # job(id: ID!): Job
   jobs: [Job]
 }
 
-# type Mutation {
-#   createJob(input: CreateJobInput): Job
-# }
-
-# type Company {
-#   id: ID!
-#   name: String
-#   description: String
-#   jobs: [Job]
-# }
-
-# Here we're creating a query template for Job
+# Here we're creating a query DataType for Job
 # We're telling graphQL whenever we ask for Job, give us the follow fields.
 # ! exclamation mark indicates the field cannot be null.
 # graphQL is statically typed, we need to specify what type the field is going to be
