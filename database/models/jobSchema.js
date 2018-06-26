@@ -30,9 +30,9 @@ let future = new Date();
 const endDate = new Date(future.setDate(future.getDate() + 30));
 
 
-/**
- *  UNCOMMENT THE FOLLOWING TO GENERATE SAMPLE DATA
- */
+// /**
+//  *  UNCOMMENT THE FOLLOWING TO GENERATE SAMPLE DATA
+//  */
 // Job.create({
 //   description: "looking for history sub",
 //   School_id: 1,

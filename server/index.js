@@ -71,8 +71,4 @@ app.get('/*', function (req, res) {
   })
 })
 
-app.listen(PORT, ()=>{
-  console.log(`listening port: ${PORT}`)
-})
-
 exports.app = app;
