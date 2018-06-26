@@ -8,6 +8,7 @@ import Notes from "./Notes.jsx";
 class AdminJob extends React.Component {
 
   render() {
+    console.log("Hey i am in AdminJob.jsx");
     return (
       <div>
         <div style={{display: "flex"}}>

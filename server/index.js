@@ -49,6 +49,10 @@ server.applyMiddleware({app});
 app.listen(PORT, ()=>{
   console.log(`Server ready at port: ${PORT}`);
 });
+
+//app.use(morgan("dev"));
+//app.use(helmet());
+
 app.use(express.static(__dirname + '/../client/dist'));
 // app.use('/graphql', expressGraphQL({
 //   schema,

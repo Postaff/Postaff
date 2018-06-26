@@ -13,6 +13,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log("HEY am in app.jsx");
     return (
     
       <BrowserRouter> 

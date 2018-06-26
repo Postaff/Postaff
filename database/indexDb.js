@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 // const DBAuth = require("./config.js");
 const dotenv = require('dotenv').config();
 
-const sequelize = new Sequelize('postaff', process.env.SQL_DBUSER, process.env.SQL_DBPASS, {
+const sequelize = new Sequelize('postaff', "root", null, {
     host: 'localhost',
     dialect: 'mysql',
 })
