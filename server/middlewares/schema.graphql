@@ -1,0 +1,31 @@
+
+type Query {
+  # company(id: ID!): Company
+  # job(id: ID!): Job
+  jobs: [Job]
+}
+
+# type Mutation {
+#   createJob(input: CreateJobInput): Job
+# }
+
+# type Company {
+#   id: ID!
+#   name: String
+#   description: String
+#   jobs: [Job]
+# }
+
+# Here we're creating a query template for Job
+# We're telling graphQL whenever we ask for Job, give us the follow fields.
+# ! exclamation mark indicates the field cannot be null.
+# graphQL is statically typed, we need to specify what type the field is going to be
+# By default graphQL offers ID, Int, String, Boolean, Float.  
+type Job {
+  id: ID!
+  description: String
+  subject: String
+  grade: Int
+}
+
+

@@ -1,5 +1,16 @@
 {
-    "presets": [
-        "env", "react"
+  "presets": [
+    "env", "react"
+  ],
+  "plugins": [
+    [
+      "babel-plugin-inline-import", {
+        "extensions": [
+          ".json",
+          ".sql",
+          ".graphql"
+        ]
+      }
     ]
+  ]
 }

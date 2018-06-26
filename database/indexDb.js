@@ -1,8 +1,8 @@
 const Sequelize = require("sequelize");
-const DBAuth = require("./config.js")
-//const Admin = require("./Schemas/adminSchema");
+// const DBAuth = require("./config.js");
+const dotenv = require('dotenv').config();
 
-const sequelize = new Sequelize('postaff', DBAuth.DBUSER, DBAuth.DBPASS, {
+const sequelize = new Sequelize('postaff', process.env.SQL_DBUSER, process.env.SQL_DBPASS, {
     host: 'localhost',
     dialect: 'mysql',
 })
@@ -10,7 +10,7 @@ const sequelize = new Sequelize('postaff', DBAuth.DBUSER, DBAuth.DBPASS, {
 sequelize
   .authenticate()
   .then(() => {
-    console.log('Connection has been established successfully.');
+    console.log('🚀🚀🚀 Connection has been established successfully.🚀🚀🚀');
   })
   .catch(err => {
     console.error('Unable to connect to the database:', err);
