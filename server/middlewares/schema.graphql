@@ -5,6 +5,8 @@
 # We will then define the property of Job Type right below
 type Query {
   jobs: [Job]
+  schools: [School]
+  subs: [Sub]
 }
 
 # Here we're creating a query DataType for Job
@@ -19,4 +21,16 @@ type Job {
   grade: Int
 }
 
+type School{
+  id: ID!
+  school_name: String
+  contact_name: String
+  main_phone: String
+}
 
+type Sub{
+  id: ID!
+  name: String
+  phone: String
+  email: String
+}

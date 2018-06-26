@@ -5,6 +5,7 @@ import { ApolloProvider } from "react-apollo";
 
 import App from "./components/App.jsx";
 import JobListing from "./components/Shared/SharedJobsList.jsx";
+import AdminSchoolSum from "./components/Admin/AdminSchoolsSummary/AdminSchoolsSummary.jsx";
 
 /**
  * Create a new instant of ApolloClient and apply cache middleware

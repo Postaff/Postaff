@@ -20,7 +20,7 @@ class SharedJobsList extends React.Component {
     })
   }
 
-  render() {
+  render(){
     console.log(this.props)
     return (
       <Fragment>
