@@ -1,19 +1,19 @@
 import React from 'react';
-import AdminLandingPendingReviewEntry from './AdminLandingPendingReviewEntry.jsx';
+import AdminLandingUnclaimedJobsEntry from './AdminLandingUnclaimedJobsEntry.jsx';
 
-class AdminLandingPendingReviewList extends React.Component {
+class AdminLandingUnclaimedJobsList extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      entries: ['Job Description 1', 'Job Description 2']
+      entries: ['Unclaimed Job 1', 'Unclaimed Job 2']
     }
   }
 
   render() {
     return (
       <div>
-        <h3>Pending Review</h3>
+        <h3>Unclaimed Jobs</h3>
         <table>
           <thead>
             <tr>
@@ -23,7 +23,7 @@ class AdminLandingPendingReviewList extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.entries.map((entry, index) => <AdminLandingPendingReviewEntry entry={entry} key={index} />)}
+            {this.state.entries.map((entry, index) => <AdminLandingUnclaimedJobsEntry entry={entry} key={index} />)}
           </tbody>
         </table>
       </div>
@@ -31,4 +31,4 @@ class AdminLandingPendingReviewList extends React.Component {
   }
 }
 
-export default AdminLandingPendingReviewList;
+export default AdminLandingUnclaimedJobsList;
