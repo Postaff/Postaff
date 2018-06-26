@@ -1,4 +1,4 @@
-const db = require("./indexDb.js");
+const db = require("../indexDb.js");
 
 
 const Admin = db.sequelize.define('admin', {

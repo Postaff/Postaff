@@ -1,4 +1,4 @@
-const db = require("./indexDb.js");
+const db = require("../indexDb.js");
 
 const Sub = db.sequelize.define('sub', {
 
