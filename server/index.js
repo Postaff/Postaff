@@ -16,10 +16,9 @@ const jwtSecret = Buffer.from("Zn8Q5tyZ/G1MHltc4F/gTkVJMlrbKiZt", "base64");
 
 /**
  *  Have fs module reads the file schema.graphql
+ *  then gql method from apollo-server will help us parse the file to something readable by apollo
  */
 const typeDefs = gql(fs.readFileSync(path.join(__dirname, './middlewares/schema.graphql'), 'utf8'))
-
-const resolvers = require("./middlewares/resolvers.js")
 
 /**
  *  Import the resolvers.  
@@ -29,19 +28,18 @@ const resolvers = require("./middlewares/resolvers.js")
  *  More info about resolvers inside the resolver file,
  *  Here we're just importing it so we can connect it with our apollo server  
  */
-
-
-// Put together a schema
-
-
+const resolvers = require("./middlewares/resolvers.js")
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan("dev"));
 app.use(helmet());
 app.use(express.static(__dirname + "/../client/dist"));
-// app.use('/graphql', bodyParser.json(), graphqlExpress({schema}));
-// app.use('/graphiql', graphiqlExpress({endpointURL: "/graphql"}));
+
+/**
+ *  Create a new instance of ApolloServer using typeDefs and resolvers
+ *  we declared on top.  Then we apply apollo server to our main server 
+ */
 const server = new ApolloServer({typeDefs, resolvers});
 server.applyMiddleware({app});
 

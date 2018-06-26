@@ -1,12 +1,7 @@
-const {Job} = require("../../database/models/jobSchema");
 
 module.exports = {
 
-  getAllJobs: () => {
-    Job.findAll().then(jobs=>{
-      return jobs;
-    })
-  },
+  getAllJobs: () => {},
 
   createJob: function(req, res){
 
