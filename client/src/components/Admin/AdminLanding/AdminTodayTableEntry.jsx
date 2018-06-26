@@ -1,6 +1,6 @@
 import React from 'react';
 
-class LoginLanding extends React.Component {
+class AdminLandingTodayTableEntry extends React.Component {
   render() {
     return (
       <div>
@@ -10,4 +10,4 @@ class LoginLanding extends React.Component {
   }
 }
 
-export default LoginLanding;
+export default AdminLandingTodayTableEntry;
