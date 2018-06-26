@@ -27,7 +27,7 @@ class App extends React.Component {
         <div>
         <NavBar/>
         <Switch>
-          <Route exact path="/" component={HomeLanding} /> 
+          <Route exact path="/" component={AdminSubsSummary} /> 
           <Route path="/login" render={(props) => <Login {...props}/>} />
           <PrivateRoute exact path="/admin" component={AdminLanding} />
             <PrivateRoute exact path="/admin/schools/" component={AdminSchoolsSummary}/>
