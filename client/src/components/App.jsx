@@ -6,6 +6,7 @@ import SchoolLanding from "./School/SchoolLanding/SchoolLanding.jsx";
 import SubLanding from "./Sub/SubLanding/SubLanding.jsx";
 import AdminLanding from "./Admin/AdminLanding/AdminLanding.jsx"
 import PrivateRoute from "./PrivateRoute.jsx";
+import AdminSubsSummary from "./Admin/AdminSubsSummary/AdminSubsSummary.jsx"
 
 class App extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class App extends React.Component {
   }
 
   render() {
+    
     return (
     
       <BrowserRouter> 

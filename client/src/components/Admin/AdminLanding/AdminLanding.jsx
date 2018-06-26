@@ -8,7 +8,7 @@ class AdminLanding extends React.Component {
     super(props);
   };
   render() {
-    console.log("Hey", this.props.match.url);
+    console.log("Hey am in adminlanding.jsx");
     return (
       <div>
         This is admin landing page

@@ -6,6 +6,7 @@ class LoginLanding extends React.Component {
     super(props);
   }
   render() {
+    console.log("Hey am in login landing page")
     return (
       <div>
         <ul>

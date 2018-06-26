@@ -25,7 +25,6 @@ const Root = () => {
     <ApolloProvider client={client}>
       <Fragment>
         <App/>
-        <JobListing/>
       </Fragment>
     </ApolloProvider>
   )
