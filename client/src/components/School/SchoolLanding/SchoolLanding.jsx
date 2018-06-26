@@ -4,7 +4,7 @@ class SchoolLanding extends React.Component {
   render() {
     return (
       <div>
-        FILL_ME_IN
+        this is school landing page
       </div>
     );
   }

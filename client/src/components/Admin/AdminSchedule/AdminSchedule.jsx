@@ -4,7 +4,7 @@ class AdminSchedule extends React.Component {
   render() {
     return (
       <div>
-        FILL_ME_IN
+        This is the admin Schedule page
       </div>
     );
   }

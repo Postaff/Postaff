@@ -4,7 +4,7 @@ class SubLanding extends React.Component {
   render() {
     return (
       <div>
-        FILL_ME_IN
+        this is sub landing page
       </div>
     );
   }
