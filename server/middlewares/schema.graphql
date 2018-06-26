@@ -16,12 +16,11 @@ type Query {
 #   jobs: [Job]
 # }
 
-# Create a query template for Job
-# We're telling graphQL whenever we ask for Job,
-# give us the follow fields.
-# ! mark means the field is not null.
-# graphQL is statically typed, by default there are
-# ID, Int, String, Boolean, Float.  
+# Here we're creating a query template for Job
+# We're telling graphQL whenever we ask for Job, give us the follow fields.
+# ! exclamation mark indicates the field cannot be null.
+# graphQL is statically typed, we need to specify what type the field is going to be
+# By default graphQL offers ID, Int, String, Boolean, Float.  
 type Job {
   id: ID!
   description: String
