@@ -91,7 +91,7 @@ console.log(this.props.data)
                         return (
                           <TableRow key={school.id}>
                             <TableCell component="th" scope="row">
-                              <Link to={`/admin/school/${school.id}`}>{school.school_name}</Link>
+                              <Link to={`/admin/schools/${school.id}`}>{school.school_name}</Link>
                             </TableCell>
                             <TableCell>{school.contact_name}</TableCell>
                             <TableCell>{school.main_phone}</TableCell>

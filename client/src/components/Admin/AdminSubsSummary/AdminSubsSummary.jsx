@@ -7,6 +7,7 @@ import {
   Paper,
   TableCell
 } from '@material-ui/core';
+import {Link} from "react-router-dom";
 
 let id = 0;
 function createData(name, calories, fat, carbs, protein) {
@@ -51,7 +52,7 @@ class AdminSubsSummary extends React.Component {
             return (
               <TableRow key={n.id}>
                 <TableCell component="th" scope="row">
-                  {n.name}
+                  <Link to={`/admin/subs/${n.id}`}>{n.name}</Link>
                 </TableCell>
                 <TableCell numeric>{n.calories}</TableCell>
                 <TableCell numeric>{n.fat}</TableCell>

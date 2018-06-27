@@ -48,7 +48,7 @@ class NavBar extends Component{
             </ListItemIcon>
             <ListItemText primary="Schedule"/>
           </ListItem>
-          <Link to={'/sub'}>
+          <Link to={'/admin/subs'}>
           <ListItem button>
             <ListItemIcon>
               <People/>
@@ -56,7 +56,7 @@ class NavBar extends Component{
             <ListItemText primary="Substitutes"/>
           </ListItem>
           </Link>
-          <Link to={'/school'}>
+          <Link to={'/admin/schools'}>
           <ListItem button>
             <ListItemIcon>
               <LocationCity/>
