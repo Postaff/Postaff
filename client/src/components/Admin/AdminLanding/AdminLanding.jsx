@@ -7,7 +7,6 @@ import AdminLandingCharts from "./AdminLandingCharts.jsx";
 import AdminLandingCurrentStatus from "./AdminLandingCurrentStatus.jsx";
 import AdminLandingPendingReviewList from "./AdminLandingPendingReviewList.jsx";
 import AdminLandingUnclaimedJobsList from "./AdminLandingUnclaimedJobsList.jsx";
-//import AdminTodayTable from "./AdminTodayTable.jsx";
 import Grid from '@material-ui/core/Grid';
 
 class AdminLanding extends React.Component {
