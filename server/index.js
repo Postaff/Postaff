@@ -36,22 +36,29 @@ app.use(morgan("dev"));
 app.use(helmet());
 app.use(express.static(__dirname + "/../client/dist"));
 
-//THIS IS FOR REACT ROUTER DONOT DELETE
-app.get('/*', function (req, res) {
-  console.log(req.url);
-  res.sendFile(path.join(__dirname, '../client/dist/index.html'), function (err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
 
 /**
  *  Create a new instance of ApolloServer using typeDefs and resolvers
  *  we declared on top.  Then we apply apollo server to our main server 
  */
-const server = new ApolloServer({typeDefs, resolvers});
-server.applyMiddleware({app});
+app.get('/graphql', function(req, res) {
+  console.log("HEYHEY", req.url);
+  const server = new ApolloServer({typeDefs, resolvers});
+  server.applyMiddleware({app});
+})
+
+
+// //THIS IS FOR REACT ROUTER DONOT DELETE
+// app.get('/*', function (req, res) {
+//   console.log(req.url);
+//   res.sendFile(path.join(__dirname, '../client/dist/index.html'), function (err) {
+//     if (err) {
+//       res.status(500).send(err)
+//     }
+//   })
+// })
+
+
 
 app.listen(PORT, ()=>{
   console.log(`Server ready at port: ${PORT}`);

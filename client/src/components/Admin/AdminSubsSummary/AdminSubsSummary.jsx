@@ -7,12 +7,9 @@ import {
   Paper,
   TableCell
 } from '@material-ui/core';
-<<<<<<< HEAD
 import {Link} from "react-router-dom";
-=======
 import GET_ALL_SCHOOLS from '../../../queries/fetchAllJobs.js';
 import {graphql} from 'react-apollo';
->>>>>>> fetches substitute data from database to display in adminsubsummary
 
 let id = 0;
 function createData(name, calories, fat, carbs, protein) {

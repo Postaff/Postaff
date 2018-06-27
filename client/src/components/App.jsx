@@ -15,19 +15,15 @@ import NavBar from "./Menu/NavBar.jsx";
 
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
-    
     return (
     
       <BrowserRouter> 
         <div>
         <NavBar/>
         <Switch>
-          <Route exact path="/" component={AdminSubsSummary} /> 
+          <Route exact path="/" component={HomeLanding} /> 
           <Route path="/login" render={(props) => <Login {...props}/>} />
           <PrivateRoute exact path="/admin" component={AdminLanding} />
             <PrivateRoute exact path="/admin/schools/" component={AdminSchoolsSummary}/>
