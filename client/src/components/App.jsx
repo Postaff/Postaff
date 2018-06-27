@@ -33,11 +33,12 @@ class App extends React.Component {
   render() {
     console.log("I am in App.jsx")
     return (
-      <BrowserRouter> 
+      <div>
+      <BrowserRouter>
         <div>
         <NavBar />
         <Switch>
-          <Route exact path="/" component={HomeLanding} /> 
+          <Route exact path="/" component={HomeLanding} />
           <Route path="/login" render={(props) => <Login {...props}/>} />
           <PrivateRoute exact path="/admin" component={AdminLanding} />
             <PrivateRoute exact path="/admin/schools/" component={AdminSchoolsSummary}/>
@@ -46,13 +47,15 @@ class App extends React.Component {
             <PrivateRoute exact path="/admin/subs/:subName" component={AdminSubsDetail}/>
           <PrivateRoute exact path="/school" component={SchoolLanding} />
           <PrivateRoute exact path="/sub" component={SubLanding} />
-        </Switch>  
+        </Switch>
         </div>
-      </BrowserRouter>  
-     
+      </BrowserRouter>
+
+      <img src="../Postaff_.png" style={{ width: '100%', textAlign: 'center' }}></img>
+     </div>
     );
   }
-  
+
 };
 
 export default App;
