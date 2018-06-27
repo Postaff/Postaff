@@ -13,5 +13,4 @@ class AdminSchoolsSummary extends React.Component {
   }
 }
 
-
 export default graphql(GET_ALL_SCHOOLS)(AdminSchoolsSummary);
