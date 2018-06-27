@@ -1,7 +1,5 @@
-
 import React from 'react';
 import { BrowserRouter, Route, Link, Redirect} from "react-router-dom";
-
 
 
 const PrivateRoute = ({ component: Component, path:Path }) => (
