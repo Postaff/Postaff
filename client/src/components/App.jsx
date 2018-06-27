@@ -11,16 +11,17 @@ import AdminSubsDetail from "./Admin/AdminSubsDetail/AdminSubsDetail.jsx";
 import AdminSchoolsSummary from "./Admin/AdminSchoolsSummary/AdminSchoolsSummary.jsx";
 import AdminSchoolsDetail from "./Admin/AdminSchoolsDetail/AdminSchoolsDetail.jsx";
 import NavBar from "./Menu/NavBar.jsx";
-import AdminSubsSummary from "./Admin/AdminSubsSummary/AdminSubsSummary.jsx"
-import AdminTodayTable from "./Admin/AdminLanding/AdminTodayTable.jsx";
+import AdminSubsSummary from "./Admin/AdminSubsSummary/AdminSubsSummary.jsx";
+import AdminJob from "./Job/AdminJob.jsx";
+import AdminSubsDetail from './Admin/AdminSubsDetail/AdminSubsDetail.jsx';
 
 
 
 class App extends React.Component {
 
   render() {
+    console.log("I am in App.jsx")
     return (
-    
       <BrowserRouter> 
         <div>
         <NavBar/>

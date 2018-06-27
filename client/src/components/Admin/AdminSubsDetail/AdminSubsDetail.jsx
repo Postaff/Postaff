@@ -5,7 +5,7 @@ class AdminSubsDetail extends React.Component {
     console.log("this is in subdetails page")
     return (
       <div>
-        This the Sub Detail page
+        {`This is ${this.props.location.state.name}'s Page`}
       </div>
     );
   }

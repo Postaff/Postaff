@@ -11,7 +11,7 @@ import {
 import {Link} from "react-router-dom";
 import GET_ALL_SCHOOLS from '../../../queries/fetchAllJobs.js';
 import {graphql} from 'react-apollo';
-import AdminSubsDetail from '../AdminSubsDetail/AdminSubsDetail.jsx';
+
 
 class AdminSubsSummary extends React.Component {
   constructor(props) {
@@ -19,6 +19,7 @@ class AdminSubsSummary extends React.Component {
   }
 
   render() {
+<<<<<<< HEAD
     console.log("Am in AdminSubSummary", this.props.data);
     return (
       <Paper style={{
@@ -51,6 +52,51 @@ class AdminSubsSummary extends React.Component {
       </Table>
     </Paper>
     );
+=======
+    console.log("i am in admin subs summary page")
+    if(!this.props.data.loading) {
+      return (
+      
+        <Paper style={{
+          width: '100%',
+          marginTop: 100,
+          overflowX: 'auto',
+        }}>
+        <Table style={{minWidth: 700,}}>
+          <TableHead>
+            <TableRow>
+              <TableCell>Sub Name</TableCell>
+              <TableCell numeric>Phone Number</TableCell>
+              <TableCell numeric>Email</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {this.props.data.subs.map(n => {
+              return (
+                <TableRow key={n.id}>
+                  <TableCell component="th" scope="row">
+                  <Link to={{ pathname: `/subDetail/${n.name}`, state: { name: n.name} }}>{n.name}</Link>
+                  </TableCell>
+                  <TableCell numeric>{n.phone}</TableCell>
+                  <TableCell numeric>{n.email}</TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </Paper>
+       
+      
+      );
+    } else {
+      return (
+        <div>
+          Loading
+         </div> 
+      )
+    }
+    
+>>>>>>> adds route to jobDetails page
   }
 }
 
