@@ -78,7 +78,7 @@ class NavBar extends Component{
   }
 
   render(){
-    console.log("this navbar.jsx", this.props.isLoggedIn);
+    console.log("this navbar.jsx");
   const {classes} = this.props; 
     return (
       <div className={classes.root}>
@@ -118,13 +118,16 @@ class NavBar extends Component{
             <Typography variant="title" color="inherit" className={classes.flex}>
               Postaff
             </Typography>
-            
-            
+            {!this.props.isLoggedIn ?  
               <Link to={{pathname: "/login", state: {clicked: true} }}>
               <Button color="inherit" >Login</Button>
               </Link> 
-            
-            
+              : 
+              <Link to={{pathname: "/", state: {clicked: false} }}>
+              <Button color="inherit" onClick={() => this.props.clickLogout()} >Logout</Button>
+              </Link>  
+            }
+              
           </Toolbar>
         </AppBar>
       </div>
