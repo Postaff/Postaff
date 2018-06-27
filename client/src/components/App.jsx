@@ -11,6 +11,8 @@ import AdminSubsDetail from "./Admin/AdminSubsDetail/AdminSubsDetail.jsx";
 import AdminSchoolsSummary from "./Admin/AdminSchoolsSummary/AdminSchoolsSummary.jsx";
 import AdminSchoolsDetail from "./Admin/AdminSchoolsDetail/AdminSchoolsDetail.jsx";
 import NavBar from "./Menu/NavBar.jsx";
+import AdminSubsSummary from "./Admin/AdminSubsSummary/AdminSubsSummary.jsx"
+import AdminTodayTable from "./Admin/AdminLanding/AdminTodayTable.jsx";
 
 
 
