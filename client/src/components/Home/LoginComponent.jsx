@@ -6,12 +6,14 @@ import Slide from '@material-ui/core/Slide';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import {Link} from 'react-router-dom';
 
 
 const styles = theme => ({
   root: {
     height: '100%',
-    maxheight: 500
+    maxheight: 500,
+    float: 'right'
   },
   wrapper: {
     width: theme.spacing.unit * 41,
@@ -37,7 +39,7 @@ class Login extends React.Component {
     super(props);
 
     this.state = {
-      clicked: false,
+      clicked: this.props.location.state.clicked,
       username: '',
       password: '',
       usertype: null
@@ -56,7 +58,7 @@ class Login extends React.Component {
     return (
       <div className={classes.root}>
         <div className={classes.wrapper}>
-          <Button className={classes.button}><Typography variant="title" onClick={this.handleChange} aria-label="collapse">Login</Typography></Button>
+          {/* <Button className={classes.button}><Typography variant="title" onClick={this.handleChange} aria-label="collapse">Login</Typography></Button> */}
           <Slide direction="down" in={clicked} mountOnEnter unmountOnExit>
             <Paper elevation={6} className={classes.paper}>
               <Typography variant="display2">Please Log In</Typography>
@@ -77,7 +79,7 @@ class Login extends React.Component {
                 margin="normal"
               />
               <Button variant="contained" color="secondary" className={classes.button}>
-                Submit
+                <Link to='/admin'>Submit</Link>
               </Button>
             </Paper>
           </Slide>

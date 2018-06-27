@@ -8,30 +8,20 @@ import {
   TableCell
 } from '@material-ui/core';
 import {Link} from "react-router-dom";
-
-let id = 0;
-function createData(name, calories, fat, carbs, protein) {
-  id += 1;
-  return { id, name, calories, fat, carbs, protein };
-}
-
-const data = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+import GET_ALL_SUBS from '../../../queries/fetchAllSubs';
+import {graphql} from 'react-apollo';
 
 
 class AdminSubsSummary extends React.Component {
   constructor(props) {
     super(props)
   }
-
+  
   render() {
-    console.log("Am in AdminSubSummary");
-    return (
+    console.log("Am in AdminSubSummary", this.props.data);
+    
+    if(!this.props.data.loading) {
+      return (
       <Paper style={{
         width: '100%',
         marginTop: 100,
@@ -41,23 +31,20 @@ class AdminSubsSummary extends React.Component {
         <TableHead>
           <TableRow>
             <TableCell>Sub Name</TableCell>
-            <TableCell numeric>Client Rating</TableCell>
-            <TableCell numeric>Completion</TableCell>
-            <TableCell numeric>Subject</TableCell>
-            <TableCell numeric>Specialty</TableCell>
+            <TableCell numeric>Phone Number</TableCell>
+            <TableCell numeric>Email</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map(n => {
+          {this.props.data.subs.map(n => {
             return (
               <TableRow key={n.id}>
                 <TableCell component="th" scope="row">
-                  <Link to={`/admin/subs/${n.id}`}>{n.name}</Link>
+                  <Link to={`/admin/subs/${n.name}`}>{n.name}</Link>
                 </TableCell>
-                <TableCell numeric>{n.calories}</TableCell>
-                <TableCell numeric>{n.fat}</TableCell>
-                <TableCell numeric>{n.carbs}</TableCell>
-                <TableCell numeric>{n.protein}</TableCell>
+                <TableCell numeric>{n.phone}</TableCell>
+                <TableCell numeric>{n.email}</TableCell>
+                
               </TableRow>
             );
           })}
@@ -65,7 +52,14 @@ class AdminSubsSummary extends React.Component {
       </Table>
     </Paper>
     );
+    } else 
+      return(
+        <div>
+          Loading
+        </div>
+      );  
+      
   }
 }
 
-export default AdminSubsSummary;
+export default graphql(GET_ALL_SUBS)(AdminSubsSummary);

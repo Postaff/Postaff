@@ -10,7 +10,6 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv").config();
 const path = require("path");
 
-
 const app = express();
 const PORT = 3000;
 const jwtSecret = Buffer.from("Zn8Q5tyZ/G1MHltc4F/gTkVJMlrbKiZt", "base64");
@@ -37,6 +36,7 @@ app.use(morgan("dev"));
 app.use(helmet());
 app.use(express.static(__dirname + "/../client/dist"));
 
+
 //THIS IS FOR REACT ROUTER DONOT DELETE
 app.get('/*', function (req, res) {
   console.log(req.url);
@@ -55,7 +55,7 @@ const server = new ApolloServer({typeDefs, resolvers});
 server.applyMiddleware({app});
 
 app.listen(PORT, ()=>{
-  console.log(`listening port: ${PORT}`)
-})
+  console.log(`Server ready at port: ${PORT}`);
+});
 
 exports.app = app;

@@ -10,17 +10,10 @@ import AdminLandingUnclaimedJobsList from "./AdminLandingUnclaimedJobsList.jsx";
 import Grid from '@material-ui/core/Grid';
 
 class AdminLanding extends React.Component {
-  constructor(props) {
-    super(props);
-  };
   render() {
     console.log("Hey am in adminlanding.jsx");
     return (
       <div>
-        <ul>
-          <li><Link to={`${this.props.match.url}/jobDetails`}>JobDetail</Link></li>
-        </ul>  
-        <Route path={`${this.props.match.url}/:adminSubPages`} component={AdminJob} />
         <Grid container spacing={12} direction={'row'} alignItems={'flex-start'} justify={'center'}>
             <Grid item xs={4} sm={3}>
               <Grid container spacing={8} direction={'column'} alignItems={'center'} justify={'flex-start'}>

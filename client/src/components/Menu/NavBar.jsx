@@ -6,6 +6,7 @@ import {SwipeableDrawer, List, ListItem, ListItemIcon, ListItemText,
 Divider, AppBar, Toolbar, Typography, Button, IconButton} from '@material-ui/core';
 import {Home, Dashboard, Schedule, People, LocationCity, Work} from '@material-ui/icons';
 import { Link } from 'react-router-dom';
+import Login from "../Home/LoginComponent.jsx";
 
 class NavBar extends Component{
   constructor(props){
@@ -77,6 +78,7 @@ class NavBar extends Component{
   }
 
   render(){
+    console.log("this navbar.jsx", this.props.isLoggedIn);
   const {classes} = this.props; 
     return (
       <div className={classes.root}>
@@ -116,9 +118,13 @@ class NavBar extends Component{
             <Typography variant="title" color="inherit" className={classes.flex}>
               Postaff
             </Typography>
-            <Link to={"/login"}>
-            <Button color="inherit">Login</Button>
-            </Link>
+            
+            
+              <Link to={{pathname: "/login", state: {clicked: true} }}>
+              <Button color="inherit" >Login</Button>
+              </Link> 
+            
+            
           </Toolbar>
         </AppBar>
       </div>
