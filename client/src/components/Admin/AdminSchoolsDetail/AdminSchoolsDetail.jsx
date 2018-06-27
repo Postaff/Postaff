@@ -29,7 +29,7 @@ const styles = theme => ({
 class AdminSchoolsDetail extends React.Component {
   render() {
     const {classes} = this.props;
-console.log(this.props.data)
+
     if (this.props.data.loading) {
       return (
         <Fragment>
