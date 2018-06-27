@@ -52,6 +52,7 @@ class Login extends React.Component {
   };
 
   render() {
+    console.log("This is LoginComponent")
     const { classes } = this.props;
     const { clicked } = this.state;
 
@@ -78,7 +79,7 @@ class Login extends React.Component {
                 autoComplete="current-password"
                 margin="normal"
               />
-              <Button variant="contained" color="secondary" className={classes.button}>
+              <Button variant="contained" color="secondary" className={classes.button} onClick={()=>this.props.clickLogout()}>
                 <Link to='/admin'>Submit</Link>
               </Button>
             </Paper>

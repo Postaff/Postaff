@@ -17,37 +17,39 @@ import AdminJob from "./Job/AdminJob.jsx";
 
 
 class App extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     isLoggedIn : false
-  //   }
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedIn : false
+    }
+  }
 
-  // clickLogout () {
-  //   this.setState({
-  //     isLoggedIn: !this.state.isLoggedIn
-  //   })
-  // }
+  clickLogout () {
+    console.log("clickLogout is clicked")
+    this.setState({
+      isLoggedIn: !this.state.isLoggedIn
+    })
+  }
 
   render() {
+    const log = this.state.isLoggedIn;
     console.log("I am in App.jsx")
     return (
       <div>
       <BrowserRouter>
         <div>
-        <NavBar />
+        <NavBar isLoggedIn={log} clickLogout={this.clickLogout.bind(this)}/>
         <Switch>
-          <Route exact path="/" component={HomeLanding} />
-          <Route path="/login" render={(props) => <Login {...props}/>} />
-          <PrivateRoute exact path="/admin" component={AdminLanding} />
-            <PrivateRoute exact path="/admin/schools/" component={AdminSchoolsSummary}/>
-            <PrivateRoute exact path="/admin/schools/:schoolId" component={AdminSchoolsDetail}/>
-            <PrivateRoute exact path="/admin/subs" component={AdminSubsSummary}/>
-            <PrivateRoute exact path="/admin/subs/:subName" component={AdminSubsDetail}/>
-          <PrivateRoute exact path="/school" component={SchoolLanding} />
-          <PrivateRoute exact path="/sub" component={SubLanding} />
-        </Switch>
+          <Route exact path="/" component={HomeLanding} /> 
+          <Route path="/login" render={(props) => <Login {...props} clickLogout={this.clickLogout.bind(this)} />} />
+          <PrivateRoute exact path="/admin" component={AdminLanding} log={log} />
+            <PrivateRoute exact path="/admin/schools/" component={AdminSchoolsSummary} log={log} />
+            <PrivateRoute exact path="/admin/schools/:schoolId" component={AdminSchoolsDetail} log={log} />
+            <PrivateRoute exact path="/admin/subs" component={AdminSubsSummary} log={log} />
+            <PrivateRoute exact path="/admin/subs/:subName" component={AdminSubsDetail} log={log} />
+          <PrivateRoute exact path="/school" component={SchoolLanding} log={log} />
+          <PrivateRoute exact path="/sub" component={SubLanding} log={log} />
+        </Switch>  
         </div>
       </BrowserRouter>
 
