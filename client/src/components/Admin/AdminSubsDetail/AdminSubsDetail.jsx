@@ -2,10 +2,10 @@ import React from 'react';
 
 class AdminSubsDetail extends React.Component {
   render() {
-    console.log("this is in subdetails page")
+    console.log("this is in subdetails page", this.props)
     return (
       <div>
-        {`This is ${this.props.location.state.name}'s Page`}
+        {`This is ${this.props.match.params.subName}'s Page`}
       </div>
     );
   }
