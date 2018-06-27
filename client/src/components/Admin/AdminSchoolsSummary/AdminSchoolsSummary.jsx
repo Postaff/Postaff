@@ -1,18 +1,34 @@
-import React, { Fragment } from 'react';
+import React, {Fragment} from 'react';
+import {Link} from 'react-router-dom';
+import {graphql, compose} from 'react-apollo';
 import GET_ALL_SCHOOLS from '../../../queries/fetchAllSchools';
-import { graphql } from 'react-apollo';
+import {withStyles} from '@material-ui/core/styles';
 import {
   Table,
   TableBody,
   TableHead,
   TableRow,
   Paper,
-  TableCell
+  TableCell,
+  Grid,
 } from '@material-ui/core';
+
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+});
 
 class AdminSchoolsSummary extends React.Component {
   render() {
-    console.log(this.props.data);
+    const {classes} = this.props;
+console.log(this.props.data)
     if (this.props.data.loading) {
       return (
         <Fragment>
@@ -21,57 +37,80 @@ class AdminSchoolsSummary extends React.Component {
     } else {
       return (
         <Fragment>
-          <div style={{float:'left'}}>
-          <h3>New Jobs to Review</h3>
-            <table>
-              <thead>
-                  <th>Unclaimed Jobs</th>
-                  <td>2</td>
-              </thead>
-              <tbody>
-                  <th>Claimed Jobs</th>
-                  <td>5</td>
-              </tbody>
-            </table>
+          <div className={classes.root}>
+            <Grid container spacing={24}>
+              <Grid item xs={4}>
+                <Paper style={{
+                    width: '100%',
+                    overflowX: 'auto',
+                    marginTop: '50px',
+                }}>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>New Jobs to Review</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell component="th" scope="row">Job Description 1</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell component="th" scope="row">Job Description 2</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell component="th" scope="row">Job Description 3</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </Paper>
+              </Grid>
+              <Grid item xs={8}>
+                <div style={{marginTop:'65px'}}>
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiBKSrnYuLNAR43LPFNPXnnCNBx1bIh3BC6k-AOu292wCPdSMs" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiBKSrnYuLNAR43LPFNPXnnCNBx1bIh3BC6k-AOu292wCPdSMs" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiBKSrnYuLNAR43LPFNPXnnCNBx1bIh3BC6k-AOu292wCPdSMs" />
+                </div>
+              </Grid>
+              <Grid item xs={12}>
+                <Paper style={{
+                    width: '100%',
+                    marginTop: '10px',
+                    overflowX: 'auto',
+                }}>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>School Name</TableCell>
+                        <TableCell>Contact Name</TableCell>
+                        <TableCell>Main Phone</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {this.props.data.schools.map(school => {
+                        return (
+                          <TableRow key={school.id}>
+                            <TableCell component="th" scope="row">
+                              <Link to={`/admin/school/${school.id}`}>{school.school_name}</Link>
+                            </TableCell>
+                            <TableCell>{school.contact_name}</TableCell>
+                            <TableCell>{school.main_phone}</TableCell>
+                          </TableRow>
+                        );
+                      })}
+                    </TableBody>
+                  </Table>
+                </Paper>
+              </Grid>
+            </Grid>
           </div>
-          <div style={{float:'right'}}>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiBKSrnYuLNAR43LPFNPXnnCNBx1bIh3BC6k-AOu292wCPdSMs" />
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiBKSrnYuLNAR43LPFNPXnnCNBx1bIh3BC6k-AOu292wCPdSMs" />
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiBKSrnYuLNAR43LPFNPXnnCNBx1bIh3BC6k-AOu292wCPdSMs" />
-          </div>
-          <Paper style={{
-            width: '100%',
-            marginTop: 100,
-            overflowX: 'auto',
-          }}>
-
-          <Table style={{minWidth: 700,}}>
-            <TableHead>
-              <TableRow>
-                <TableCell>School Name</TableCell>
-                <TableCell>Contact Name</TableCell>
-                <TableCell>Main Phone</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {this.props.data.schools.map(n => {
-                return (
-                  <TableRow key={n.id}>
-                    <TableCell component="th" scope="row">
-                      {n.school_name}
-                    </TableCell>
-                    <TableCell>{n.contact_name}</TableCell>
-                    <TableCell>{n.main_phone}</TableCell>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
-        </Paper>
-      </Fragment>
+        </Fragment>
       );
     }
   }
 }
 
-export default graphql(GET_ALL_SCHOOLS)(AdminSchoolsSummary);
+export default compose(
+  withStyles(styles),
+  graphql(GET_ALL_SCHOOLS),
+)(AdminSchoolsSummary);
