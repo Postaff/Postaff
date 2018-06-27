@@ -1,21 +1,42 @@
 import React from 'react';
+import {
+  Typography,
+  Paper,
+  Grid,
+} from '@material-ui/core';
 
 class AdminLandingCurrentStatus extends React.Component {
   render() {
     return (
-      <div>
-        <h3>Current Status</h3>
-        <table>
-          <thead>
-              <th>Unclaimed Jobs</th>
-              <td>2</td>
-          </thead>
-          <tbody>
-              <th>Claimed Jobs</th>
-              <td>5</td>
-          </tbody>
-      </table>
-      </div>
+      <Paper style={{ height: '100%', padding: '5%' }}>
+        <Typography variant="display1" gutterBottom>
+         Current Status
+        </Typography>
+        <Typography variant="subheading" gutterBottom>
+          <Grid container spacing={8}>
+            <Grid item xs={6}>
+              Unclaimed Jobs
+            </Grid>
+            <Grid item xs={1}>
+            </Grid>
+            <Grid item xs={1}>
+              27
+            </Grid>
+          </Grid>
+        </Typography>
+        <Typography variant="subheading" gutterBottom>
+          <Grid container spacing={8}>
+            <Grid item xs={6}>
+              Claimed Jobs
+            </Grid>
+            <Grid item xs={1}>
+            </Grid>
+            <Grid item xs={1}>
+              144
+            </Grid>
+          </Grid>
+        </Typography>
+      </Paper>
     );
   }
 }
