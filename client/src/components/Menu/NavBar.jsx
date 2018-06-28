@@ -22,6 +22,11 @@ class NavBar extends Component{
     })
   }
 
+  // openLoginComponent () {
+  //   console.log("This is openLoginComponent function in navbar.jsx");
+  //   <Login clicked={true} />
+  // }
+
   renderAdminSideBar(){
     const {classes} = this.props; 
     return (
@@ -35,7 +40,9 @@ class NavBar extends Component{
               <ListItemText primary="Home"/>
             </ListItem>
           </Link>
-          <Link to={'/admin'}>
+          {this.props.isLoggedIn && this.props.option === 'admin' ?
+            <List>
+            <Link to={'/admin'}>
             <ListItem button>
                 <ListItemIcon>
                   <Dashboard/>
@@ -43,12 +50,14 @@ class NavBar extends Component{
               <ListItemText primary="Dashboard"/>
             </ListItem>
           </Link>
+          <Link to={'/admin/schedule'}>
           <ListItem button>
             <ListItemIcon>
               <Schedule/>
             </ListItemIcon>
             <ListItemText primary="Schedule"/>
           </ListItem>
+          </Link>
           <Link to={'/admin/subs'}>
           <ListItem button>
             <ListItemIcon>
@@ -65,12 +74,17 @@ class NavBar extends Component{
             <ListItemText primary="Schools"/>
           </ListItem>
           </Link>
+          <Link to={'/admin/jobs'}>
           <ListItem button>
             <ListItemIcon>
               <Work/>
             </ListItemIcon>
             <ListItemText primary="Jobs"/>
           </ListItem>
+          </Link>
+          </List>
+          : <div></div>}
+          
           <Divider/>
         </List>
       </div>
@@ -78,7 +92,7 @@ class NavBar extends Component{
   }
 
   render(){
-    console.log("this navbar.jsx");
+    console.log("this navbar.jsx", this.props);
   const {classes} = this.props; 
     return (
       <div className={classes.root}>
@@ -120,11 +134,11 @@ class NavBar extends Component{
             </Typography>
             {!this.props.isLoggedIn ?  
               <Link to={{pathname: "/login", state: {clicked: true} }}>
-              <Button color="inherit" >Login</Button>
+                <Button color="inherit" >Login</Button>
               </Link> 
               : 
               <Link to={{pathname: "/", state: {clicked: false} }}>
-              <Button color="inherit" onClick={() => this.props.clickLogout()} >Logout</Button>
+                <Button color="inherit" onClick={() => this.props.clickLogout()} >Logout</Button>
               </Link>  
             }
               

@@ -22,6 +22,8 @@ class AdminSubsSummary extends React.Component {
     
     if(!this.props.data.loading) {
       return (
+      <div>
+        <h1> This is the Admin Subs Page</h1>  
       <Paper style={{
         width: '100%',
         marginTop: 100,
@@ -51,6 +53,7 @@ class AdminSubsSummary extends React.Component {
         </TableBody>
       </Table>
     </Paper>
+    </div>
     );
     } else 
       return(

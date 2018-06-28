@@ -7,6 +7,10 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom';
+import Radio from '@material-ui/core/Radio';
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 
 const styles = theme => ({
@@ -31,7 +35,22 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: 200,
-  }
+  },
+
+  radio: {
+    color: 'green',
+    '&$checked': {
+      color: 'green',
+    },
+  },
+  checked: {},
+  size: {
+    width: 40,
+    height: 40,
+  },
+  sizeIcon: {
+    fontSize: 20,
+  },
 });
 
 class Login extends React.Component {
@@ -39,20 +58,28 @@ class Login extends React.Component {
     super(props);
 
     this.state = {
-      clicked: this.props.location.state.clicked,
+      clicked: true,
       username: '',
       password: '',
-      usertype: null
+      usertype: null,
+      selectedValue: 'admin',
     }
     this.handleChange = this.handleChange.bind(this);
+    this.radioChange = this.radioChange.bind(this);
   }
 
   handleChange() {
     this.setState({ clicked: !this.state.clicked });
   };
 
+  radioChange (event){
+    console.log(event.target.value);
+    this.setState({selectedValue: event.target.value});
+  };
+
+
   render() {
-    console.log("This is LoginComponent")
+    console.log("This is LoginComponent", this.props)
     const { classes } = this.props;
     const { clicked } = this.state;
 
@@ -79,9 +106,38 @@ class Login extends React.Component {
                 autoComplete="current-password"
                 margin="normal"
               />
-              <Button variant="contained" color="secondary" className={classes.button} onClick={()=>this.props.clickLogout()}>
-                <Link to='/admin'>Submit</Link>
+              <Button variant="contained" color="secondary" className={classes.button} onClick={()=>this.props.clickLogout(this.state.selectedValue)}>
+                <Link to={`/${this.state.selectedValue}`}>Submit</Link>
               </Button>
+              <div>
+              <FormControlLabel   control={    
+                <Radio
+                  checked={this.state.selectedValue === 'admin'}
+                  onChange={this.radioChange}
+                  value="admin"
+                  name="admin-radio-button"
+                  aria-label="A"
+                />}
+              label="Admin"/>
+              <FormControlLabel   control={  
+                <Radio
+                  checked={this.state.selectedValue === 'sub'}
+                  onChange={this.radioChange}
+                  value="sub"
+                  name="subs-radio-button"
+                  aria-label="B"
+                />}
+              label="Subs"/> 
+              <FormControlLabel   control={   
+                <Radio
+                  checked={this.state.selectedValue === 'school'}
+                  onChange={this.radioChange}
+                  value="school"
+                  name="school-radio-button"
+                  aria-label="C"
+                />}
+              label="School" />  
+      </div>
             </Paper>
           </Slide>
         </div>
