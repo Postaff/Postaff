@@ -14,6 +14,7 @@ class AdminLanding extends React.Component {
     console.log("Hey am in adminlanding.jsx");
     return (
       <div>
+        <h1>This is the Admin Main Page</h1>
         <Grid container spacing={12} direction={'row'} alignItems={'flex-start'} justify={'center'}>
             <Grid item xs={4} sm={3}>
               <Grid container spacing={8} direction={'column'} alignItems={'center'} justify={'flex-start'}>

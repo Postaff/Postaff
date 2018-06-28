@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import {Table, TableBody, TableCell, TableHead, TablePagination, TableRow,
 TableSortLabel, Toolbar, Typography, Paper, Tooltip} from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import { toolbarStyle, tableStyle } from '../../styles/ToolbarStyle';
 import {graphql, compose} from 'react-apollo';
 import GET_ALL_JOBS from '../../queries/fetchAllJobs.js';
@@ -91,7 +92,7 @@ class AdminTodayTable extends React.Component {
                       key={n.id}
                     >
                       <TableCell component="th" scope="row">
-                        {n.subject}
+                        <Link to={{pathname:'/admin/jobs', state:{sub: n.subject, grade: n.grade}}}>{n.subject}</Link>
                       </TableCell>
                       <TableCell numeric></TableCell>
                       <TableCell numeric>{n.grade}</TableCell>

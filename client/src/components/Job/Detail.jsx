@@ -41,7 +41,7 @@ class Detail extends React.Component {
             <Grid item xs={1}>
             </Grid>
             <Grid item xs={5}>
-              { this.state.pageInfo.status}
+              { this.props.data ? 'Claimed' : this.state.pageInfo.status}
             </Grid>
           </Grid>
         </Typography>
@@ -53,7 +53,7 @@ class Detail extends React.Component {
             <Grid item xs={1}>
             </Grid>
             <Grid item xs={5}>
-              { this.state.pageInfo.subjects}
+              { this.props.data ? this.props.data.sub : this.state.pageInfo.subjects}
             </Grid>
           </Grid>
         </Typography>
@@ -65,7 +65,7 @@ class Detail extends React.Component {
             <Grid item xs={1}>
             </Grid>
             <Grid item xs={5}>
-              { this.state.pageInfo.grade}
+              { this.props.data ? this.props.data.grade : this.state.pageInfo.grade}
             </Grid>
           </Grid>
         </Typography>

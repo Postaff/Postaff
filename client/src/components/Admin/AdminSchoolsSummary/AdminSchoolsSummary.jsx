@@ -29,6 +29,8 @@ class AdminSchoolsSummary extends React.Component {
       )
     } else {
       return (
+        <div>
+          <h1> This is the Admin School Page</h1>
         <Fragment>
           <div className={classes.root}>
             <Grid container spacing={24}>
@@ -38,6 +40,7 @@ class AdminSchoolsSummary extends React.Component {
             </Grid>
           </div>
         </Fragment>
+        </div>
       );
     }
   }
