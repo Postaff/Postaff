@@ -2,6 +2,7 @@
 const {Job} = require("../../database/models/jobSchema");
 const {School} = require("../../database/models/schoolSchema");
 const {Sub} = require("../../database/models/subSchema");
+const {User} = require("../../database/models/userSchema");
 
 /**
  * jobs is the query we defined in schema file, 
