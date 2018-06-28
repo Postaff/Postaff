@@ -1,12 +1,37 @@
 import React, {Component} from 'react';
-import {styles} from '../../styles/NavBarStyle'; 
 import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-import {SwipeableDrawer, List, ListItem, ListItemIcon, ListItemText, 
+import {SwipeableDrawer, List, ListItem, ListItemIcon, ListItemText,
 Divider, AppBar, Toolbar, Typography, Button, IconButton} from '@material-ui/core';
 import {Home, Dashboard, Schedule, People, LocationCity, Work} from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import Login from "../Home/LoginComponent.jsx";
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    marginBottom: '2vh',
+  },
+  flex: {
+    flex: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: '1vw',
+  },
+  list: {
+    minWidth: 150,
+    maxWidth: 250,
+  },
+  fullList: {
+    width: 'auto',
+  },
+  sideBar:{
+    minWidth: 230,
+    maxWidth: '30vw',
+    backgroundColor: theme.palette.background.paper,
+  }
+});
 
 class NavBar extends Component{
   constructor(props){
@@ -28,7 +53,7 @@ class NavBar extends Component{
   // }
 
   renderAdminSideBar(){
-    const {classes} = this.props; 
+    const {classes} = this.props;
     return (
       <div className={classes.sideBar}>
         <List component="nav">
@@ -84,7 +109,7 @@ class NavBar extends Component{
           </Link>
           </List>
           : <div></div>}
-          
+
           <Divider/>
         </List>
       </div>
@@ -92,8 +117,8 @@ class NavBar extends Component{
   }
 
   render(){
-    console.log("this navbar.jsx", this.props);
-  const {classes} = this.props; 
+    console.log("this navbar.jsx");
+  const {classes} = this.props;
     return (
       <div className={classes.root}>
         <AppBar color="default" position="static">
@@ -129,19 +154,19 @@ class NavBar extends Component{
               </List>
               </div>
             </SwipeableDrawer>
-            <Typography variant="title" color="inherit" className={classes.flex}>
-              Postaff
-            </Typography>
-            {!this.props.isLoggedIn ?  
+              <Typography variant="title" color="inherit" className={classes.flex}>
+                Postaff
+              </Typography>
+            {!this.props.isLoggedIn ?
               <Link to={{pathname: "/login", state: {clicked: true} }}>
                 <Button color="inherit" >Login</Button>
-              </Link> 
-              : 
+              </Link>
+              :
               <Link to={{pathname: "/", state: {clicked: false} }}>
                 <Button color="inherit" onClick={() => this.props.clickLogout()} >Logout</Button>
-              </Link>  
+              </Link>
             }
-              
+
           </Toolbar>
         </AppBar>
       </div>
