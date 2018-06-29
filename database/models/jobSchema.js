@@ -1,4 +1,4 @@
-const db = require("../indexDb.js");
+const db = require('../indexDb.js');
 
 const Job = db.sequelize.define('job', {
   description: db.sequelize.Sequelize.TEXT,
@@ -20,13 +20,17 @@ const Job = db.sequelize.define('job', {
   hours_approved: db.sequelize.Sequelize.BOOLEAN,
   school_rating: db.sequelize.Sequelize.INTEGER,
   sub_rating: db.sequelize.Sequelize.INTEGER,
+<<<<<<< HEAD
   paid: db.sequelize.Sequelize.BOOLEAN
+=======
+  paid: db.sequelize.Sequelize.BOOLEAN,
+>>>>>>> Result of ESlint js files
 });
 
 // const startTime = '12:59:59';
 // const endTime = '14:20:20';
 const startDate = new Date();
-let future = new Date();
+const future = new Date();
 const endDate = new Date(future.setDate(future.getDate() + 30));
 
 

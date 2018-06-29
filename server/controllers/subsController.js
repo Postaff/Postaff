@@ -1,11 +1,11 @@
 
 module.exports = {
 
-  getAllSubs: function(req, res){
+  getAllSubs(req, res) {
   },
 
-  getSubById: function(req, res){
+  getSubById(req, res) {
 
   },
 
-}
+};

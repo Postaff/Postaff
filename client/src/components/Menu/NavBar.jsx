@@ -1,11 +1,15 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-import {SwipeableDrawer, List, ListItem, ListItemIcon, ListItemText,
-Divider, AppBar, Toolbar, Typography, Button, IconButton} from '@material-ui/core';
-import {Home, Dashboard, Schedule, People, LocationCity, Work} from '@material-ui/icons';
+import { 
+SwipeableDrawer, List, ListItem, ListItemIcon, ListItemText,
+  Divider, AppBar, Toolbar, Typography, Button, IconButton
+ } from '@material-ui/core';
+import { 
+Home, Dashboard, Schedule, People, LocationCity, Work
+ } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
-import Login from "../Home/LoginComponent.jsx";
+import Login from '../Home/LoginComponent.jsx';
 
 const styles = theme => ({
   root: {
@@ -26,29 +30,29 @@ const styles = theme => ({
   fullList: {
     width: 'auto',
   },
-  sideBar:{
+  sideBar: {
     minWidth: 230,
     maxWidth: '30vw',
     backgroundColor: theme.palette.background.paper,
-  }
+  },
 });
 
-class NavBar extends Component{
-  constructor(props){
+class NavBar extends Component {
+  constructor(props) {
     super(props);
     this.state = {
       isOpen: false,
-    }
+    };
   }
 
-  handleToggle(open){
+  handleToggle(open) {
     this.setState({
-      isOpen: open
-    })
+      isOpen: open,
+    });
   }
 
-  renderAdminSideBar(){
-    const {classes} = this.props;
+  renderAdminSideBar() {
+    const { classes } = this.props;
     return (
       <div className={classes.sideBar}>
         <List component="nav">
@@ -60,8 +64,8 @@ class NavBar extends Component{
               <ListItemText primary="Home"/>
             </ListItem>
           </Link>
-          {this.props.isLoggedIn && this.props.option === 'admin' ?
-            <List>
+          {this.props.isLoggedIn && this.props.option === 'admin'
+            ? <List>
             <Link to={'/admin'}>
             <ListItem button>
                 <ListItemIcon>
@@ -103,34 +107,34 @@ class NavBar extends Component{
           </ListItem>
           </Link>
           </List>
-          : <div></div>}
+            : <div></div>}
 
           <Divider/>
         </List>
       </div>
-    )
+    );
   }
 
-  render(){
-    console.log("this navbar.jsx");
-  const {classes} = this.props;
+  render() {
+    console.log('this navbar.jsx');
+    const { classes } = this.props;
     return (
       <div className={classes.root}>
         <AppBar color="default" position="static">
           <Toolbar>
-            <IconButton onClick={()=> this.handleToggle(true)} className={classes.menuButton} color="inherit">
+            <IconButton onClick={() => this.handleToggle(true)} className={classes.menuButton} color="inherit">
               <MenuIcon />
             </IconButton>
             <SwipeableDrawer
               open={this.state.isOpen}
-              onClose={()=> this.handleToggle(false)}
-              onOpen={()=> this.handleToggle(true)}
+              onClose={() => this.handleToggle(false)}
+              onOpen={() => this.handleToggle(true)}
             >
               <div
                 tabIndex={0}
                 role="button"
-                onClick={()=> this.handleToggle(false)}
-                onKeyDown={()=> this.handleToggle(false)}
+                onClick={() => this.handleToggle(false)}
+                onKeyDown={() => this.handleToggle(false)}
               >
                 {this.renderAdminSideBar()}
                 <List component="nav">
@@ -153,12 +157,9 @@ class NavBar extends Component{
                 Postaff
               </Typography>
 
-            {!this.props.isLoggedIn ?
-              <Link to={{pathname: "/login"}}>
-                <Button color="inherit" onClick={() => this.props.slide()}>Login</Button>
-              </Link>
-            :
-              <Link to={{pathname: "/", state: {clicked: false} }}>
+            {!this.props.isLoggedIn
+              ? <Login />
+            :              <Link to={{ pathname: '/', state: { clicked: false } }}>
               <Button color="inherit" onClick={() => this.props.clickLogout()} >Logout</Button>
               </Link>
             }
