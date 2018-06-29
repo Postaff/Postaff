@@ -22,8 +22,16 @@ class App extends React.Component {
     super(props);
     this.state = {
       isLoggedIn : false,
-      sasOption: null
+      sasOption: null,
+      slide: false
     }
+  }
+
+  isSliding () {
+    console.log("This is isSliding", this.state.slide)
+    this.setState({
+      slide: !this.state.slide
+    })
   }
 
   clickLogout (option) {
@@ -37,15 +45,15 @@ class App extends React.Component {
   render() {
     const log = this.state.isLoggedIn;
     const option = this.state.sasOption;
-    console.log("I am in App.jsx")
+    console.log("I am in App.jsx", this.state.slide)
     return (
       <div>
       <BrowserRouter>
         <div>
-        <NavBar isLoggedIn={log} option={option} clickLogout={this.clickLogout.bind(this)}/>
+        <NavBar isLoggedIn={log} option={option} clickLogout={this.clickLogout.bind(this)} slide={this.isSliding.bind(this)}/>
         <Switch>
           <Route exact path="/" component={HomeLanding} /> 
-          <Route exact path="/login" render={(props) => <Login {...props} clickLogout={this.clickLogout.bind(this)} />} />
+          <Route path="/login" render={(props) => <Login {...props} clickLogout={this.clickLogout.bind(this)} slide={this.state.slide}/>} />
           <PrivateRoute exact path="/admin" component={AdminLanding} log={log} />
             <PrivateRoute exact path="/admin/schedule" component={AdminSchedule} log={log} />
             <PrivateRoute exact path="/admin/schools" component={AdminSchoolsSummary} log={log} />

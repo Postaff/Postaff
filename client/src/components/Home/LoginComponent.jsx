@@ -58,19 +58,13 @@ class Login extends React.Component {
     super(props);
 
     this.state = {
-      clicked: true,
       username: '',
       password: '',
       usertype: null,
       selectedValue: 'admin',
     }
-    this.handleChange = this.handleChange.bind(this);
     this.radioChange = this.radioChange.bind(this);
   }
-
-  handleChange() {
-    this.setState({ clicked: !this.state.clicked });
-  };
 
   radioChange (event){
     console.log(event.target.value);
@@ -79,15 +73,16 @@ class Login extends React.Component {
 
 
   render() {
-    console.log("This is LoginComponent", this.props)
+    console.log("This is LoginComponent")
     const { classes } = this.props;
     const { clicked } = this.state;
 
     return (
       <div className={classes.root}>
         <div className={classes.wrapper}>
+
           {/* <Button className={classes.button}><Typography variant="title" onClick={this.handleChange} aria-label="collapse">Login</Typography></Button> */}
-          <Slide direction="down" in={clicked} mountOnEnter unmountOnExit>
+          <Slide direction="down" in={this.props.slide} mountOnEnter unmountOnExit>
             <Paper elevation={6} className={classes.paper}>
               <Typography variant="display2">Please Log In</Typography>
                 <TextField
@@ -137,7 +132,7 @@ class Login extends React.Component {
                   aria-label="C"
                 />}
               label="School" />  
-      </div>
+            </div>
             </Paper>
           </Slide>
         </div>

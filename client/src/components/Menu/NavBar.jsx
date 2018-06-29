@@ -47,11 +47,6 @@ class NavBar extends Component{
     })
   }
 
-  // openLoginComponent () {
-  //   console.log("This is openLoginComponent function in navbar.jsx");
-  //   <Login clicked={true} />
-  // }
-
   renderAdminSideBar(){
     const {classes} = this.props;
     return (
@@ -157,13 +152,14 @@ class NavBar extends Component{
               <Typography variant="title" color="inherit" className={classes.flex}>
                 Postaff
               </Typography>
+
             {!this.props.isLoggedIn ?
-              <Link to={{pathname: "/login", state: {clicked: true} }}>
-                <Button color="inherit" >Login</Button>
+              <Link to={{pathname: "/login"}}>
+                <Button color="inherit" onClick={() => this.props.slide()}>Login</Button>
               </Link>
-              :
+            :
               <Link to={{pathname: "/", state: {clicked: false} }}>
-                <Button color="inherit" onClick={() => this.props.clickLogout()} >Logout</Button>
+              <Button color="inherit" onClick={() => this.props.clickLogout()} >Logout</Button>
               </Link>
             }
 
