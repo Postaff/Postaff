@@ -2,6 +2,8 @@
 const {Job} = require("../../database/models/jobSchema");
 const {School} = require("../../database/models/schoolSchema");
 const {Sub} = require("../../database/models/subSchema");
+const {User} = require("../../database/models/userSchema");
+const AuthService = require("./auth");
 
 /**
  * jobs is the query we defined in schema file, 
@@ -16,6 +18,12 @@ const Query = {
   jobs: () => Job.findAll(),
   schools: () => School.findAll(),
   subs: () => Sub.findAll(),
+}
+
+const mutation = {
+  signup: (root, args, context) => {
+    
+  }
 }
 
 module.exports = { Query };
