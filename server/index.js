@@ -3,16 +3,15 @@ const bodyParser = require("body-parser");
 const {ApolloServer, gql} = require("apollo-server");
 const morgan = require("morgan");
 const helmet = require("helmet");
-const router = require("./routes.js");
 const fs = require("fs");
-const expressJwt = require("express-jwt");
-const jwt = require("jsonwebtoken");
-const dotenv = require("dotenv").config();
+const passport = require("passport");
+const session = require("express-session");
 const path = require("path");
+const passportConfig = require("./middlewares/auth");
+const dotenv = require("dotenv").config();
 
 const app = express();
 const PORT = 3000;
-const jwtSecret = Buffer.from("Zn8Q5tyZ/G1MHltc4F/gTkVJMlrbKiZt", "base64");
 
 /**
  *  Have fs module reads the file schema.graphql
@@ -35,7 +34,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan("dev"));
 app.use(helmet());
 app.use(express.static(__dirname + "/../client/dist"));
-
+app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: 'savedByTheBell',
+}))
+app.use(passport.initialize());
+app.use(passport.session());
 
 //THIS IS FOR REACT ROUTER DONOT DELETE
 app.get('/*', function (req, res) {

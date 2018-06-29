@@ -45,7 +45,7 @@ class App extends React.Component {
         <NavBar isLoggedIn={log} option={option} clickLogout={this.clickLogout.bind(this)}/>
         <Switch>
           <Route exact path="/" component={HomeLanding} /> 
-          <Route path="/login" render={(props) => <Login {...props} clickLogout={this.clickLogout.bind(this)} />} />
+          <Route exact path="/login" render={(props) => <Login {...props} clickLogout={this.clickLogout.bind(this)} />} />
           <PrivateRoute exact path="/admin" component={AdminLanding} log={log} />
             <PrivateRoute exact path="/admin/schedule" component={AdminSchedule} log={log} />
             <PrivateRoute exact path="/admin/schools" component={AdminSchoolsSummary} log={log} />
@@ -58,8 +58,6 @@ class App extends React.Component {
         </Switch>  
         </div>
       </BrowserRouter>
-
-      <img src="../Postaff_.png" style={{ width: '100%', textAlign: 'center' }}></img>
      </div>
     );
   }

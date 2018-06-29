@@ -6,6 +6,7 @@ class HomeLanding extends React.Component {
   render() {
     return (  
       <div>
+      <img src="../Postaff_.png" style={{ width: '100%', textAlign: 'center' }}></img>
         
       </div>
     );
