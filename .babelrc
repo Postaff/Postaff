@@ -2,9 +2,9 @@
   "presets": [
     "env", "react"
   ],
-  "plugins": [
+  "plugins": [ "transform-class-properties",
     [
-      "babel-plugin-inline-import", {
+      "babel-plugin-inline-import",  {
         "extensions": [
           ".json",
           ".sql",
