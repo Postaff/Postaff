@@ -1,6 +1,6 @@
-const db = require("../indexDb.js");
+const db = require('../indexDb.js');
 
-const School = db.sequelize.define('school', { 
+const School = db.sequelize.define('school', {
   school_name: db.sequelize.Sequelize.STRING,
   username: db.sequelize.Sequelize.STRING,
   plain_text_password: db.sequelize.Sequelize.STRING,
@@ -19,7 +19,7 @@ const School = db.sequelize.define('school', {
   unclaimed_jobs: db.sequelize.Sequelize.INTEGER,
   rating: db.sequelize.Sequelize.INTEGER,
   notes: db.sequelize.Sequelize.TEXT,
-  date_registered: db.sequelize.Sequelize.DATEONLY
+  date_registered: db.sequelize.Sequelize.DATEONLY,
 });
 
 // School.create({

@@ -1,31 +1,31 @@
 module.exports = {
 
-  loginUser: function(req, res){
+  loginUser(req, res) {
 
   },
 
-  logoutUser: function(req, res){
+  logoutUser(req, res) {
 
   },
 
-  updateUser: function(req, res){
+  updateUser(req, res) {
 
   },
 
-  createUser: function(req, res){
+  createUser(req, res) {
 
   },
 
-  getAllUsers: function(req, res){
+  getAllUsers(req, res) {
 
   },
 
-  getUserById: function(req, res){
+  getUserById(req, res) {
 
   },
 
-  getAllJobsByUserId: function(req, res){
+  getAllJobsByUserId(req, res) {
 
-  }
+  },
 
-}
+};

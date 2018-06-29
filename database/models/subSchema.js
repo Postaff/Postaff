@@ -1,4 +1,4 @@
-const db = require("../indexDb.js");
+const db = require('../indexDb.js');
 
 const Sub = db.sequelize.define('sub', {
 
@@ -14,14 +14,14 @@ const Sub = db.sequelize.define('sub', {
   address_zipcode: db.sequelize.Sequelize.STRING,
   address_state: db.sequelize.Sequelize.STRING,
   work_eligibility: db.sequelize.Sequelize.BOOLEAN,
-  fingerprint: db.sequelize.Sequelize.DATEONLY,  
+  fingerprint: db.sequelize.Sequelize.DATEONLY,
   permitted: db.sequelize.Sequelize.BOOLEAN,
   credentialed: db.sequelize.Sequelize.BOOLEAN,
   special_ed: db.sequelize.Sequelize.BOOLEAN,
   jobs_completed: db.sequelize.Sequelize.INTEGER,
   jobs_cancelled: db.sequelize.Sequelize.INTEGER,
   jobs_claimed: db.sequelize.Sequelize.INTEGER,
-  hire_date: db.sequelize.Sequelize.DATEONLY
+  hire_date: db.sequelize.Sequelize.DATEONLY,
 
 });
 
@@ -41,5 +41,5 @@ const Sub = db.sequelize.define('sub', {
 //   email: "mayank321@hotmail.com"
 // })
 
-Sub.sync()
+Sub.sync();
 module.exports.Sub = Sub;

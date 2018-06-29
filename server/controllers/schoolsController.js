@@ -1,25 +1,25 @@
 module.exports = {
-  getAllSchools: function(req, res){
+  getAllSchools(req, res) {
 
   },
 
-  createSchool: function(req, res){
+  createSchool(req, res) {
 
   },
 
-  getSchoolById: function(req, res){
+  getSchoolById(req, res) {
 
   },
 
-  updateSchool: function(req, res){
+  updateSchool(req, res) {
 
   },
 
-  getAllJobsBySchoolId: function(req, res){
+  getAllJobsBySchoolId(req, res) {
 
   },
 
-  getSubBySchoolId: function(req, res){
-    
-  }
-}
+  getSubBySchoolId(req, res) {
+
+  },
+};

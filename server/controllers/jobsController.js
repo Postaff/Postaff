@@ -3,16 +3,16 @@ module.exports = {
 
   getAllJobs: () => {},
 
-  createJob: function(req, res){
+  createJob(req, res) {
 
   },
 
-  updateJob: function(req, res){
+  updateJob(req, res) {
 
   },
 
-  deleteJob: function(req, res){
+  deleteJob(req, res) {
 
   },
 
-}
+};
