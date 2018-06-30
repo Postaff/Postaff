@@ -1,4 +1,5 @@
 import React from 'react';
+import FileUpload from '@material-ui/icons/FileUpload';
 import {
   Button,
   FormControl,
@@ -37,7 +38,6 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
     color: theme.palette.text.secondary,
-
   },
   rightIcon: {
     marginLeft: theme.spacing.unit,
@@ -78,6 +78,19 @@ class SchoolJobDetailEdit extends React.Component {
 
   submitForm(event) {
     console.log(this.state);
+    this.setState({
+      schoolName: '',
+      street: '',
+      city: '',
+      state: '',
+      zipcode: '',
+      contactName: '',
+      contactTitle: '',
+      email: '',
+      phone: '',
+      phoneExt: '',
+      additionalInfo: '',
+    });
   }
 
   render() {
@@ -96,7 +109,7 @@ class SchoolJobDetailEdit extends React.Component {
                 name="schoolName"
                 value={this.state.schoolName}
                 onChange={this.handleChange.bind(this)}
-                style={{width: "90%"}}
+                style={{ width: '90%' }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -107,7 +120,7 @@ class SchoolJobDetailEdit extends React.Component {
                 name="street"
                 value={this.state.street}
                 onChange={this.handleChange.bind(this)}
-                style={{width: "90%"}}
+                style={{ width: '90%' }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -118,9 +131,9 @@ class SchoolJobDetailEdit extends React.Component {
                 name="city"
                 value={this.state.city}
                 onChange={this.handleChange.bind(this)}
-                style={{width: "50%"}}
+                style={{ width: '45%' }}
               />
-              <FormControl className={classes.formControl}>
+              <FormControl className={classes.formControl} style={{ width: '15%' }}>
                 <InputLabel>State</InputLabel>
                 <Select
                   name="state"
@@ -187,7 +200,7 @@ class SchoolJobDetailEdit extends React.Component {
                 name="zipcode"
                 value={this.state.zipcode}
                 onChange={this.handleChange.bind(this)}
-                style={{width: "25%"}}
+                style={{ width: '24%' }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -198,7 +211,7 @@ class SchoolJobDetailEdit extends React.Component {
                 name="contactName"
                 value={this.state.contactName}
                 onChange={this.handleChange.bind(this)}
-                style={{width: "44%"}}
+                style={{ width: '45%' }}
               />
               <TextField
                 label="Contact Title"
@@ -207,10 +220,19 @@ class SchoolJobDetailEdit extends React.Component {
                 name="contactTitle"
                 value={this.state.contactTitle}
                 onChange={this.handleChange.bind(this)}
-                style={{width: "43%"}}
+                style={{ width: '42%' }}
               />
             </Grid>
             <Grid item xs={12}>
+            <TextField
+                label="Email"
+                className={classes.textField}
+                margin="normal"
+                name="email"
+                value={this.state.email}
+                onChange={this.handleChange.bind(this)}
+                style={{ width: '45%' }}
+            />
             <TextField
                 label="Phone"
                 type="tel"
@@ -219,7 +241,7 @@ class SchoolJobDetailEdit extends React.Component {
                 name="phone"
                 value={this.state.phone}
                 onChange={this.handleChange.bind(this)}
-                style={{width: "30%"}}
+                style={{ width: '29.5%' }}
               />
               <TextField
                 label="Ext"
@@ -228,16 +250,7 @@ class SchoolJobDetailEdit extends React.Component {
                 name="phoneExt"
                 value={this.state.phoneExt}
                 onChange={this.handleChange.bind(this)}
-                style={{width: "10%"}}
-              />
-              <TextField
-                label="Email"
-                className={classes.textField}
-                margin="normal"
-                name="email"
-                value={this.state.email}
-                onChange={this.handleChange.bind(this)}
-                style={{width: "45%"}}
+                style={{ width: '10%' }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -250,8 +263,21 @@ class SchoolJobDetailEdit extends React.Component {
                 name="additionalInfo"
                 value={this.state.additionalInfo}
                 onChange={this.handleChange.bind(this)}
-                style={{width: "90%"}}
+                style={{ width: '66%' }}
               />
+              <input
+                accept="image/*"
+                className={classes.input}
+                id="flat-button-file"
+                multiple
+                type="file"
+              />
+              <label htmlFor="flat-button-file">
+                <Button component="span" color="primary" className={classes.button}>
+                  Upload
+                  <FileUpload className={classes.rightIcon} />
+                </Button>
+              </label>
             </Grid>
             <Grid item xs={12}>
               <Button variant="contained" color="primary" className={classes.button} onClick={this.submitForm.bind(this)}>

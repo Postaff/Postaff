@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import FileUpload from '@material-ui/icons/FileUpload';
 import {
   Button,
@@ -21,7 +21,6 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
-
   formControl: {
     margin: theme.spacing.unit,
   },
@@ -38,7 +37,6 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    padding: '1%',
   },
   rightIcon: {
     marginLeft: theme.spacing.unit,
@@ -59,6 +57,7 @@ class AdminSchoolsSummary extends React.Component {
     this.state = {
       name: '',
       phone: '',
+      phoneExt: '',
       email: '',
       school: '',
       subject: '',
@@ -68,7 +67,7 @@ class AdminSchoolsSummary extends React.Component {
       startTime: '',
       endDate: '',
       endTime: '',
-      additionalInformation: ''
+      additionalInformation: '',
     };
   }
 
@@ -80,25 +79,43 @@ class AdminSchoolsSummary extends React.Component {
 
   submitForm(event) {
     console.log(this.state);
+    this.setState({
+      name: '',
+      phone: '',
+      phoneExt: '',
+      email: '',
+      school: '',
+      subject: '',
+      grade: '',
+      jobDescription: '',
+      startDate: '',
+      startTime: '',
+      endDate: '',
+      endTime: '',
+      additionalInformation: '',
+    });
   }
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
 
     return (
-      <Fragment>
+      <form>
         <Grid container spacing={24}>
           <Paper className={classes.paper}>
             <Grid item xs={12}>
               <Typography variant="display1">Substitute Teacher Request Form</Typography>
               <TextField
-                label="Name"
+                label="Contact Name"
                 className={classes.textField}
                 margin="normal"
                 name="name"
                 value={this.state.name}
                 onChange={this.handleChange.bind(this)}
+                style={{ width: '90%' }}
               />
+            </Grid>
+            <Grid item xs={12}>
               <TextField
                 label="Phone"
                 type="tel"
@@ -107,6 +124,16 @@ class AdminSchoolsSummary extends React.Component {
                 name="phone"
                 value={this.state.phone}
                 onChange={this.handleChange.bind(this)}
+                style={{ width: '30%' }}
+              />
+              <TextField
+                label="Ext"
+                className={classes.textField}
+                margin="normal"
+                name="phoneExt"
+                value={this.state.phoneExt}
+                onChange={this.handleChange.bind(this)}
+                style={{width: "10%"}}
               />
               <TextField
                 label="Email"
@@ -116,17 +143,21 @@ class AdminSchoolsSummary extends React.Component {
                 name="email"
                 value={this.state.email}
                 onChange={this.handleChange.bind(this)}
+                style={{ width: '45%' }}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                label="School"
+                label="School Name"
                 className={classes.textField}
                 margin="normal"
                 name="school"
                 value={this.state.school}
                 onChange={this.handleChange.bind(this)}
+                style={{ width: '90%' }}
               />
+            </Grid>
+            <Grid item xs={12}>
               <TextField
                 label="Subject"
                 className={classes.textField}
@@ -134,8 +165,9 @@ class AdminSchoolsSummary extends React.Component {
                 name="subject"
                 value={this.state.subject}
                 onChange={this.handleChange.bind(this)}
+                style={{ width: '65%' }}
               />
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} style={{ width: '23%' }}>
               <InputLabel>Grade</InputLabel>
               <Select
                 name="grade"
@@ -161,7 +193,6 @@ class AdminSchoolsSummary extends React.Component {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="jobDescription-input"
                 label="Job Description"
                 className={classes.textField}
                 type="jobDescription"
@@ -169,11 +200,11 @@ class AdminSchoolsSummary extends React.Component {
                 name="jobDescription"
                 value={this.state.jobDescription}
                 onChange={this.handleChange.bind(this)}
+                style={{ width: '90%', marginBottom: '5%' }}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="startDate-input"
                 label="Start Date"
                 type="date"
                 className={classes.textField}
@@ -183,9 +214,9 @@ class AdminSchoolsSummary extends React.Component {
                 name="startDate"
                 value={this.state.startDate}
                 onChange={this.handleChange.bind(this)}
+                style={{ width: '28.5%' }}
               />
               <TextField
-                id="startTime-input"
                 label="Start Time"
                 type="time"
                 className={classes.textField}
@@ -198,9 +229,9 @@ class AdminSchoolsSummary extends React.Component {
                 name="startTime"
                 value={this.state.startTime}
                 onChange={this.handleChange.bind(this)}
+                style={{ width: '13%' }}
               />
               <TextField
-                id="endDate-input"
                 label="End Date"
                 type="date"
                 className={classes.textField}
@@ -210,9 +241,9 @@ class AdminSchoolsSummary extends React.Component {
                 name="endDate"
                 value={this.state.endDate}
                 onChange={this.handleChange.bind(this)}
+                style={{ width: '28%' }}
               />
               <TextField
-                id="endTime-input"
                 label="End Time"
                 type="time"
                 className={classes.textField}
@@ -225,11 +256,11 @@ class AdminSchoolsSummary extends React.Component {
                 name="endTime"
                 value={this.state.endTime}
                 onChange={this.handleChange.bind(this)}
+                style={{ width: '13%' }}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="additionalInformation-input"
                 label="Additional Information"
                 margin="normal"
                 multiline
@@ -238,6 +269,7 @@ class AdminSchoolsSummary extends React.Component {
                 name="additionalInformation"
                 value={this.state.additionalInformation}
                 onChange={this.handleChange.bind(this)}
+                style={{ width: '68.5%' }}
               />
               <input
                 accept="image/*"
@@ -260,7 +292,7 @@ class AdminSchoolsSummary extends React.Component {
             </Grid>
           </Paper>
         </Grid>
-      </Fragment>
+      </form>
     );
   }
 }
