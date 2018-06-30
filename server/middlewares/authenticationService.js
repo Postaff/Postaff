@@ -1,9 +1,12 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const { User } = require('../../database/models/userSchema');
 const { School } = require('../../database/models/schoolSchema');
 const { Sub } = require('../../database/models/subSchema');
 const { Admin } = require('../../database/models/adminSchema');
+const jwtSecret = Buffer.from('savedByTheBell', 'base64');
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -27,6 +30,28 @@ passport.use(new LocalStrategy((username, password, done) => {
     return done(null, user);
   });
 }));
+
+const saltAndHashPassword = (pw) => {
+  return new Promise((resolve, reject) => {
+    bcrypt.genSalt(10)
+    .then((salt) => {
+      bcrypt.hash(pw, salt, null)
+      .then((hashed) =>{
+        resolve(hashed);
+      })
+    })
+    .catch((error) => {
+      reject(error);
+    })
+  })
+}
+
+function isAuthorized(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/');
+};
 
 const createAdmin = (user) => {
   Admin.build({
@@ -90,12 +115,35 @@ const createSub = (user) => {
     });
 };
 
+const login = (req, res) => {
+  console.log(req.body)
+  const { username, password } = req.body
+  User.findOne({ where: { username } })
+    .then((existingUser) => {
+      console.log("password", existingUser.password)
+      console.log(password);
+      if(existingUser.password === password){
+        const token = jwt.sign({sub: existingUser.id}, jwtSecret);
+          res.status(200).send({
+            message: 'You have successfully logged in!',
+            token,
+          })
+      } else {
+        res.status(404).send("throw 1");
+      }
+    })
+    .catch((error)=>{
+      res.status(404).send("throw 2");
+    })
+};
+
 const signup = (req, res) => {
   const { username, password, role } = req.body;
   let user = null;
   if (!username || !password) {
     throw new Error('You must provide an username and password.');
   }
+  passport.authenticate('local');
   User.findOne({ where: { username } })
     .then((existingUser) => {
       if (existingUser) {
@@ -110,66 +158,19 @@ const signup = (req, res) => {
       }
     })
     .then((user) => {
-      req.logIn(user, (error) => {
+      req.login(user, (error) => {
         if (error) {
           res.status(404).send(error);
         }
-        res.status(201).send(user);
+        res.render('/', { message: req.flash('signupMessage') });
       });
     });
 };
 
-// const signup = ({username, password, req, role})=>{
-//   if(!username || !password){
-//     throw new Error("You must provide an username and password.")
-//   }
-//   User.findOne({username})
-//     .then(existingUser=>{
-//       if(existingUser) {
-//         throw new Error("Username taken!");
-//       }
-//       let userRole = "";
-//       let roleId = null;
-//       if(role === "admin"){
-//         userRole = "fk_admin";
-//         let newAdmin = Admin.build({
-//           name: "Admin9000"
-//         }).save().then((savedAdmin)=>{
-//           console.log(savedAdmin)
-//           roleId = savedAdmin.id
-//         })
-//       } else if (role === "school"){
-//         userRole = "fk_school";
-//         let newSchool = School.build({
-//           school_name: "School2"
-//         }).save().then((savedSchool)=>{
-//           roleId = savedSchool.id
-//         })
-//       } else if (role === "sub"){
-//         userRole = "fk_sub";
-//         let newSub = Sub.build({
-//           name: "Mr. Q"
-//         }).save().then((savedSub)=>{
-//           roleId = savedSub.id
-//         })
-//       }
-//       User.create({
-//         username,
-//         password,
-//         [userRole]: roleId,
-//       })
-//     })
-//     .then(user=>{
-//       return new Promise((resolve, reject)=>{
-//         req.logIn(user, (error)=>{
-//           if(error) {
-//             reject(error);
-//           }
-//           resolve(user);
-//         })
-//       })
-//     })
-// }
+const logout = (req, res) => {
+  console.log("test")
+  req.logout();
+  res.redirect('/');
+};
 
-
-module.exports = { signup };
+module.exports = { signup, logout, login, saltAndHashPassword };

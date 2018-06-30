@@ -6,8 +6,8 @@ const helmet = require('helmet');
 const fs = require('fs');
 const passport = require('passport');
 const session = require('express-session');
+const flash = require('connect-flash');
 const path = require('path');
-const passportConfig = require('./middlewares/auth');
 const dotenv = require('dotenv').config();
 const routes = require('./routes.js');
 
@@ -26,11 +26,8 @@ const resolvers = require('./middlewares/resolvers.js');
  *  then gql method from apollo-server will help us parse the file to something readable by apollo
  */
 const typeDefs = gql(fs.readFileSync(path.join(__dirname, './middlewares/schema.graphql'), 'utf8'));
-
-
 const app = express();
-const PORT = 3000;
-// const jwtSecret = Buffer.from('Zn8Q5tyZ/G1MHltc4F/gTkVJMlrbKiZt', 'base64');
+const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -44,8 +41,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use('/', routes);
+// app.use(flash);
 // THIS IS FOR REACT ROUTER DONOT DELETE
 // app.get('/*', function (req, res) {
 //   console.log(req.url);
@@ -65,6 +61,7 @@ const server = new ApolloServer({
   resolvers,
 });
 server.applyMiddleware({ app });
+app.use('/', routes);
 
 app.listen(PORT, () => {});
 

@@ -1,21 +1,14 @@
 const router = require('express').Router();
-const AuthService = require('./middlewares/auth');
-const usersCtrl = require('./controllers/usersController');
+const AuthService = require('./middlewares/authenticationService');
+const AuthCtrl = require('./controllers/authenticationController');
 
 router.route('/api/users/login')
-  .post(usersCtrl.loginUser);
+  .post(AuthService.login);
 
-router.route('/api/users/userId/logout')
-  .get(usersCtrl.logoutUser);
+router.route('/api/users/logout')
+  .get(AuthService.logout);
 
-router.route('/api/users/:userId')
-  .patch(usersCtrl.updateUser);
-
-router.route('/api/users')
-  .post(AuthService.signup)
-  .get(usersCtrl.getAllUsers);
-
-router.route('/api/users/:userId')
-  .get(usersCtrl.getUserById);
+router.route('/api/users/signup')
+  .post(AuthCtrl.signup);
 
 module.exports = router;
