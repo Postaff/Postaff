@@ -173,11 +173,12 @@ class Login extends React.Component {
     this.setState({ role: event.target.value });
   }
 
+
   render(props) {
     console.log('This is LoginComponent');
     const { handleSubmit } = this.props;
+
     const { classes } = this.props;
-    const { clicked } = this.state;
 
     return (
       <div className={classes.root}>
