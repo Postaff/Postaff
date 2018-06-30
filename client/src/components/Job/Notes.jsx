@@ -15,11 +15,9 @@ class Notes extends React.Component {
       pageInfo: sampleData,
       name: 'Notes for this job...',
     };
-    
   }
 
   handleChange(event) {
-    
     this.setState({ name: event.target.value });
   }
 
@@ -29,9 +27,9 @@ class Notes extends React.Component {
         <FormControl>
        <Typography variant="display1" gutterBottom>
          Notes
-        </Typography> 
+        </Typography>
         <Input value={this.state.name} onChange={this.handleChange.bind(this)} />
-        </FormControl>  
+        </FormControl>
       </Paper>
     );
   }

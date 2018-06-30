@@ -31,7 +31,7 @@ class SubLandingCurrentJobsEntry extends React.Component {
 
     this.state = {
       value: 0,
-    }
+    };
   }
 
   render() {

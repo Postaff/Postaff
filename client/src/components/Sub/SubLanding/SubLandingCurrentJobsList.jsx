@@ -32,12 +32,12 @@ class SubLandingCurrentJobsList extends React.Component {
 
     this.state = {
       value: 1,
-    }
+    };
   }
 
   handleChange(event, value) {
     this.setState({ value });
-  };
+  }
 
   render() {
     const { classes } = this.props;

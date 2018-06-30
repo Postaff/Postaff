@@ -1,14 +1,14 @@
 import React from 'react';
 import {
-  CardContent, 
+  CardContent,
   Typography,
   Paper,
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import sampleData from './sampleData.js';
 import FileUpload from '@material-ui/icons/FileUpload';
+import sampleData from './sampleData.js';
 
 const styles = theme => ({
   button: {
@@ -32,7 +32,7 @@ function Attachments(props) {
     <div>
       <Typography variant="display1" gutterBottom>
         Attachments
-      </Typography> 
+      </Typography>
       <input
       accept="image/*"
       className={classes.input}

@@ -1,12 +1,12 @@
-  // constructor(props) {
-  //   super(props);
+// constructor(props) {
+//   super(props);
 
-  //   this.state = {
-  //     entries: ['Job Description 1', 'Job Description 2']
-  //   }
-  // }
+//   this.state = {
+//     entries: ['Job Description 1', 'Job Description 2']
+//   }
+// }
 
-  //           {this.state.entries.map((entry, index) => <AdminLandingPendingReviewEntry entry={entry} key={index} />)}
+//           {this.state.entries.map((entry, index) => <AdminLandingPendingReviewEntry entry={entry} key={index} />)}
 
 import React from 'react';
 import {

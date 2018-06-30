@@ -1,13 +1,15 @@
 import React from 'react';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import {Table, TableBody, TableCell, TableHead, TablePagination, TableRow,
-TableSortLabel, Toolbar, Typography, Paper, Tooltip} from '@material-ui/core';
+import {
+  Table, TableBody, TableCell, TableHead, TablePagination, TableRow,
+  TableSortLabel, Toolbar, Typography, Paper, Tooltip,
+} from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import {graphql, compose} from 'react-apollo';
-import GET_ALL_JOBS from '../../queries/fetchAllJobs.js';
+import { graphql, compose } from 'react-apollo';
 import _ from 'lodash';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
+import GET_ALL_JOBS from '../../queries/fetchAllJobs.js';
 
 export const toolbarStyle = theme => ({
   root: {
@@ -16,13 +18,13 @@ export const toolbarStyle = theme => ({
   highlight:
     theme.palette.type === 'light'
       ? {
-          color: theme.palette.secondary.main,
-          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
-        }
+        color: theme.palette.secondary.main,
+        backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+      }
       : {
-          color: theme.palette.text.primary,
-          backgroundColor: theme.palette.secondary.dark,
-        },
+        color: theme.palette.text.primary,
+        backgroundColor: theme.palette.secondary.dark,
+      },
   spacer: {
     flex: '1 1 100%',
   },
@@ -40,7 +42,7 @@ export const tableStyle = theme => ({
     marginTop: theme.spacing.unit * 3,
   },
   table: {
-    width: '100%'
+    width: '100%',
   },
   tableWrapper: {
     overflowX: 'auto',
@@ -70,44 +72,46 @@ class AdminTodayTable extends React.Component {
   }
 
 
-  handleRequestSort (event, property) {
+  handleRequestSort(event, property) {
     const orderBy = property;
     let order = 'desc';
     if (this.state.orderBy === property && this.state.order === 'desc') {
       order = 'asc';
     }
     this.setState({ order, orderBy });
-  };
+  }
 
-  handleSelectAllClick (event, checked) {
+  handleSelectAllClick(event, checked) {
     if (checked) {
       this.setState({ selected: this.state.data.map(n => n.id) });
       return;
     }
     this.setState({ selected: [] });
-  };
+  }
 
-  handleClick (event, id) {
-  };
+  handleClick(event, id) {
+  }
 
-  handleChangePage (event, page) {
+  handleChangePage(event, page) {
     this.setState({ page });
-  };
+  }
 
-  handleChangeRowsPerPage (event) {
+  handleChangeRowsPerPage(event) {
     this.setState({ rowsPerPage: event.target.value });
-  };
+  }
 
   render() {
-    if(this.props.data.loading){
-      return <div></div>
-    } else {
-    let tableData = [];
-    _.each(this.props.data.jobs, (job)=>{
-      tableData.push(createData(job.subject, 'Abernathy', job.grade, 3, 'Twohy'))
-    })
+    if (this.props.data.loading) {
+      return <div></div>;
+    }
+    const tableData = [];
+    _.each(this.props.data.jobs, (job) => {
+      tableData.push(createData(job.subject, 'Abernathy', job.grade, 3, 'Twohy'));
+    });
     const { classes } = this.props;
-    const { order, orderBy, rowsPerPage, page } = this.state;
+    const {
+      order, orderBy, rowsPerPage, page,
+    } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, tableData.length - page * rowsPerPage);
 
     return (
@@ -126,8 +130,7 @@ class AdminTodayTable extends React.Component {
               {tableData
                 .sort(getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(n => {
-                  return (
+                .map(n => (
                     <TableRow
                       hover
                       onClick={event => this.handleClick(event, n.id)}
@@ -135,15 +138,14 @@ class AdminTodayTable extends React.Component {
                       key={n.id}
                     >
                       <TableCell component="th" scope="row">
-                        <Link to={{pathname:'/admin/jobs', state:{sub: n.subject, grade: n.grade}}}>{n.subject}</Link>
+                        <Link to={{ pathname: '/admin/jobs', state: { sub: n.subject, grade: n.grade } }}>{n.subject}</Link>
                       </TableCell>
                       <TableCell numeric></TableCell>
                       <TableCell numeric>{n.grade}</TableCell>
                       <TableCell numeric></TableCell>
                       <TableCell numeric></TableCell>
                     </TableRow>
-                  );
-                })}
+                ))}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 49 * emptyRows }}>
                   <TableCell colSpan={6} />
@@ -167,14 +169,16 @@ class AdminTodayTable extends React.Component {
           onChangeRowsPerPage={this.handleChangeRowsPerPage}
         />
       </Paper>
-    );}
+    );
   }
 }
 
 let counter = 0;
 function createData(subject, location, grade, days, employee) {
   counter += 1;
-  return { id: counter, subject, location, grade, days, employee };
+  return {
+    id: counter, subject, location, grade, days, employee,
+  };
 }
 
 function getSorting(order, orderBy) {
@@ -184,11 +188,21 @@ function getSorting(order, orderBy) {
 }
 
 const columnData = [
-  { id: 'subject', numeric: false, disablePadding: false, label: 'Job' },
-  { id: 'location', numeric: true, disablePadding: false, label: 'Location' },
-  { id: 'grade', numeric: true, disablePadding: false, label: 'Grade' },
-  { id: 'days', numeric: true, disablePadding: false, label: 'Days Remaining' },
-  { id: 'employee', numeric: true, disablePadding: false, label: 'Employee' },
+  {
+    id: 'subject', numeric: false, disablePadding: false, label: 'Job',
+  },
+  {
+    id: 'location', numeric: true, disablePadding: false, label: 'Location',
+  },
+  {
+    id: 'grade', numeric: true, disablePadding: false, label: 'Grade',
+  },
+  {
+    id: 'days', numeric: true, disablePadding: false, label: 'Days Remaining',
+  },
+  {
+    id: 'employee', numeric: true, disablePadding: false, label: 'Employee',
+  },
 ];
 
 class AdminTodayTableHead extends React.Component {
@@ -197,13 +211,15 @@ class AdminTodayTableHead extends React.Component {
       this.props.onRequestSort(event, property);
     };
   }
+
   render() {
-    const { onSelectAllClick, order, orderBy, rowCount } = this.props;
+    const {
+      onSelectAllClick, order, orderBy, rowCount,
+    } = this.props;
     return (
       <TableHead>
         <TableRow>
-          {columnData.map(column => {
-            return (
+          {columnData.map(column => (
               <TableCell
                 key={column.id}
                 numeric={column.numeric}
@@ -224,15 +240,14 @@ class AdminTodayTableHead extends React.Component {
                   </TableSortLabel>
                 </Tooltip>
               </TableCell>
-            );
-          }, this)}
+          ), this)}
         </TableRow>
       </TableHead>
     );
   }
 }
 
-let AdminTodayTableToolbar = props => {
+let AdminTodayTableToolbar = (props) => {
   const { classes } = props;
   return (
     <Toolbar
@@ -253,5 +268,5 @@ AdminTodayTableToolbar = withStyles(toolbarStyle)(AdminTodayTableToolbar);
 
 export default compose(
   withStyles(tableStyle),
-  graphql(GET_ALL_JOBS)
+  graphql(GET_ALL_JOBS),
 )(AdminTodayTable);

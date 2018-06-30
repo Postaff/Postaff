@@ -11,8 +11,8 @@ class Detail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageInfo: sampleData
-    }
+      pageInfo: sampleData,
+    };
   }
 
   render() {
@@ -32,7 +32,7 @@ class Detail extends React.Component {
               { this.state.pageInfo.datesNeeded}
             </Grid>
           </Grid>
-        </Typography>  
+        </Typography>
         <Typography variant="subheading" gutterBottom>
           <Grid container spacing={8}>
             <Grid item xs={2}>
