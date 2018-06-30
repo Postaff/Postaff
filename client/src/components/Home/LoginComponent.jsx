@@ -151,7 +151,7 @@ class Login extends React.Component {
               open={this.state.open}
               className={classes.SnackbarContent}
             //   bodyStyle={bodystyle}
-              resumeHideDuration={10000}
+              resumeHideDuration={6000}
               onClose={this.handleClose}
               ContentProps={{
                 'aria-describedby': 'message-id',
