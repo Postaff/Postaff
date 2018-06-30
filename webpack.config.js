@@ -9,17 +9,20 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['env', 'react', 'es2015'],
-            plugins: [
-              ['inline-import', 'transform-class-properties', {
-                extensions: ['.graphql'],
-              }],
-            ],
+        use: [
+          'babel-inline-import-loader',
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['env', 'react', 'es2015'],
+              plugins: [
+                ['inline-import', 'transform-class-properties', {
+                  extensions: ['.graphql'],
+                }],
+              ],
+            },
           },
-        },
+        ],
       },
       {
         test: /\.html$/,
