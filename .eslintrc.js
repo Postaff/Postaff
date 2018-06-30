@@ -4,19 +4,75 @@ module.exports = {
     "plugin:react/recommended"
   ],
   "parserOptions": {
-      "ecmaVersion": 6,
-      "ecmaFeatures": {
-          "jsx": true
-      },
-    "sourceType": "module"
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "rules": {
+    "indent": ["error", 2],
     "no-const-assign": "warn",
     "no-this-before-super": "warn",
     "no-undef": "warn",
     "no-unreachable": "warn",
     "no-unused-vars": "warn",
+    "no-useless-constructor": "warn",
     "constructor-super": "warn",
-    "valid-typeof": "warn"
+    "quotes": ["error", "single"],
+    "valid-typeof": "warn",
+    "keyword-spacing": "warn",
+    "jsx-quotes": ["error", "prefer-double"],
+    "for-direction": "warn",
+    "getter-return": "warn",
+    "no-case-declarations": "warn",
+    "no-class-assign": "warn",
+    "no-compare-neg-zero": "warn",
+    "no-cond-assign": ["warn", "except-parens"],
+    "no-console": "warn",
+    "no-constant-condition": ["warn", { "checkLoops": false }],
+    "no-debugger": "warn",
+    "no-delete-var": "warn",
+    "no-dupe-args": "warn",
+    "no-dupe-class-members": "warn",
+    "no-dupe-keys": "warn",
+    "no-duplicate-case": "warn",
+    "no-empty-character-class": "warn",
+    "no-empty": "warn",
+    "no-ex-assign": "warn",
+    "no-extra-boolean-cast": "warn",
+    "no-extra-semi": "warn",
+    "no-fallthrough": "warn",
+    "no-func-assign": "warn",
+    "no-global-assign": "warn",
+    "no-irregular-whitespace": ["warn", { "skipStrings": true }],
+    "no-mixed-spaces-and-tabs": "warn",
+    "no-sparse-arrays": "warn",
+    "no-unexpected-multiline": "warn",
+    "valid-typeof": "warn",
+    "linebreak-style": "warn",
+    "camelcase": ["warn", { "ignoreDestructuring": true, "properties": "never" }],
+    "comma-style": "warn",
+    "comma-spacing": "warn",
+    "eqeqeq": "warn",
+    "global-require": "warn",
+    "key-spacing": ["warn", { "beforeColon": false, "afterColon": true, "mode": "strict" }],
+    "keyword-spacing": ["warn", { "before": true,  "overrides": { "if": { "after": false }, "for": { "after": false }, "while": { "after": false } } }],
+    "line-comment-position": "warn",
+    "new-parens": "warn",
+    "no-empty-function": "warn",
+    "no-trailing-spaces": "warn",
+    "no-tabs": "warn",
+    "no-useless-concat": "warn",
+    "no-useless-return": "warn",
+    "semi-spacing": "warn"
+  },
+    "env": {
+    "node": true,
+    "jest": true,
+    "jquery": true,
+    "es6": true,
+    "mocha": true,
+    "jasmine": true
   }
-};
+}
