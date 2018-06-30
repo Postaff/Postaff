@@ -13,17 +13,19 @@ import AdminSchoolsDetail from "./Admin/AdminSchoolsDetail/AdminSchoolsDetail.js
 import NavBar from "./Menu/NavBar.jsx";
 import AdminJob from "./Job/AdminJob.jsx";
 import AdminSchedule from "./Admin/AdminSchedule/AdminSchedule.jsx";
-
-
-
+import Auth from "./Shared/Auth.js";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn : false,
+      isLoggedIn : Auth.isUserAuthenticated(),
       sasOption: null,
-      slide: false
+      slide: false,
+      user: {
+        username: null,
+        password: null,
+      }
     }
   }
 
@@ -42,6 +44,15 @@ class App extends React.Component {
     })
   }
 
+  handleLogin(user, pw){
+    const { username, password } = this.state.user;
+    this.setState({
+      username: user,
+      password: pw,
+      isLoggedIn: true,
+    })
+  }
+
   render() {
     const log = this.state.isLoggedIn;
     const option = this.state.sasOption;
@@ -50,7 +61,8 @@ class App extends React.Component {
       <div>
       <BrowserRouter>
         <div>
-        <NavBar isLoggedIn={log} option={option} clickLogout={this.clickLogout.bind(this)} slide={this.isSliding.bind(this)}/>
+        <NavBar isLoggedIn={log} option={option} clickLogout={this.clickLogout.bind(this)} 
+        slide={this.isSliding.bind(this)} onLogin={this.handleLogin.bind(this)}/>
         <Switch>
           <Route exact path="/" component={HomeLanding} /> 
           <Route path="/login" render={(props) => <Login {...props} clickLogout={this.clickLogout.bind(this)} slide={this.state.slide}/>} />

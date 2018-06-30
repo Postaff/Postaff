@@ -1,17 +1,16 @@
 import React from 'react';
-import {Route, Link} from "react-router-dom";
-import AdminSchedule from "../AdminSchedule/AdminSchedule.jsx";
-import AdminJob from "../../Job/AdminJob.jsx";
-import JobsTable from "../../Shared/JobsTable.jsx";
-import AdminLandingCharts from "./AdminLandingCharts.jsx";
-import AdminLandingCurrentStatus from "./AdminLandingCurrentStatus.jsx";
-import AdminLandingPendingReviewList from "./AdminLandingPendingReviewList.jsx";
-import AdminLandingUnclaimedJobsList from "./AdminLandingUnclaimedJobsList.jsx";
+import { Route, Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
+import AdminJob from '../../Job/AdminJob.jsx';
+import JobsTable from '../../Shared/JobsTable.jsx';
+import AdminLandingCharts from './AdminLandingCharts.jsx';
+import AdminLandingCurrentStatus from './AdminLandingCurrentStatus.jsx';
+import AdminLandingPendingReviewList from './AdminLandingPendingReviewList.jsx';
+import AdminLandingUnclaimedJobsList from './AdminLandingUnclaimedJobsList.jsx';
 
 class AdminLanding extends React.Component {
   render() {
-    console.log("Hey am in adminlanding.jsx");
+    console.log('Hey am in adminlanding.jsx');
     return (
       <div>
         <h1>This is the Admin Main Page</h1>

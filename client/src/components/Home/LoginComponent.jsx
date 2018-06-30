@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -15,6 +16,7 @@ import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import grey from '@material-ui/core/colors/grey';
+import Auth from '../Shared/Auth.js';
 
 const bodystyle = {
   background: grey[100],
@@ -84,17 +86,35 @@ const styles = theme => ({
 class Login extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       username: '',
       password: '',
       usertype: null,
-      selectedValue: 'admin',
+      role: 'admin',
       open: false,
     };
     this.radioChange = this.radioChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleClose = this.handleClose.bind(this);
+  }
+
+  handleLogin() {
+    axios.post('/api/users/login', {
+      username: this.state.username,
+      password: this.state.password,
+      role: this.state.role,
+    }).then((response) => {
+      Auth.authenticateUser(response.data.token);
+      this.props.onLogin(this.state.username, this.state.password);
+    }).catch((error) => {
+      console.log(error);
+    })
+  }
+
+  handleInput(key, event) {
+    this.setState({
+      [key]: event.target.value,
+    })
   }
 
   handleClick() {
@@ -110,7 +130,7 @@ class Login extends React.Component {
 
   radioChange(event) {
     console.log(event.target.value);
-    this.setState({ selectedValue: event.target.value });
+    this.setState({ role: event.target.value });
   }
 
   render(props) {
@@ -137,8 +157,9 @@ class Login extends React.Component {
                 'aria-describedby': 'message-id',
               }}
             message={<span id="message-id"><div className={classes.messageId}>
-                <Typography variant="display2">Please Log In</Typography>
+                <Typography variant="display1">Please Log In</Typography>
                 <TextField
+                  onChange={this.handleInput.bind(this, 'username')}
                   id="username-input"
                   label="Username"
                   className={classes.textField}
@@ -147,6 +168,7 @@ class Login extends React.Component {
                   margin="normal"
                 />
                 <TextField
+                  onChange={this.handleInput.bind(this, 'password')}
                   id="password-input"
                   label="Password"
                   className={classes.textField}
@@ -157,7 +179,7 @@ class Login extends React.Component {
                 <div>
                   <FormControlLabel control={
                     <Radio
-                      checked={this.state.selectedValue === 'admin'}
+                      checked={this.state.role === 'admin'}
                       onChange={this.radioChange}
                       value="admin"
                       name="admin-radio-button"
@@ -166,7 +188,7 @@ class Login extends React.Component {
                     label="Admin" />
                   <FormControlLabel control={
                     <Radio
-                      checked={this.state.selectedValue === 'sub'}
+                      checked={this.state.role === 'sub'}
                       onChange={this.radioChange}
                       value="sub"
                       name="subs-radio-button"
@@ -175,7 +197,7 @@ class Login extends React.Component {
                     label="Subs" />
                   <FormControlLabel control={
                     <Radio
-                      checked={this.state.selectedValue === 'school'}
+                      checked={this.state.role === 'school'}
                       onChange={this.radioChange}
                       value="school"
                       name="school-radio-button"
@@ -183,8 +205,12 @@ class Login extends React.Component {
                     />}
                     label="School" />
                 </div>
-                <Button variant="contained" color="secondary" className={classes.button} onClick={() => this.props.clickLogout(this.state.selectedValue)}>
-                  <Link to={`/${this.state.selectedValue}`}>Submit</Link>
+                <Button variant="contained" color="secondary" className={classes.button} 
+                  onClick={this.handleLogin.bind(this)}
+                >
+                {/* onClick={() => this.props.clickLogout(this.state.role)}> */}
+                  {/* <Link to={`/${this.state.role}`}>Submit</Link> */}
+                  Submit
                 </Button>
               </div></span>}
                 action={[
