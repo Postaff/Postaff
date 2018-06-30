@@ -3,8 +3,6 @@ const db = require('../indexDb.js');
 const Sub = db.sequelize.define('sub', {
 
   name: db.sequelize.Sequelize.STRING,
-  plain_text_password: db.sequelize.Sequelize.STRING,
-  username: db.sequelize.Sequelize.STRING,
   phone: db.sequelize.Sequelize.STRING,
   phone_alt: db.sequelize.Sequelize.STRING,
   email: db.sequelize.Sequelize.STRING,
@@ -21,7 +19,6 @@ const Sub = db.sequelize.define('sub', {
   jobs_completed: db.sequelize.Sequelize.INTEGER,
   jobs_cancelled: db.sequelize.Sequelize.INTEGER,
   jobs_claimed: db.sequelize.Sequelize.INTEGER,
-  hire_date: db.sequelize.Sequelize.DATEONLY,
 
 });
 

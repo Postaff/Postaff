@@ -9,15 +9,7 @@ const session = require('express-session');
 const path = require('path');
 const passportConfig = require('./middlewares/auth');
 const dotenv = require('dotenv').config();
-
-const app = express();
-const PORT = 3000;
-
-/**
- *  Have fs module reads the file schema.graphql
- *  then gql method from apollo-server will help us parse the file to something readable by apollo
- */
-const typeDefs = gql(fs.readFileSync(path.join(__dirname, './middlewares/schema.graphql'), 'utf8'));
+const routes = require('./routes.js');
 
 /**
  *  Import the resolvers.
@@ -29,11 +21,22 @@ const typeDefs = gql(fs.readFileSync(path.join(__dirname, './middlewares/schema.
  */
 const resolvers = require('./middlewares/resolvers.js');
 
+/**
+ *  Have fs module reads the file schema.graphql
+ *  then gql method from apollo-server will help us parse the file to something readable by apollo
+ */
+const typeDefs = gql(fs.readFileSync(path.join(__dirname, './middlewares/schema.graphql'), 'utf8'));
+
+
+const app = express();
+const PORT = 3000;
+// const jwtSecret = Buffer.from('Zn8Q5tyZ/G1MHltc4F/gTkVJMlrbKiZt', 'base64');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use(helmet());
-app.use(express.static(`${__dirname}/../client/dist`));
+app.use(express.static(path.join(__dirname, '/../client/dist')));
 app.use(session({
   resave: true,
   saveUninitialized: true,
@@ -42,25 +45,27 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use('/', routes);
 // THIS IS FOR REACT ROUTER DONOT DELETE
-app.get('/*', (req, res) => {
-  console.log(req.url);
-  res.sendFile(path.join(__dirname, '../client/dist/index.html'), (err) => {
-    if (err) {
-      res.status(500).send(err);
-    }
-  });
-});
+// app.get('/*', function (req, res) {
+//   console.log(req.url);
+//   res.sendFile(path.join(__dirname, '../client/dist/index.html'), function (err) {
+//     if (err) {
+//       res.status(500).send(err)
+//     }
+//   })
+// })
 
 /**
  *  Create a new instance of ApolloServer using typeDefs and resolvers
  *  we declared on top.  Then we apply apollo server to our main server
  */
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+});
 server.applyMiddleware({ app });
 
-app.listen(PORT, () => {
-  console.log(`Server ready at port: ${PORT}`);
-});
+app.listen(PORT, () => {});
 
 exports.app = app;
