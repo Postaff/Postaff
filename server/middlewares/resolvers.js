@@ -20,10 +20,4 @@ const Query = {
   subs: () => Sub.findAll(),
 };
 
-const mutation = {
-  signup: (root, args, context) => {
-
-  },
-};
-
 module.exports = { Query };

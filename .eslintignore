@@ -1,3 +1,4 @@
+<<<<<<< 39183e068695ac1816fdc1ed5e92ae8a7838efea
 # dist folder
 /client/dist/*
 
@@ -6,3 +7,7 @@
 
 # package lock file
 /package-lock.json
+=======
+/client/dist/*
+/node_modules/*
+>>>>>>> add signup and passport local strategy for newly created user
