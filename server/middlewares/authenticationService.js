@@ -11,25 +11,23 @@ const comparePassword = (pwFromClient, pwFromDB, callback) => {
   bcrypt.compare(pwFromClient, pwFromDB, (err, isMatch) => {
     if(err) { return callback(err); }
     callback(null, isMatch);
-  })
-}
+  });
+};
 
 const localLogin = new LocalStrategy((username, password, done) => {
-  User.findOne({ where: {username: username} })
+  User.findOne({ where: { username } })
     .then((existingUser) => {
       if(existingUser) {
-        comparePassword(password, existingUser.password, function(err, isMatch) {
+        comparePassword(password, existingUser.password, (err, isMatch) => {
           if(err) { return done(err) };
           if(!isMatch) {return done(null, false)};
           return done(null, existingUser);
-        })
+        });
       } else {
-        done(null, false)
+        done(null, false);
       }
     })
-    .catch((error) => {
-      return done(error, false)
-    })
+    .catch((error) => done(error, false));
 });
 
 const jwtOptions = {
@@ -46,32 +44,28 @@ const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
         done(null, false);
       }
     })
-    .catch((error) => {
-      return done(error, false);
-    })
-})
+    .catch((error) => done(error, false));
+});
 
 passport.use(jwtLogin);
 passport.use(localLogin);
 
 const tokenForUser = (user) => {
   const timestamp = new Date().getTime();
-  return jwt.encode({ sub: user.id, iat: timestamp }, process.env.JWT_SECRET)
-}
+  return jwt.encode({ sub: user.id, iat: timestamp }, process.env.JWT_SECRET);
+};
 
-const saltAndHashPassword = (pw) => {
-  return new Promise((resolve, reject) => {
-    bcrypt.genSalt(10)
+const saltAndHashPassword = pw => new Promise((resolve, reject) => {
+  bcrypt.genSalt(10)
     .then((salt) => {
       bcrypt.hash(pw, salt, null)
-      .then((hashed) =>{
-        resolve(hashed);
-      })
+        .then((hashed) => {
+          resolve(hashed);
+        });
     })
     .catch((error) => {
       reject(error);
-    })
-  })
-}
+    });
+});
 
 module.exports = { saltAndHashPassword, tokenForUser };

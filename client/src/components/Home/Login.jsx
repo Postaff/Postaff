@@ -11,9 +11,19 @@ import Slide from '@material-ui/core/Slide';
 import Snackbar from '@material-ui/core/Snackbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+
+
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+
+
 import Radio from '@material-ui/core/Radio/';
+
+import { Link } from 'react-router-dom';
+import Radio from '@material-ui/core/Radio';
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
+
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import grey from '@material-ui/core/colors/grey';
 import TextField from '@material-ui/core/TextField';
@@ -100,8 +110,15 @@ class Login extends React.Component {
         username: '',
         password: '',
       },
+
       role: 'admin',
+
+      selectedValue: 'admin',
+
+
       open: false,
+
+
     };
     this.radioChange = this.radioChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -113,6 +130,20 @@ class Login extends React.Component {
       this.props.onLogin(this.state.role);
       this.handleClose();
     });
+
+
+  handleLogin() {
+    axios.post('/api/users/login', {
+      username: this.state.username,
+      password: this.state.password,
+      role: this.state.role,
+    }).then((response) => {
+      Auth.authenticateUser(response.data.token);
+      this.props.onLogin(this.state.username, this.state.role);
+    }).catch((error) => {
+      console.log(error);
+    })
+
   }
 
   handleInput(key, event) {
@@ -120,6 +151,7 @@ class Login extends React.Component {
     user[key] = event.target.value;
     this.setState({ user });
   }
+
 
   handleClick() {
     this.setState({ open: true });
@@ -130,6 +162,11 @@ class Login extends React.Component {
       return;
     }
     this.setState({ open: false });
+
+  radioChange(event) {
+    console.log(event.target.value);
+    this.setState({ selectedValue: event.target.value });
+
   }
 
   radioChange(event) {
