@@ -1,8 +1,18 @@
+# webpack output files
 client/dist/bundle.js
 client/dist/index.html
+
+# installed packages
 node_modules/
+
+# mac os folder attributes
 .DS_Store
+
+# SQL credentials
 .env
+
+# vscode workspace file
 .vscode
-package-lock.json
+
+# db config
 database/config.js
