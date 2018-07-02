@@ -9,8 +9,7 @@ import {
 Home, Dashboard, Schedule, People, LocationCity, Work
  } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
-import Login from '../Home/LoginComponent.jsx';
-import Auth from '../Shared/Auth.js';
+import Login from '../Home/Login.jsx';
 
 const styles = theme => ({
   root: {
@@ -47,7 +46,7 @@ class NavBar extends Component {
   }
 
   handleLogout() {
-    Auth.deauthenticateUser();
+    // Auth.deauthenticateUser();
   }
 
   handleToggle(open) {

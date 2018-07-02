@@ -1,11 +1,12 @@
-import React, {Fragment} from "react";
-import ReactDOM from "react-dom";
-import { ApolloClient, HttpLink, InMemoryCache } from "apollo-boost";
-import { ApolloProvider } from "react-apollo";
-
-import App from "./components/App.jsx";
-import JobListing from "./components/Shared/SharedJobsList.jsx";
-import AdminSchoolSum from "./components/Admin/AdminSchoolsSummary/AdminSchoolsSummary.jsx";
+import React, {Fragment} from 'react';
+import ReactDOM from 'react-dom';
+import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
+import { Provider as ReduxProvider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import reduxThunk from 'redux-thunk';
+import App from './components/App.jsx';
+import reducers from './reducers/indexReducer.js';
 
 /**
  * Create a new instant of ApolloClient and apply cache middleware
@@ -21,12 +22,20 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 })
 
+const store = createStore(
+  reducers,
+  {},
+  applyMiddleware(reduxThunk)
+)
+
 const Root = () => {
   return (
-    <ApolloProvider client={client}>
-      <Fragment>
-        <App/>
-      </Fragment>
+    <ApolloProvider client={ client }>
+      <ReduxProvider store={ store }>
+        <Fragment>
+          <App/>
+        </Fragment>
+      </ReduxProvider>
     </ApolloProvider>
   )
 };
