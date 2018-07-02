@@ -9,8 +9,7 @@ import {
 Home, Dashboard, Schedule, People, LocationCity, Work
  } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
-import Login from '../Home/LoginComponent.jsx';
-import Auth from '../Shared/Auth.js';
+import Login from '../Home/Login.jsx';
 
 const styles = theme => ({
   root: {
@@ -44,10 +43,6 @@ class NavBar extends Component {
     this.state = {
       isOpen: false,
     };
-  }
-
-  handleLogout() {
-    Auth.deauthenticateUser();
   }
 
   handleToggle(open) {
@@ -162,11 +157,12 @@ class NavBar extends Component {
                 Postaff
               </Typography>
 
-            {!this.props.isLoggedIn
-              ? <Login clickLogout={this.props.clickLogout} onLogin={this.props.onLogin}/>
-            :              <Link to={{ pathname: '/', state: { clicked: false } }}>
-              <Button color="inherit" onClick={() => this.props.clickLogout()} >Logout</Button>
-              {/* <Button color="inherit" onClick={() => this.props.clickLogout()} >Logout</Button> */}
+            {!this.props.isLoggedIn 
+              ? 
+              <Login clickLogout={this.props.clickLogout} onLogin={this.props.onLogin}/>
+              : 
+              <Link to={{ pathname: '/', state: { clicked: false } }}>
+                <Button color="inherit" onClick={() => this.props.clickLogout()} >Logout</Button>
               </Link>
             }
 

@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect} from 'react-redux';
+import { compose } from 'react-apollo';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import HomeLanding from './Home/HomeLanding.jsx';
-import Login from './Home/LoginComponent.jsx';
+import Login from './Home/Login.jsx';
 import SchoolLanding from './School/SchoolLanding/SchoolLanding.jsx';
 import SubLanding from './Sub/SubLanding/SubLanding.jsx';
 import AdminLanding from './Admin/AdminLanding/AdminLanding.jsx';
@@ -13,13 +15,13 @@ import AdminSchoolsDetail from './Admin/AdminSchoolsDetail/AdminSchoolsDetail.js
 import NavBar from './Menu/NavBar.jsx';
 import AdminJob from './Job/AdminJob.jsx';
 import AdminSchedule from './Admin/AdminSchedule/AdminSchedule.jsx';
-import Auth from './Shared/Auth.js';
+import * as actions from '../actions/indexAction.js';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: Auth.isUserAuthenticated(),
+      isLoggedIn: !!localStorage.getItem('token'),
       sasOption: null,
       slide: false,
       user: {
@@ -35,18 +37,17 @@ class App extends React.Component {
     });
   }
 
-  clickLogout(option) {
-    console.log('clickLogout is clicked');
+  clickLogout() {
+    this.props.logout();
     this.setState({
-      isLoggedIn: !this.state.isLoggedIn,
-      sasOption: option,
+      isLoggedIn: !!localStorage.getItem('token'),
+      sasOption: null,
     });
   }
 
-  handleLogin(user, role){
+  handleLogin(role){
     this.setState({
-      username: user,
-      isLoggedIn: true,
+      isLoggedIn: !!localStorage.getItem('token'),
       sasOption: role,
     })
   }
@@ -55,6 +56,7 @@ class App extends React.Component {
     const log = this.state.isLoggedIn;
     const option = this.state.sasOption;
     console.log('I am in App.jsx', this.state.slide);
+    console.log(this.state.isLoggedIn);
     return (
       <React.Fragment>
         <BrowserRouter>
@@ -63,7 +65,9 @@ class App extends React.Component {
               slide={this.isSliding.bind(this)} onLogin={this.handleLogin.bind(this)}/>
             <Switch>
               <Route exact path="/" component={HomeLanding} />
-              <Route path="/login" render={props => <Login {...props} clickLogout={this.clickLogout.bind(this)} slide={this.state.slide}/>} />
+              <Route path="/login" render={props => 
+                <Login {...props} clickLogout={this.clickLogout.bind(this)} slide={this.state.slide}/>}
+              />
               <PrivateRoute exact path="/admin" component={AdminLanding} log={log} />
               <PrivateRoute exact path="/admin/schedule" component={AdminSchedule} log={log} />
               <PrivateRoute exact path="/admin/schools" component={AdminSchoolsSummary} log={log} />
@@ -81,4 +85,6 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default compose(
+  connect(null, actions)
+)(App);
