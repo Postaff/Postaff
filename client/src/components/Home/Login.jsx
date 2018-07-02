@@ -106,8 +106,8 @@ class Login extends React.Component {
   onSubmit(){
     this.props.login(this.state.user, () => {
       this.props.onLogin(this.state.role);
+      this.handleClose();
     });
-    this.handleClose();
   }
 
   handleInput(key, event) {
