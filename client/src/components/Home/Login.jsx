@@ -19,7 +19,6 @@ import grey from '@material-ui/core/colors/grey';
 import TextField from '@material-ui/core/TextField';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import * as actions from '../../actions/indexAction.js';
-import Auth from '../Shared/Auth.js';
 
 const theme = createMuiTheme({
   overrides: {
