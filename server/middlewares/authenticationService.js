@@ -19,15 +19,15 @@ const localLogin = new LocalStrategy((username, password, done) => {
     .then((existingUser) => {
       if(existingUser) {
         comparePassword(password, existingUser.password, (err, isMatch) => {
-          if(err) { return done(err) };
-          if(!isMatch) {return done(null, false)};
+          if(err) { return done(err); }
+          if(!isMatch) { return done(null, false); }
           return done(null, existingUser);
         });
       } else {
         done(null, false);
       }
     })
-    .catch((error) => done(error, false));
+    .catch(error => done(error, false));
 });
 
 const jwtOptions = {
@@ -44,7 +44,7 @@ const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
         done(null, false);
       }
     })
-    .catch((error) => done(error, false));
+    .catch(error => done(error, false));
 });
 
 passport.use(jwtLogin);

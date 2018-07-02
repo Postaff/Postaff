@@ -111,7 +111,7 @@ class Login extends React.Component {
         password: '',
       },
 
-      role: 'admin',
+      role: '',
 
       selectedValue: 'admin',
 
