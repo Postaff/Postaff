@@ -2,7 +2,7 @@ const { User } = require('../../database/models/userSchema');
 const { Admin } = require('../../database/models/adminSchema');
 const AuthService = require('../middlewares/authenticationService');
 
-exports.signup = (req, res, next) => {
+exports.signup = (req, res) => {
   const user = req.body;
   if(!user.username || !user.password) {
     return res.status(422).send({ error: 'You must provide an username or password.'})
@@ -25,7 +25,9 @@ exports.signup = (req, res, next) => {
                 fk_admin: savedAdmin.id,
               }).save()
                 .then((savedUser) => {
-                  res.status(201).send(savedUser);
+                  res.status(201).send({ 
+                    token: AuthService.tokenForUser(savedUser)
+                  });
                 })
             })
         })
@@ -33,4 +35,8 @@ exports.signup = (req, res, next) => {
     .catch((error) => {
       res.status(404).send(error, "error");
     })
+}
+
+exports.login = (req, res) => {
+  res.send({ token: AuthService.tokenForUser(req.user)})
 }
