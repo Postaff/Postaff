@@ -24,7 +24,9 @@ const client = new ApolloClient({
 
 const store = createStore(
   reducers,
-  {},
+  { 
+    auth: { authenticated: localStorage.getItem('token')}
+  },
   applyMiddleware(reduxThunk)
 )
 

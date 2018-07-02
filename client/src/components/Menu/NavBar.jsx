@@ -45,10 +45,6 @@ class NavBar extends Component {
     };
   }
 
-  handleLogout() {
-    // Auth.deauthenticateUser();
-  }
-
   handleToggle(open) {
     this.setState({
       isOpen: open,
@@ -161,11 +157,12 @@ class NavBar extends Component {
                 Postaff
               </Typography>
 
-            {!this.props.isLoggedIn
-              ? <Login clickLogout={this.props.clickLogout} onLogin={this.props.onLogin}/>
-            :              <Link to={{ pathname: '/', state: { clicked: false } }}>
-              <Button color="inherit" onClick={() => this.props.clickLogout()} >Logout</Button>
-              {/* <Button color="inherit" onClick={() => this.props.clickLogout()} >Logout</Button> */}
+            {!this.props.isLoggedIn 
+              ? 
+              <Login clickLogout={this.props.clickLogout} onLogin={this.props.onLogin}/>
+              : 
+              <Link to={{ pathname: '/', state: { clicked: false } }}>
+                <Button color="inherit" onClick={() => this.props.clickLogout()} >Logout</Button>
               </Link>
             }
 

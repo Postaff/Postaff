@@ -79,7 +79,11 @@ const styles = theme => ({
   sizeIcon: {
     fontSize: 20,
   },
+  error: {
+    color: 'red',
+  }
 });
+
 
 // const LoginWrapper = withStyles(styles)(MySnackbarContent);
 
@@ -91,7 +95,6 @@ class Login extends React.Component {
         username: '',
         password: '',
       },
-      usertype: null,
       role: 'admin',
       open: false,
     };
@@ -101,7 +104,10 @@ class Login extends React.Component {
   }
 
   onSubmit(){
-    this.props.login(this.state.user);
+    this.props.login(this.state.user, () => {
+      this.props.onLogin(this.state.role);
+    });
+    this.handleClose();
   }
 
   handleInput(key, event) {
@@ -152,6 +158,7 @@ class Login extends React.Component {
             message={
             <span id="message-id"><div className={classes.messageId}>
                 <Typography variant="display1">Please Log In</Typography>
+                <Typography className={classes.error} variant="subheading">{this.props.errorMessage}</Typography>
                 <TextField
                   name="username"
                   value={this.state.user.username}
@@ -201,7 +208,6 @@ class Login extends React.Component {
                     />}
                     label="School" />
                 </div>
-                <div className="formMessage">{this.props.errorMessage}</div>
                 <Button 
                   variant="contained" 
                   color="secondary" 
