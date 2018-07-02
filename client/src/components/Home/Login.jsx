@@ -1,10 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { reduxForm, Field} from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
 import { compose } from 'react-apollo';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/indexAction.js';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -18,12 +17,18 @@ import Radio from '@material-ui/core/Radio/';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import grey from '@material-ui/core/colors/grey';
 import TextField from '@material-ui/core/TextField';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import * as actions from '../../actions/indexAction.js';
+import Auth from '../Shared/Auth.js';
 
-const bodystyle = {
-  background: grey[100],
-};
-
-const styles = theme => ({
+const theme = createMuiTheme({
+  overrides: {
+    MuiSnackbarContent: { // Name of the component ⚛️ / style sheet
+      root: { // Name of the rule
+        backgroundColor: grey[100],
+      },
+    },
+  },
   SnackbarContent: {
     // color: rgb(49, 49, 49),
     // display: flex;
@@ -37,33 +42,33 @@ const styles = theme => ({
     // height: '100%',
     // maxheight: 500,
     float: 'right',
-    // backgroundColor: theme.palette.background.paper,
+    backgroundColor: grey[100],
   },
   messageId: {
-    backgroundColor: theme.palette.background.paper,
-    margin: theme.spacing.unit,
+    backgroundColor: grey[100],
+    margin: '2%',
     maxWidth: 500,
   },
   wrapper: {
-    width: theme.spacing.unit * 41,
+    width: '2%' * 41,
   },
   paper: {
     zIndex: 1,
     position: 'relative',
-    margin: theme.spacing.unit,
+    margin: '2%',
   },
   container: {
     display: 'flex',
     flexWrap: 'wrap',
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginLeft: '2%',
+    marginRight: '2%',
     width: 200,
   },
   close: {
-    width: theme.spacing.unit * 4,
-    height: theme.spacing.unit * 4,
+    width: '2%' * 4,
+    height: '2%' * 4,
   },
   radio: {
     color: 'green',
@@ -81,7 +86,7 @@ const styles = theme => ({
   },
   error: {
     color: 'red',
-  }
+  },
 });
 
 
@@ -103,7 +108,7 @@ class Login extends React.Component {
     this.handleClose = this.handleClose.bind(this);
   }
 
-  onSubmit(){
+  onSubmit() {
     this.props.login(this.state.user, () => {
       this.props.onLogin(this.state.role);
       this.handleClose();
@@ -121,7 +126,7 @@ class Login extends React.Component {
   }
 
   handleClose(event, reason) {
-    if (reason === 'clickaway') {
+    if(reason === 'clickaway') {
       return;
     }
     this.setState({ open: false });
@@ -140,95 +145,95 @@ class Login extends React.Component {
     return (
       <div className={classes.root}>
         <div className={classes.wrapper}>
-
-          <Button className={classes.button}><Typography variant="title" onClick={this.handleClick}>Login</Typography></Button>
+          <Button className={classes.button} onClick={this.handleClick}><Typography variant="title">Login</Typography></Button>
+          <MuiThemeProvider theme={theme}>
             <Snackbar
               anchorOrigin={{
                 vertical: 'top',
                 horizontal: 'right',
               }}
               open={this.state.open}
-              className={classes.SnackbarContent}
-            //   bodyStyle={bodystyle}
+              // className={classes.SnackbarContent}
               resumeHideDuration={6000}
               onClose={this.handleClose}
               ContentProps={{
                 'aria-describedby': 'message-id',
               }}
-            message={
-            <span id="message-id"><div className={classes.messageId}>
-                <Typography variant="display1">Please Log In</Typography>
-                <Typography className={classes.error} variant="subheading">{this.props.errorMessage}</Typography>
-                <TextField
-                  name="username"
-                  value={this.state.user.username}
-                  onChange={this.handleInput.bind(this, 'username')}
-                  id="username-input"
-                  label="Username"
-                  className={classes.textField}
-                  type="username"
-                  margin="normal"
-                />
-                <TextField
-                  name="password"
-                  value={this.state.user.password}
-                  onChange={this.handleInput.bind(this, 'password')}
-                  id="password-input"
-                  label="Password"
-                  className={classes.textField}
-                  type="password"
-                  margin="normal"
-                />
-                <div>
-                  <FormControlLabel control={
-                    <Radio
-                      checked={this.state.role === 'admin'}
-                      onChange={this.radioChange}
-                      value="admin"
-                      name="admin-radio-button"
-                      aria-label="A"
-                    />}
+              message={
+                <span id="message-id"><div className={classes.messageId}>
+                  <Typography variant="display1">Please Log In</Typography>
+                  <Typography className={classes.error} variant="subheading">{this.props.errorMessage}</Typography>
+                  <TextField
+                    name="username"
+                    value={this.state.user.username}
+                    onChange={this.handleInput.bind(this, 'username')}
+                    id="username-input"
+                    label="Username"
+                    className={classes.textField}
+                    type="username"
+                    margin="normal"
+                  />
+                  <TextField
+                    name="password"
+                    value={this.state.user.password}
+                    onChange={this.handleInput.bind(this, 'password')}
+                    id="password-input"
+                    label="Password"
+                    className={classes.textField}
+                    type="password"
+                    margin="normal"
+                  />
+                  <div>
+                    <FormControlLabel control={
+                      <Radio
+                        checked={this.state.role === 'admin'}
+                        onChange={this.radioChange}
+                        value="admin"
+                        name="admin-radio-button"
+                        aria-label="A"
+                      />}
                     label="Admin" />
-                  <FormControlLabel control={
-                    <Radio
-                      checked={this.state.role === 'sub'}
-                      onChange={this.radioChange}
-                      value="sub"
-                      name="subs-radio-button"
-                      aria-label="B"
-                    />}
+                    <FormControlLabel control={
+                      <Radio
+                        checked={this.state.role === 'sub'}
+                        onChange={this.radioChange}
+                        value="sub"
+                        name="subs-radio-button"
+                        aria-label="B"
+                      />}
                     label="Subs" />
-                  <FormControlLabel control={
-                    <Radio
-                      checked={this.state.role === 'school'}
-                      onChange={this.radioChange}
-                      value="school"
-                      name="school-radio-button"
-                      aria-label="C"
-                    />}
+                    <FormControlLabel control={
+                      <Radio
+                        checked={this.state.role === 'school'}
+                        onChange={this.radioChange}
+                        value="school"
+                        name="school-radio-button"
+                        aria-label="C"
+                      />}
                     label="School" />
-                </div>
-                <Button 
-                  variant="contained" 
-                  color="secondary" 
-                  className={classes.button} 
-                  onClick={this.onSubmit.bind(this)}
-                >
+                  </div>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    className={classes.button}
+                    onClick={this.onSubmit.bind(this)}
+                  >
                   Submit
-                </Button>
-              </div></span>}
-                action={[
+                  </Button>
+                </div></span>}
+              action={[
                 <IconButton
                   key="close"
                   aria-label="Close"
-                  color="inherit"
+                  color="secondary"
                   className={classes.close}
                   onClick={this.handleClose}
                 >
                   <CloseIcon />
                 </IconButton>,
-                ]}
+              ]}
             />
+          </MuiThemeProvider>
         </div>
       </div>
     );
@@ -239,12 +244,10 @@ Login.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => {
-  return { errorMessage: state.auth.errorMessage};
-}
+const mapStateToProps = state => ({ errorMessage: state.auth.errorMessage });
 
 export default compose(
   reduxForm({ form: 'login' }),
   connect(mapStateToProps, actions),
-  withStyles(styles),
+  withStyles(createMuiTheme),
 )(Login);
