@@ -162,11 +162,6 @@ class Login extends React.Component {
       return;
     }
     this.setState({ open: false });
-
-  radioChange(event) {
-    console.log(event.target.value);
-    this.setState({ selectedValue: event.target.value });
-
   }
 
   radioChange(event) {

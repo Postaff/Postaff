@@ -15,11 +15,11 @@ User.belongsTo(School, { foreignKey: 'fk_school' });
 User.belongsTo(Admin, { foreignKey: 'fk_admin' });
 
 // User.create({
-//   username: "admin",
-//   password: "admin",
-//   role: "Admin",
+//   username: 'admin',
+//   password: 'admin',
+//   role: 'Admin',
 //   fk_school: 1,
-// })
+// });
 
 User.sync();
 
