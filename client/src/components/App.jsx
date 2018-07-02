@@ -24,9 +24,8 @@ class App extends React.Component {
       slide: false,
       user: {
         username: null,
-        password: null,
-      },
-    };
+      }
+    }
   }
 
   isSliding() {
@@ -44,13 +43,12 @@ class App extends React.Component {
     });
   }
 
-  handleLogin(user, pw) {
-    const { username, password } = this.state.user;
+  handleLogin(user, role){
     this.setState({
       username: user,
-      password: pw,
       isLoggedIn: true,
-    });
+      sasOption: role,
+    })
   }
 
   render() {

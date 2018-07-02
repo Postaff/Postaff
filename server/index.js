@@ -61,7 +61,8 @@ const server = new ApolloServer({
   resolvers,
 });
 server.applyMiddleware({ app });
-app.use('/', routes);
+app.use('/api', routes);
+
 
 app.listen(PORT, () => {});
 

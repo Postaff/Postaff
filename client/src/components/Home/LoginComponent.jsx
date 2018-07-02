@@ -105,7 +105,7 @@ class Login extends React.Component {
       role: this.state.role,
     }).then((response) => {
       Auth.authenticateUser(response.data.token);
-      this.props.onLogin(this.state.username, this.state.password);
+      this.props.onLogin(this.state.username, this.state.role);
     }).catch((error) => {
       console.log(error);
     })

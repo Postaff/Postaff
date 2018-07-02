@@ -1,35 +1,67 @@
 const passport = require('passport');
+const JwtStrategy = require('passport-jwt').Strategy;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
 const LocalStrategy = require('passport-local');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const jwt = require('jwt-simple');
+const dotenv = require('dotenv').config();
 const { User } = require('../../database/models/userSchema');
 const { School } = require('../../database/models/schoolSchema');
 const { Sub } = require('../../database/models/subSchema');
 const { Admin } = require('../../database/models/adminSchema');
-const jwtSecret = Buffer.from('savedByTheBell', 'base64');
 
-passport.serializeUser((user, done) => {
-  done(null, user.id);
+const comparePassword = (pwFromClient, pwFromDB, callback) => {
+  bcrypt.compare(pwFromClient, pwFromDB, (err, isMatch) => {
+    if(err) { return callback(err); }
+    callback(null, isMatch);
+  })
+}
+
+const localLogin = new LocalStrategy((username, password, done) => {
+  User.findOne({ where: {username: username} })
+    .then((existingUser) => {
+      console.log(existingUser)
+      if(existingUser) {
+        comparePassword(password, existingUser.password, function(err, isMatch) {
+          if(err) { return done(err) };
+          if(!isMatch) {return done(null, false)};
+          return done(null, existingUser);
+        })
+      } else {
+        done(null, false)
+      }
+    })
+    .catch((error) => {
+      return done(error, false)
+    })
 });
 
-passport.deserializeUser((id, done) => {
-  User.findById(id).then((user) => {
-    done(err, user);
-  });
-});
+const jwtOptions = {
+  jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+  secretOrKey: process.env.JWT_SECRET,
+};
 
-passport.use(new LocalStrategy((username, password, done) => {
-  User.findOne({ where: { username } }, (err, user) => {
-    if (err) { return done(err); }
-    if (!user) {
-      return done(null, false, { message: 'Incorrect username.' });
-    }
-    if (!user.validPassword(password)) {
-      return done(null, false, { message: 'Incorrect password.' });
-    }
-    return done(null, user);
-  });
-}));
+const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
+  User.findById(payload.sub)
+    .then((existingUser) => {
+      if(existingUser) {
+        done(null, existingUser);
+      } else {
+        done(null, false);
+      }
+    })
+    .catch((error) => {
+      return done(error, false);
+    })
+})
+
+passport.use(jwtLogin);
+passport.use(localLogin);
+
+const tokenForUser = (user) => {
+  const timestamp = new Date().getTime();
+  return jwt.encode({ sub: user.id, iat: timestamp }, process.env.JWT_SECRET)
+}
 
 const saltAndHashPassword = (pw) => {
   return new Promise((resolve, reject) => {
@@ -45,13 +77,6 @@ const saltAndHashPassword = (pw) => {
     })
   })
 }
-
-function isAuthorized(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/');
-};
 
 const createAdmin = (user) => {
   Admin.build({
@@ -115,62 +140,10 @@ const createSub = (user) => {
     });
 };
 
-const login = (req, res) => {
-  console.log(req.body)
-  const { username, password } = req.body
-  User.findOne({ where: { username } })
-    .then((existingUser) => {
-      console.log("password", existingUser.password)
-      console.log(password);
-      if(existingUser.password === password){
-        const token = jwt.sign({sub: existingUser.id}, jwtSecret);
-          res.status(200).send({
-            message: 'You have successfully logged in!',
-            token,
-          })
-      } else {
-        res.status(404).send("throw 1");
-      }
-    })
-    .catch((error)=>{
-      res.status(404).send("throw 2");
-    })
-};
-
-const signup = (req, res) => {
-  const { username, password, role } = req.body;
-  let user = null;
-  if (!username || !password) {
-    throw new Error('You must provide an username and password.');
-  }
-  passport.authenticate('local');
-  User.findOne({ where: { username } })
-    .then((existingUser) => {
-      if (existingUser) {
-        throw new Error('Username taken!');
-      }
-      if (role === 'admin') {
-        user = createAdmin(req.body);
-      } else if (role === 'school') {
-        user = createSchool(req.body);
-      } else if (role === 'sub') {
-        user = createSub(req.body);
-      }
-    })
-    .then((user) => {
-      req.login(user, (error) => {
-        if (error) {
-          res.status(404).send(error);
-        }
-        res.render('/', { message: req.flash('signupMessage') });
-      });
-    });
-};
-
 const logout = (req, res) => {
   console.log("test")
   req.logout();
   res.redirect('/');
 };
 
-module.exports = { signup, logout, login, saltAndHashPassword };
+module.exports = { saltAndHashPassword, tokenForUser };
