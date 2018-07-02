@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-import { 
-SwipeableDrawer, List, ListItem, ListItemIcon, ListItemText,
-  Divider, AppBar, Toolbar, Typography, Button, IconButton
- } from '@material-ui/core';
-import { 
-Home, Dashboard, Schedule, People, LocationCity, Work
- } from '@material-ui/icons';
+import {
+  SwipeableDrawer, List, ListItem, ListItemIcon, ListItemText,
+  Divider, AppBar, Toolbar, Typography, Button, IconButton,
+} from '@material-ui/core';
+import {
+  Home, Dashboard, Schedule, People, LocationCity, Work,
+} from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import Login from '../Home/Login.jsx';
 
@@ -58,55 +58,55 @@ class NavBar extends Component {
         <List component="nav">
           <Link to={'/'}>
             <ListItem button>
-                <ListItemIcon>
-                  <Home/>
-                </ListItemIcon>
+              <ListItemIcon>
+                <Home/>
+              </ListItemIcon>
               <ListItemText primary="Home"/>
             </ListItem>
           </Link>
           {this.props.isLoggedIn && this.props.option === 'admin'
             ? <List>
-            <Link to={'/admin'}>
-            <ListItem button>
-                <ListItemIcon>
-                  <Dashboard/>
-                </ListItemIcon>
-              <ListItemText primary="Dashboard"/>
-            </ListItem>
-          </Link>
-          <Link to={'/admin/schedule'}>
-          <ListItem button>
-            <ListItemIcon>
-              <Schedule/>
-            </ListItemIcon>
-            <ListItemText primary="Schedule"/>
-          </ListItem>
-          </Link>
-          <Link to={'/admin/subs'}>
-          <ListItem button>
-            <ListItemIcon>
-              <People/>
-            </ListItemIcon>
-            <ListItemText primary="Substitutes"/>
-          </ListItem>
-          </Link>
-          <Link to={'/admin/schools'}>
-          <ListItem button>
-            <ListItemIcon>
-              <LocationCity/>
-            </ListItemIcon>
-            <ListItemText primary="Schools"/>
-          </ListItem>
-          </Link>
-          <Link to={'/admin/jobs'}>
-          <ListItem button>
-            <ListItemIcon>
-              <Work/>
-            </ListItemIcon>
-            <ListItemText primary="Jobs"/>
-          </ListItem>
-          </Link>
-          </List>
+              <Link to={'/admin'}>
+                <ListItem button>
+                  <ListItemIcon>
+                    <Dashboard/>
+                  </ListItemIcon>
+                  <ListItemText primary="Dashboard"/>
+                </ListItem>
+              </Link>
+              <Link to={'/admin/schedule'}>
+                <ListItem button>
+                  <ListItemIcon>
+                    <Schedule/>
+                  </ListItemIcon>
+                  <ListItemText primary="Schedule"/>
+                </ListItem>
+              </Link>
+              <Link to={'/admin/subs'}>
+                <ListItem button>
+                  <ListItemIcon>
+                    <People/>
+                  </ListItemIcon>
+                  <ListItemText primary="Substitutes"/>
+                </ListItem>
+              </Link>
+              <Link to={'/admin/schools'}>
+                <ListItem button>
+                  <ListItemIcon>
+                    <LocationCity/>
+                  </ListItemIcon>
+                  <ListItemText primary="Schools"/>
+                </ListItem>
+              </Link>
+              <Link to={'/admin/jobs'}>
+                <ListItem button>
+                  <ListItemIcon>
+                    <Work/>
+                  </ListItemIcon>
+                  <ListItemText primary="Jobs"/>
+                </ListItem>
+              </Link>
+            </List>
             : <div></div>}
 
           <Divider/>
@@ -138,31 +138,31 @@ class NavBar extends Component {
               >
                 {this.renderAdminSideBar()}
                 <List component="nav">
-              <ListItem button>
-                <ListItemText primary="About"/>
-              </ListItem>
-              <ListItem button>
-                <ListItemText primary="Contact"/>
-              </ListItem>
-              <ListItem button>
-                <ListItemText primary="Careers"/>
-              </ListItem>
-              <ListItem button>
-                <ListItemText primary="Term"/>
-              </ListItem>
-              </List>
+                  <ListItem button>
+                    <ListItemText primary="About"/>
+                  </ListItem>
+                  <ListItem button>
+                    <ListItemText primary="Contact"/>
+                  </ListItem>
+                  <ListItem button>
+                    <ListItemText primary="Careers"/>
+                  </ListItem>
+                  <ListItem button>
+                    <ListItemText primary="Terms"/>
+                  </ListItem>
+                </List>
               </div>
             </SwipeableDrawer>
-              <Typography variant="title" color="inherit" className={classes.flex}>
+            <Typography variant="title" color="inherit" className={classes.flex}>
                 Postaff
-              </Typography>
+            </Typography>
 
-            {!this.props.isLoggedIn 
-              ? 
-              <Login clickLogout={this.props.clickLogout} onLogin={this.props.onLogin}/>
-              : 
-              <Link to={{ pathname: '/', state: { clicked: false } }}>
-                <Button color="inherit" onClick={() => this.props.clickLogout()} >Logout</Button>
+            {!this.props.isLoggedIn
+              ? <Login clickLogout={this.props.clickLogout} onLogin={this.props.onLogin}/>
+              : <Link to={{ pathname: '/', state: { clicked: false } }}>
+                <Button color="inherit" onClick={() => this.props.clickLogout()}>
+                  <Typography variant="title">Logout</Typography>
+                </Button>
               </Link>
             }
 
