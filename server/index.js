@@ -63,13 +63,8 @@ const server = new ApolloServer({
   resolvers,
 });
 server.applyMiddleware({ app });
-<<<<<<< HEAD
 app.use('/api', routes);
 
-=======
-
-app.use('/', routes);
->>>>>>> is for rebasing and merging
 
 app.listen(PORT, () => {});
 

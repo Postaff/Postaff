@@ -5,6 +5,7 @@ const AuthCtrl = require('./controllers/authenticationController');
 const requireAuth = passport.authenticate('jwt', { session: false });
 const requireLogin = passport.authenticate('local', { session: false });
 
+
 router.route('/users/login')
   .post(requireLogin, AuthCtrl.login);
 
