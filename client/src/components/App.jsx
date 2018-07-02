@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import HomeLanding from './Home/HomeLanding.jsx';
-import Login from './Home/LoginComponent.jsx';
+import Login from './Home/Login.jsx';
 import SchoolLanding from './School/SchoolLanding/SchoolLanding.jsx';
 import SubLanding from './Sub/SubLanding/SubLanding.jsx';
 import AdminLanding from './Admin/AdminLanding/AdminLanding.jsx';
@@ -13,13 +13,12 @@ import AdminSchoolsDetail from './Admin/AdminSchoolsDetail/AdminSchoolsDetail.js
 import NavBar from './Menu/NavBar.jsx';
 import AdminJob from './Job/AdminJob.jsx';
 import AdminSchedule from './Admin/AdminSchedule/AdminSchedule.jsx';
-import Auth from './Shared/Auth.js';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: Auth.isUserAuthenticated(),
+      isLoggedIn: null,
       sasOption: null,
       slide: false,
       user: {

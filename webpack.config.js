@@ -3,7 +3,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 module.exports = {
-
+  entry: ['babel-polyfill', './client/src/index.jsx'],
+  output: {
+    filename: "bundle.js",
+    path: path.resolve(__dirname, ".client/dist"),
+    publicPath: "/",
+  },
   module: {
     rules: [
       {
@@ -14,9 +19,9 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              presets: ['env', 'react', 'es2015'],
+              presets: ['env', 'react', 'stage-2', 'es2015' ],
               plugins: [
-                ['inline-import', 'transform-class-properties', {
+                ['inline-import', 'transform-class-properties', 'transform-async-to-generator', {
                   extensions: ['.graphql'],
                 }],
               ],
