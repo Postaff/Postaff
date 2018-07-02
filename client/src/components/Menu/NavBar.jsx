@@ -148,7 +148,7 @@ class NavBar extends Component {
                     <ListItemText primary="Careers"/>
                   </ListItem>
                   <ListItem button>
-                    <ListItemText primary="Term"/>
+                    <ListItemText primary="Terms"/>
                   </ListItem>
                 </List>
               </div>
