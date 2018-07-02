@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { compose } from 'react-apollo';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import HomeLanding from './Home/HomeLanding.jsx';
@@ -26,15 +26,8 @@ class App extends React.Component {
       slide: false,
       user: {
         username: null,
-      }
-    }
-  }
-
-  isSliding() {
-    console.log('This is isSliding', this.state.slide);
-    this.setState({
-      slide: !this.state.slide,
-    });
+      },
+    };
   }
 
   clickLogout() {
@@ -45,11 +38,11 @@ class App extends React.Component {
     });
   }
 
-  handleLogin(role){
+  handleLogin(role) {
     this.setState({
       isLoggedIn: !!localStorage.getItem('token'),
       sasOption: role,
-    })
+    });
   }
 
   render() {
@@ -61,12 +54,10 @@ class App extends React.Component {
       <React.Fragment>
         <BrowserRouter>
           <div>
-            <NavBar isLoggedIn={log} option={option} clickLogout={this.clickLogout.bind(this)}
-              slide={this.isSliding.bind(this)} onLogin={this.handleLogin.bind(this)}/>
+            <NavBar isLoggedIn={log} option={option} clickLogout={this.clickLogout.bind(this)} onLogin={this.handleLogin.bind(this)}/>
             <Switch>
               <Route exact path="/" component={HomeLanding} />
-              <Route path="/login" render={props => 
-                <Login {...props} clickLogout={this.clickLogout.bind(this)} slide={this.state.slide}/>}
+              <Route path="/login" render={props => <Login {...props} clickLogout={this.clickLogout.bind(this)} slide={this.state.slide}/>}
               />
               <PrivateRoute exact path="/admin" component={AdminLanding} log={log} />
               <PrivateRoute exact path="/admin/schedule" component={AdminSchedule} log={log} />
@@ -86,5 +77,5 @@ class App extends React.Component {
 }
 
 export default compose(
-  connect(null, actions)
+  connect(null, actions),
 )(App);
