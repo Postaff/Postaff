@@ -1,6 +1,6 @@
 const db = require('../indexDb.js');
 const { School } = require('./schoolSchema');
-const { Sub } = require('./subSchema');
+const { Subs } = require('./subSchema');
 
 // have created a completed_by and claimed-by property in this schema
 
@@ -29,8 +29,8 @@ const Job = db.sequelize.define('job', {
   paid: db.sequelize.Sequelize.BOOLEAN,
 });
 
-School.hasMany(Job, { foreignKey: 'fk_school'});
-Job.belongsTo(School, { foreignKey: 'fk_school'});
+// School.hasMany(Job, { foreignKey: 'fk_school' });
+// Job.belongsTo(School, { foreignKey: 'fk_school' });
 
 Sub.hasMany(Job, {foreignKey: 'fk_sub'});
 Job.belongsTo(Sub, {froeignKey: 'fk_sub'});

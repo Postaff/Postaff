@@ -1,10 +1,10 @@
 const router = require('express').Router();
+const passport = require('passport');
 const GenData = require('./dataGenerator');
 const AuthCtrl = require('./controllers/authenticationController');
 
 const requireAuth = passport.authenticate('jwt', { session: false });
 const requireLogin = passport.authenticate('local', { session: false });
-
 
 router.route('/users/login')
   .post(requireLogin, AuthCtrl.login);
