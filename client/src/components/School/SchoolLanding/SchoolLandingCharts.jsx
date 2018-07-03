@@ -1,11 +1,18 @@
-import React from 'react';
+import React, {Fragment} from 'react';
+import {Grid} from '@material-ui/core';
 
 class SchoolLandingCharts extends React.Component {
   render() {
     return (
-      <div>
-        FILL_ME_IN
-      </div>
+      <Fragment>
+        <Grid item xs={8}>
+          <div style={{marginTop:'65px'}}>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiBKSrnYuLNAR43LPFNPXnnCNBx1bIh3BC6k-AOu292wCPdSMs" />
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiBKSrnYuLNAR43LPFNPXnnCNBx1bIh3BC6k-AOu292wCPdSMs" />
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiBKSrnYuLNAR43LPFNPXnnCNBx1bIh3BC6k-AOu292wCPdSMs" />
+          </div>
+        </Grid>
+      </Fragment>
     );
   }
 }
