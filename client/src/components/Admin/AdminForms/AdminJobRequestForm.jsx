@@ -14,17 +14,20 @@ import {
 } from '@material-ui/core';
 import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
-import { GET_ALL_SCHOOLS } from '../../../queries/jobFormQueries.js';
+import { 
+  GET_ALL_SCHOOLS,
+  NEW_JOB 
+} from '../../../queries/jobFormQueries.js';
 
 class AdminJobRequestForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: '',
-      phone: '',
-      phoneExt: '',
-      email: '',
+      // name: '',
+      // phone: '',
+      // phoneExt: '',
+      // email: '',
       school: '',
       subject: '',
       grade: '',
@@ -45,12 +48,26 @@ class AdminJobRequestForm extends React.Component {
   }
 
   submitForm(event) {
-    console.log(this.state);
+    const { school, subject, grade, jobDescription, startDate, 
+      startTime, endDate, endTime, additionalInformation } = this.state
+    this.props.mutate({
+      variables: {
+        input: {
+          schoolId: '1',
+          school,
+          subject,
+          grade,
+          jobDescription,
+          startDate,
+          endDate,
+          startTime,
+          endTime,
+          additionalInformation,
+        }
+      }
+    })
+
     this.setState({
-      name: '',
-      phone: '',
-      phoneExt: '',
-      email: '',
       school: '',
       subject: '',
       grade: '',
@@ -96,15 +113,6 @@ class AdminJobRequestForm extends React.Component {
                   </MenuItem>
                 ))}
               </TextField>
-              {/* <TextField
-                label="School Name"
-                className={classes.textField}
-                margin="normal"
-                name="school"
-                value={this.state.school}
-                onChange={this.handleChange.bind(this)}
-                style={{ width: '90%' }}
-              /> */}
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -326,6 +334,7 @@ const styles = theme => ({
 });
 
 export default compose(
+  graphql(NEW_JOB),
   graphql(GET_ALL_SCHOOLS),
   withStyles(styles)
 )(AdminJobRequestForm);

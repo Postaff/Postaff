@@ -4,6 +4,7 @@ const { Sub } = require('./subSchema');
 
 const Job = db.sequelize.define('job', {
   description: db.sequelize.Sequelize.TEXT,
+  schoolName: db.sequelize.Sequelize.STRING,
   start_time: db.sequelize.Sequelize.TIME,
   end_time: db.sequelize.Sequelize.TIME,
   start_date: db.sequelize.Sequelize.DATEONLY,
