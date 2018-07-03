@@ -15,4 +15,7 @@ router.route('/users/signup')
 router.route('/users/generate')
   .get(GenData.initAccounts);
 
+router.route('/jobs/sms/:subId')
+  .post()
+
 module.exports = router;

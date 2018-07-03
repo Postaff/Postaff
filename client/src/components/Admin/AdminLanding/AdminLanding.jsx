@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Route, Link } from 'react-router-dom';
+import { graphql, compose } from 'react-apollo';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -11,7 +12,8 @@ import AdminLandingCharts from './AdminLandingCharts.jsx';
 import AdminLandingCurrentStatus from './AdminLandingCurrentStatus.jsx';
 import AdminLandingPendingReviewList from './AdminLandingPendingReviewList.jsx';
 import AdminLandingUnclaimedJobsList from './AdminLandingUnclaimedJobsList.jsx';
-
+import GET_ALL_JOBS from '../../../queries/fetchAllJobs';
+import { combineReducers } from 'redux';
 
 const styles = theme => ({
   button: {
@@ -23,8 +25,16 @@ const styles = theme => ({
 });
 
 class AdminLanding extends React.Component {
+
   render() {
+    if(this.props.data.loading){
+      return <Fragment></Fragment>
+    }
+    const { jobs } = this.props.data;
+    console.log(jobs)
     const { classes } = this.props;
+    const claimed = jobs.filter(job => job.claimed);
+    const unclaimed = jobs.length - claimed.length;
     console.log('Hey am in adminlanding.jsx');
     return (
       <div>
@@ -37,7 +47,7 @@ class AdminLanding extends React.Component {
           <Grid item xs={4}>
             <Grid container spacing={8} direction={'column'} alignItems={'center'} justify={'flex-start'}>
               <Grid item xs={8}>
-                <AdminLandingCurrentStatus />
+                <AdminLandingCurrentStatus claimed={claimed.length} unclaimed={unclaimed}/>
               </Grid>
 
               <Grid item xs={8}>
@@ -69,4 +79,7 @@ AdminLanding.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AdminLanding);
+export default compose(
+  graphql(GET_ALL_JOBS),
+  withStyles(styles),
+)(AdminLanding);
