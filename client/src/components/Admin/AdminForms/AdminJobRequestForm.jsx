@@ -14,9 +14,9 @@ import {
 } from '@material-ui/core';
 import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
-import { 
+import {
   GET_ALL_SCHOOLS,
-  NEW_JOB 
+  NEW_JOB,
 } from '../../../queries/jobFormQueries.js';
 
 class AdminJobRequestForm extends React.Component {
@@ -40,12 +40,14 @@ class AdminJobRequestForm extends React.Component {
     this.setState({
       [event.target.name]: event.target.value,
     });
-    console.log(this.state)
+    console.log(this.state);
   }
 
   submitForm(event) {
-    const { school, subject, grade, jobDescription, startDate, 
-      startTime, endDate, endTime, additionalInformation } = this.state
+    const {
+      school, subject, grade, jobDescription, startDate,
+      startTime, endDate, endTime, additionalInformation,
+    } = this.state;
     this.props.mutate({
       variables: {
         input: {
@@ -59,9 +61,9 @@ class AdminJobRequestForm extends React.Component {
           startTime,
           endTime,
           additionalInformation,
-        }
-      }
-    })
+        },
+      },
+    });
 
     this.setState({
       school: '',
@@ -77,175 +79,177 @@ class AdminJobRequestForm extends React.Component {
   }
 
   render() {
-    if(this.props.data.loading){
-      return <div></div>
+    if(this.props.data.loading) {
+      return <div></div>;
     }
     const { classes } = this.props;
     return (
-      <form>
-        <Grid container spacing={24}>
-          <Paper className={classes.paper}>
-            <Grid item xs={12}>
-              <Typography variant="display1">Job Request Form</Typography>
-              <TextField
-                select
-                label="School Name"
-                className={classes.textField}
-                margin="normal"
-                onChange={this.handleChange.bind(this)}
-                value={this.state.school}
-                name="school"
-                SelectProps={{
-                  MenuProps: {
-                    className: classes.menu,
-                  },
-                }}
-                helperText="Please select the school"
-                style={{ width: '90%' }}
-              >
-                {this.props.data.schools.map(school => (
-                  <MenuItem key={school.id} value={school.school_name}>
-                    {school.school_name}
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Subject"
-                className={classes.textField}
-                margin="normal"
-                name="subject"
-                value={this.state.subject}
-                onChange={this.handleChange.bind(this)}
-                style={{ width: '65%' }}
-              />
-            <FormControl className={classes.formControl} style={{ width: '23%' }}>
-              <InputLabel>Grade</InputLabel>
-              <Select
-                name="grade"
-                value={this.state.grade}
-                onChange={this.handleChange.bind(this)}
-              >
-                <MenuItem value="Pre-K">Pre-K</MenuItem>
-                <MenuItem value="K">K</MenuItem>
-                <MenuItem value="1">1</MenuItem>
-                <MenuItem value="2">2</MenuItem>
-                <MenuItem value="3">3</MenuItem>
-                <MenuItem value="4">4</MenuItem>
-                <MenuItem value="5">5</MenuItem>
-                <MenuItem value="6">6</MenuItem>
-                <MenuItem value="7">7</MenuItem>
-                <MenuItem value="8">8</MenuItem>
-                <MenuItem value="9">9</MenuItem>
-                <MenuItem value="10">10</MenuItem>
-                <MenuItem value="11">11</MenuItem>
-                <MenuItem value="12">12</MenuItem>
-              </Select>
-            </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Job Description"
-                className={classes.textField}
-                type="jobDescription"
-                margin="normal"
-                name="jobDescription"
-                value={this.state.jobDescription}
-                onChange={this.handleChange.bind(this)}
-                style={{ width: '90%', marginBottom: '5%' }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Start Date"
-                type="date"
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                name="startDate"
-                value={this.state.startDate}
-                onChange={this.handleChange.bind(this)}
-                style={{ width: '28.5%' }}
-              />
-              <TextField
-                label="Start Time"
-                type="time"
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                inputProps={{
-                  step: 300, // 5 min
-                }}
-                name="startTime"
-                value={this.state.startTime}
-                onChange={this.handleChange.bind(this)}
-                style={{ width: '13%' }}
-              />
-              <TextField
-                label="End Date"
-                type="date"
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                name="endDate"
-                value={this.state.endDate}
-                onChange={this.handleChange.bind(this)}
-                style={{ width: '28%' }}
-              />
-              <TextField
-                label="End Time"
-                type="time"
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                inputProps={{
-                  step: 300, // 5 min
-                }}
-                name="endTime"
-                value={this.state.endTime}
-                onChange={this.handleChange.bind(this)}
-                style={{ width: '13%' }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Additional Information"
-                margin="normal"
-                multiline
-                rows="4"
-                className={classes.textField}
-                name="additionalInformation"
-                value={this.state.additionalInformation}
-                onChange={this.handleChange.bind(this)}
-                style={{ width: '68.5%' }}
-              />
-              <input
-                accept="image/*"
-                className={classes.input}
-                id="flat-button-file"
-                multiple
-                type="file"
-              />
-              <label htmlFor="flat-button-file">
-                <Button component="span" color="primary" className={classes.button}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <form>
+          <Grid container spacing={8}>
+            <Paper className={classes.paper}>
+              <Grid item xs={12}>
+                <Typography variant="display1">Job Request Form</Typography>
+                <TextField
+                  select
+                  label="School Name"
+                  className={classes.textField}
+                  margin="normal"
+                  onChange={this.handleChange.bind(this)}
+                  value={this.state.school}
+                  name="school"
+                  SelectProps={{
+                    MenuProps: {
+                      className: classes.menu,
+                    },
+                  }}
+                  helperText="Please select the school"
+                  style={{ width: '90%' }}
+                >
+                  {this.props.data.schools.map(school => (
+                    <MenuItem key={school.id} value={school.school_name}>
+                      {school.school_name}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Subject"
+                  className={classes.textField}
+                  margin="normal"
+                  name="subject"
+                  value={this.state.subject}
+                  onChange={this.handleChange.bind(this)}
+                  style={{ width: '65%' }}
+                />
+                <FormControl className={classes.formControl} style={{ width: '23%' }}>
+                  <InputLabel>Grade</InputLabel>
+                  <Select
+                    name="grade"
+                    value={this.state.grade}
+                    onChange={this.handleChange.bind(this)}
+                  >
+                    <MenuItem value="Pre-K">Pre-K</MenuItem>
+                    <MenuItem value="K">K</MenuItem>
+                    <MenuItem value="1">1</MenuItem>
+                    <MenuItem value="2">2</MenuItem>
+                    <MenuItem value="3">3</MenuItem>
+                    <MenuItem value="4">4</MenuItem>
+                    <MenuItem value="5">5</MenuItem>
+                    <MenuItem value="6">6</MenuItem>
+                    <MenuItem value="7">7</MenuItem>
+                    <MenuItem value="8">8</MenuItem>
+                    <MenuItem value="9">9</MenuItem>
+                    <MenuItem value="10">10</MenuItem>
+                    <MenuItem value="11">11</MenuItem>
+                    <MenuItem value="12">12</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Job Description"
+                  className={classes.textField}
+                  type="jobDescription"
+                  margin="normal"
+                  name="jobDescription"
+                  value={this.state.jobDescription}
+                  onChange={this.handleChange.bind(this)}
+                  style={{ width: '90%', marginBottom: '5%' }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Start Date"
+                  type="date"
+                  className={classes.textField}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  name="startDate"
+                  value={this.state.startDate}
+                  onChange={this.handleChange.bind(this)}
+                  style={{ width: '28.5%' }}
+                />
+                <TextField
+                  label="Start Time"
+                  type="time"
+                  className={classes.textField}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  inputProps={{
+                    step: 300, // 5 min
+                  }}
+                  name="startTime"
+                  value={this.state.startTime}
+                  onChange={this.handleChange.bind(this)}
+                  style={{ width: '13%' }}
+                />
+                <TextField
+                  label="End Date"
+                  type="date"
+                  className={classes.textField}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  name="endDate"
+                  value={this.state.endDate}
+                  onChange={this.handleChange.bind(this)}
+                  style={{ width: '28%' }}
+                />
+                <TextField
+                  label="End Time"
+                  type="time"
+                  className={classes.textField}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  inputProps={{
+                    step: 300, // 5 min
+                  }}
+                  name="endTime"
+                  value={this.state.endTime}
+                  onChange={this.handleChange.bind(this)}
+                  style={{ width: '13%' }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Additional Information"
+                  margin="normal"
+                  multiline
+                  rows="4"
+                  className={classes.textField}
+                  name="additionalInformation"
+                  value={this.state.additionalInformation}
+                  onChange={this.handleChange.bind(this)}
+                  style={{ width: '68.5%' }}
+                />
+                <input
+                  accept="image/*"
+                  className={classes.input}
+                  id="flat-button-file"
+                  multiple
+                  type="file"
+                />
+                <label htmlFor="flat-button-file">
+                  <Button component="span" color="primary" className={classes.button}>
                   Upload
-                  <FileUpload className={classes.rightIcon} />
-                </Button>
-              </label>
-            </Grid>
-            <Grid item xs={12}>
-              <Button variant="contained" color="primary" className={classes.button} onClick={this.submitForm.bind(this)}>
+                    <FileUpload className={classes.rightIcon} />
+                  </Button>
+                </label>
+              </Grid>
+              <Grid item xs={12}>
+                <Button variant="contained" color="primary" className={classes.button} onClick={this.submitForm.bind(this)}>
                 Submit
-              </Button>
-            </Grid>
-          </Paper>
-        </Grid>
-      </form>
+                </Button>
+              </Grid>
+            </Paper>
+          </Grid>
+        </form>
+      </div>
     );
   }
 }
@@ -290,5 +294,5 @@ const styles = theme => ({
 export default compose(
   graphql(NEW_JOB),
   graphql(GET_ALL_SCHOOLS),
-  withStyles(styles)
+  withStyles(styles),
 )(AdminJobRequestForm);
