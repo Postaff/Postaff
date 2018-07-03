@@ -7,6 +7,8 @@ const Admin = db.sequelize.define('admin', {
   last_login: db.sequelize.Sequelize.DATE,
 });
 
+
+
 // Admin.create({
 //   name: "Admin",
 //   email: "admin@postaff.com"

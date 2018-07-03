@@ -6,9 +6,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jwt-simple');
 const dotenv = require('dotenv').config();
 const { User } = require('../../database/models/userSchema');
-const { School } = require('../../database/models/schoolSchema');
-const { Sub } = require('../../database/models/subSchema');
-const { Admin } = require('../../database/models/adminSchema');
 
 const comparePassword = (pwFromClient, pwFromDB, callback) => {
   bcrypt.compare(pwFromClient, pwFromDB, (err, isMatch) => {
@@ -20,7 +17,6 @@ const comparePassword = (pwFromClient, pwFromDB, callback) => {
 const localLogin = new LocalStrategy((username, password, done) => {
   User.findOne({ where: {username: username} })
     .then((existingUser) => {
-      console.log(existingUser)
       if(existingUser) {
         comparePassword(password, existingUser.password, function(err, isMatch) {
           if(err) { return done(err) };
@@ -77,73 +73,5 @@ const saltAndHashPassword = (pw) => {
     })
   })
 }
-
-const createAdmin = (user) => {
-  Admin.build({
-    name: user.admin.name,
-    email: user.admin.email,
-  }).save()
-    .then((savedAdmin) => {
-      User.create({
-        username: user.username,
-        password: user.password,
-        fk_admin: savedAdmin.id,
-      })
-        .then(created => created);
-    });
-};
-
-const createSchool = (user) => {
-  School.build({
-    school_name: user.school.schoolName,
-    address_street: user.school.street,
-    address_city: user.school.city,
-    address_state: user.school.state,
-    address_zipcode: user.school.zipcode,
-    contact_name: user.school.contactName,
-    contact_title: user.school.contactTitle,
-    contact_email: user.school.email,
-    phone: user.school.phone,
-    phone_ext: user.school.phoneExt,
-    notes: user.school.additionalInfo,
-  }).save()
-    .then((savedSchool) => {
-      User.create({
-        username: user.username,
-        password: user.password,
-        fk_school: savedSchool.id,
-      })
-        .then(created => created);
-    });
-};
-
-const createSub = (user) => {
-  Sub.build({
-    name: user.sub.name,
-    phone: user.sub.phone,
-    phone_alt: user.sub.phoneAlt,
-    email: user.sub.email,
-    photo_url: user.sub.photo,
-    address_street: user.sub.street,
-    address_city: user.sub.city,
-    address_state: user.sub.state,
-    address_zipcode: user.sub.zipcode,
-    work_eligibility: user.sub.workEligibility,
-    special_ed: user.sub.specialEd,
-  }).save()
-    .then((savedSub) => {
-      User.create({
-        username: user.username,
-        password: user.password,
-        fk_sub: savedSub.id,
-      }).then(created => created);
-    });
-};
-
-const logout = (req, res) => {
-  console.log("test")
-  req.logout();
-  res.redirect('/');
-};
 
 module.exports = { saltAndHashPassword, tokenForUser };
