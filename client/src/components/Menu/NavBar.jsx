@@ -184,11 +184,11 @@ class NavBar extends Component {
             {!this.props.isLoggedIn
               ? <Login clickLogout={this.props.clickLogout} onLogin={this.props.onLogin}/>
               : <div>
-                <Grid container spacing={8} alignItems="center">
+                <Grid container spacing={8} alignItems="center" justify="flex-start">
                   <Grid item xs={6}>
-                    <span><Typography variant="subheading">{`Hi ${this.props.username}`}</Typography></span>
+                    <Typography variant="subheading">{`Hi ${this.props.username}`}</Typography>
                   </Grid>
-                  <Grid item xs={2}>
+                  <Grid item xs={2} >
                     <Link to={{ pathname: '/', state: { clicked: false } }}>
                       <Button color="inherit" onClick={() => this.props.clickLogout()}>
                         <Typography variant="title">Logout</Typography>
