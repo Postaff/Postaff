@@ -52,24 +52,26 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <BrowserRouter>
-          <div>
+          <React.Fragment>
             <NavBar username={this.state.username} isLoggedIn={log} option={option} clickLogout={this.clickLogout.bind(this)} onLogin={this.handleLogin.bind(this)}/>
-            <Switch>
-              <Route exact path="/" component={HomeLanding} />
-              <Route path="/login" render={props => <Login {...props} clickLogout={this.clickLogout.bind(this)} slide={this.state.slide}/>}
-              />
-              <PrivateRoute exact path="/admin" component={AdminLanding} log={log} />
-              <PrivateRoute exact path="/admin/schedule" component={AdminSchedule} log={log} />
-              <PrivateRoute exact path="/admin/schools" component={AdminSchoolsSummary} log={log} />
-              <PrivateRoute exact path="/admin/schools/:schoolId" component={AdminSchoolsDetail} log={log} />
-              <PrivateRoute exact path="/admin/subs" component={AdminSubsSummary} log={log} />
-              <PrivateRoute exact path="/admin/subs/:subName" component={AdminSubsDetail} log={log} />
-              <PrivateRoute exact path="/admin/jobs" component={AdminJob} log={log} />
-              <PrivateRoute exact path="/school" component={SchoolLanding} log={log} />
-              <PrivateRoute exact path="/sub" component={SubLanding} log={log} />
-              <PrivateRoute exact path="/jobs/create" component={JobForm} log={log} />
-            </Switch>
-          </div>
+            <div style={{ paddingLeft: '4vw', paddingRight: '4vw', paddingBottom: '2vh' }}>
+              <Switch>
+                <Route exact path="/" component={HomeLanding} />
+                <Route path="/login" render={props => <Login {...props} clickLogout={this.clickLogout.bind(this)} slide={this.state.slide}/>}
+                />
+                <PrivateRoute exact path="/admin" component={AdminLanding} log={log} />
+                <PrivateRoute exact path="/admin/schedule" component={AdminSchedule} log={log} />
+                <PrivateRoute exact path="/admin/schools" component={AdminSchoolsSummary} log={log} />
+                <PrivateRoute exact path="/admin/schools/:schoolId" component={AdminSchoolsDetail} log={log} />
+                <PrivateRoute exact path="/admin/subs" component={AdminSubsSummary} log={log} />
+                <PrivateRoute exact path="/admin/subs/:subName" component={AdminSubsDetail} log={log} />
+                <PrivateRoute exact path="/admin/jobs" component={AdminJob} log={log} />
+                <PrivateRoute exact path="/school" component={SchoolLanding} log={log} />
+                <PrivateRoute exact path="/sub" component={SubLanding} log={log} />
+                <PrivateRoute exact path="/jobs/create" component={JobForm} log={log} />
+              </Switch>
+            </div>
+          </React.Fragment>
         </BrowserRouter>
       </React.Fragment>
     );

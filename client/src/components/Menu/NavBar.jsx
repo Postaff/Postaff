@@ -177,7 +177,7 @@ class NavBar extends Component {
                 </List>
               </div>
             </SwipeableDrawer>
-            <Typography variant="title" style={{ color: '#4C23C3' }} className={classes.flex}>
+            <Typography variant="title" style={{ color: '#6200ea', textShadow: '2px 2px 4px #fffff0' }} className={classes.flex}>
               <i><b>Postaff</b></i>
             </Typography>
 
