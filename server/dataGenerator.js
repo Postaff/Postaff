@@ -29,7 +29,7 @@ exports.initAccounts = () => {
   'East Shores Middle School','Seacoast Secondary School','Bear Mountain Charter School',
   'Deer Valley College','Redlands Conservatory'];
 
-  for(let j = 0; j <= schools.length; j++){
+  for(let j = 0; j < schools.length; j++){
     School.build({
       school_name: schools[j],
       address_street: '8080',
@@ -60,7 +60,7 @@ exports.initAccounts = () => {
     'Kerry	Hale','Lindsay	Ellis','Rosemarie	Cain','Belinda	Stone',
     'Ida	Sullivan','Clyde	Morgan','Cristina	Fisher']
 
-  for(let k = 0; k <= subs.length; k++){
+  for(let k = 0; k < subs.length; k++){
     Sub.build({
       name: subs[k],
       phone: '200-500-8000',

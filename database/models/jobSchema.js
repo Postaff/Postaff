@@ -1,8 +1,9 @@
 const db = require('../indexDb.js');
+const { School } = require('./schoolSchema');
+const { Sub } = require('./subSchema');
 
 const Job = db.sequelize.define('job', {
   description: db.sequelize.Sequelize.TEXT,
-  School_id: db.sequelize.Sequelize.INTEGER,
   start_time: db.sequelize.Sequelize.TIME,
   end_time: db.sequelize.Sequelize.TIME,
   start_date: db.sequelize.Sequelize.DATEONLY,
@@ -23,6 +24,11 @@ const Job = db.sequelize.define('job', {
   paid: db.sequelize.Sequelize.BOOLEAN,
 });
 
+School.hasMany(Job, { foreignKey: 'fk_school'});
+Job.belongsTo(School, { foreignKey: 'fk_school'});
+
+Sub.hasMany(Job, {foreignKey: 'fk_sub'});
+Job.belongsTo(Sub, {froeignKey: 'fk_sub'});
 // const startTime = '12:59:59';
 // const endTime = '14:20:20';
 // const startDate = new Date();
