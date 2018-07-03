@@ -10,6 +10,7 @@ import {
 } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import Tooltip from '@material-ui/core/Tooltip';
+import Grid from '@material-ui/core/Grid';
 import Login from '../Home/Login.jsx';
 
 
@@ -176,21 +177,25 @@ class NavBar extends Component {
                 </List>
               </div>
             </SwipeableDrawer>
-            <Typography variant="title" style={{ color: '#4C23C3' }}className={classes.flex}>
+            <Typography variant="title" style={{ color: '#4C23C3' }} className={classes.flex}>
               <i><b>Postaff</b></i>
             </Typography>
 
             {!this.props.isLoggedIn
               ? <Login clickLogout={this.props.clickLogout} onLogin={this.props.onLogin}/>
-              : 
-              <div>
-                <span>{`Hi ${this.props.username}   `}</span>               
-
-              <Link to={{ pathname: '/', state: { clicked: false } }}>
-                <Button color="inherit" onClick={() => this.props.clickLogout()}>
-                  <Typography variant="subheading">Logout</Typography>
-                </Button>
-              </Link>
+              : <div>
+                <Grid container spacing={8} alignItems="center">
+                  <Grid item xs={6}>
+                    <span><Typography variant="subheading">{`Hi ${this.props.username}`}</Typography></span>
+                  </Grid>
+                  <Grid item xs={2}>
+                    <Link to={{ pathname: '/', state: { clicked: false } }}>
+                      <Button color="inherit" onClick={() => this.props.clickLogout()}>
+                        <Typography variant="title">Logout</Typography>
+                      </Button>
+                    </Link>
+                  </Grid>
+                </Grid>
               </div>
             }
 
