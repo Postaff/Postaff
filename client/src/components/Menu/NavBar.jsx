@@ -9,7 +9,9 @@ import {
   Home, Dashboard, Schedule, People, LocationCity, Work, Create,
 } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
+import Tooltip from '@material-ui/core/Tooltip';
 import Login from '../Home/Login.jsx';
+
 
 const styles = theme => ({
   root: {
@@ -141,9 +143,11 @@ class NavBar extends Component {
       <div className={classes.root}>
         <AppBar color="default" position="static">
           <Toolbar>
-            <IconButton onClick={() => this.handleToggle(true)} className={classes.menuButton} color="inherit">
-              <MenuIcon />
-            </IconButton>
+            <Tooltip id="tooltip-icon" title="More Options">
+              <IconButton onClick={() => this.handleToggle(true)} className={classes.menuButton} color="inherit">
+                <MenuIcon />
+              </IconButton>
+            </Tooltip>
             <SwipeableDrawer
               open={this.state.isOpen}
               onClose={() => this.handleToggle(false)}
@@ -172,8 +176,8 @@ class NavBar extends Component {
                 </List>
               </div>
             </SwipeableDrawer>
-            <Typography variant="title" color="inherit" className={classes.flex}>
-                Postaff
+            <Typography variant="title" style={{ color: '#4C23C3' }}className={classes.flex}>
+              <i><b>Postaff</b></i>
             </Typography>
 
             {!this.props.isLoggedIn
