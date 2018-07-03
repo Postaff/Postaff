@@ -50,12 +50,6 @@ module.exports = {
     ],
   },
 
-  // output: {
-  //   path: path.resolve(__dirname, 'client/dist'),
-  //   publicPath: '/',
-  //   filename: 'bundle.js'
-  // },
-
   plugins: [
     new HtmlWebPackPlugin({
       template: './client/src/index.html',

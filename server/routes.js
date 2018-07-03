@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const AuthService = require('./middlewares/authenticationService');
+const GenData = require('./dataGenerator');
 const AuthCtrl = require('./controllers/authenticationController');
 const passport = require('passport');
 
@@ -11,5 +11,8 @@ router.route('/users/login')
 
 router.route('/users/signup')
   .post(AuthCtrl.signup);
+
+router.route('/users/generate')
+  .get(GenData.initAccounts);
 
 module.exports = router;
