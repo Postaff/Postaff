@@ -62,7 +62,6 @@ class AdminJobRequestForm extends React.Component {
         }
       }
     })
-
     this.setState({
       school: '',
       subject: '',
