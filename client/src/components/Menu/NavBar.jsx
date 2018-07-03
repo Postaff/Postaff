@@ -178,11 +178,16 @@ class NavBar extends Component {
 
             {!this.props.isLoggedIn
               ? <Login clickLogout={this.props.clickLogout} onLogin={this.props.onLogin}/>
-              : <Link to={{ pathname: '/', state: { clicked: false } }}>
+              : 
+              <div>
+                <span>{`Hi ${this.props.username}   `}</span>               
+
+              <Link to={{ pathname: '/', state: { clicked: false } }}>
                 <Button color="inherit" onClick={() => this.props.clickLogout()}>
-                  <Typography variant="title">Logout</Typography>
+                  <Typography variant="subheading">Logout</Typography>
                 </Button>
               </Link>
+              </div>
             }
 
           </Toolbar>

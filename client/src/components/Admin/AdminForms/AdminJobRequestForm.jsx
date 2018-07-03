@@ -14,17 +14,16 @@ import {
 } from '@material-ui/core';
 import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
-import { GET_ALL_SCHOOLS } from '../../../queries/jobFormQueries.js';
+import { 
+  GET_ALL_SCHOOLS,
+  NEW_JOB 
+} from '../../../queries/jobFormQueries.js';
 
 class AdminJobRequestForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: '',
-      phone: '',
-      phoneExt: '',
-      email: '',
       school: '',
       subject: '',
       grade: '',
@@ -45,12 +44,26 @@ class AdminJobRequestForm extends React.Component {
   }
 
   submitForm(event) {
-    console.log(this.state);
+    const { school, subject, grade, jobDescription, startDate, 
+      startTime, endDate, endTime, additionalInformation } = this.state
+    this.props.mutate({
+      variables: {
+        input: {
+          schoolId: '1',
+          school,
+          subject,
+          grade,
+          jobDescription,
+          startDate,
+          endDate,
+          startTime,
+          endTime,
+          additionalInformation,
+        }
+      }
+    })
+
     this.setState({
-      name: '',
-      phone: '',
-      phoneExt: '',
-      email: '',
       school: '',
       subject: '',
       grade: '',
@@ -96,15 +109,6 @@ class AdminJobRequestForm extends React.Component {
                   </MenuItem>
                 ))}
               </TextField>
-              {/* <TextField
-                label="School Name"
-                className={classes.textField}
-                margin="normal"
-                name="school"
-                value={this.state.school}
-                onChange={this.handleChange.bind(this)}
-                style={{ width: '90%' }}
-              /> */}
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -210,48 +214,6 @@ class AdminJobRequestForm extends React.Component {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                label="Contact Name"
-                className={classes.textField}
-                margin="normal"
-                name="name"
-                value={this.state.name}
-                onChange={this.handleChange.bind(this)}
-                style={{ width: '90%' }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Phone"
-                type="tel"
-                className={classes.textField}
-                margin="normal"
-                name="phone"
-                value={this.state.phone}
-                onChange={this.handleChange.bind(this)}
-                style={{ width: '30%' }}
-              />
-              <TextField
-                label="Ext"
-                className={classes.textField}
-                margin="normal"
-                name="phoneExt"
-                value={this.state.phoneExt}
-                onChange={this.handleChange.bind(this)}
-                style={{width: "10%"}}
-              />
-              <TextField
-                label="Email"
-                type="email"
-                className={classes.textField}
-                margin="normal"
-                name="email"
-                value={this.state.email}
-                onChange={this.handleChange.bind(this)}
-                style={{ width: '45%' }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
                 label="Additional Information"
                 margin="normal"
                 multiline
@@ -326,6 +288,7 @@ const styles = theme => ({
 });
 
 export default compose(
+  graphql(NEW_JOB),
   graphql(GET_ALL_SCHOOLS),
   withStyles(styles)
 )(AdminJobRequestForm);
