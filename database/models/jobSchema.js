@@ -30,11 +30,11 @@ Job.belongsTo(School, { foreignKey: 'fk_school'});
 
 Sub.hasMany(Job, {foreignKey: 'fk_sub'});
 Job.belongsTo(Sub, {froeignKey: 'fk_sub'});
-// const startTime = '12:59:59';
-// const endTime = '14:20:20';
-// const startDate = new Date();
-// const future = new Date();
-// const endDate = new Date(future.setDate(future.getDate() + 30));
+const startTime = '12:59:59';
+const endTime = '14:20:20';
+const startDate = new Date();
+const future = new Date();
+const endDate = new Date(future.setDate(future.getDate() + 30));
 
 
 // /**
@@ -69,6 +69,30 @@ Job.belongsTo(Sub, {froeignKey: 'fk_sub'});
 //   end_date: endDate,
 //   subject: 'Science',
 //   grade: 8,
+// })
+// Job.create({
+//   description: "looking for history sub",
+//   School_id: 2,
+//   // start_time: startTime,
+//   // end_time: endTime,
+//   start_date: startDate,
+//   end_date: endDate,
+//   subject: 'History',
+//   grade: 6,
+//   claimed: true,
+//   approved: true,
+// })
+// Job.create({
+//   description: "looking for computer sub",
+//   School_id: 2,
+//   claimed: true,
+//   approved: false,
+//   // start_time: startTime,
+//   // end_time: endTime,
+//   start_date: startDate,
+//   end_date: endDate,
+//   subject: 'Computer',
+//   grade: 6,
 // })
 
 Job.sync();

@@ -5,8 +5,15 @@ export default gql`
     jobs {
       id
       description
+      schoolName
+      claimed
+      approved
       subject
       grade
+      start_time
+      end_time
+      start_date
+      end_date
     }
   }
 `;

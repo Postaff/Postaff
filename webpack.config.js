@@ -9,6 +9,9 @@ module.exports = {
     path: path.resolve(__dirname, "client/dist"),
     publicPath: "/",
   },
+  resolve: {
+    extensions: ['.js', '.jsx', '.json']
+  },
   module: {
     rules: [
       {

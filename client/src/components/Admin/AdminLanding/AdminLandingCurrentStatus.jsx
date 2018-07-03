@@ -20,7 +20,7 @@ class AdminLandingCurrentStatus extends React.Component {
             <Grid item xs={1}>
             </Grid>
             <Grid item xs={1}>
-              27
+              {this.props.claimed}
             </Grid>
           </Grid>
         </Typography>
@@ -32,7 +32,7 @@ class AdminLandingCurrentStatus extends React.Component {
             <Grid item xs={1}>
             </Grid>
             <Grid item xs={1}>
-              144
+              {this.props.unclaimed}
             </Grid>
           </Grid>
         </Typography>
