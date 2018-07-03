@@ -118,7 +118,7 @@ class NavBar extends Component {
                   <ListItemText primary="Dashboard"/>
                 </ListItem>
               </Link>
-              <Link to={'/school/request'}>
+              <Link to={'/jobs/create'}>
                 <ListItem button>
                   <ListItemIcon>
                     <Create/>
