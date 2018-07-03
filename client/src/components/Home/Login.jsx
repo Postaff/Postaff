@@ -17,6 +17,7 @@ import Radio from '@material-ui/core/Radio/';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import grey from '@material-ui/core/colors/grey';
 import TextField from '@material-ui/core/TextField';
+import Tooltip from '@material-ui/core/Tooltip';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import * as actions from '../../actions/indexAction.js';
 
@@ -24,7 +25,7 @@ const theme = createMuiTheme({
   overrides: {
     MuiSnackbarContent: { // Name of the component ⚛️ / style sheet
       root: { // Name of the rule
-        backgroundColor: grey[100],
+        backgroundColor: grey[50],
       },
     },
   },
@@ -41,10 +42,10 @@ const theme = createMuiTheme({
     // height: '100%',
     // maxheight: 500,
     float: 'right',
-    backgroundColor: grey[100],
+    backgroundColor: grey[50],
   },
   messageId: {
-    backgroundColor: grey[100],
+    backgroundColor: grey[50],
     margin: '2%',
     maxWidth: 500,
   },
@@ -144,7 +145,9 @@ class Login extends React.Component {
     return (
       <div className={classes.root}>
         <div className={classes.wrapper}>
-          <Button className={classes.button} onClick={this.handleClick}><Typography variant="title">Login</Typography></Button>
+          <Tooltip id="tooltip-left" title="Sign into your account" placement="left">
+            <Button className={classes.button} onClick={this.handleClick}><Typography variant="title">Login</Typography></Button>
+          </Tooltip>
           <MuiThemeProvider theme={theme}>
             <Snackbar
               anchorOrigin={{
@@ -221,15 +224,17 @@ class Login extends React.Component {
                   </Button>
                 </div></span>}
               action={[
-                <IconButton
-                  key="close"
-                  aria-label="Close"
-                  color="secondary"
-                  className={classes.close}
-                  onClick={this.handleClose}
-                >
-                  <CloseIcon />
-                </IconButton>,
+                <Tooltip id="tooltip-icon" title="Cancel">
+                  <IconButton
+                    key="close"
+                    aria-label="Close"
+                    color="secondary"
+                    className={classes.close}
+                    onClick={this.handleClose}
+                  >
+                    <CloseIcon />
+                  </IconButton>
+                </Tooltip>,
               ]}
             />
           </MuiThemeProvider>
