@@ -2,7 +2,6 @@
 const { Job } = require('../../database/models/jobSchema');
 const { School } = require('../../database/models/schoolSchema');
 const { Sub } = require('../../database/models/subSchema');
-const { User } = require('../../database/models/userSchema');
 const AuthService = require('./authenticationService');
 
 /**
@@ -14,6 +13,7 @@ const AuthService = require('./authenticationService');
  * Since we're using sequelize, we'll simply import our jobSchema.
  * Then we'll call findAll() method from sequelize then return it to the user.
  */
+
 const Query = {
   jobs: () => Job.findAll(),
   schools: () => School.findAll(),
@@ -21,9 +21,33 @@ const Query = {
 };
 
 const Mutation = {
-  createJob: (root, args, content) => {
-    console.log('args', args)
-    console.log('content', content)
+  createJob: (root, args) => {
+    const { 
+      schoolId, 
+      school, 
+      subject, 
+      grade, 
+      jobDescription,
+      startDate, 
+      endDate, 
+      startTime, 
+      endTime, 
+      additionalInformation
+    } = args.input;
+    Job.create({
+      description: jobDescription,
+      schoolName: school,
+      start_time: startTime,
+      end_time: endTime,
+      start_date: startDate,
+      end_date: endDate,
+      subject,
+      grade,
+      note: additionalInformation,
+      fk_school: schoolId
+    }).then((job) => {
+      return job;
+    })
   }
 }
 

@@ -24,10 +24,6 @@ class AdminJobRequestForm extends React.Component {
     super(props);
 
     this.state = {
-      // name: '',
-      // phone: '',
-      // phoneExt: '',
-      // email: '',
       school: '',
       subject: '',
       grade: '',
@@ -214,48 +210,6 @@ class AdminJobRequestForm extends React.Component {
                 value={this.state.endTime}
                 onChange={this.handleChange.bind(this)}
                 style={{ width: '13%' }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Contact Name"
-                className={classes.textField}
-                margin="normal"
-                name="name"
-                value={this.state.name}
-                onChange={this.handleChange.bind(this)}
-                style={{ width: '90%' }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Phone"
-                type="tel"
-                className={classes.textField}
-                margin="normal"
-                name="phone"
-                value={this.state.phone}
-                onChange={this.handleChange.bind(this)}
-                style={{ width: '30%' }}
-              />
-              <TextField
-                label="Ext"
-                className={classes.textField}
-                margin="normal"
-                name="phoneExt"
-                value={this.state.phoneExt}
-                onChange={this.handleChange.bind(this)}
-                style={{width: "10%"}}
-              />
-              <TextField
-                label="Email"
-                type="email"
-                className={classes.textField}
-                margin="normal"
-                name="email"
-                value={this.state.email}
-                onChange={this.handleChange.bind(this)}
-                style={{ width: '45%' }}
               />
             </Grid>
             <Grid item xs={12}>
