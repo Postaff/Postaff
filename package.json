@@ -73,7 +73,10 @@
     "babel-inline-import-loader": "^0.1.0",
     "babel-loader": "^7.1.4",
     "babel-plugin-inline-import": "^3.0.0",
+<<<<<<< HEAD
     "babel-plugin-transform-class-properties": "^6.24.1",
+=======
+>>>>>>> add eslint
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
@@ -81,9 +84,16 @@
     "babel-preset-stage-2": "^6.24.1",
     "babel-polyfill": "6.26.0",
     "css-loader": "^0.28.11",
+<<<<<<< HEAD
     "eslint": "^5.0.1",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-config-airbnb-base": "^13.0.0",
+=======
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-config-rallycoding": "^3.2.0",
+>>>>>>> add eslint
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.10.0",
