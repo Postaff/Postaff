@@ -15,6 +15,7 @@ import AdminSchoolsDetail from './Admin/AdminSchoolsDetail/AdminSchoolsDetail.js
 import NavBar from './Menu/NavBar.jsx';
 import AdminJob from './Job/AdminJob.jsx';
 import AdminSchedule from './Admin/AdminSchedule/AdminSchedule.jsx';
+import JobForm from './Admin/AdminForms/AdminJobRequestForm.jsx';
 import * as actions from '../actions/indexAction.js';
 
 class App extends React.Component {
@@ -22,7 +23,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       isLoggedIn: !!localStorage.getItem('token'),
-      sasOption: null,
+      sasOption: localStorage.getItem('role'),
       slide: false,
       user: {
         username: null,
@@ -68,6 +69,7 @@ class App extends React.Component {
               <PrivateRoute exact path="/admin/jobs" component={AdminJob} log={log} />
               <PrivateRoute exact path="/school" component={SchoolLanding} log={log} />
               <PrivateRoute exact path="/sub" component={SubLanding} log={log} />
+              <PrivateRoute exact path="/jobs/create" component={JobForm} log={log} />
             </Switch>
           </div>
         </BrowserRouter>

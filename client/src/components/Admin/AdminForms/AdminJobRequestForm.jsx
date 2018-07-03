@@ -12,43 +12,9 @@ import {
   Typography,
   withStyles,
 } from '@material-ui/core';
-
-const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  formControl: {
-    margin: theme.spacing.unit,
-  },
-  iconSmall: {
-    fontSize: 20,
-  },
-  input: {
-    display: 'none',
-  },
-  menu: {
-    width: 200,
-  },
-  paper: {
-    padding: theme.spacing.unit * 2,
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
-  rightIcon: {
-    marginLeft: theme.spacing.unit,
-  },
-  root: {
-    flexGrow: 1,
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-  },
-});
+import gql from 'graphql-tag';
+import { graphql, compose } from 'react-apollo';
+import { GET_ALL_SCHOOLS } from '../../../queries/jobFormQueries.js';
 
 class AdminJobRequestForm extends React.Component {
   constructor(props) {
@@ -75,6 +41,7 @@ class AdminJobRequestForm extends React.Component {
     this.setState({
       [event.target.name]: event.target.value,
     });
+    console.log(this.state)
   }
 
   submitForm(event) {
@@ -97,8 +64,10 @@ class AdminJobRequestForm extends React.Component {
   }
 
   render() {
+    if(this.props.data.loading){
+      return <div></div>
+    }
     const { classes } = this.props;
-
     return (
       <form>
         <Grid container spacing={24}>
@@ -106,6 +75,28 @@ class AdminJobRequestForm extends React.Component {
             <Grid item xs={12}>
               <Typography variant="display1">Job Request Form</Typography>
               <TextField
+                select
+                label="School Name"
+                className={classes.textField}
+                margin="normal"
+                onChange={this.handleChange.bind(this)}
+                value={this.state.school}
+                name="school"
+                SelectProps={{
+                  MenuProps: {
+                    className: classes.menu,
+                  },
+                }}
+                helperText="Please select the school"
+                style={{ width: '90%' }}
+              >
+                {this.props.data.schools.map(school => (
+                  <MenuItem key={school.id} value={school.school_name}>
+                    {school.school_name}
+                  </MenuItem>
+                ))}
+              </TextField>
+              {/* <TextField
                 label="School Name"
                 className={classes.textField}
                 margin="normal"
@@ -113,7 +104,7 @@ class AdminJobRequestForm extends React.Component {
                 value={this.state.school}
                 onChange={this.handleChange.bind(this)}
                 style={{ width: '90%' }}
-              />
+              /> */}
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -297,4 +288,44 @@ class AdminJobRequestForm extends React.Component {
   }
 }
 
-export default withStyles(styles)(AdminJobRequestForm);
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+  },
+  iconSmall: {
+    fontSize: 20,
+  },
+  input: {
+    display: 'none',
+  },
+  menu: {
+    width: 200,
+  },
+  paper: {
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+  rightIcon: {
+    marginLeft: theme.spacing.unit,
+  },
+  root: {
+    flexGrow: 1,
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+  },
+});
+
+export default compose(
+  graphql(GET_ALL_SCHOOLS),
+  withStyles(styles)
+)(AdminJobRequestForm);
