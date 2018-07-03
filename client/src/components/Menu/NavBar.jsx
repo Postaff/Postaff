@@ -191,7 +191,7 @@ class NavBar extends Component {
                   <Grid item xs={2} >
                     <Link to={{ pathname: '/', state: { clicked: false } }}>
                       <Button color="inherit" onClick={() => this.props.clickLogout()}>
-                        <Typography variant="title">Logout</Typography>
+                        <Typography variant="title" style={{ color: '#606060' }}>Logout</Typography>
                       </Button>
                     </Link>
                   </Grid>
