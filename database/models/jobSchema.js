@@ -2,6 +2,8 @@ const db = require('../indexDb.js');
 const { School } = require('./schoolSchema');
 const { Sub } = require('./subSchema');
 
+// have created a completed_by and claimed-by property in this schema
+
 const Job = db.sequelize.define('job', {
   description: db.sequelize.Sequelize.TEXT,
   schoolName: db.sequelize.Sequelize.STRING,
@@ -16,7 +18,9 @@ const Job = db.sequelize.define('job', {
   rate: db.sequelize.Sequelize.INTEGER,
   approved: db.sequelize.Sequelize.BOOLEAN,
   claimed: db.sequelize.Sequelize.BOOLEAN,
+  claimed_by: db.sequelize.Sequelize.STRING,
   complete: db.sequelize.Sequelize.BOOLEAN,
+  // completed_by: db.sequelize.Sequelize.STRING,
   hours_submitted: db.sequelize.Sequelize.BOOLEAN,
   hours_completed: db.sequelize.Sequelize.INTEGER,
   hours_approved: db.sequelize.Sequelize.BOOLEAN,
@@ -41,30 +45,32 @@ const endDate = new Date(future.setDate(future.getDate() + 30));
 //  *  UNCOMMENT THE FOLLOWING TO GENERATE SAMPLE DATA
 //  */
 // Job.create({
-//   description: "looking for history sub",
+//   description: 'looking for history sub',
 //   School_id: 1,
-//   // start_time: startTime,
-//   // end_time: endTime,
+//   start_time: startTime,
+//   end_time: endTime,
 //   start_date: startDate,
 //   end_date: endDate,
 //   subject: 'History',
 //   grade: 8,
-// })
+//   approved: true,
+// });
 // Job.create({
-//   description: "looking for math sub",
+//   description: 'looking for math sub',
 //   School_id: 2,
-//   // start_time: startTime,
-//   // end_time: endTime,
+//   start_time: startTime,
+//   end_time: endTime,
 //   start_date: startDate,
 //   end_date: endDate,
 //   subject: 'Math',
-//   grade: 8,
-// })
+//   grade: 6,
+//   approved: true,
+// });
 // Job.create({
-//   description: "looking for science sub",
+//   description: 'looking for science sub',
 //   School_id: 1,
-//   // start_time: startTime,
-//   // end_time: endTime,
+//   start_time: startTime,
+//   end_time: endTime,
 //   start_date: startDate,
 //   end_date: endDate,
 //   subject: 'Science',

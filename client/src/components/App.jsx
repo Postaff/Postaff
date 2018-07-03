@@ -47,7 +47,7 @@ class App extends React.Component {
   render() {
     const log = this.state.isLoggedIn;
     const option = this.state.sasOption;
-    console.log('I am in App.jsx', this.state.slide);
+    console.log('I am in App.jsx', this.state.sasOption);
     console.log(this.state.isLoggedIn);
     return (
       <React.Fragment>

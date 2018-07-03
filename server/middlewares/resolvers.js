@@ -16,7 +16,9 @@ const { Sub } = require('../../database/models/subSchema');
 const Query = {
   jobs: () => Job.findAll(),
   schools: () => School.findAll(),
-  subs: () => Sub.findAll(),
+  subs: () => Subs.findAll(),
+  // this is for sublanding page
+  subById: (root, args) => Subs.findById(args.id),
 };
 
 const Mutation = {
@@ -53,4 +55,13 @@ const Mutation = {
   }
 }
 
-module.exports = { Query, Mutation };
+// this is for sublanding page
+const Sub = {
+  jobAvailable: () => Job.findAll({ where: { approved: true } }),
+  jobsCompleted: (sub, args) => Job.findAll({ where: { completed_by: args.id } }),
+};
+
+module.exports = { Query, Mutation, Sub };
+
+
+

@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { 
+import {
   AUTH_USER,
   AUTH_ERROR,
 } from './types.js';
 
-export const login = ({username, password}, callback) => async dispatch => {
+export const login = ({ username, password }, callback) => async (dispatch) => {
   try {
     const response = await axios.post('/api/users/login', { username, password });
     dispatch({ type: AUTH_USER, payload: response.data });
@@ -15,7 +15,7 @@ export const login = ({username, password}, callback) => async dispatch => {
     localStorage.setItem('subId', response.data.fk_sub);
     localStorage.setItem('adminId', response.data.fk_admin);
     callback();
-  } catch(e) {
+  } catch (e) {
     dispatch({ type: AUTH_ERROR, payload: 'Invalid username or password.' });
   }
 };
@@ -26,4 +26,4 @@ export const logout = () => {
     type: AUTH_USER,
     payload: '',
   };
-}
+};
