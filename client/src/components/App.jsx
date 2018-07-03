@@ -25,9 +25,7 @@ class App extends React.Component {
       isLoggedIn: !!localStorage.getItem('token'),
       sasOption: localStorage.getItem('role'),
       slide: false,
-      user: {
-        username: null,
-      },
+      username: localStorage.getItem('username'),
     };
   }
 
@@ -55,7 +53,7 @@ class App extends React.Component {
       <React.Fragment>
         <BrowserRouter>
           <div>
-            <NavBar isLoggedIn={log} option={option} clickLogout={this.clickLogout.bind(this)} onLogin={this.handleLogin.bind(this)}/>
+            <NavBar username={this.state.username} isLoggedIn={log} option={option} clickLogout={this.clickLogout.bind(this)} onLogin={this.handleLogin.bind(this)}/>
             <Switch>
               <Route exact path="/" component={HomeLanding} />
               <Route path="/login" render={props => <Login {...props} clickLogout={this.clickLogout.bind(this)} slide={this.state.slide}/>}

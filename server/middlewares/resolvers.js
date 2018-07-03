@@ -20,4 +20,11 @@ const Query = {
   subs: () => Sub.findAll(),
 };
 
-module.exports = { Query };
+const Mutation = {
+  createJob: (root, args, content) => {
+    console.log('args', args)
+    console.log('content', content)
+  }
+}
+
+module.exports = { Query, Mutation };
