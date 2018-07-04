@@ -1,7 +1,7 @@
 
 const { Job } = require('../../database/models/jobSchema');
 const { School } = require('../../database/models/schoolSchema');
-const { Subs } = require('../../database/models/subSchema');
+const { Sub } = require('../../database/models/subSchema');
 
 /**
  * jobs is the query we defined in schema file,
@@ -16,9 +16,9 @@ const { Subs } = require('../../database/models/subSchema');
 const Query = {
   jobs: () => Job.findAll(),
   schools: () => School.findAll(),
-  subs: () => Subs.findAll(),
+  subs: () => Sub.findAll(),
   // this is for sublanding page
-  subById: (root, args) => Subs.findById(args.id),
+  subById: (root, args) => Sub.findById(args.id),
 };
 
 const Mutation = {
@@ -54,10 +54,10 @@ const Mutation = {
 };
 
 // this is for sublanding page
-const Sub = {
+const Subs = {
   jobAvailable: () => Job.findAll({ where: { approved: true } }),
   jobsCompleted: (sub, args) => Job.findAll({ where: { completed_by: args.id } }),
   claimedJobs: (sub, args) => Job.findAll({ where: { claimed_by: args.id } }),
 };
 
-module.exports = { Query, Mutation, Sub };
+module.exports = { Query, Mutation, Subs };

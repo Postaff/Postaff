@@ -6,8 +6,8 @@
 type Query {
   jobs: [Job]
   schools: [School]
-  subs: [Sub]
-  subById(id: ID!): Sub
+  subs: [Subs]
+  subById(id: ID!): Subs
 }
 
 type Mutation {
@@ -21,19 +21,21 @@ type Mutation {
 # By default graphQL offers ID, Int, String, Boolean, Float.  
 scalar Date
 scalar Time
+
 type Job {
   id: ID!
   description: String
   schoolName: String
   claimed: Boolean
-  approved: Boolean
   subject: String
   grade: String
-  start_time: String
-  end_time: String
-  start_date: String
-  end_date: String
+  start_time: Time
+  end_time: Time
+  start_date: Date
+  end_date: Date
   approved: Boolean
+  claimed_by: String
+  completed_by: String
 }
 
 type School{
@@ -43,7 +45,7 @@ type School{
   main_phone: String
 }
 
-type Sub{
+type Subs{
   id: ID!
   name: String
   phone: String

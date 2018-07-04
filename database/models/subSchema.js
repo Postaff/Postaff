@@ -23,4 +23,4 @@ const Sub = db.sequelize.define('sub', {
 });
 
 Sub.sync();
-module.exports.Subs = Sub;
+module.exports.Sub = Sub;

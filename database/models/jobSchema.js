@@ -29,11 +29,8 @@ const Job = db.sequelize.define('job', {
   paid: db.sequelize.Sequelize.BOOLEAN,
 });
 
-// School.hasMany(Job, { foreignKey: 'fk_school' });
-// Job.belongsTo(School, { foreignKey: 'fk_school' });
-
-Subs.hasMany(Job, { foreignKey: 'fk_sub' });
-Job.belongsTo(Subs, { froeignKey: 'fk_sub' });
+// Subs.hasMany(Job, { foreignKey: 'fk_sub' });
+// Job.belongsTo(Subs, { froeignKey: 'fk_sub' });
 const startTime = '12:59:59';
 const endTime = '14:20:20';
 const startDate = new Date();
