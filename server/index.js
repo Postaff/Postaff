@@ -11,6 +11,7 @@ const path = require('path');
 const dotenv = require('dotenv').config();
 const routes = require('./routes.js');
 
+
 /**
  *  Import the resolvers.
  *  Resolver is functions that take in graphQL query then call the corresponding
@@ -44,20 +45,19 @@ app.use(passport.initialize());
 app.use(passport.session());
 // app.use(flash);
 // THIS IS FOR REACT ROUTER DONOT DELETE
-// app.get('/*', function (req, res) {
-//   console.log(req.url);
-//   res.sendFile(path.join(__dirname, '../client/dist/index.html'), function (err) {
-//     if (err) {
-//       res.status(500).send(err)
-//     }
-//   })
-// })
+app.get('/*', (req, res) => {
+  console.log('HEYHEYHEY', req.url);
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'), (err) => {
+    if(err) {
+      res.status(500).send(err);
+    }
+  });
+});
 
 /**
  *  Create a new instance of ApolloServer using typeDefs and resolvers
  *  we declared on top.  Then we apply apollo server to our main server
  */
-
 const server = new ApolloServer({
   typeDefs,
   resolvers,
