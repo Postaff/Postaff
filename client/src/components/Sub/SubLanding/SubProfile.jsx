@@ -12,7 +12,7 @@ import GET_ALL_SUBBYID from '../../../queries/fetchSubById';
 
 class SubProfile extends React.Component {
   render() {
-    console.log('this is in sublanding/subprofile page', this.props.data.subById);
+    console.log('this is in sublanding/subprofile page', this.props.data);
     if(this.props.data.loading) {
       return <div></div>;
     }

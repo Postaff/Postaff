@@ -50,6 +50,7 @@ type Sub{
   email: String
   jobAvailable: [Job]
   jobsCompleted(id:ID!): [Job]
+  claimedJobs(id:ID!): [Job]
 }
 
 input CreateJobInput {

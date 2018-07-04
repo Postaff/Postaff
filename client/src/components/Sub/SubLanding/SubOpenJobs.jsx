@@ -36,21 +36,21 @@ class SubOpenJobs extends React.Component {
     console.log('this is the sub open jobs', AvailableJobs);
     return (
       <div className={classes.root}>
-
-        <h3> Open Jobs </h3>
-        {AvailableJobs.map((jobs, idx) => (
-          <ExpansionPanel key={idx}>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography className={classes.heading}>{jobs.subject}</Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <Typography >
+        <Paper>
+          <h3> Open Jobs </h3>
+          {AvailableJobs.map((jobs, idx) => (
+            <ExpansionPanel key={idx}>
+              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography className={classes.heading}>{jobs.subject}</Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Typography >
           Grade:- ({jobs.grade})   Time:- ({jobs.start_time}) - ({jobs.end_time})   Date:- ({jobs.start_date}) - ({jobs.end_date})
-              </Typography>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-        ))}
-
+                </Typography>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+          ))}
+        </Paper>
       </div>
     );
   }

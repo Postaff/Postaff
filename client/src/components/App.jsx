@@ -17,6 +17,7 @@ import AdminJob from './Job/AdminJob';
 import AdminSchedule from './Admin/AdminSchedule/AdminSchedule';
 import JobForm from './Admin/AdminForms/AdminJobRequestForm';
 import * as actions from '../actions/indexAction.js';
+import SubBookedJobs from './Sub/SubLanding/SubBookedJobs.jsx';
 
 class App extends React.Component {
   constructor(props) {

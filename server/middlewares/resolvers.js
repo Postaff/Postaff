@@ -23,17 +23,17 @@ const Query = {
 
 const Mutation = {
   createJob: (root, args) => {
-    const { 
-      schoolId, 
-      school, 
-      subject, 
-      grade, 
+    const {
+      schoolId,
+      school,
+      subject,
+      grade,
       jobDescription,
-      startDate, 
-      endDate, 
-      startTime, 
-      endTime, 
-      additionalInformation
+      startDate,
+      endDate,
+      startTime,
+      endTime,
+      additionalInformation,
     } = args.input;
     Job.create({
       description: jobDescription,
@@ -48,20 +48,16 @@ const Mutation = {
       subject,
       grade,
       note: additionalInformation,
-      fk_school: schoolId
-    }).then((job) => {
-      return job;
-    })
-  }
-}
+      fk_school: schoolId,
+    }).then(job => job);
+  },
+};
 
 // this is for sublanding page
 const Sub = {
   jobAvailable: () => Job.findAll({ where: { approved: true } }),
   jobsCompleted: (sub, args) => Job.findAll({ where: { completed_by: args.id } }),
+  claimedJobs: (sub, args) => Job.findAll({ where: { claimed_by: args.id } }),
 };
 
 module.exports = { Query, Mutation, Sub };
-
-
-

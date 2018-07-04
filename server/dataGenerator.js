@@ -5,8 +5,7 @@ const { Sub } = require('../database/models/subSchema');
 const AuthService = require('./middlewares/authenticationService');
 
 exports.initAccounts = () => {
-
-  for(let i = 1; i <= 4; i++){
+  for(let i = 1; i <= 4; i++) {
     Admin.build({
       name: `admin${i}`,
       email: `admin${i}@postaff.com`,
@@ -17,19 +16,19 @@ exports.initAccounts = () => {
             User.build({
               username: `admin${i}`,
               password: hashed,
-              role: `admin`,
+              role: 'admin',
               fk_admin: savedAdmin.id,
-            }).save()
-          })
-      })
+            }).save();
+          });
+      });
   }
 
-  const schools = ['Long Beach Secondary School','Lakeside Middle School',
-  'Seal Gulch Conservatory','Greenville Charter School','Spring Hill School of Fine Arts',
-  'East Shores Middle School','Seacoast Secondary School','Bear Mountain Charter School',
-  'Deer Valley College','Redlands Conservatory'];
+  const schools = ['Long Beach Secondary School', 'Lakeside Middle School',
+    'Seal Gulch Conservatory', 'Greenville Charter School', 'Spring Hill School of Fine Arts',
+    'East Shores Middle School', 'Seacoast Secondary School', 'Bear Mountain Charter School',
+    'Deer Valley College', 'Redlands Conservatory'];
 
-  for(let j = 0; j < schools.length; j++){
+  for(let j = 0; j < schools.length; j++) {
     School.build({
       school_name: schools[j],
       address_street: '8080',
@@ -49,18 +48,18 @@ exports.initAccounts = () => {
             User.build({
               username: `school${j}`,
               password: hashed,
-              role: `school`,
+              role: 'school',
               fk_school: savedSchool.id,
-            }).save()
-          })
-    })
+            }).save();
+          });
+      });
   }
 
-  const subs = ['Chad	Gonzales','Vanessa	Buchanan','Timmy	Figueroa',
-    'Kerry	Hale','Lindsay	Ellis','Rosemarie	Cain','Belinda	Stone',
-    'Ida	Sullivan','Clyde	Morgan','Cristina	Fisher']
+  const subs = ['Chad	Gonzales', 'Vanessa	Buchanan', 'Timmy	Figueroa',
+    'Kerry	Hale', 'Lindsay	Ellis', 'Rosemarie	Cain', 'Belinda	Stone',
+    'Ida	Sullivan', 'Clyde	Morgan', 'Cristina	Fisher'];
 
-  for(let k = 0; k < subs.length; k++){
+  for(let k = 0; k < subs.length; k++) {
     Sub.build({
       name: subs[k],
       phone: '200-500-8000',
@@ -75,14 +74,14 @@ exports.initAccounts = () => {
     }).save()
       .then((savedSub) => {
         AuthService.saltAndHashPassword(`sub${k}`)
-        .then((hashed) => {
-          User.build({
-            username: `sub${k}`,
-            password: hashed,
-            role: 'sub',
-            fk_sub: savedSub.id,
-          }).save()
-    })
-  })
-}
-}
+          .then((hashed) => {
+            User.build({
+              username: `sub${k}`,
+              password: hashed,
+              role: 'sub',
+              fk_sub: savedSub.id,
+            }).save();
+          });
+      });
+  }
+};

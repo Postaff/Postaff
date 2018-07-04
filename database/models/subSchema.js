@@ -1,5 +1,5 @@
 const db = require('../indexDb.js');
-const job = require('./jobSchema.js');
+
 
 const Sub = db.sequelize.define('sub', {
 
@@ -14,30 +14,13 @@ const Sub = db.sequelize.define('sub', {
   address_state: db.sequelize.Sequelize.STRING,
   work_eligibility: db.sequelize.Sequelize.BOOLEAN,
   permitted: db.sequelize.Sequelize.BOOLEAN,
-  // permitted_exp_date: db.sequelize.Sequelize.DATEONLY,
+  permitted_exp_date: db.sequelize.Sequelize.DATEONLY,
   special_ed: db.sequelize.Sequelize.BOOLEAN,
   jobs_completed: db.sequelize.Sequelize.INTEGER,
   jobs_cancelled: db.sequelize.Sequelize.INTEGER,
   jobs_claimed: db.sequelize.Sequelize.INTEGER,
 
 });
-
-
-// Sub.create({
-//   name: "Kenny Le",
-//   phone: "2546541254",
-//   email: "kenny123@hotmail.com"
-// })
-// Sub.create({
-//   name: "Ainslie Hsu",
-//   phone: "6543216541",
-//   email: "ainslie123@hotmail.com"
-// })
-// Sub.create({
-//   name: "Mayank Patel",
-//   phone: "2547771254",
-//   email: "mayank321@hotmail.com"
-// })
 
 Sub.sync();
 module.exports.Subs = Sub;

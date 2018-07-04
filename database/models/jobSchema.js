@@ -20,7 +20,7 @@ const Job = db.sequelize.define('job', {
   claimed: db.sequelize.Sequelize.BOOLEAN,
   claimed_by: db.sequelize.Sequelize.STRING,
   complete: db.sequelize.Sequelize.BOOLEAN,
-  // completed_by: db.sequelize.Sequelize.STRING,
+  completed_by: db.sequelize.Sequelize.STRING,
   hours_submitted: db.sequelize.Sequelize.BOOLEAN,
   hours_completed: db.sequelize.Sequelize.INTEGER,
   hours_approved: db.sequelize.Sequelize.BOOLEAN,
@@ -41,9 +41,9 @@ const future = new Date();
 const endDate = new Date(future.setDate(future.getDate() + 30));
 
 
-// /**
-//  *  UNCOMMENT THE FOLLOWING TO GENERATE SAMPLE DATA
-//  */
+/**
+ *  UNCOMMENT THE FOLLOWING TO GENERATE SAMPLE DATA
+ */
 // Job.create({
 //   description: 'looking for history sub',
 //   School_id: 1,
@@ -100,6 +100,34 @@ const endDate = new Date(future.setDate(future.getDate() + 30));
 //   subject: 'Computer',
 //   grade: 6,
 // })
+//   completed_by: 1,
+// });
+// Job.create({
+//   description: 'looking for English sub',
+//   School_id: 4,
+//   start_time: startTime,
+//   end_time: endTime,
+//   start_date: startDate,
+//   end_date: endDate,
+//   subject: 'English',
+//   grade: 7,
+//   approved: false,
+//   claimed: true,
+//   claimed_by: 1,
+// });
+// Job.create({
+//   description: 'looking for Chemistry sub',
+//   School_id: 4,
+//   start_time: startTime,
+//   end_time: endTime,
+//   start_date: startDate,
+//   end_date: endDate,
+//   subject: 'Chemistry',
+//   grade: 7,
+//   approved: false,
+//   claimed: true,
+//   claimed_by: 1,
+// });
 
 Job.sync();
 

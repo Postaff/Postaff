@@ -15,6 +15,7 @@ import SubLandingCurrentJobsEntry from './SubLandingCurrentJobsEntry.jsx';
 import SubProfile from './SubProfile.jsx';
 import SubOpenJobs from './SubOpenJobs.jsx';
 import SubBookedJobs from './SubBookedJobs.jsx';
+import SubPreviousJobs from './SubPreviousJobs.jsx';
 
 const styles = theme => ({
   root: {
@@ -46,7 +47,14 @@ class SubLanding extends React.Component {
                 <SubBookedJobs />
               </Paper>
             </Grid>
+            <Grid>
+              <SubOpenJobs />
+            </Grid>
+            <Grid>
+              <SubPreviousJobs />
+            </Grid>
           </Grid>
+
         </div>
       </Fragment>
     );
