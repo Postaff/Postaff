@@ -18,6 +18,7 @@ import NavBar from './Menu/NavBar';
 import AdminJob from './Job/AdminJob';
 import AdminSchedule from './Admin/AdminSchedule/AdminSchedule';
 import JobForm from './Admin/AdminForms/AdminJobRequestForm';
+import JobDetail from './Job/Detail';
 import * as actions from '../actions/indexAction.js';
 
 class App extends React.Component {
@@ -70,6 +71,7 @@ class App extends React.Component {
                 <PrivateRoute exact path="/school" component={SchoolLanding} log={log} />
                 <PrivateRoute exact path="/sub" component={SubLanding} log={log} />
                 <PrivateRoute exact path="/jobs/create" component={JobForm} log={log} />
+                <PrivateRoute exact path="/jobs/:jobId" component={JobDetail} log={log} />
               </Switch>
             </div>
           </React.Fragment>

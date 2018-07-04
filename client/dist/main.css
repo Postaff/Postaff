@@ -5,10 +5,27 @@
  * https://twitter.com/jedwatson https://twitter.com/jossmackison https://twitter.com/keystonejs
  * MIT License: https://github.com/JedWatson/react-select
 */
-<<<<<<< HEAD
 
-=======
->>>>>>> cf7e6fe6b7296e2565bb392fff29bcf071b94a30
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
 .Select {
   position: relative;
 }

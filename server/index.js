@@ -6,7 +6,6 @@ const helmet = require('helmet');
 const fs = require('fs');
 const passport = require('passport');
 const session = require('express-session');
-const flash = require('connect-flash');
 const path = require('path');
 const dotenv = require('dotenv').config();
 const routes = require('./routes.js');
