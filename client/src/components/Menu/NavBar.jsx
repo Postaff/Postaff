@@ -131,6 +131,18 @@ class NavBar extends Component {
               </Link>
             </List>
             : <div></div>}
+          {this.props.isLoggedIn && this.props.option === 'sub'
+            ? <List>
+              <Link to={'/sub'}>
+                <ListItem button>
+                  <ListItemIcon>
+                    <Dashboard/>
+                  </ListItemIcon>
+                  <ListItemText primary="Dashboard"/>
+                </ListItem>
+              </Link>
+            </List>
+            : <div></div>}
           <Divider/>
         </List>
       </div>

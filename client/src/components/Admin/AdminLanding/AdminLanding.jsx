@@ -30,11 +30,10 @@ class AdminLanding extends React.Component {
       return <Fragment></Fragment>;
     }
     const { jobs } = this.props.data;
-    console.log(jobs);
     const { classes } = this.props;
     const claimed = jobs.filter(job => job.claimed);
     const unclaimed = jobs.length - claimed.length;
-    console.log('Hey am in adminlanding.jsx');
+    console.log('Hey am in adminlanding.jsx', this.props);
     return (
       <div>
         <Grid container spacing={16} direction={'row'} alignItems={'flex-start'} justify={'center'}>
