@@ -17,6 +17,7 @@ import AdminJob from './Job/AdminJob';
 import AdminSchedule from './Admin/AdminSchedule/AdminSchedule';
 import JobForm from './Admin/AdminForms/AdminJobRequestForm';
 import * as actions from '../actions/indexAction.js';
+import SubBookedJobs from './Sub/SubLanding/SubBookedJobs.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -47,7 +48,7 @@ class App extends React.Component {
   render() {
     const log = this.state.isLoggedIn;
     const option = this.state.sasOption;
-    console.log('I am in App.jsx', this.state.slide);
+    console.log('I am in App.jsx', this.state.sasOption);
     console.log(this.state.isLoggedIn);
     return (
       <React.Fragment>
@@ -56,7 +57,7 @@ class App extends React.Component {
             <NavBar username={this.state.username} isLoggedIn={log} option={option} clickLogout={this.clickLogout.bind(this)} onLogin={this.handleLogin.bind(this)}/>
             <div style={{ paddingLeft: '4vw', paddingRight: '4vw', paddingBottom: '2vh' }}>
               <Switch>
-                <Route exact path="/" component={HomeLanding} />
+                <Route exact path="/" component={SubLanding} />
                 <Route path="/login" render={props => <Login {...props} clickLogout={this.clickLogout.bind(this)} slide={this.state.slide}/>}
                 />
                 <PrivateRoute exact path="/admin" component={AdminLanding} log={log} />

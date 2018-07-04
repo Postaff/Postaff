@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
+import { combineReducers } from 'redux';
 import AdminJob from '../../Job/AdminJob.jsx';
 import JobsTable from '../../Shared/JobsTable.jsx';
 import AdminLandingCharts from './AdminLandingCharts.jsx';
@@ -13,7 +14,6 @@ import AdminLandingCurrentStatus from './AdminLandingCurrentStatus.jsx';
 import AdminLandingPendingReviewList from './AdminLandingPendingReviewList.jsx';
 import AdminLandingUnclaimedJobsList from './AdminLandingUnclaimedJobsList.jsx';
 import GET_ALL_JOBS from '../../../queries/fetchAllJobs';
-import { combineReducers } from 'redux';
 
 const styles = theme => ({
   button: {
@@ -25,13 +25,12 @@ const styles = theme => ({
 });
 
 class AdminLanding extends React.Component {
-
   render() {
-    if(this.props.data.loading){
-      return <Fragment></Fragment>
+    if(this.props.data.loading) {
+      return <Fragment></Fragment>;
     }
     const { jobs } = this.props.data;
-    console.log(jobs)
+    console.log(jobs);
     const { classes } = this.props;
     const claimed = jobs.filter(job => job.claimed);
     const unclaimed = jobs.length - claimed.length;

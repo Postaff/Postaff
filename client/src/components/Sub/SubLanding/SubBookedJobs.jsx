@@ -5,7 +5,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import SubLandingCurrentJobsEntry from './SubLandingCurrentJobsEntry.jsx';
+import { graphql, compose } from 'react-apollo';
+import GET_ALL_SUBBYID from '../../../queries/fetchSubById';
 
 function TabContainer(props) {
   return (
@@ -26,13 +27,13 @@ const styles = theme => ({
   },
 });
 
-class SubLandingCurrentJobsList extends React.Component {
+class SubBookedJobs extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      value: 1,
+      value: 0,
     };
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event, value) {
@@ -43,23 +44,43 @@ class SubLandingCurrentJobsList extends React.Component {
     const { classes } = this.props;
     const { value } = this.state;
 
+    if(this.props.data.loading) {
+      return (
+        <div>
+          ....LOADING
+        </div>
+      );
+    }
+
+    const { claimedJobs } = this.props.data.subById;
+    console.log('HEYHEY', claimedJobs);
+
+
+    const schools = ['Horace Mann', 'Elm', 'Dr. King'];
+    const items = [1, 2, 3];
+
     return (
       <div className={classes.root}>
+      BOOKED JOBS
         <AppBar position="static">
-          <Tabs value={value} onChange={this.handleChange.bind(this)}>
-            <Tab label="Item One" />
-            <Tab label="Item Two" />
-            <Tab label="Item Three" href="#basic-tabs" />
+          <Tabs value={value} onChange={this.handleChange}>
+            {claimedJobs.map(job => (
+              <Tab key={job.id} label={job.subject}>
+                {job.subject}
+              </Tab>
+            ))}
           </Tabs>
         </AppBar>
-        <SubLandingCurrentJobsEntry value={this.state.value}/>
+
+        { value === this.state.value && <TabContainer>{claimedJobs[this.state.value].description}</TabContainer>}
+
+
       </div>
     );
   }
 }
 
-SubLandingCurrentJobsList.propTypes = {
+SubBookedJobs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-
-export default withStyles(styles)(SubLandingCurrentJobsList);
+export default compose(withStyles(styles), graphql(GET_ALL_SUBBYID))(SubBookedJobs);

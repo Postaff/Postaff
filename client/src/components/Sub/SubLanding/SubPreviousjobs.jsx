@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { graphql, compose } from 'react-apollo';
 import _ from 'lodash';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
-import GET_ALL_JOBS from '../../queries/fetchAllJobs.js';
+import GET_ALL_SUBBYID from '../../../queries/fetchSubById';
 
 export const toolbarStyle = theme => ({
   root: {
@@ -75,14 +75,14 @@ class AdminTodayTable extends React.Component {
   handleRequestSort(event, property) {
     const orderBy = property;
     let order = 'desc';
-    if (this.state.orderBy === property && this.state.order === 'desc') {
+    if(this.state.orderBy === property && this.state.order === 'desc') {
       order = 'asc';
     }
     this.setState({ order, orderBy });
   }
 
   handleSelectAllClick(event, checked) {
-    if (checked) {
+    if(checked) {
       this.setState({ selected: this.state.data.map(n => n.id) });
       return;
     }
@@ -101,18 +101,16 @@ class AdminTodayTable extends React.Component {
   }
 
   render() {
-    if (this.props.data.loading) {
+    if(this.props.data.loading) {
       return <div></div>;
     }
-    const tableData = [];
-    _.each(this.props.data.jobs, (job) => {
-      tableData.push(createData(job.subject, 'Abernathy', job.grade, 3, 'Twohy'));
-    });
+    console.log('this is in previous jobs in sublanding', this.props.data.subById.jobsCompleted);
+    const { subById } = this.props.data;
     const { classes } = this.props;
     const {
       order, orderBy, rowsPerPage, page,
     } = this.state;
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, tableData.length - page * rowsPerPage);
+    const emptyRows = rowsPerPage - Math.min(rowsPerPage, subById.jobsCompleted.length - page * rowsPerPage);
 
     return (
       <Paper elevation={4} className={classes.root}>
@@ -124,27 +122,27 @@ class AdminTodayTable extends React.Component {
               orderBy={orderBy}
               onSelectAllClick={this.handleSelectAllClick}
               onRequestSort={this.handleRequestSort}
-              rowCount={tableData.length}
+              rowCount={subById.jobsCompleted.length}
             />
             <TableBody>
-              {tableData
-                .sort(getSorting(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              {subById.jobsCompleted
+                // .sort(getSorting(order, orderBy))
+                // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => (
-                    <TableRow
-                      hover
-                      onClick={event => this.handleClick(event, n.id)}
-                      tabIndex={-1}
-                      key={n.id}
-                    >
-                      <TableCell component="th" scope="row">
-                        <Link to={{ pathname: '/admin/jobs', state: { sub: n.subject, grade: n.grade } }}>{n.subject}</Link>
-                      </TableCell>
-                      <TableCell numeric></TableCell>
-                      <TableCell numeric>{n.grade}</TableCell>
-                      <TableCell numeric></TableCell>
-                      <TableCell numeric></TableCell>
-                    </TableRow>
+                  <TableRow
+                    hover
+                    onClick={event => this.handleClick(event, n.id)}
+                    tabIndex={-1}
+                    key={n.id}
+                  >
+                    <TableCell component="th" scope="row">
+                      <Link to={{ pathname: '/admin/jobs', state: { sub: n.subject, grade: n.grade } }}>{n.subject}</Link>
+                    </TableCell>
+                    <TableCell numeric></TableCell>
+                    <TableCell numeric>{n.grade}</TableCell>
+                    <TableCell numeric></TableCell>
+                    <TableCell numeric></TableCell>
+                  </TableRow>
                 ))}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 49 * emptyRows }}>
@@ -156,7 +154,7 @@ class AdminTodayTable extends React.Component {
         </div>
         <TablePagination
           component="div"
-          count={tableData.length}
+          count={subById.jobsCompleted.length}
           rowsPerPage={rowsPerPage}
           page={page}
           backIconButtonProps={{
@@ -189,7 +187,7 @@ function getSorting(order, orderBy) {
 
 const columnData = [
   {
-    id: 'subject', numeric: false, disablePadding: false, label: 'Job',
+    id: 'subject', numeric: false, disablePadding: false, label: 'Job Name',
   },
   {
     id: 'location', numeric: true, disablePadding: false, label: 'Location',
@@ -220,26 +218,26 @@ class AdminTodayTableHead extends React.Component {
       <TableHead>
         <TableRow>
           {columnData.map(column => (
-              <TableCell
-                key={column.id}
-                numeric={column.numeric}
-                padding={column.disablePadding ? 'none' : 'default'}
-                sortDirection={orderBy === column.id ? order : false}
+            <TableCell
+              key={column.id}
+              numeric={column.numeric}
+              padding={column.disablePadding ? 'none' : 'default'}
+              sortDirection={orderBy === column.id ? order : false}
+            >
+              <Tooltip
+                title="Sort"
+                placement={column.numeric ? 'bottom-end' : 'bottom-start'}
+                enterDelay={300}
               >
-                <Tooltip
-                  title="Sort"
-                  placement={column.numeric ? 'bottom-end' : 'bottom-start'}
-                  enterDelay={300}
+                <TableSortLabel
+                  active={orderBy === column.id}
+                  direction={order}
+                  onClick={this.createSortHandler(column.id)}
                 >
-                  <TableSortLabel
-                    active={orderBy === column.id}
-                    direction={order}
-                    onClick={this.createSortHandler(column.id)}
-                  >
-                    {column.label}
-                  </TableSortLabel>
-                </Tooltip>
-              </TableCell>
+                  {column.label}
+                </TableSortLabel>
+              </Tooltip>
+            </TableCell>
           ), this)}
         </TableRow>
       </TableHead>
@@ -254,9 +252,9 @@ let AdminTodayTableToolbar = (props) => {
       className={classNames(classes.root)}
     >
       <div className={classes.title}>
-          <Typography variant="title" id="tableTitle">
-            Today's Jobs
-          </Typography>
+        <Typography variant="title" id="tableTitle">
+            Previous Jobs
+        </Typography>
       </div>
       <div className={classes.spacer} />
       <div className={classes.actions}>
@@ -268,5 +266,5 @@ AdminTodayTableToolbar = withStyles(toolbarStyle)(AdminTodayTableToolbar);
 
 export default compose(
   withStyles(tableStyle),
-  graphql(GET_ALL_JOBS),
+  graphql(GET_ALL_SUBBYID),
 )(AdminTodayTable);

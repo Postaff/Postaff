@@ -1,8 +1,8 @@
-import React, {Fragment} from 'react';
-import {graphql, compose} from 'react-apollo';
+import React, { Fragment } from 'react';
+import { graphql, compose } from 'react-apollo';
+import { withStyles } from '@material-ui/core/styles';
+import { Grid } from '@material-ui/core';
 import GET_ALL_SCHOOLS from '../../../queries/fetchAllSchools';
-import {withStyles} from '@material-ui/core/styles';
-import {Grid} from '@material-ui/core';
 import AdminSchoolsSummaryCharts from './AdminSchoolsSummaryCharts.jsx';
 import AdminSchoolsSummaryReviewJobs from './AdminSchoolsSummaryReviewJobs.jsx';
 import AdminSchoolsSummarySchoolsList from './AdminSchoolsSummarySchoolsList.jsx';
@@ -20,15 +20,15 @@ const styles = theme => ({
 
 class AdminSchoolsSummary extends React.Component {
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
 
     if (this.props.data.loading) {
       return (
         <Fragment>
         </Fragment>
-      )
-    } else {
-      return (
+      );
+    }
+    return (
         <div>
           <h1> This is the Admin School Page</h1>
         <Fragment>
@@ -41,8 +41,7 @@ class AdminSchoolsSummary extends React.Component {
           </div>
         </Fragment>
         </div>
-      );
-    }
+    );
   }
 }
 

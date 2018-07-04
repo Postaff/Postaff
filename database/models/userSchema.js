@@ -10,16 +10,15 @@ const User = db.sequelize.define('user', {
   role: db.sequelize.Sequelize.STRING,
 });
 
-User.belongsTo(Sub, { foreignKey: 'fk_sub' });
-User.belongsTo(School, { foreignKey: 'fk_school' });
-User.belongsTo(Admin, { foreignKey: 'fk_admin' });
+// User.belongsTo(Sub, { foreignKey: 'fk_sub' });
+// User.belongsTo(School, { foreignKey: 'fk_school' });
+// User.belongsTo(Admin, { foreignKey: 'fk_admin' });
 
 // User.create({
-//   username: "admin",
-//   password: "admin",
-//   role: "Admin",
-//   fk_school: 1,
-// })
+//   username: 'admin',
+//   password: 'admin',
+//   role: 'Admin',
+// });
 
 User.sync();
 

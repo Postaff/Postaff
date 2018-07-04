@@ -1,8 +1,7 @@
-import React, {Fragment} from 'react';
-import {Link} from 'react-router-dom';
-import {graphql, compose} from 'react-apollo';
-import GET_ALL_JOBS from '../../../queries/fetchAllJobs';
-import {withStyles} from '@material-ui/core/styles';
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import { graphql, compose } from 'react-apollo';
+import { withStyles } from '@material-ui/core/styles';
 import {
   Table,
   TableBody,
@@ -12,6 +11,7 @@ import {
   TableCell,
   Grid,
 } from '@material-ui/core';
+import GET_ALL_JOBS from '../../../queries/fetchAllJobs';
 import Profile from '../../Job/Profile.jsx';
 
 
@@ -28,15 +28,15 @@ const styles = theme => ({
 
 class AdminSchoolsDetail extends React.Component {
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
 
     if (this.props.data.loading) {
       return (
         <Fragment>
         </Fragment>
-      )
-    } else {
-      return (
+      );
+    }
+    return (
         <Fragment>
           <div className={classes.root}>
             <Grid container spacing={24}>
@@ -45,9 +45,9 @@ class AdminSchoolsDetail extends React.Component {
               </Grid>
               <Grid item xs={4}>
                 <Paper style={{
-                    width: '100%',
-                    overflowX: 'auto',
-                    marginTop: '50px',
+                  width: '100%',
+                  overflowX: 'auto',
+                  marginTop: '50px',
                 }}>
                   <Table>
                     <TableHead>
@@ -79,9 +79,9 @@ class AdminSchoolsDetail extends React.Component {
               </Grid>
               <Grid item xs={12}>
                 <Paper style={{
-                    width: '100%',
-                    marginTop: '10px',
-                    overflowX: 'auto',
+                  width: '100%',
+                  marginTop: '10px',
+                  overflowX: 'auto',
                 }}>
                   <Table>
                     <TableHead>
@@ -92,15 +92,13 @@ class AdminSchoolsDetail extends React.Component {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {this.props.data.jobs.map(job => {
-                        return (
+                      {this.props.data.jobs.map(job => (
                           <TableRow key={job.id}>
                             <TableCell component="th" scope="row">{job.description}</TableCell>
                             <TableCell>{job.subject}</TableCell>
                             <TableCell>{job.grade}</TableCell>
                           </TableRow>
-                        );
-                      })}
+                      ))}
                     </TableBody>
                   </Table>
                 </Paper>
@@ -108,8 +106,7 @@ class AdminSchoolsDetail extends React.Component {
             </Grid>
           </div>
         </Fragment>
-      );
-    }
+    );
   }
 }
 

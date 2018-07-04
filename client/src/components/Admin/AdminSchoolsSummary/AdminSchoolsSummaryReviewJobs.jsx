@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import {
   Table,
   TableBody,
@@ -15,9 +15,9 @@ class AdminSchoolsSummaryReviewJobs extends React.Component {
       <Fragment>
         <Grid item xs={4}>
           <Paper style={{
-              width: '100%',
-              overflowX: 'auto',
-              marginTop: '50px',
+            width: '100%',
+            overflowX: 'auto',
+            marginTop: '50px',
           }}>
             <Table>
               <TableHead>

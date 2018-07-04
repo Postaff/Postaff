@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import {
   Table,
   TableBody,
@@ -16,9 +16,9 @@ class AdminSchoolsSummarySchoolsList extends React.Component {
       <Fragment>
         <Grid item xs={12}>
           <Paper style={{
-              width: '100%',
-              marginTop: '10px',
-              overflowX: 'auto',
+            width: '100%',
+            marginTop: '10px',
+            overflowX: 'auto',
           }}>
             <Table>
               <TableHead>
@@ -29,9 +29,7 @@ class AdminSchoolsSummarySchoolsList extends React.Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {this.props.schools.map(school =>
-                  <AdminSchoolsSummarySchoolsEntry key={school.id} school={school} />
-                )}
+                {this.props.schools.map(school => <AdminSchoolsSummarySchoolsEntry key={school.id} school={school} />)}
               </TableBody>
             </Table>
           </Paper>

@@ -1,13 +1,13 @@
 import React from 'react';
+import Grid from '@material-ui/core/Grid';
 import Profile from './Profile.jsx';
 import Detail from './Detail.jsx';
 import Attachments from './Attachments.jsx';
-import Notes from "./Notes.jsx";
-import Grid from '@material-ui/core/Grid';
+import Notes from './Notes.jsx';
 
 class AdminJob extends React.Component {
   render() {
-    console.log("Hey I am in AdminJob.jsx", this.props);
+    console.log('Hey I am in AdminJob.jsx', this.props);
     return (
       <div>
         <h1>This the admin Jobs Page</h1>
@@ -28,6 +28,6 @@ class AdminJob extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default AdminJob;

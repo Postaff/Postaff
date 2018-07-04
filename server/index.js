@@ -29,6 +29,7 @@ const typeDefs = gql(fs.readFileSync(path.join(__dirname, './middlewares/schema.
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
@@ -56,6 +57,7 @@ app.use(passport.session());
  *  Create a new instance of ApolloServer using typeDefs and resolvers
  *  we declared on top.  Then we apply apollo server to our main server
  */
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,

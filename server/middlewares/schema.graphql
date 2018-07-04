@@ -6,7 +6,8 @@
 type Query {
   jobs: [Job]
   schools: [School]
-  subs: [Sub]
+  subs: [Subs]
+  subById(id: ID!): Subs
 }
 
 type Mutation {
@@ -18,18 +19,23 @@ type Mutation {
 # ! exclamation mark indicates the field cannot be null.
 # graphQL is statically typed, we need to specify what type the field is going to be
 # By default graphQL offers ID, Int, String, Boolean, Float.  
+scalar Date
+scalar Time
+
 type Job {
   id: ID!
   description: String
   schoolName: String
   claimed: Boolean
-  approved: Boolean
   subject: String
   grade: String
-  start_time: String
-  end_time: String
-  start_date: String
-  end_date: String
+  start_time: Time
+  end_time: Time
+  start_date: Date
+  end_date: Date
+  approved: Boolean
+  claimed_by: String
+  completed_by: String
 }
 
 type School{
@@ -39,11 +45,14 @@ type School{
   main_phone: String
 }
 
-type Sub{
+type Subs{
   id: ID!
   name: String
   phone: String
   email: String
+  jobAvailable: [Job]
+  jobsCompleted(id:ID!): [Job]
+  claimedJobs(id:ID!): [Job]
 }
 
 input CreateJobInput {

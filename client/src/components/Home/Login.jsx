@@ -13,7 +13,10 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import Radio from '@material-ui/core/Radio/';
+import Radio from '@material-ui/core/Radio';
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
+import { Redirect } from 'react-router-dom';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import grey from '@material-ui/core/colors/grey';
 import TextField from '@material-ui/core/TextField';
@@ -95,17 +98,21 @@ const theme = createMuiTheme({
 class Login extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       user: {
         username: '',
         password: '',
       },
-      role: 'admin',
+      role: '',
+      selectedValue: 'admin',
       open: false,
     };
+
     this.radioChange = this.radioChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
   onSubmit() {
@@ -115,11 +122,26 @@ class Login extends React.Component {
     });
   }
 
+
+  handleLogin() {
+    axios.post('/api/users/login', {
+      username: this.state.username,
+      password: this.state.password,
+      role: this.state.role,
+    }).then((response) => {
+      Auth.authenticateUser(response.data.token);
+      this.props.onLogin(this.state.username, this.state.role);
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
   handleInput(key, event) {
-    const user = this.state.user;
+    const { user } = this.state;
     user[key] = event.target.value;
     this.setState({ user });
   }
+
 
   handleClick() {
     this.setState({ open: true });
@@ -136,11 +158,12 @@ class Login extends React.Component {
     this.setState({ role: event.target.value });
   }
 
+
   render(props) {
-    console.log('This is LoginComponent');
+    console.log('This is LoginComponent', this.props);
     const { handleSubmit } = this.props;
+
     const { classes } = this.props;
-    const { clicked } = this.state;
 
     return (
       <div className={classes.root}>

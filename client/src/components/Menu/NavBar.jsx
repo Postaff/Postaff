@@ -138,7 +138,7 @@ class NavBar extends Component {
   }
 
   render() {
-    console.log('this navbar.jsx');
+    console.log('this navbar.jsx', this.props);
     const { classes } = this.props;
     return (
       <div className={classes.root}>

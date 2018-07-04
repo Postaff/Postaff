@@ -21,7 +21,9 @@ import { lighten } from '@material-ui/core/styles/colorManipulator';
 let counter = 0;
 function createData(name, location, grade, days, employee) {
   counter += 1;
-  return { id: counter, name, location, grade, days, employee };
+  return {
+    id: counter, name, location, grade, days, employee,
+  };
 }
 
 function getSorting(order, orderBy) {
@@ -31,11 +33,21 @@ function getSorting(order, orderBy) {
 }
 
 const columnData = [
-  { id: 'name', numeric: false, disablePadding: false, label: 'Job' },
-  { id: 'location', numeric: true, disablePadding: false, label: 'Location' },
-  { id: 'grade', numeric: true, disablePadding: false, label: 'Grade' },
-  { id: 'days', numeric: true, disablePadding: false, label: 'Days Remaining' },
-  { id: 'employee', numeric: true, disablePadding: false, label: 'Employee' },
+  {
+    id: 'name', numeric: false, disablePadding: false, label: 'Job',
+  },
+  {
+    id: 'location', numeric: true, disablePadding: false, label: 'Location',
+  },
+  {
+    id: 'grade', numeric: true, disablePadding: false, label: 'Grade',
+  },
+  {
+    id: 'days', numeric: true, disablePadding: false, label: 'Days Remaining',
+  },
+  {
+    id: 'employee', numeric: true, disablePadding: false, label: 'Employee',
+  },
 ];
 
 
@@ -53,13 +65,14 @@ class AdminTodayTableHead extends React.Component {
   }
 
   render() {
-    const { onSelectAllClick, order, orderBy, rowCount } = this.props;
+    const {
+      onSelectAllClick, order, orderBy, rowCount,
+    } = this.props;
 
     return (
       <TableHead>
         <TableRow>
-          {columnData.map(column => {
-            return (
+          {columnData.map(column => (
               <TableCell
                 key={column.id}
                 numeric={column.numeric}
@@ -80,8 +93,7 @@ class AdminTodayTableHead extends React.Component {
                   </TableSortLabel>
                 </Tooltip>
               </TableCell>
-            );
-          }, this)}
+          ), this)}
         </TableRow>
       </TableHead>
     );
@@ -103,13 +115,13 @@ const toolbarStyles = theme => ({
   highlight:
     theme.palette.type === 'light'
       ? {
-          color: theme.palette.secondary.main,
-          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
-        }
+        color: theme.palette.secondary.main,
+        backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+      }
       : {
-          color: theme.palette.text.primary,
-          backgroundColor: theme.palette.secondary.dark,
-        },
+        color: theme.palette.text.primary,
+        backgroundColor: theme.palette.secondary.dark,
+      },
   spacer: {
     flex: '1 1 100%',
   },
@@ -121,7 +133,7 @@ const toolbarStyles = theme => ({
   },
 });
 
-let AdminTodayTableToolbar = props => {
+let AdminTodayTableToolbar = (props) => {
   const { classes } = props;
 
   return (
@@ -152,7 +164,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
   },
   table: {
-    width: '100%'
+    width: '100%',
   },
   tableWrapper: {
     overflowX: 'auto',
@@ -196,7 +208,7 @@ class AdminTodayTable extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleRequestSort (event, property) {
+  handleRequestSort(event, property) {
     const orderBy = property;
     let order = 'desc';
 
@@ -205,17 +217,17 @@ class AdminTodayTable extends React.Component {
     }
 
     this.setState({ order, orderBy });
-  };
+  }
 
-  handleSelectAllClick (event, checked) {
+  handleSelectAllClick(event, checked) {
     if (checked) {
       this.setState({ selected: this.state.data.map(n => n.id) });
       return;
     }
     this.setState({ selected: [] });
-  };
+  }
 
-  handleClick (event, id) {
+  handleClick(event, id) {
     // const { selected } = this.state;
     // const selectedIndex = selected.indexOf(id);
     // let newSelected = [];
@@ -234,19 +246,21 @@ class AdminTodayTable extends React.Component {
     // }
 
     // this.setState({ selected: newSelected });
-  };
+  }
 
-  handleChangePage (event, page) {
+  handleChangePage(event, page) {
     this.setState({ page });
-  };
+  }
 
-  handleChangeRowsPerPage (event) {
+  handleChangeRowsPerPage(event) {
     this.setState({ rowsPerPage: event.target.value });
-  };
+  }
 
   render() {
     const { classes } = this.props;
-    const { data, order, orderBy, rowsPerPage, page } = this.state;
+    const {
+      data, order, orderBy, rowsPerPage, page,
+    } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
@@ -265,8 +279,7 @@ class AdminTodayTable extends React.Component {
               {data
                 .sort(getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(n => {
-                  return (
+                .map(n => (
                     <TableRow
                       hover
                       onClick={event => this.handleClick(event, n.id)}
@@ -281,8 +294,7 @@ class AdminTodayTable extends React.Component {
                       <TableCell numeric>{n.days}</TableCell>
                       <TableCell numeric>{n.employee}</TableCell>
                     </TableRow>
-                  );
-                })}
+                ))}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 49 * emptyRows }}>
                   <TableCell colSpan={6} />

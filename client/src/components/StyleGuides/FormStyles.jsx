@@ -23,12 +23,12 @@ const styles = theme => ({
 });
 
 class FormStyles extends React.Component {
-    constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       firstName: '',
       lastName: '',
-    }
+    };
   }
 
   render() {
