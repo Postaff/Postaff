@@ -1,6 +1,6 @@
 const db = require('../indexDb.js');
 const { School } = require('./schoolSchema');
-const { Subs } = require('./subSchema');
+const { Sub } = require('./subSchema');
 
 // have created a completed_by and claimed-by property in this schema
 
@@ -18,9 +18,9 @@ const Job = db.sequelize.define('job', {
   rate: db.sequelize.Sequelize.INTEGER,
   approved: db.sequelize.Sequelize.BOOLEAN,
   claimed: db.sequelize.Sequelize.BOOLEAN,
-  claimed_by: db.sequelize.Sequelize.STRING,
+  // claimed_by: db.sequelize.Sequelize.STRING,
   complete: db.sequelize.Sequelize.BOOLEAN,
-  completed_by: db.sequelize.Sequelize.STRING,
+  // completed_by: db.sequelize.Sequelize.STRING,
   hours_submitted: db.sequelize.Sequelize.BOOLEAN,
   hours_completed: db.sequelize.Sequelize.INTEGER,
   hours_approved: db.sequelize.Sequelize.BOOLEAN,

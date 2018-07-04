@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'react-apollo';
+import { withStyles } from '@material-ui/core/styles';
 import {
   BrowserRouter, Route, Switch,
 } from 'react-router-dom';
@@ -48,15 +49,17 @@ class App extends React.Component {
   }
 
   render() {
+    const { classes } = this.props;
     const log = this.state.isLoggedIn;
     const option = this.state.sasOption;
     console.log('I am in App.jsx', this.props);
     return (
       <React.Fragment>
         <BrowserRouter>
-          <React.Fragment>
+          <div className={classes.root}>
             <NavBar username={this.state.username} isLoggedIn={log} option={option} clickLogout={this.clickLogout.bind(this)} onLogin={this.handleLogin.bind(this)}/>
-            <div style={{ paddingLeft: '4vw', paddingRight: '4vw', paddingBottom: '2vh' }}>
+            <div className={classes.content} style={{ paddingLeft: '12vw', paddingTop: '10vh' }}>
+            {/* <div className={classes.content}>  */}
               <Switch>
                 <Route exact path="/" component={HomeLanding} />
                 <Route path="/login" render={props => <Login {...props} clickLogout={this.clickLogout.bind(this)} slide={this.state.slide}/>}
@@ -74,13 +77,32 @@ class App extends React.Component {
                 <PrivateRoute exact path="/jobs/:jobId" component={JobDetail} log={log} />
               </Switch>
             </div>
-          </React.Fragment>
+          </div>
         </BrowserRouter>
       </React.Fragment>
     );
   }
 }
 
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    height: '100%',
+    zIndex: 1,
+    overflow: 'hidden',
+    position: 'relative',
+    display: 'flex',
+  },
+  content: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing.unit * 3,
+    minWidth: 0, // So the Typography noWrap works
+  },
+  toolbar: theme.mixins.toolbar,
+});
+
 export default compose(
+  withStyles(styles),
   connect(null, actions),
 )(App);

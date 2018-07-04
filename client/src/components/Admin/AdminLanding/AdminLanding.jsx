@@ -27,6 +27,7 @@ class AdminLanding extends React.Component {
     if(this.props.data.loading) {
       return <Fragment></Fragment>;
     }
+    console.log(this.props.data)
     const { jobs } = this.props.data;
     const { classes } = this.props;
     const claimed = jobs.filter(job => job.claimed);
@@ -35,12 +36,7 @@ class AdminLanding extends React.Component {
     console.log('Hey am in adminlanding.jsx');
     return (
       <div>
-        <Grid container spacing={16} direction={'row'} alignItems={'flex-start'} justify={'center'}>
-          <Link to={'/jobs/create'}>
-            <Button variant="extendedFab" className={classes.button}>
-              <AddIcon className={classes.extendedIcon} />New Job
-            </Button>
-          </Link>
+        <Grid container spacing={16} direction={'row'} alignItems={'flex-start'}>
           <Grid item xs={4}>
             <Grid container spacing={8} direction={'column'} alignItems={'center'} justify={'flex-start'}>
               <Grid item xs={8}>
@@ -58,10 +54,10 @@ class AdminLanding extends React.Component {
           </Grid>
           <Grid item xs={8} sm={6}>
             <Grid container spacing={16} direction={'column'} alignItems={'flex-start'} justify={'flex-start'}>
-              <Grid item xs={12}>
+              <Grid item xs={16}>
                 <AdminLandingCharts />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={16}>
                 <JobsTable />
               </Grid>
             </Grid>

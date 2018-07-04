@@ -38,7 +38,7 @@ export const toolbarStyle = theme => ({
 
 export const tableStyle = theme => ({
   root: {
-    width: '88%',
+    width: '100%',
     marginTop: theme.spacing.unit * 3,
   },
   table: {
@@ -70,7 +70,6 @@ class AdminTodayTable extends React.Component {
     this.handleSelectAllClick = this.handleSelectAllClick.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
-
 
   handleRequestSort(event, property) {
     const orderBy = property;

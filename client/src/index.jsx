@@ -5,7 +5,7 @@ import { ApolloProvider } from 'react-apollo';
 import { Provider as ReduxProvider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
-import App from './components/App.jsx';
+import App from './components/App';
 import reducers from './reducers/indexReducer.js';
 
 /**

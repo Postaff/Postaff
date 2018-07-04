@@ -34,8 +34,6 @@ type Job {
   start_date: Date
   end_date: Date
   approved: Boolean
-  claimed_by: String
-  completed_by: String
 }
 
 type School{

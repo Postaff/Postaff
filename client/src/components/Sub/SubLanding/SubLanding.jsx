@@ -12,10 +12,10 @@ import {
   Grid,
 } from '@material-ui/core';
 import SubLandingCurrentJobsEntry from './SubLandingCurrentJobsEntry.jsx';
-import SubProfile from './SubProfile.jsx';
-import SubOpenJobs from './SubOpenJobs.jsx';
-import SubBookedJobs from './SubBookedJobs.jsx';
-import SubPreviousJobs from './SubPreviousJobs.jsx';
+import SubProfile from './SubProfile';
+import SubOpenJobs from './SubOpenJobs';
+import SubBookedJobs from './SubBookedJobs';
+import SubPreviousJobs from './SubPreviousJobs';
 
 const styles = theme => ({
   root: {
@@ -54,7 +54,6 @@ class SubLanding extends React.Component {
               <SubPreviousJobs />
             </Grid>
           </Grid>
-
         </div>
       </Fragment>
     );
