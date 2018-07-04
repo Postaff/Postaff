@@ -57,7 +57,7 @@ class App extends React.Component {
             <NavBar username={this.state.username} isLoggedIn={log} option={option} clickLogout={this.clickLogout.bind(this)} onLogin={this.handleLogin.bind(this)}/>
             <div style={{ paddingLeft: '4vw', paddingRight: '4vw', paddingBottom: '2vh' }}>
               <Switch>
-                <Route exact path="/" component={HomeLanding} />
+                <Route exact path="/" component={SubLanding} />
                 <Route path="/login" render={props => <Login {...props} clickLogout={this.clickLogout.bind(this)} slide={this.state.slide}/>}
                 />
                 <PrivateRoute exact path="/admin" component={AdminLanding} log={log} />
