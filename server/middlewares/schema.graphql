@@ -21,8 +21,15 @@ type Mutation {
 type Job {
   id: ID!
   description: String
+  schoolName: String
+  claimed: Boolean
+  approved: Boolean
   subject: String
-  grade: Int
+  grade: String
+  start_time: String
+  end_time: String
+  start_date: String
+  end_date: String
 }
 
 type School{
