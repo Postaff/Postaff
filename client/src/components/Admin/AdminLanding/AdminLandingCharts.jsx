@@ -11,52 +11,55 @@ import { Doughnut } from 'react-chartjs-2';
 
 // let claimed = { this.props.claimed };
 
-const claimData = {
-  labels: [
-    'Claimed',
-    'UnClaimed',
-  ],
-  datasets: [{
-    data: [32, 5],
-    backgroundColor: [
-      '#0a00b6',
-      '#9d46ff',
-    ],
-    hoverBackgroundColor: [
-      '#0a00b6',
-      '#36A2EB',
-    ],
-  }],
-};
-
-const options = {
-  legend: {
-    display: false,
-  },
-};
-
-const freeSubs = {
-  labels: [
-    'Booked',
-    'Free',
-  ],
-  datasets: [{
-    data: [26, 15],
-    backgroundColor: [
-      '#0a00b6',
-      '#9d46ff',
-    ],
-    hoverBackgroundColor: [
-      '#0a00b6',
-      '#36A2EB',
-    ],
-  }],
-};
 
 class AdminLandingCharts extends React.Component {
   render() {
-    const percentClaimed = Math.round((this.props.claimed / (this.props.claimed + this.props.unclaimed)) * 100);
+    const claimed = this.props.claimed;
+    const unclaimed = this.props.unclaimed.length;
+    const percentClaimed = Math.round((this.props.claimed / (this.props.claimed + this.props.unclaimed.length)) * 100);
     const percentFree = Math.round((15 / (26 + 15)) * 100);
+    console.log(claimed, unclaimed);
+    const claimData = {
+      labels: [
+        'Claimed',
+        'UnClaimed',
+      ],
+      datasets: [{
+        data: [claimed, unclaimed],
+        backgroundColor: [
+          '#0a00b6',
+          '#9d46ff',
+        ],
+        hoverBackgroundColor: [
+          '#0a00b6',
+          '#36A2EB',
+        ],
+      }],
+    };
+
+    const options = {
+      legend: {
+        display: false,
+      },
+    };
+
+    const freeSubs = {
+      labels: [
+        'Booked',
+        'Free',
+      ],
+      datasets: [{
+        data: [26, 15],
+        backgroundColor: [
+          '#0a00b6',
+          '#9d46ff',
+        ],
+        hoverBackgroundColor: [
+          '#0a00b6',
+          '#36A2EB',
+        ],
+      }],
+    };
     return (
       <Paper style={{ height: '100%', padding: '5%' }}>
         <Grid container spacing={16} style={{ flexGrow: 1 }}>

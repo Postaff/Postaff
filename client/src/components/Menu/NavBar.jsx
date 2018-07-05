@@ -17,6 +17,10 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     marginBottom: '2vh',
+    zIndex: 1,
+    overflow: 'hidden',
+    position: 'relative',
+    display: 'flex',
   },
   flex: {
     flex: 1,
@@ -44,6 +48,13 @@ const styles = theme => ({
     position: 'relative',
     width: 'drawerWidth',
   },
+  content: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing.unit * 3,
+    minWidth: 0, // So the Typography noWrap works
+  },
+  toolbar: theme.mixins.toolbar,
 });
 
 class NavBar extends Component {
@@ -168,9 +179,10 @@ class NavBar extends Component {
               </IconButton>
             </Tooltip>
             <Drawer
-              variant='permanent'
+              variant="permanent"
               className={classes.drawerPaper}
             >
+              <div className={classes.toolbar} />
               <div
                 tabIndex={0}
                 role="button"

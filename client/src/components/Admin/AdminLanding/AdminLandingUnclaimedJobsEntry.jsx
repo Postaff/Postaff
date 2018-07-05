@@ -7,7 +7,6 @@ import {
 } from '@material-ui/core';
 
 class AdminLandingUnclaimedJobsEntry extends React.Component {
-
   render() {
     const { id, subject, start_date } = this.props.job;
     return (
