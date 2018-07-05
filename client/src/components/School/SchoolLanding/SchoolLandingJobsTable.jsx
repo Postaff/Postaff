@@ -9,7 +9,6 @@ import GET_ALL_JOBS from '../../../queries/fetchAllJobs.js';
 import _ from 'lodash';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 
-
 export const toolbarStyle = theme => ({
   root: {
     paddingRight: theme.spacing.unit,
@@ -58,7 +57,7 @@ class AdminTodayTable extends React.Component {
     super(props);
     this.state = {
       order: 'asc',
-      orderBy: 'location',
+      orderBy: 'start_date',
       data: [],
       page: 0,
       rowsPerPage: 10,
@@ -100,16 +99,19 @@ class AdminTodayTable extends React.Component {
   };
 
   render() {
+    console.log(this.props.data)
     if(this.props.data.loading){
       return <div></div>
     } else {
     let tableData = [];
     _.each(this.props.data.jobs, (job)=>{
-      tableData.push(createData(job.subject, 'Abernathy', job.grade, 3, 'Twohy'))
+      tableData.push(createData(job.subject, job.grade, job.start_date, job.claimed))
     })
     const { classes } = this.props;
     const { order, orderBy, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, tableData.length - page * rowsPerPage);
+
+    let subs = ['Kiera Grady', 'Ellis Hermann', 'Bert Deckow', 'Cara Botsford', 'Cara Botsford', 'Augusta Kutch'];
 
     return (
       <Fragment>
@@ -140,10 +142,10 @@ class AdminTodayTable extends React.Component {
                           <TableCell component="th" scope="row">
                             <Link to={{pathname:'/admin/jobs', state:{sub: n.subject, grade: n.grade}}}>{n.subject}</Link>
                           </TableCell>
-                          <TableCell numeric></TableCell>
                           <TableCell numeric>{n.grade}</TableCell>
-                          <TableCell numeric></TableCell>
-                          <TableCell numeric></TableCell>
+                          <TableCell numeric>{n.start_date}</TableCell>
+                          {n.claimed ? <TableCell numeric>Claimed</TableCell> : <TableCell numeric>Unclaimed</TableCell>}
+                          {n.claimed ? <TableCell numeric>{subs[Math.floor(Math.random() * 6)]}</TableCell> : <TableCell numeric></TableCell>}
                         </TableRow>
                       );
                     })}
@@ -177,9 +179,9 @@ class AdminTodayTable extends React.Component {
 }
 
 let counter = 0;
-function createData(subject, location, grade, days, employee) {
+function createData(subject, grade, start_date, claimed, employee) {
   counter += 1;
-  return { id: counter, subject, location, grade, days, employee };
+  return { id: counter, subject, grade, start_date, claimed, employee };
 }
 
 function getSorting(order, orderBy) {
@@ -189,11 +191,11 @@ function getSorting(order, orderBy) {
 }
 
 const columnData = [
-  { id: 'subject', numeric: false, disablePadding: false, label: 'Job' },
-  { id: 'location', numeric: true, disablePadding: false, label: 'Location' },
+  { id: 'subject', numeric: false, disablePadding: false, label: 'Subject' },
   { id: 'grade', numeric: true, disablePadding: false, label: 'Grade' },
-  { id: 'days', numeric: true, disablePadding: false, label: 'Days Remaining' },
-  { id: 'employee', numeric: true, disablePadding: false, label: 'Employee' },
+  { id: 'start_date', numeric: true, disablePadding: false, label: 'Start Date' },
+  { id: 'claimed', numeric: true, disablePadding: false, label: 'Status' },
+  { id: 'employee', numeric: true, disablePadding: false, label: 'Substitute Teacher' },
 ];
 
 class AdminTodayTableHead extends React.Component {
@@ -245,7 +247,7 @@ let AdminTodayTableToolbar = props => {
     >
       <div className={classes.title}>
           <Typography variant="title" id="tableTitle">
-            Today's Jobs
+            Job Requests
           </Typography>
       </div>
       <div className={classes.spacer} />
