@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import {
-  SwipeableDrawer, List, ListItem, ListItemIcon, ListItemText,
+  Drawer, List, ListItem, ListItemIcon, ListItemText,
   Divider, AppBar, Toolbar, Typography, Button, IconButton,
 } from '@material-ui/core';
 import {
@@ -12,7 +12,6 @@ import { Link } from 'react-router-dom';
 import Tooltip from '@material-ui/core/Tooltip';
 import Grid from '@material-ui/core/Grid';
 import Login from '../Home/Login.jsx';
-
 
 const styles = theme => ({
   root: {
@@ -30,6 +29,9 @@ const styles = theme => ({
     minWidth: 150,
     maxWidth: 250,
   },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+  },
   fullList: {
     width: 'auto',
   },
@@ -37,6 +39,10 @@ const styles = theme => ({
     minWidth: 230,
     maxWidth: '30vw',
     backgroundColor: theme.palette.background.paper,
+  },
+  drawerPaper: {
+    position: 'relative',
+    width: 'drawerWidth',
   },
 });
 
@@ -57,7 +63,7 @@ class NavBar extends Component {
   renderAdminSideBar() {
     const { classes } = this.props;
     return (
-      <div className={classes.sideBar}>
+      <div>
         <List component="nav">
           <Link to={'/'}>
             <ListItem button>
@@ -101,12 +107,12 @@ class NavBar extends Component {
                   <ListItemText primary="Schools"/>
                 </ListItem>
               </Link>
-              <Link to={'/admin/jobs'}>
+              <Link to={'/jobs/create'}>
                 <ListItem button>
                   <ListItemIcon>
                     <Work/>
                   </ListItemIcon>
-                  <ListItemText primary="Jobs"/>
+                  <ListItemText primary="Create Job"/>
                 </ListItem>
               </Link>
             </List>
@@ -153,16 +159,17 @@ class NavBar extends Component {
     console.log('this navbar.jsx', this.props);
     const { classes } = this.props;
     return (
-      <div className={classes.root}>
-        <AppBar color="default" position="static">
+      <div>
+        <AppBar className={classes.appBar} color="default" position="absolute">
           <Toolbar>
             <Tooltip id="tooltip-icon" title="More Options">
               <IconButton onClick={() => this.handleToggle(true)} className={classes.menuButton} color="inherit">
                 <MenuIcon />
               </IconButton>
             </Tooltip>
-            <SwipeableDrawer
-              open={this.state.isOpen}
+            <Drawer
+              variant='permanent'
+              className={classes.drawerPaper}
               onClose={() => this.handleToggle(false)}
               onOpen={() => this.handleToggle(true)}
             >
@@ -188,8 +195,8 @@ class NavBar extends Component {
                   </ListItem>
                 </List>
               </div>
-            </SwipeableDrawer>
-            <Typography variant="title" style={{ color: '#6200ea', textShadow: '2px 2px 4px #fffff0' }} className={classes.flex}>
+            </Drawer>
+            <Typography variant="title" style={{ color: '#6200ea', paddingLeft: '10vw', textShadow: '2px 2px 4px #fffff0' }} className={classes.flex}>
               <i><b>Postaff</b></i>
             </Typography>
 

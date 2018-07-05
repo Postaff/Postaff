@@ -1,17 +1,22 @@
 import React from 'react';
+import moment from 'moment';
+import { Link } from 'react-router-dom';
+import {
+  TableCell,
+  TableRow,
+} from '@material-ui/core';
 
 class AdminLandingPendingReviewEntry extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
+    const { id, subject, start_date } = this.props.job;
     return (
-      <tr>
-        <td>{this.props.entry}</td>
-        <td>June 25, 2018</td>
-        <td>8 AM</td>
-      </tr>
+      <TableRow>
+        <TableCell>
+          <Link to={'/jobs/id'}>{subject}</Link>
+        </TableCell>
+        <TableCell>{moment(start_date).fromNow()}</TableCell>
+      </TableRow>
     );
   }
 }

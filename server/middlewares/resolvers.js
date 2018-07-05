@@ -14,7 +14,9 @@ const { Sub } = require('../../database/models/subSchema');
  */
 
 const Query = {
-  jobs: () => Job.findAll(),
+  jobs: () => Job.findAll({order: [
+    ['start_date', 'ASC']
+  ]}),
   schools: () => School.findAll(),
   subs: () => Sub.findAll(),
   // this is for sublanding page
