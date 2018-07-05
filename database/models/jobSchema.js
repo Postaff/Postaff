@@ -18,9 +18,7 @@ const Job = db.sequelize.define('job', {
   rate: db.sequelize.Sequelize.INTEGER,
   approved: db.sequelize.Sequelize.BOOLEAN,
   claimed: db.sequelize.Sequelize.BOOLEAN,
-  claimed_by: db.sequelize.Sequelize.STRING,
   complete: db.sequelize.Sequelize.BOOLEAN,
-  completed_by: db.sequelize.Sequelize.STRING,
   hours_submitted: db.sequelize.Sequelize.BOOLEAN,
   hours_completed: db.sequelize.Sequelize.INTEGER,
   hours_approved: db.sequelize.Sequelize.BOOLEAN,
@@ -29,15 +27,16 @@ const Job = db.sequelize.define('job', {
   paid: db.sequelize.Sequelize.BOOLEAN,
 });
 
-// School.hasMany(Job, { foreignKey: 'fk_school' });
-// Job.belongsTo(School, { foreignKey: 'fk_school' });
+School.hasMany(Job, { foreignKey: 'fk_school' });
+Job.belongsTo(School, { foreignKey: 'fk_school' });
 
-// Sub.hasMany(Job, { foreignKey: 'fk_sub' });
-// Job.belongsTo(Sub, { froeignKey: 'fk_sub' });
+Sub.hasMany(Job, { foreignKey: 'fk_sub' });
+Job.belongsTo(Sub, { froeignKey: 'fk_sub' });
 
 // const now = new Date();
-// const startDate = new Date(future.setDate(future.getDate() + 2));
 // const future = new Date();
+// const startDate = new Date(future.setDate(future.getDate() + 2));
+
 // const endDate = new Date(future.setDate(future.getDate() + 30));
 // const date2 = new Date(future.setDate(future.getDate() + 25));
 // const date3 = new Date(future.setDate(future.getDate() + 20));
@@ -48,7 +47,7 @@ const Job = db.sequelize.define('job', {
  *  UNCOMMENT THE FOLLOWING TO GENERATE SAMPLE DATA
  */
 // Job.create({
-//   description: "looking for history sub",
+//   description: 'looking for history sub',
 //   fk_school: 1,
 //   fk_sub: 3,
 //   start_date: startDate,
@@ -58,9 +57,9 @@ const Job = db.sequelize.define('job', {
 //   claimed: true,
 //   approved: true,
 //   complete: false,
-// })
+// });
 // Job.create({
-//   description: "looking for math sub",
+//   description: 'looking for math sub',
 //   fk_school: 2,
 //   start_date: date5,
 //   end_date: date3,
@@ -68,10 +67,10 @@ const Job = db.sequelize.define('job', {
 //   grade: 7,
 //   claimed: false,
 //   approved: false,
-//   completed: false,
-// })
+//   complete: false,
+// });
 // Job.create({
-//   description: "looking for science sub",
+//   description: 'looking for science sub',
 //   fk_school: 1,
 //   start_date: date3,
 //   end_date: endDate,
@@ -79,10 +78,10 @@ const Job = db.sequelize.define('job', {
 //   grade: 9,
 //   claimed: false,
 //   approved: false,
-//   completed: false,
-// })
+//   complete: false,
+// });
 // Job.create({
-//   description: "looking for pe sub",
+//   description: 'looking for pe sub',
 //   fk_school: 2,
 //   fk_sub: 1,
 //   start_date: startDate,
@@ -91,10 +90,10 @@ const Job = db.sequelize.define('job', {
 //   grade: 6,
 //   claimed: true,
 //   approved: true,
-//   completed: true,
-// })
+//   complete: true,
+// });
 // Job.create({
-//   description: "looking for computer sub",
+//   description: 'looking for computer sub',
 //   fk_school: 3,
 //   fk_sub: 1,
 //   claimed: true,
@@ -104,9 +103,9 @@ const Job = db.sequelize.define('job', {
 //   end_date: date3,
 //   subject: 'Computer',
 //   grade: 5,
-// })
+// });
 // Job.create({
-//   description: "coding class sub needed",
+//   description: 'coding class sub needed',
 //   fk_school: 3,
 //   fk_sub: 2,
 //   claimed: true,
@@ -116,7 +115,7 @@ const Job = db.sequelize.define('job', {
 //   end_date: endDate,
 //   subject: 'Coding',
 //   grade: 5,
-// })
+// });
 
 
 /**
@@ -126,8 +125,6 @@ const Job = db.sequelize.define('job', {
 // Job.create({
 //   description: 'looking for English sub',
 //   School_id: 4,
-//   start_time: startTime,
-//   end_time: endTime,
 //   start_date: startDate,
 //   end_date: endDate,
 //   subject: 'English',
