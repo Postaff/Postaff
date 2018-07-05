@@ -118,7 +118,6 @@ Job.belongsTo(Sub, { froeignKey: 'fk_sub' });
 //   grade: 5,
 // });
 
-<<<<<<< HEAD
 
 /**
  *  this following are based on old schema,
@@ -148,7 +147,7 @@ Job.belongsTo(Sub, { froeignKey: 'fk_sub' });
 //   claimed: true,
 //   claimed_by: 1,
 // });
-=======
+
 var generateRandomData = function() {
   var subjects = ['English', 'Literature', 'Math', 'Geography', 'History', 'Social Studies', 'Science', 'Art', 'Music'];
   for (var i = 0; i < 100; i++) {
@@ -170,7 +169,6 @@ var generateRandomData = function() {
 }
 
 // generateRandomData();
->>>>>>> Use npm faker to add dummy data to database
 
 Job.sync();
 
