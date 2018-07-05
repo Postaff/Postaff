@@ -207,35 +207,6 @@ class Login extends React.Component {
                     type="password"
                     margin="normal"
                   />
-                  <div>
-                    <FormControlLabel control={
-                      <Radio
-                        checked={this.state.role === 'admin'}
-                        onChange={this.radioChange}
-                        value="admin"
-                        name="admin-radio-button"
-                        aria-label="A"
-                      />}
-                    label="Admin" />
-                    <FormControlLabel control={
-                      <Radio
-                        checked={this.state.role === 'sub'}
-                        onChange={this.radioChange}
-                        value="sub"
-                        name="subs-radio-button"
-                        aria-label="B"
-                      />}
-                    label="Subs" />
-                    <FormControlLabel control={
-                      <Radio
-                        checked={this.state.role === 'school'}
-                        onChange={this.radioChange}
-                        value="school"
-                        name="school-radio-button"
-                        aria-label="C"
-                      />}
-                    label="School" />
-                  </div>
                   <Button
                     variant="contained"
                     color="secondary"
