@@ -1,6 +1,7 @@
 const db = require('../indexDb.js');
 const { School } = require('./schoolSchema');
 const { Sub } = require('./subSchema');
+const faker = require('faker');
 
 // have created a completed_by and claimed-by property in this schema
 
@@ -30,8 +31,8 @@ const Job = db.sequelize.define('job', {
 School.hasMany(Job, { foreignKey: 'fk_school' });
 Job.belongsTo(School, { foreignKey: 'fk_school' });
 
-Sub.hasMany(Job, { foreignKey: 'fk_sub' });
-Job.belongsTo(Sub, { froeignKey: 'fk_sub' });
+Sub.hasMany(Job, {foreignKey: 'fk_sub'});
+Job.belongsTo(Sub, {foreignKey: 'fk_sub'});
 
 // const now = new Date();
 // const future = new Date();
@@ -147,6 +148,69 @@ Job.belongsTo(Sub, { froeignKey: 'fk_sub' });
 //   claimed_by: 1,
 // });
 
+var generateRandomData = function() {
+  var subjects = ['English', 'Literature', 'Math', 'Geography', 'History', 'Social Studies', 'Science', 'Art', 'Music'];
+
+  for (var i = 0; i < 100; i++) {
+
+    var claimed = faker.random.boolean();
+    var claimedBy = claimed ? faker.name.findName() : null;
+    var subPhotoUrl = claimedBy ? faker.image.avatar() : null;
+    var approved = claimed ? faker.random.boolean() : false;
+    var complete = approved ? faker.random.boolean() : false;
+    var subject = subjects[Math.floor(Math.random() * 8) + 1];
+    var grade = Math.floor(Math.random() * 12) + 1;
+    var startDate = faker.date.future();
+    var endDate = startDate;
+
+    Job.create({
+      description: subject + ' Substitute Teacher Needed for Grade ' + grade,
+      fk_school: null,
+      fk_sub: null,
+      claimed: claimed,
+      claimed_by: claimedBy,
+      sub_photo_url: subPhotoUrl,
+      approved: approved,
+      complete: complete,
+      // start_time: startTime,
+      // end_time: endTime,
+      start_date: startDate,
+      end_date: endDate,
+      subject: subject,
+      grade: grade,
+    })
+  }
+}
+
+// generateRandomData();
+
 Job.sync();
+
+var generateRandomData = function() {
+  var subjects = ['English', 'Literature', 'Math', 'Geography', 'History', 'Social Studies', 'Science', 'Art', 'Music'];
+
+  for (var i = 0; i < 25; i++) {
+
+    var claimed = faker.random.boolean();
+    var approved = claimed ? faker.random.boolean() : false;
+    var complete = approved ? faker.random.boolean() : false;
+    var subject = subjects[Math.floor(Math.random() * 8) + 1];
+    var grade = Math.floor(Math.random() * 12) + 1;
+    var startDate = faker.date.future();
+
+    Job.create({
+      description: subject + ' Substitute Teacher Needed for Grade ' + grade,
+      claimed: claimed,
+      approved: approved,
+      complete: complete,
+      start_date: startDate,
+      end_date: startDate,
+      subject: subject,
+      grade: grade,
+    })
+  }
+}
+
+// generateRandomData();
 
 module.exports.Job = Job;

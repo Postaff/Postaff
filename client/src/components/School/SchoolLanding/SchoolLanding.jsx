@@ -21,8 +21,7 @@ class SchoolLanding extends React.Component {
     return (
       <Fragment>
         <Grid container spacing={24}>
-          <SchoolLandingSubHistory />
-          <SchoolLandingCharts />
+
           <SchoolLandingJobsTable />
         </Grid>
       </Fragment>
