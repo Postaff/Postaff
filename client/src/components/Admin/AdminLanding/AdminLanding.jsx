@@ -1,11 +1,8 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import { graphql, compose } from 'react-apollo';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
 import JobsTable from '../../Shared/JobsTable.jsx';
 import AdminLandingCharts from './AdminLandingCharts.jsx';
 import AdminLandingCurrentStatus from './AdminLandingCurrentStatus.jsx';
@@ -42,11 +39,9 @@ class AdminLanding extends React.Component {
               <Grid item xs={8}>
                 <AdminLandingCurrentStatus claimed={claimed.length} unclaimed={unclaimed.length}/>
               </Grid>
-
               <Grid item xs={8}>
                 <AdminLandingUnclaimedJobsList unclaimed={unclaimed}/>
               </Grid>
-
               <Grid item xs={8}>
                 <AdminLandingPendingReviewList pending={pending}/>
               </Grid>
@@ -54,10 +49,10 @@ class AdminLanding extends React.Component {
           </Grid>
           <Grid item xs={8} sm={6}>
             <Grid container spacing={16} direction={'column'} alignItems={'flex-start'} justify={'flex-start'}>
-              <Grid item xs={16}>
+              <Grid item xs={12}>
                 <AdminLandingCharts />
               </Grid>
-              <Grid item xs={16}>
+              <Grid item xs={12}>
                 <JobsTable />
               </Grid>
             </Grid>

@@ -170,8 +170,6 @@ class NavBar extends Component {
             <Drawer
               variant='permanent'
               className={classes.drawerPaper}
-              onClose={() => this.handleToggle(false)}
-              onOpen={() => this.handleToggle(true)}
             >
               <div
                 tabIndex={0}

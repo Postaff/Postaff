@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import { graphql, compose } from 'react-apollo';
 import { withStyles } from '@material-ui/core/styles';
 import {
