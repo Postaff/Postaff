@@ -12,11 +12,22 @@ const { Sub } = require('../../database/models/subSchema');
  * Since we're using sequelize, we'll simply import our jobSchema.
  * Then we'll call findAll() method from sequelize then return it to the user.
  */
-
 const Query = {
   jobs: () => Job.findAll({order: [
     ['start_date', 'ASC']
   ]}),
+  job: (root, args) => {
+    console.log("job")
+    return Job.findById(args.id)
+      .then((foundJob) => {
+        return Job.findOne({
+          where: {id: foundJob.id},
+          include: [{
+            model: School, where: { id: foundJob.fk_school},
+          }]
+        })
+      })
+  },
   schools: () => School.findAll(),
   subs: () => Sub.findAll(),
   // this is for sublanding page

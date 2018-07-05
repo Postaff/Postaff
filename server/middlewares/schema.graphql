@@ -4,6 +4,7 @@
 # when we call query jobs, we're expecting an array of Job back
 # We will then define the property of Job Type right below
 type Query {
+  job(id: ID!): Job
   jobs: [Job]
   schools: [School]
   subs: [Subs]
@@ -34,11 +35,17 @@ type Job {
   start_date: Date
   end_date: Date
   approved: Boolean
+  fk_sub: String
+  school: School
 }
 
 type School{
   id: ID!
   school_name: String
+  address_street: String
+  address_city: String
+  address_state: String
+  address_zipcode: Int
   contact_name: String
   main_phone: String
 }

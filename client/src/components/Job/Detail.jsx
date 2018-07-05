@@ -8,18 +8,14 @@ import {
 import sampleData from './sampleData.js';
 
 class Detail extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      pageInfo: sampleData,
-    };
-  }
 
   render() {
+    const { job } = this.props;
+    console.log(this.props)
     return (
       <Paper style={{ height: '100%' }}>
-       <Typography variant="display1" gutterBottom>
-         Detail
+       <Typography variant="title" gutterBottom>
+         Details
         </Typography>
         <Typography variant="subheading" gutterBottom>
           <Grid container spacing={8}>
@@ -29,7 +25,7 @@ class Detail extends React.Component {
             <Grid item xs={1}>
             </Grid>
             <Grid item xs={5}>
-              { this.state.pageInfo.datesNeeded}
+              {job.start_date}
             </Grid>
           </Grid>
         </Typography>
@@ -41,7 +37,7 @@ class Detail extends React.Component {
             <Grid item xs={1}>
             </Grid>
             <Grid item xs={5}>
-              { this.props.data ? 'Claimed' : this.state.pageInfo.status}
+              {job.claimed ? 'Claimed' : job.approved ? 'Approved' : 'Awaiting Approval'}
             </Grid>
           </Grid>
         </Typography>
@@ -53,7 +49,7 @@ class Detail extends React.Component {
             <Grid item xs={1}>
             </Grid>
             <Grid item xs={5}>
-              { this.props.data ? this.props.data.sub : this.state.pageInfo.subjects}
+              {job.subject}
             </Grid>
           </Grid>
         </Typography>
@@ -65,19 +61,19 @@ class Detail extends React.Component {
             <Grid item xs={1}>
             </Grid>
             <Grid item xs={5}>
-              { this.props.data ? this.props.data.grade : this.state.pageInfo.grade}
+              {job.grade}
             </Grid>
           </Grid>
         </Typography>
         <Typography variant="subheading" gutterBottom>
           <Grid container spacing={8}>
             <Grid item xs={2}>
-              Hours Availaible:
+              Description:
             </Grid>
             <Grid item xs={1}>
             </Grid>
             <Grid item xs={5}>
-              { this.state.pageInfo.hours}
+              {job.description}
             </Grid>
           </Grid>
         </Typography>

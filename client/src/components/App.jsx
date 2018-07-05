@@ -16,8 +16,8 @@ import AdminSubsDetail from './Admin/AdminSubsDetail/AdminSubsDetail';
 import AdminSchoolsSummary from './Admin/AdminSchoolsSummary/AdminSchoolsSummary';
 import AdminSchoolsDetail from './Admin/AdminSchoolsDetail/AdminSchoolsDetail';
 import NavBar from './Menu/NavBar';
-import AdminJob from './Job/AdminJob';
 import AdminSchedule from './Admin/AdminSchedule/AdminSchedule';
+import AdminJob from './Job/AdminJob';
 import JobForm from './Admin/AdminForms/AdminJobRequestForm';
 import JobDetail from './Job/Detail';
 import * as actions from '../actions/indexAction.js';
@@ -58,8 +58,7 @@ class App extends React.Component {
         <BrowserRouter>
           <div className={classes.root}>
             <NavBar username={this.state.username} isLoggedIn={log} option={option} clickLogout={this.clickLogout.bind(this)} onLogin={this.handleLogin.bind(this)}/>
-            <div className={classes.content} style={{ paddingLeft: '12vw', paddingTop: '10vh' }}>
-            {/* <div className={classes.content}>  */}
+            <div className={classes.content} style={{ paddingLeft: '20%', paddingTop: '7%' }}>
               <Switch>
                 <Route exact path="/" component={HomeLanding} />
                 <Route path="/login" render={props => <Login {...props} clickLogout={this.clickLogout.bind(this)} slide={this.state.slide}/>}
@@ -70,7 +69,7 @@ class App extends React.Component {
                 <PrivateRoute exact path="/admin/schools/:schoolId" component={AdminSchoolsDetail} log={log} />
                 <PrivateRoute exact path="/admin/subs" component={AdminSubsSummary} log={log} />
                 <PrivateRoute exact path="/admin/subs/:subName" component={AdminSubsDetail} log={log} />
-                <PrivateRoute exact path="/admin/jobs" component={AdminJob} log={log} />
+                <PrivateRoute exact path="/admin/jobs/:jobId" component={AdminJob} log={log} />
                 <PrivateRoute exact path="/school" component={SchoolLanding} log={log} />
                 <PrivateRoute exact path="/sub" component={SubLanding} log={log} />
                 <PrivateRoute exact path="/jobs/create" component={JobForm} log={log} />

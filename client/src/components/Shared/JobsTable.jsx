@@ -6,7 +6,7 @@ import {
   TableSortLabel, Toolbar, Typography, Paper, Tooltip,
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { graphql, compose } from 'react-apollo';
+import { graphql, compose, Query } from 'react-apollo';
 import _ from 'lodash';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import GET_ALL_JOBS from '../../queries/fetchAllJobs.js';
@@ -137,7 +137,7 @@ class AdminTodayTable extends React.Component {
                       key={n.id}
                     >
                       <TableCell component="th" scope="row">
-                        <Link to={{ pathname: '/admin/jobs', state: { sub: n.subject, grade: n.grade } }}>{n.subject}</Link>
+                        <Link to={{ pathname: `/admin/jobs/${n.id}`, state: { job: n } }}>{n.subject}</Link>
                       </TableCell>
                       <TableCell numeric></TableCell>
                       <TableCell numeric>{n.grade}</TableCell>
@@ -267,5 +267,9 @@ AdminTodayTableToolbar = withStyles(toolbarStyle)(AdminTodayTableToolbar);
 
 export default compose(
   withStyles(tableStyle),
-  graphql(GET_ALL_JOBS),
+  graphql(GET_ALL_JOBS, {
+    options: (ownProps) => ({
+      refetchQueries: [{ query: GET_ALL_JOBS}]
+    })
+  })
 )(AdminTodayTable);

@@ -43,7 +43,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 // app.use(flash);
-// THIS IS FOR REACT ROUTER DONOT DELETE
 app.get('/*', (req, res) => {
   console.log('HEYHEYHEY', req.url);
   res.sendFile(path.join(__dirname, '../client/dist/index.html'), (err) => {
