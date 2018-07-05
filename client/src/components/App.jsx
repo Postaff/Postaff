@@ -56,10 +56,12 @@ class App extends React.Component {
     console.log('I am in App.jsx', this.props);
     return (
       <React.Fragment>
-        <BrowserRouter>
-          <div className={classes.root}>
-            <NavBar username={this.state.username} isLoggedIn={log} option={option} clickLogout={this.clickLogout.bind(this)} onLogin={this.handleLogin.bind(this)}/>
-            <div className={classes.content} style={{ paddingLeft: '20%', paddingTop: '7%' }}>
+        <main>
+          <div className={classes.toolbar} />
+          <BrowserRouter>
+            <div className={classes.content}>
+              <NavBar username={this.state.username} isLoggedIn={log} option={option} clickLogout={this.clickLogout.bind(this)} onLogin={this.handleLogin.bind(this)}/>
+              {/* <div className={classes.content} style={{ marginTop: '6vh' }}> */}
               <Switch>
                 <Route exact path="/" component={HomeLanding} />
                 <Route path="/login" render={props => <Login {...props} clickLogout={this.clickLogout.bind(this)} slide={this.state.slide}/>}
@@ -77,8 +79,9 @@ class App extends React.Component {
                 <PrivateRoute exact path="/jobs/:jobId" component={JobDetail} log={log} />
               </Switch>
             </div>
-          </div>
-        </BrowserRouter>
+            {/* </div> */}
+          </BrowserRouter>
+        </main>
       </React.Fragment>
     );
   }
@@ -86,18 +89,19 @@ class App extends React.Component {
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-    height: '100%',
-    zIndex: 1,
-    overflow: 'hidden',
-    position: 'relative',
-    display: 'flex',
+    // flexGrow: 1,
+    // height: '100%',
+    // zIndex: 1,
+    // overflow: 'hidden',
+    // position: 'relative',
+    // display: 'flex',
   },
   content: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing.unit * 3,
+    // backgroundColor: theme.palette.background.default,
+    // padding: theme.spacing.unit * 3,
     minWidth: 0, // So the Typography noWrap works
+    marginLeft: 200,
   },
   toolbar: theme.mixins.toolbar,
 });
