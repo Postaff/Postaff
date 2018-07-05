@@ -1,6 +1,7 @@
 const db = require('../indexDb.js');
 const { School } = require('./schoolSchema');
 const { Sub } = require('./subSchema');
+const faker = require('faker');
 
 // have created a completed_by and claimed-by property in this schema
 
@@ -117,6 +118,7 @@ Job.belongsTo(Sub, { froeignKey: 'fk_sub' });
 //   grade: 5,
 // });
 
+<<<<<<< HEAD
 
 /**
  *  this following are based on old schema,
@@ -146,6 +148,29 @@ Job.belongsTo(Sub, { froeignKey: 'fk_sub' });
 //   claimed: true,
 //   claimed_by: 1,
 // });
+=======
+var generateRandomData = function() {
+  var subjects = ['English', 'Literature', 'Math', 'Geography', 'History', 'Social Studies', 'Science', 'Art', 'Music'];
+  for (var i = 0; i < 100; i++) {
+    var subject = subjects[Math.floor(Math.random() * 8) + 1];
+    var grade = Math.floor(Math.random() * 12) + 1;
+    Job.create({
+      description: subject + ' Substitute Teacher Needed for Grade ' + grade,
+      School_id: i,
+      claimed: faker.random.boolean(),
+      approved: faker.random.boolean(),
+      // start_time: startTime,
+      // end_time: endTime,
+      start_date: faker.date.past(),
+      end_date: faker.date.future(),
+      subject: subjects[Math.floor(Math.random() * 8) + 1],
+      grade: grade,
+    })
+  }
+}
+
+// generateRandomData();
+>>>>>>> Use npm faker to add dummy data to database
 
 Job.sync();
 
