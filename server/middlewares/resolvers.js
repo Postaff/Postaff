@@ -13,20 +13,20 @@ const { Sub } = require('../../database/models/subSchema');
  * Then we'll call findAll() method from sequelize then return it to the user.
  */
 const Query = {
-  jobs: () => Job.findAll({order: [
-    ['start_date', 'ASC']
-  ]}),
+  jobs: () => Job.findAll({
+    order: [
+      ['start_date', 'ASC'],
+    ],
+  }),
   job: (root, args) => {
-    console.log("job")
+    console.log('job');
     return Job.findById(args.id)
-      .then((foundJob) => {
-        return Job.findOne({
-          where: {id: foundJob.id},
-          include: [{
-            model: School, where: { id: foundJob.fk_school},
-          }]
-        })
-      })
+      .then(foundJob => Job.findOne({
+        where: { id: foundJob.id },
+        include: [{
+          model: School, where: { id: foundJob.fk_school },
+        }],
+      }));
   },
   schools: () => School.findAll(),
   subs: () => Sub.findAll(),
@@ -69,8 +69,8 @@ const Mutation = {
 // this is for sublanding page
 const Subs = {
   jobAvailable: () => Job.findAll({ where: { approved: true } }),
-  jobsCompleted: (sub, args) => Job.findAll({ where: { completed_by: args.id } }),
-  claimedJobs: (sub, args) => Job.findAll({ where: { claimed_by: args.id } }),
+  jobsCompleted: (sub, args) => Job.findAll({ where: { fk_sub: args.id, complete: true } }),
+  claimedJobs: (sub, args) => Job.findAll({ where: { fk_sub: args.id, claimed: true } }),
 };
 
 module.exports = { Query, Mutation, Subs };
