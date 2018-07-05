@@ -114,11 +114,14 @@ class Login extends React.Component {
     this.handleLogin = this.handleLogin.bind(this);
   }
 
-  onSubmit() {
-    this.props.login(this.state.user, () => {
-      this.props.onLogin(this.state.role);
-      this.handleClose();
-    });
+  onSubmit(event) {
+    const code = event.keyCode || 1;
+    if(code === 13 || code === 1) { 
+      this.props.login(this.state.user, () => {
+        this.props.onLogin(this.state.role);
+        this.handleClose();
+      });
+    }
   }
 
 
@@ -196,6 +199,7 @@ class Login extends React.Component {
                     className={classes.textField}
                     type="username"
                     margin="normal"
+                    onKeyUp={this.onSubmit.bind(this)}
                   />
                   <TextField
                     name="password"
@@ -206,41 +210,14 @@ class Login extends React.Component {
                     className={classes.textField}
                     type="password"
                     margin="normal"
+                    onKeyUp={this.onSubmit.bind(this)}
                   />
-                  <div>
-                    <FormControlLabel control={
-                      <Radio
-                        checked={this.state.role === 'admin'}
-                        onChange={this.radioChange}
-                        value="admin"
-                        name="admin-radio-button"
-                        aria-label="A"
-                      />}
-                    label="Admin" />
-                    <FormControlLabel control={
-                      <Radio
-                        checked={this.state.role === 'sub'}
-                        onChange={this.radioChange}
-                        value="sub"
-                        name="subs-radio-button"
-                        aria-label="B"
-                      />}
-                    label="Subs" />
-                    <FormControlLabel control={
-                      <Radio
-                        checked={this.state.role === 'school'}
-                        onChange={this.radioChange}
-                        value="school"
-                        name="school-radio-button"
-                        aria-label="C"
-                      />}
-                    label="School" />
-                  </div>
                   <Button
                     variant="contained"
                     color="secondary"
                     className={classes.button}
                     onClick={this.onSubmit.bind(this)}
+                    onKeyPress={this.onSubmit.bind(this)}
                   >
                   Submit
                   </Button>
