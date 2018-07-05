@@ -1,7 +1,6 @@
 const db = require('../indexDb.js');
 const { School } = require('./schoolSchema');
 const { Sub } = require('./subSchema');
-const faker = require('faker');
 
 // have created a completed_by and claimed-by property in this schema
 
