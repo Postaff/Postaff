@@ -1,6 +1,7 @@
 const db = require('../indexDb.js');
 const { School } = require('./schoolSchema');
 const { Sub } = require('./subSchema');
+const faker = require('faker');
 
 // have created a completed_by and claimed-by property in this schema
 
@@ -184,5 +185,32 @@ var generateRandomData = function() {
 // generateRandomData();
 
 Job.sync();
+
+var generateRandomData = function() {
+  var subjects = ['English', 'Literature', 'Math', 'Geography', 'History', 'Social Studies', 'Science', 'Art', 'Music'];
+
+  for (var i = 0; i < 25; i++) {
+
+    var claimed = faker.random.boolean();
+    var approved = claimed ? faker.random.boolean() : false;
+    var complete = approved ? faker.random.boolean() : false;
+    var subject = subjects[Math.floor(Math.random() * 8) + 1];
+    var grade = Math.floor(Math.random() * 12) + 1;
+    var startDate = faker.date.future();
+
+    Job.create({
+      description: subject + ' Substitute Teacher Needed for Grade ' + grade,
+      claimed: claimed,
+      approved: approved,
+      complete: complete,
+      start_date: startDate,
+      end_date: startDate,
+      subject: subject,
+      grade: grade,
+    })
+  }
+}
+
+// generateRandomData();
 
 module.exports.Job = Job;
