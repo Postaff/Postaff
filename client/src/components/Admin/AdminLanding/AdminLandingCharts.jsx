@@ -55,8 +55,8 @@ const freeSubs = {
 
 class AdminLandingCharts extends React.Component {
   render() {
-    const percentClaimed = ((32 / (32 + 5)) * 100).toFixed(0);
-    const percentFree = ((15 / (26 + 15)) * 100).toFixed(0);
+    const percentClaimed = Math.round((this.props.claimed / (this.props.claimed + this.props.unclaimed)) * 100);
+    const percentFree = Math.round((15 / (26 + 15)) * 100);
     return (
       <Paper style={{ height: '100%', padding: '5%' }}>
         <Grid container spacing={16} style={{ flexGrow: 1 }}>
