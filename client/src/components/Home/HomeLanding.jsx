@@ -6,7 +6,7 @@ class HomeLanding extends React.Component {
     return (
       <Fragment>
         <div style={{
-          padding: '4em', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          paddingLeft: '4em', paddingRight: '4em', display: 'flex', alignItems: 'center', justifyContent: 'center',
         }}>
           <img src="../Postaff_.png" style={{ width: '60%' }}></img>
         </div>

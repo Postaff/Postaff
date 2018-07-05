@@ -26,6 +26,7 @@ class AdminLanding extends React.Component {
     }
     console.log(this.props.data)
     const { jobs } = this.props.data;
+    console.log(jobs);
     const { classes } = this.props;
     const claimed = jobs.filter(job => job.claimed);
     const unclaimed = jobs.filter(job => !job.claimed);
@@ -50,7 +51,7 @@ class AdminLanding extends React.Component {
           <Grid item xs={8} sm={6}>
             <Grid container spacing={16} direction={'column'} alignItems={'flex-start'} justify={'flex-start'}>
               <Grid item xs={12}>
-                <AdminLandingCharts />
+                <AdminLandingCharts claimed={claimed.length} unclaimed={unclaimed}/>
               </Grid>
               <Grid item xs={12}>
                 <JobsTable />
