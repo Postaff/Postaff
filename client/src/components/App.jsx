@@ -45,6 +45,7 @@ class App extends React.Component {
     this.setState({
       isLoggedIn: !!localStorage.getItem('token'),
       sasOption: localStorage.getItem('role'),
+      username: localStorage.getItem('username'),
     });
   }
 

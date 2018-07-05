@@ -18,9 +18,9 @@ const Job = db.sequelize.define('job', {
   rate: db.sequelize.Sequelize.INTEGER,
   approved: db.sequelize.Sequelize.BOOLEAN,
   claimed: db.sequelize.Sequelize.BOOLEAN,
-  // claimed_by: db.sequelize.Sequelize.STRING,
+  claimed_by: db.sequelize.Sequelize.STRING,
   complete: db.sequelize.Sequelize.BOOLEAN,
-  // completed_by: db.sequelize.Sequelize.STRING,
+  completed_by: db.sequelize.Sequelize.STRING,
   hours_submitted: db.sequelize.Sequelize.BOOLEAN,
   hours_completed: db.sequelize.Sequelize.INTEGER,
   hours_approved: db.sequelize.Sequelize.BOOLEAN,
@@ -29,11 +29,12 @@ const Job = db.sequelize.define('job', {
   paid: db.sequelize.Sequelize.BOOLEAN,
 });
 
-School.hasMany(Job, { foreignKey: 'fk_school'});
-Job.belongsTo(School, { foreignKey: 'fk_school'});
+// School.hasMany(Job, { foreignKey: 'fk_school' });
+// Job.belongsTo(School, { foreignKey: 'fk_school' });
 
-Sub.hasMany(Job, {foreignKey: 'fk_sub'});
-Job.belongsTo(Sub, {froeignKey: 'fk_sub'});
+// Sub.hasMany(Job, { foreignKey: 'fk_sub' });
+// Job.belongsTo(Sub, { froeignKey: 'fk_sub' });
+
 // const now = new Date();
 // const startDate = new Date(future.setDate(future.getDate() + 2));
 // const future = new Date();
