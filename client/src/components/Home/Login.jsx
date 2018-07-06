@@ -115,13 +115,10 @@ class Login extends React.Component {
   }
 
   onSubmit(event) {
-    const code = event.keyCode || 1;
-    if(code === 13 || code === 1) { 
-      this.props.login(this.state.user, () => {
-        this.props.onLogin(this.state.role);
-        this.handleClose();
-      });
-    }
+    this.props.login(this.state.user, () => {
+      this.props.onLogin(this.state.role);
+      this.handleClose();
+    });
   }
 
 
@@ -199,7 +196,6 @@ class Login extends React.Component {
                     className={classes.textField}
                     type="username"
                     margin="normal"
-                    onKeyUp={this.onSubmit.bind(this)}
                   />
                   <TextField
                     name="password"
@@ -210,7 +206,6 @@ class Login extends React.Component {
                     className={classes.textField}
                     type="password"
                     margin="normal"
-                    onKeyUp={this.onSubmit.bind(this)}
                   />
                   <Button
                     variant="contained"
