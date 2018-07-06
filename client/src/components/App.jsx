@@ -64,8 +64,7 @@ class App extends React.Component {
               {/* <div className={classes.content} style={{ marginTop: '6vh' }}> */}
               <Switch>
                 <Route exact path="/" component={HomeLanding} />
-                <Route path="/login" render={props => <Login {...props} clickLogout={this.clickLogout.bind(this)} slide={this.state.slide}/>}
-                />
+                <Route path="/login" render={props => <Login {...props} clickLogout={this.clickLogout.bind(this)} slide={this.state.slide}/>}/>
                 <PrivateRoute exact path="/admin" component={AdminLanding} log={log} />
                 <PrivateRoute exact path="/admin/schedule" component={AdminSchedule} log={log} />
                 <PrivateRoute exact path="/admin/schools" component={AdminSchoolsSummary} log={log} />
