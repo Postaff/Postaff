@@ -105,7 +105,7 @@ class AdminTodayTable extends React.Component {
     }
     const tableData = [];
     _.each(this.props.data.jobs, (job) => {
-      tableData.push(createData(job.subject, 'Abernathy', job.grade, 3, 'Twohy'));
+      tableData.push(createData(job.id, job.subject, 'Abernathy', job.grade, 3, 'Twohy'));
     });
     const { classes } = this.props;
     const {
@@ -137,6 +137,7 @@ class AdminTodayTable extends React.Component {
                       key={n.id}
                     >
                       <TableCell component="th" scope="row">
+                      {console.log(n.subject, n.id)}
                         <Link to={{ pathname: `/admin/jobs/${n.id}`, state: { job: n } }}>{n.subject}</Link>
                       </TableCell>
                       <TableCell numeric></TableCell>
@@ -172,11 +173,9 @@ class AdminTodayTable extends React.Component {
   }
 }
 
-let counter = 0;
-function createData(subject, location, grade, days, employee) {
-  counter += 1;
+function createData(id, subject, location, grade, days, employee) {
   return {
-    id: counter, subject, location, grade, days, employee,
+    id: id, subject, location, grade, days, employee,
   };
 }
 
