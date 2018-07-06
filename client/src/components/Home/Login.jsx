@@ -212,7 +212,6 @@ class Login extends React.Component {
                     color="secondary"
                     className={classes.button}
                     onClick={this.onSubmit.bind(this)}
-                    onKeyPress={this.onSubmit.bind(this)}
                   >
                   Submit
                   </Button>
