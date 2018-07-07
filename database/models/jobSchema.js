@@ -150,32 +150,32 @@ Job.belongsTo(Sub, {foreignKey: 'fk_sub'});
 
 Job.sync();
 
-var generateRandomData = function() {
-  var subjects = ['English', 'Literature', 'Math', 'Geography', 'History', 'Social Studies', 'Science', 'Art', 'Music'];
+// var generateRandomData = function() {
+//   var subjects = ['English', 'Literature', 'Math', 'Geography', 'History', 'Social Studies', 'Science', 'Art', 'Music'];
 
-  for (var i = 0; i < 25; i++) {
+//   for (var i = 0; i < 25; i++) {
 
-    var claimed = faker.random.boolean();
-    var approved = claimed ? faker.random.boolean() : false;
-    var complete = approved ? faker.random.boolean() : false;
-    var subject = subjects[Math.floor(Math.random() * 8) + 1];
-    var grade = Math.floor(Math.random() * 12) + 1;
-    var startDate = faker.date.future();
+//     var claimed = faker.random.boolean();
+//     var approved = claimed ? faker.random.boolean() : false;
+//     var complete = approved ? faker.random.boolean() : false;
+//     var subject = subjects[Math.floor(Math.random() * 8) + 1];
+//     var grade = Math.floor(Math.random() * 12) + 1;
+//     var startDate = faker.date.future();
 
-    Job.create({
-      description: subject + ' Substitute Teacher Needed for Grade ' + grade,
-      claimed: claimed,
-      approved: approved,
-      complete: complete,
-      start_date: startDate,
-      end_date: startDate,
-      subject: subject,
-      grade: grade,
-      fk_school: Math.floor(Math.random() * 10) + 1,
-      fk_sub: null,
-    })
-  }
-}
+//     Job.create({
+//       description: subject + ' Substitute Teacher Needed for Grade ' + grade,
+//       claimed: claimed,
+//       approved: approved,
+//       complete: complete,
+//       start_date: startDate,
+//       end_date: startDate,
+//       subject: subject,
+//       grade: grade,
+//       fk_school: Math.floor(Math.random() * 10) + 1,
+//       fk_sub: null,
+//     })
+//   }
+// }
 
 // generateRandomData();
 

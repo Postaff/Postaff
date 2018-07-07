@@ -15,3 +15,4 @@ export const NEW_JOB = gql`
     }
   }
 `
+

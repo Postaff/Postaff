@@ -59,7 +59,9 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
 });
+
 server.applyMiddleware({ app });
+
 app.use('/api', routes);
 
 
