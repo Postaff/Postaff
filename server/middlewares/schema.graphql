@@ -46,7 +46,7 @@ type School{
   address_street: String
   address_city: String
   address_state: String
-  address_zipcode: Int
+  address_zipcode: String
   contact_name: String
   main_phone: String
 }
