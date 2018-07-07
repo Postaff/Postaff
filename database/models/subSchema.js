@@ -8,7 +8,7 @@ const Sub = db.sequelize.define('sub', {
   phone_alt: db.sequelize.Sequelize.STRING,
   email: db.sequelize.Sequelize.STRING,
   photo_url: db.sequelize.Sequelize.STRING,
-  address_street: db.sequelize.Sequelize.TEXT,
+  address_street: db.sequelize.Sequelize.STRING,
   address_city: db.sequelize.Sequelize.STRING,
   address_zipcode: db.sequelize.Sequelize.STRING,
   address_state: db.sequelize.Sequelize.STRING,

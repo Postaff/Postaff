@@ -9,6 +9,7 @@ type Query {
   schools: [School]
   subs: [Subs]
   subById(id: ID!): Subs
+  # addClaimById(id: ID!): Subs
 }
 
 type Mutation {
@@ -46,7 +47,7 @@ type School{
   address_street: String
   address_city: String
   address_state: String
-  address_zipcode: Int
+  address_zipcode: String
   contact_name: String
   main_phone: String
 }
