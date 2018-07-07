@@ -11,7 +11,7 @@ type Query {
   subById(id: ID!): Subs
   # addClaimById(id: ID!): Subs
   schoolById(id: ID!): School
-  schoolByUsername(username: String!): School
+  schoolByUsername(username: String): School
 }
 
 type Mutation {

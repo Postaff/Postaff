@@ -16,7 +16,6 @@ import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
 import {
   GET_ALL_SCHOOLS,
-
   NEW_JOB,
 } from '../../../queries/jobFormQueries.js';
 
@@ -80,17 +79,18 @@ class AdminJobRequestForm extends React.Component {
   }
 
   render() {
+    const { classes } = this.props;
+
     if(this.props.data.loading) {
       return <div></div>;
     }
-    const { classes } = this.props;
-    console.log(this.props.data);
+
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <form>
           <Grid container spacing={8}>
           <DialogTitle id="form-dialog-title">Edit Job Request</DialogTitle>
-                              <DialogContent>
+            <DialogContent>
               <Grid item xs={12}>
                 <TextField
                   disabled
@@ -100,7 +100,6 @@ class AdminJobRequestForm extends React.Component {
                   value="PLACEHOLDER SCHOOL"
                   name="school"
                   style={{ width: '90%' }}
-
                 >
                 </TextField>
               </Grid>
@@ -280,6 +279,5 @@ const styles = theme => ({
 export default compose(
   graphql(NEW_JOB),
   graphql(GET_ALL_SCHOOLS),
-
   withStyles(styles),
 )(AdminJobRequestForm);

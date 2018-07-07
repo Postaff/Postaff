@@ -4,8 +4,9 @@ import { withStyles } from '@material-ui/core/styles';
 import {Table, TableBody, TableCell, TableHead, TablePagination, TableRow,
 TableSortLabel, Toolbar, Typography, Paper, Tooltip, Grid} from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import {graphql, compose} from 'react-apollo';
+import {graphql, compose, Query} from 'react-apollo';
 import GET_ALL_JOBS from '../../../queries/fetchAllJobs.js';
+import { GET_SCHOOL_BY_USERNAME } from '../../../queries/jobFormQueries';
 import _ from 'lodash';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import IconButton from '@material-ui/core/IconButton';
@@ -114,7 +115,6 @@ class AdminTodayTable extends React.Component {
   };
 
   render() {
-    console.log(this.props.data)
     if(this.props.data.loading){
       return <div></div>
     } else {
@@ -127,6 +127,8 @@ class AdminTodayTable extends React.Component {
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, tableData.length - page * rowsPerPage);
 
     let subs = ['Kiera Grady', 'Ellis Hermann', 'Bert Deckow', 'Cara Botsford', 'Cara Botsford', 'Augusta Kutch'];
+
+    console.log(this.props);
 
     return (
       <Fragment>
@@ -296,5 +298,12 @@ AdminTodayTableToolbar = withStyles(toolbarStyle)(AdminTodayTableToolbar);
 
 export default compose(
   withStyles(tableStyle),
-  graphql(GET_ALL_JOBS)
+  graphql(GET_ALL_JOBS, {name: 'allJobs'}),
+  graphql(GET_SCHOOL_BY_USERNAME, {
+    options: () => ({
+      variables: {
+        username: (localStorage.getItem('username'))
+      }
+    })
+  }),
 )(AdminTodayTable);
