@@ -24,6 +24,7 @@ const styles = theme => ({
   },
   flex: {
     flex: 1,
+    justify: 'flex-start',
   },
   menuButton: {
     marginLeft: -12,
@@ -76,14 +77,6 @@ class NavBar extends Component {
     return (
       <div>
         <List component="nav">
-          <Link to={'/'}>
-            <ListItem button>
-              <ListItemIcon>
-                <Home/>
-              </ListItemIcon>
-              <ListItemText primary="Home"/>
-            </ListItem>
-          </Link>
           {this.props.isLoggedIn && this.props.option === 'admin'
             ? <List>
               <Link to={'/admin'}>
@@ -126,6 +119,7 @@ class NavBar extends Component {
                   <ListItemText primary="Create Job"/>
                 </ListItem>
               </Link>
+              <Divider />
             </List>
             : <div></div>}
           {this.props.isLoggedIn && this.props.option === 'school'
@@ -146,6 +140,7 @@ class NavBar extends Component {
                   <ListItemText primary="Request Job"/>
                 </ListItem>
               </Link>
+              <Divider />
             </List>
             : <div></div>}
           {this.props.isLoggedIn && this.props.option === 'sub'
@@ -158,14 +153,15 @@ class NavBar extends Component {
                   <ListItemText primary="Dashboard"/>
                 </ListItem>
               </Link>
+              <Divider />
             </List>
             : <div></div>}
-          <Divider/>
         </List>
       </div>
     );
   }
 
+  // style = {{ marginTop: '64px' }}
   render() {
     console.log('this navbar.jsx', this.props);
     const { classes } = this.props;
@@ -173,45 +169,13 @@ class NavBar extends Component {
       <div>
         <AppBar className={classes.appBar} color="default" position="absolute">
           <Toolbar>
-            <Tooltip id="tooltip-icon" title="More Options">
-              <IconButton onClick={() => this.handleToggle(true)} className={classes.menuButton} color="inherit">
-                <MenuIcon />
-              </IconButton>
-            </Tooltip>
-            <Drawer
-              variant="permanent"
-              className={classes.drawerPaper}
-            >
-              <div className={classes.toolbar} />
-              <div
-                tabIndex={0}
-                role="button"
-                onClick={() => this.handleToggle(false)}
-                onKeyDown={() => this.handleToggle(false)}
-              >
-                {this.renderAdminSideBar()}
-                <List component="nav">
-                  <ListItem button>
-                    <ListItemText primary="About"/>
-                  </ListItem>
-                  <ListItem button>
-                    <ListItemText primary="Contact"/>
-                  </ListItem>
-                  <ListItem button>
-                    <ListItemText primary="Careers"/>
-                  </ListItem>
-                  <ListItem button>
-                    <ListItemText primary="Terms"/>
-                  </ListItem>
-                </List>
-              </div>
-            </Drawer>
-            <Typography variant="title" style={{ color: '#6200ea', paddingLeft: '10vw', textShadow: '2px 2px 4px #fffff0' }} className={classes.flex}>
-              <i><b>Postaff</b></i>
-            </Typography>
-
+            <Link to={'/'} className={classes.flex}>
+              <Typography variant="title" style={{ color: '#6200ea', textShadow: '2px 2px 4px #fffff0' }} >
+                <i><b>Postaff</b></i>
+              </Typography>
+            </Link>
             {!this.props.isLoggedIn
-              ? <Login clickLogout={this.props.clickLogout} onLogin={this.props.onLogin}/>
+              ? <Login clickLogout={this.props.clickLogout} onLogin={this.props.onLogin} />
               : <div>
                 <Grid container spacing={8} alignItems="center" justify="flex-start">
                   <Grid item xs={6}>
@@ -229,9 +193,37 @@ class NavBar extends Component {
                 </Grid>
               </div>
             }
-
           </Toolbar>
         </AppBar>
+        <Drawer
+          variant="permanent"
+          className={classes.drawerPaper}
+          style={{ zIndex: 0 }}
+        >
+          <div style={{ marginTop: '64px' }}/>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={() => this.handleToggle(false)}
+            onKeyDown={() => this.handleToggle(false)}
+          >
+            {this.renderAdminSideBar()}
+            <List component="nav">
+              <ListItem button>
+                <ListItemText primary="About"/>
+              </ListItem>
+              <ListItem button>
+                <ListItemText primary="Contact"/>
+              </ListItem>
+              <ListItem button>
+                <ListItemText primary="Careers"/>
+              </ListItem>
+              <ListItem button>
+                <ListItemText primary="Terms"/>
+              </ListItem>
+            </List>
+          </div>
+        </Drawer>
       </div>
     );
   }
