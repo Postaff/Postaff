@@ -2,6 +2,7 @@
 const { Job } = require('../../database/models/jobSchema');
 const { School } = require('../../database/models/schoolSchema');
 const { Sub } = require('../../database/models/subSchema');
+const { User } = require('../../database/models/userSchema');
 
 /**
  * jobs is the query we defined in schema file,
@@ -34,6 +35,13 @@ const Query = {
   subById: (root, args) => Sub.findById(args.id),
 
   // addClaimByJob: (root, args) => Job.update({where: {fk_sub: args.id}}),
+  schoolById: (root, args) => School.findById(args.id),
+
+  // returns school name with username for school job request form
+  schoolByUsername: (root, args) => {
+    return User.findOne({where: {username: args.username}})
+    .then(user => {return School.findById(user.fk_school)})
+  }
 };
 
 const Mutation = {

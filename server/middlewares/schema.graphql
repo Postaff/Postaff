@@ -10,6 +10,8 @@ type Query {
   subs: [Subs]
   subById(id: ID!): Subs
   # addClaimById(id: ID!): Subs
+  schoolById(id: ID!): School
+  schoolByUsername(username: String): School
 }
 
 type Mutation {
@@ -21,7 +23,7 @@ type Mutation {
 # We're telling graphQL whenever we ask for Job, give us the follow fields.
 # ! exclamation mark indicates the field cannot be null.
 # graphQL is statically typed, we need to specify what type the field is going to be
-# By default graphQL offers ID, Int, String, Boolean, Float.  
+# By default graphQL offers ID, Int, String, Boolean, Float.
 scalar Date
 scalar Time
 

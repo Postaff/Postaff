@@ -4,10 +4,17 @@ import { withStyles } from '@material-ui/core/styles';
 import {Table, TableBody, TableCell, TableHead, TablePagination, TableRow,
 TableSortLabel, Toolbar, Typography, Paper, Tooltip, Grid} from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import {graphql, compose} from 'react-apollo';
+import {graphql, compose, Query} from 'react-apollo';
 import GET_ALL_JOBS from '../../../queries/fetchAllJobs.js';
+import { GET_SCHOOL_BY_USERNAME } from '../../../queries/jobFormQueries';
 import _ from 'lodash';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
+import IconButton from '@material-ui/core/IconButton';
+import Edit from '@material-ui/icons/Edit';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import SchoolJobRequestEdit from './SchoolJobRequestEdit.jsx';
 
 export const toolbarStyle = theme => ({
   root: {
@@ -61,6 +68,7 @@ class AdminTodayTable extends React.Component {
       data: [],
       page: 0,
       rowsPerPage: 10,
+      open: false,
     };
     this.handleRequestSort = this.handleRequestSort.bind(this);
     this.handleChangePage = this.handleChangePage.bind(this);
@@ -98,8 +106,15 @@ class AdminTodayTable extends React.Component {
     this.setState({ rowsPerPage: event.target.value });
   };
 
+  handleClickOpen () {
+    this.setState({ open: true });
+  };
+
+  handleClose () {
+    this.setState({ open: false });
+  };
+
   render() {
-    console.log(this.props.data)
     if(this.props.data.loading){
       return <div></div>
     } else {
@@ -112,6 +127,8 @@ class AdminTodayTable extends React.Component {
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, tableData.length - page * rowsPerPage);
 
     let subs = ['Kiera Grady', 'Ellis Hermann', 'Bert Deckow', 'Cara Botsford', 'Cara Botsford', 'Augusta Kutch'];
+
+    console.log(this.props);
 
     return (
       <Fragment>
@@ -146,6 +163,26 @@ class AdminTodayTable extends React.Component {
                           <TableCell numeric>{n.start_date}</TableCell>
                           {n.claimed ? <TableCell numeric>Claimed</TableCell> : <TableCell numeric>Unclaimed</TableCell>}
                           {n.claimed ? <TableCell numeric>{subs[Math.floor(Math.random() * 6)]}</TableCell> : <TableCell numeric></TableCell>}
+                          <TableCell numeric>
+                            <IconButton onClick={this.handleClickOpen.bind(this)} aria-label="Edit">
+                              <Edit />
+                            </IconButton>
+                            <Dialog
+                              open={this.state.open}
+                              onClose={this.handleClose.bind(this)}
+                              aria-labelledby="form-dialog-title"
+                            >
+                              <SchoolJobRequestEdit />
+                              <DialogActions>
+                                <Button onClick={this.handleClose.bind(this)} color="primary">
+                                  Cancel
+                                </Button>
+                                <Button onClick={this.handleClose.bind(this)} color="primary">
+                                  Update
+                                </Button>
+                              </DialogActions>
+                            </Dialog>
+                          </TableCell>
                         </TableRow>
                       );
                     })}
@@ -194,8 +231,9 @@ const columnData = [
   { id: 'subject', numeric: false, disablePadding: false, label: 'Subject' },
   { id: 'grade', numeric: true, disablePadding: false, label: 'Grade' },
   { id: 'start_date', numeric: true, disablePadding: false, label: 'Start Date' },
-  { id: 'claimed', numeric: true, disablePadding: false, label: 'Status' },
-  { id: 'employee', numeric: true, disablePadding: false, label: 'Substitute Teacher' },
+  { id: 'claimed', numeric: false, disablePadding: false, label: 'Status' },
+  { id: 'employee', numeric: false, disablePadding: false, label: 'Substitute Teacher' },
+  { id: 'edit', numeric: false, disablePadding: false, label: '' },
 ];
 
 class AdminTodayTableHead extends React.Component {
@@ -260,5 +298,13 @@ AdminTodayTableToolbar = withStyles(toolbarStyle)(AdminTodayTableToolbar);
 
 export default compose(
   withStyles(tableStyle),
-  graphql(GET_ALL_JOBS)
+  graphql(GET_SCHOOL_BY_USERNAME, {
+    name: 'schoolName',
+    options: () => ({
+      variables: {
+        username: (localStorage.getItem('username'))
+      }
+    })
+  }),
+  graphql(GET_ALL_JOBS),
 )(AdminTodayTable);

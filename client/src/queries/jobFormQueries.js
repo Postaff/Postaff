@@ -23,3 +23,11 @@ export const NEW_JOB = gql`
 //     }
 //   }
 // `
+
+export const GET_SCHOOL_BY_USERNAME = gql`
+  query SchoolByUsername ($username: String) {
+    schoolByUsername (username: $username) {
+      school_name
+    }
+  }
+`;
