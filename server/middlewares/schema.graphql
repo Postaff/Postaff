@@ -9,6 +9,7 @@ type Query {
   schools: [School]
   subs: [Subs]
   subById(id: ID!): Subs
+  # addClaimById(id: ID!): Subs
 }
 
 type Mutation {

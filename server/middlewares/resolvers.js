@@ -32,6 +32,8 @@ const Query = {
   subs: () => Sub.findAll(),
   // this is for sublanding page
   subById: (root, args) => Sub.findById(args.id),
+
+  // addClaimByJob: (root, args) => Job.update({where: {fk_sub: args.id}}),
 };
 
 const Mutation = {
