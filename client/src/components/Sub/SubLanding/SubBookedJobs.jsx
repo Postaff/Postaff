@@ -53,7 +53,7 @@ class SubBookedJobs extends React.Component {
     }
 
     const { claimedJobs } = this.props.data.subById;
-    console.log('HEYHEY', claimedJobs);
+    console.log('HEYHEY', this.props.data);
 
 
     const schools = ['Horace Mann', 'Elm', 'Dr. King'];

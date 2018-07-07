@@ -20,7 +20,8 @@ import AdminSchedule from './Admin/AdminSchedule/AdminSchedule';
 import AdminJob from './Job/AdminJob';
 import JobForm from './Admin/AdminForms/AdminJobRequestForm';
 import JobDetail from './Job/Detail';
-import * as actions from '../actions/indexAction.js';
+import * as actions from '../actions/indexAction';
+import SubJobDetail from './Sub/SubJobDetail/SubJobDetail';
 
 class App extends React.Component {
   constructor(props) {
@@ -53,7 +54,7 @@ class App extends React.Component {
     const { classes } = this.props;
     const log = this.state.isLoggedIn;
     const option = this.state.sasOption;
-    console.log('I am in App.jsx', this.props);
+    console.log('I am in App.jsx', option);
     return (
       <React.Fragment>
         <main>
@@ -74,6 +75,7 @@ class App extends React.Component {
                 <PrivateRoute exact path="/admin/jobs/:jobId" component={AdminJob} log={log} />
                 <PrivateRoute exact path="/school" component={SchoolLanding} log={log} />
                 <PrivateRoute exact path="/sub" component={SubLanding} log={log} />
+                <PrivateRoute exact path="/sub/:subId" component={SubJobDetail} log={log} />
                 <PrivateRoute exact path="/jobs/create" component={JobForm} log={log} />
                 <PrivateRoute exact path="/jobs/:jobId" component={JobDetail} log={log} />
               </Switch>

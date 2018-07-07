@@ -9,32 +9,32 @@ import FETCH_JOB from '../../queries/fetchJob';
 
 class AdminJob extends React.Component {
   render() {
-    console.log('am in AdminJob.jsx ',this.props);
-    let { job } = this.props.data;
-    return !this.props.data.job ? <div>{console.log(this.props.data)} loading</div> :
-    <div>
-      <Grid container spacing={24}>
-        <Grid item xs={6} sm={4}>
-          <Profile school={job.school}/>
+    console.log('am in AdminJob.jsx ', this.props);
+    const { job } = this.props.data;
+    return !this.props.data.job ? <div>{console.log(this.props.data)} loading</div>
+    : <div>
+        <Grid container spacing={24}>
+          <Grid item xs={6} sm={4}>
+            <Profile school={job.school}/>
+          </Grid>
+          <Grid item xs={12} sm={8}>
+            <Detail job={job}/>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Attachments />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Notes />
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={8}>
-          <Detail job={job}/>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Attachments />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Notes />
-        </Grid>
-      </Grid>
-    </div>
+      </div>;
   }
 }
 
 export default graphql(FETCH_JOB, {
-  options: (ownProps) => ({
+  options: ownProps => ({
     variables: {
-      id: ownProps.match.params.jobId
+      id: ownProps.match.params.jobId,
     },
-  })
+  }),
 })(AdminJob);

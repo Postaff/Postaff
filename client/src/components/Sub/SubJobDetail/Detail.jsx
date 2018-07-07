@@ -6,39 +6,38 @@ import {
   Button,
 } from '@material-ui/core';
 import { graphql, compose } from 'react-apollo';
-import APPROVE_JOB from '../../queries/approveSubJobs';
-import FETCH_JOB from '../../queries/fetchJob';
+import CLAIM_JOB from '../../../queries/claimNewJobs';
+import FETCH_JOB from '../../../queries/fetchJob';
  
 class Detail extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      approved: false,
+      claimed: false,
     };
 
-    this.adminApproveJob.bind(this);
+    this.subClaimJob = this.subClaimJob.bind(this);
   }
   
-  adminApproveJob() {
+  subClaimJob() {
     this.props.mutate({
       variables: {
         input: {
           id: this.props.job.id,
-          approved: true,
+          claimed: true,
         },
       },
     }).then(() => this.setState({
-      approved: true,
+      claimed: true,
     }));
   }
 
 
   render() {
     const { job } = this.props;
-    console.log('Am in Detail.jsx', this.props);
-    const approved = this.state.approved || job.approved;
-    
+    const claimed = this.state.claimed || job.claimed;
+    console.log('Am in Sub-Detail.jsx', claimed);
     return (
       <Paper style={{ height: '100%' }}>
         <Typography variant="title" gutterBottom>
@@ -64,10 +63,10 @@ class Detail extends React.Component {
             <Grid item xs={1}>
             </Grid>
             <Grid item xs={3}>
-              {job.claimed ? 'Claimed' : approved ? 'Approved' : 'Awaiting Approval'}
+              { job.claimed ? 'Claimed' : claimed ? 'Claimed' : 'Ready to Claim' }
             </Grid>
             <Grid item xs={3}>
-              {job.claimed ? null : <Button onClick={ () => this.adminApproveJob() }> Send to Subs </Button>}
+              {job.claimed ? null : <Button onClick={() => this.subClaimJob()}> Claim Job </Button>}
             </Grid>
           </Grid>
         </Typography>
@@ -113,5 +112,5 @@ class Detail extends React.Component {
 }
 
 export default compose(
-  graphql(APPROVE_JOB, FETCH_JOB),
+  graphql(CLAIM_JOB, FETCH_JOB),
 )(Detail);

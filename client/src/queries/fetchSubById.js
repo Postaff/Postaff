@@ -2,12 +2,13 @@ import { gql } from 'apollo-boost';
 
 export default gql`
 query  {
-    subById (id: "1"){
+    subById (id: "6"){
       id
       name
       phone
       email
       jobAvailable {
+        id
         subject
         grade
         start_time
@@ -15,7 +16,7 @@ query  {
         start_date
         end_date
       }
-      jobsCompleted (id: "1") {
+      jobsCompleted (id: "6") {
         subject
         start_date
         end_date
@@ -23,7 +24,7 @@ query  {
         end_time
         grade
       }
-      claimedJobs(id: "1") {
+      claimedJobs(id: "6") {
         id
         description
         subject

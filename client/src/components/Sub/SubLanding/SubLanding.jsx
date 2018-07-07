@@ -34,11 +34,11 @@ class SubLanding extends React.Component {
     return (
       <Fragment>
         <div className={classes.root}>
-          <Grid container spacing={24}>
-            <Grid item xs={8}>
+          <Grid container spacing={8} >
+            <Grid item xs={4} >
               <SubProfile />
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={8} >
               <Paper style={{
                 width: '100%',
                 overflowX: 'auto',
@@ -47,10 +47,10 @@ class SubLanding extends React.Component {
                 <SubBookedJobs />
               </Paper>
             </Grid>
-            <Grid>
+            <Grid item xs={4} >
               <SubOpenJobs />
             </Grid>
-            <Grid>
+            <Grid item xs={8} >
               <SubPreviousJobs />
             </Grid>
           </Grid>

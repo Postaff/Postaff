@@ -17,7 +17,7 @@ class SubProfile extends React.Component {
       return <div></div>;
     }
     return (
-      <Paper style={{ width: '40%' }}>
+      <Paper style={{ width: '100%' }}>
         <center><img src={'https://www.sheffield.ac.uk/polopoly_fs/1.473214!/image/Childrenlying.jpg'} alt="School Image" style={{
           borderRadius: '50%', maxHeight: '60%', maxWidth: '80%', objectFit: 'cover',
         }}/></center>

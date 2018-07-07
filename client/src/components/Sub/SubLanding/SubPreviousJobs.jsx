@@ -14,6 +14,7 @@ import GET_ALL_SUBBYID from '../../../queries/fetchSubById';
 export const toolbarStyle = theme => ({
   root: {
     paddingRight: theme.spacing.unit,
+    width: '100%',
   },
   highlight:
     theme.palette.type === 'light'
@@ -38,8 +39,8 @@ export const toolbarStyle = theme => ({
 
 export const tableStyle = theme => ({
   root: {
-    width: '88%',
-    marginTop: theme.spacing.unit * 3,
+    width: '100%%',
+    marginTop: '18px',
   },
   table: {
     width: '100%',

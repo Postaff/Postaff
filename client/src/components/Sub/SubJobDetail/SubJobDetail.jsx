@@ -1,23 +1,40 @@
 import React from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { graphql, compose } from 'react-apollo';
+import Grid from '@material-ui/core/Grid';
+import Profile from '../../Job/Profile.jsx';
+import Detail from './Detail.jsx';
+import Attachments from '../../Job/Attachments.jsx';
+import Notes from '../../Job/Notes.jsx';
+import FETCH_JOB from '../../../queries/fetchJob';
 
-class LoginLanding extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
+class SubJobDetail extends React.Component {
   render() {
-    console.log('Hey am in login landing page');
-    return (
-      <div>
-        <ul>
-          <li><Link to="/admin">Admin Log in</Link></li>
-          <li><Link to="/school">School Log in</Link></li>
-          <li><Link to="/sub">Sub Log in</Link></li>
-        </ul>
-      </div>
-    );
+    console.log('am in SubJobDetail.jsx ', this.props);
+    const { job } = this.props.data;
+    return !this.props.data.job ? <div>{console.log(this.props.data)} loading</div>
+      : <div>
+        <Grid container spacing={24}>
+          <Grid item xs={6} sm={4}>
+            <Profile school={job.school}/>
+          </Grid>
+          <Grid item xs={12} sm={8}>
+            <Detail job={job}/>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Attachments />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Notes />
+          </Grid>
+        </Grid>
+      </div>;
   }
 }
 
-export default LoginLanding;
+export default graphql(FETCH_JOB, {
+  options: ownProps => ({
+    variables: {
+      id: ownProps.match.params.subId,
+    },
+  }),
+})(SubJobDetail);
