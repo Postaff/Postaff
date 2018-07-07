@@ -22,7 +22,7 @@
     "enterprise"
   ],
   "author": "ainslie-hsu, anotherFeng, H-London, mayankpatel202",
-  "license": "MIT",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/Postaff/Postaff/issues"
   },
@@ -50,8 +50,10 @@
     "lodash": "^4.17.10",
     "material-ui-rating": "^2.0.0",
     "moment": "^2.22.2",
+    "moment-business": "^3.0.1",
     "morgan": "^1.9.0",
     "mysql2": "^1.5.3",
+    "nodemailer": "^4.6.7",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
@@ -59,6 +61,7 @@
     "react-apollo": "^2.1.6",
     "react-chartjs-2": "^2.7.2",
     "react-dom": "^16.4.1",
+    "react-moment": "^0.7.9",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",
