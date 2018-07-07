@@ -13,7 +13,7 @@ router.route('/users/signup')
   .post(AuthCtrl.signup);
 
 router.route('/users/generate')
-  .get(GenData.initAccounts);
+  .get(GenData.initDB);
 
 router.route('/jobs/sms/:subId')
   .post()
