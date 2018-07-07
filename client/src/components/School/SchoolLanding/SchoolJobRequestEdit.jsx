@@ -16,6 +16,7 @@ import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
 import {
   GET_ALL_SCHOOLS,
+
   NEW_JOB,
 } from '../../../queries/jobFormQueries.js';
 
@@ -83,6 +84,7 @@ class AdminJobRequestForm extends React.Component {
       return <div></div>;
     }
     const { classes } = this.props;
+    console.log(this.props.data);
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <form>
@@ -91,26 +93,15 @@ class AdminJobRequestForm extends React.Component {
                               <DialogContent>
               <Grid item xs={12}>
                 <TextField
-                  select
+                  disabled
                   label="School Name"
                   className={classes.textField}
                   margin="normal"
-                  onChange={this.handleChange.bind(this)}
-                  value={this.state.school}
+                  value="PLACEHOLDER SCHOOL"
                   name="school"
-                  SelectProps={{
-                    MenuProps: {
-                      className: classes.menu,
-                    },
-                  }}
-                  helperText="Please select the school"
                   style={{ width: '90%' }}
+
                 >
-                  {this.props.data.schools.map(school => (
-                    <MenuItem key={school.id} value={school.school_name}>
-                      {school.school_name}
-                    </MenuItem>
-                  ))}
                 </TextField>
               </Grid>
               <Grid item xs={12}>
@@ -289,5 +280,6 @@ const styles = theme => ({
 export default compose(
   graphql(NEW_JOB),
   graphql(GET_ALL_SCHOOLS),
+
   withStyles(styles),
 )(AdminJobRequestForm);
