@@ -23,3 +23,11 @@ export const NEW_JOB = gql`
 //     }
 //   }
 // `
+
+export const GET_SCHOOL_BY_USERNAME = gql`
+  query {
+    schoolByUsername (username: String!) {
+      school_name
+    }
+  }
+`;
