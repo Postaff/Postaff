@@ -298,12 +298,13 @@ AdminTodayTableToolbar = withStyles(toolbarStyle)(AdminTodayTableToolbar);
 
 export default compose(
   withStyles(tableStyle),
-  graphql(GET_ALL_JOBS, {name: 'allJobs'}),
   graphql(GET_SCHOOL_BY_USERNAME, {
+    name: 'schoolName',
     options: () => ({
       variables: {
         username: (localStorage.getItem('username'))
       }
     })
   }),
+  graphql(GET_ALL_JOBS),
 )(AdminTodayTable);
