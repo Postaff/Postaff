@@ -119,6 +119,7 @@ class NavBar extends Component {
                   <ListItemText primary="Create Job"/>
                 </ListItem>
               </Link>
+              <Divider />
             </List>
             : <div></div>}
           {this.props.isLoggedIn && this.props.option === 'school'
@@ -139,6 +140,7 @@ class NavBar extends Component {
                   <ListItemText primary="Request Job"/>
                 </ListItem>
               </Link>
+              <Divider />
             </List>
             : <div></div>}
           {this.props.isLoggedIn && this.props.option === 'sub'
@@ -151,9 +153,9 @@ class NavBar extends Component {
                   <ListItemText primary="Dashboard"/>
                 </ListItem>
               </Link>
+              <Divider />
             </List>
             : <div></div>}
-          <Divider/>
         </List>
       </div>
     );
