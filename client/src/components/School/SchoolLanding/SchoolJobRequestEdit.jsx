@@ -2,14 +2,14 @@ import React from 'react';
 import FileUpload from '@material-ui/icons/FileUpload';
 import {
   Button,
-  DialogContent,
-  DialogTitle,
   FormControl,
   Grid,
   InputLabel,
   MenuItem,
+  Paper,
   Select,
   TextField,
+  Typography,
   withStyles,
 } from '@material-ui/core';
 import gql from 'graphql-tag';
@@ -79,28 +79,38 @@ class AdminJobRequestForm extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
-
     if(this.props.data.loading) {
       return <div></div>;
     }
-
+    const { classes } = this.props;
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <form>
           <Grid container spacing={8}>
-          <DialogTitle id="form-dialog-title">Edit Job Request</DialogTitle>
-            <DialogContent>
+            <Paper className={classes.paper}>
               <Grid item xs={12}>
+                <Typography variant="display1">Job Request Form</Typography>
                 <TextField
-                  disabled
+                  select
                   label="School Name"
                   className={classes.textField}
                   margin="normal"
-                  value="PLACEHOLDER SCHOOL"
+                  onChange={this.handleChange.bind(this)}
+                  value={this.state.school}
                   name="school"
+                  SelectProps={{
+                    MenuProps: {
+                      className: classes.menu,
+                    },
+                  }}
+                  helperText="Please select the school"
                   style={{ width: '90%' }}
                 >
+                  {this.props.data.schools.map(school => (
+                    <MenuItem key={school.id} value={school.school_name}>
+                      {school.school_name}
+                    </MenuItem>
+                  ))}
                 </TextField>
               </Grid>
               <Grid item xs={12}>
@@ -231,7 +241,12 @@ class AdminJobRequestForm extends React.Component {
                   </Button>
                 </label>
               </Grid>
-            </DialogContent>
+              <Grid item xs={12}>
+                <Button variant="contained" color="primary" className={classes.button} onClick={this.submitForm.bind(this)}>
+                Submit
+                </Button>
+              </Grid>
+            </Paper>
           </Grid>
         </form>
       </div>

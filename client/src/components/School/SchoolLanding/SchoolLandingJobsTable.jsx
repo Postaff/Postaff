@@ -68,7 +68,6 @@ class AdminTodayTable extends React.Component {
       data: [],
       page: 0,
       rowsPerPage: 10,
-      open: false,
     };
     this.handleRequestSort = this.handleRequestSort.bind(this);
     this.handleChangePage = this.handleChangePage.bind(this);
@@ -106,29 +105,19 @@ class AdminTodayTable extends React.Component {
     this.setState({ rowsPerPage: event.target.value });
   };
 
-  handleClickOpen () {
-    this.setState({ open: true });
-  };
-
-  handleClose () {
-    this.setState({ open: false });
-  };
-
   render() {
-    if(this.props.data.loading){
+    if(this.props.data.loading || this.props.schoolName.loading){
       return <div></div>
     } else {
     let tableData = [];
     _.each(this.props.data.jobs, (job)=>{
-      tableData.push(createData(job.subject, job.grade, job.start_date, job.claimed))
+      tableData.push(createData(job.id, job.subject, job.grade, job.start_date, job.claimed))
     })
     const { classes } = this.props;
     const { order, orderBy, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, tableData.length - page * rowsPerPage);
 
     let subs = ['Kiera Grady', 'Ellis Hermann', 'Bert Deckow', 'Cara Botsford', 'Cara Botsford', 'Augusta Kutch'];
-
-    console.log(this.props);
 
     return (
       <Fragment>
@@ -156,32 +145,17 @@ class AdminTodayTable extends React.Component {
                           tabIndex={-1}
                           key={n.id}
                         >
-                          <TableCell component="th" scope="row">
-                            <Link to={{pathname:'/admin/jobs', state:{sub: n.subject, grade: n.grade}}}>{n.subject}</Link>
-                          </TableCell>
+                          <TableCell component="th" scope="row"></TableCell>
                           <TableCell numeric>{n.grade}</TableCell>
                           <TableCell numeric>{n.start_date}</TableCell>
                           {n.claimed ? <TableCell numeric>Claimed</TableCell> : <TableCell numeric>Unclaimed</TableCell>}
                           {n.claimed ? <TableCell numeric>{subs[Math.floor(Math.random() * 6)]}</TableCell> : <TableCell numeric></TableCell>}
                           <TableCell numeric>
-                            <IconButton onClick={this.handleClickOpen.bind(this)} aria-label="Edit">
-                              <Edit />
-                            </IconButton>
-                            <Dialog
-                              open={this.state.open}
-                              onClose={this.handleClose.bind(this)}
-                              aria-labelledby="form-dialog-title"
-                            >
-                              <SchoolJobRequestEdit />
-                              <DialogActions>
-                                <Button onClick={this.handleClose.bind(this)} color="primary">
-                                  Cancel
-                                </Button>
-                                <Button onClick={this.handleClose.bind(this)} color="primary">
-                                  Update
-                                </Button>
-                              </DialogActions>
-                            </Dialog>
+                            <Link to={{pathname:`/school/job/edit/${n.id}`, state:{sub: n.subject, grade: n.grade}}} job={n}>
+                              <IconButton aria-label="Edit">
+                                <Edit />
+                              </IconButton>
+                            </Link>
                           </TableCell>
                         </TableRow>
                       );
@@ -215,10 +189,8 @@ class AdminTodayTable extends React.Component {
   }
 }
 
-let counter = 0;
-function createData(subject, grade, start_date, claimed, employee) {
-  counter += 1;
-  return { id: counter, subject, grade, start_date, claimed, employee };
+function createData(id, subject, grade, start_date, claimed, employee) {
+  return { id, subject, grade, start_date, claimed, employee };
 }
 
 function getSorting(order, orderBy) {
