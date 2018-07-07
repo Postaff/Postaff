@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Typography,
   Paper,
@@ -33,7 +34,7 @@ class SubOpenJobs extends React.Component {
       );
     }
     const AvailableJobs = this.props.data.subById.jobAvailable;
-    console.log('this is the sub open jobs', AvailableJobs);
+    console.log('this is the sub open jobs', this.props);
     return (
       <div className={classes.root}>
         <Paper>
@@ -41,7 +42,7 @@ class SubOpenJobs extends React.Component {
           {AvailableJobs.map((jobs, idx) => (
             <ExpansionPanel key={idx}>
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography className={classes.heading}>{jobs.subject}</Typography>
+                <Typography className={classes.heading}><Link to={`/sub/${jobs.id}`}>{jobs.subject}</Link></Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <Typography >

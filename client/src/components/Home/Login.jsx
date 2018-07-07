@@ -117,7 +117,7 @@ class Login extends React.Component {
   onSubmit(event) {
     this.props.login(this.state.user, () => {
       this.props.onLogin(this.state.role);
-      this.handleClose();
+      // this.handleClose();
     });
   }
 
@@ -161,6 +161,7 @@ class Login extends React.Component {
   render(props) {
     console.log('This is LoginComponent', this.props);
     const { handleSubmit } = this.props;
+    let count = 0;
 
     const { classes } = this.props;
 
@@ -217,7 +218,7 @@ class Login extends React.Component {
                   </Button>
                 </div></span>}
               action={[
-                <Tooltip id="tooltip-icon" title="Cancel">
+                <Tooltip key={++count} id="tooltip-icon" title="Cancel">
                   <IconButton
                     key="close"
                     aria-label="Close"

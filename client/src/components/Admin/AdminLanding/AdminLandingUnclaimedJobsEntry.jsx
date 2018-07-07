@@ -8,11 +8,12 @@ import {
 
 class AdminLandingUnclaimedJobsEntry extends React.Component {
   render() {
+
     const { id, subject, start_date } = this.props.job;
     return (
       <TableRow>
         <TableCell>
-          <Link to={'/jobs/id'}>{subject}</Link>
+          <Link to={`admin/jobs/${id}`}>{subject}</Link>
         </TableCell>
         <TableCell>{moment(start_date).fromNow()}</TableCell>
       </TableRow>
