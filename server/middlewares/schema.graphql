@@ -13,6 +13,7 @@ type Query {
 
 type Mutation {
   createJob(input: CreateJobInput): Job
+  approveJob(input: ApproveJob) : Job
 }
 
 # Here we're creating a query DataType for Job
@@ -71,4 +72,9 @@ input CreateJobInput {
   startTime: String
   endTime: String
   additionalInformation: String
+}
+
+input ApproveJob {
+  id: ID!
+  approved: Boolean
 }

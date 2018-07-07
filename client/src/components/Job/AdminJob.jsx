@@ -9,7 +9,7 @@ import FETCH_JOB from '../../queries/fetchJob';
 
 class AdminJob extends React.Component {
   render() {
-    console.log
+    console.log('am in AdminJob.jsx ',this.props);
     let { job } = this.props.data;
     return !this.props.data.job ? <div>{console.log(this.props.data)} loading</div> :
     <div>

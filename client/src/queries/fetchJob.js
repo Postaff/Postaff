@@ -3,6 +3,7 @@ import { gql } from 'apollo-boost';
 export default gql`
   query FetchJob($id: ID!) {
     job(id: $id){
+      id
       description
       claimed
       approved

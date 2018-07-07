@@ -137,7 +137,7 @@ class AdminTodayTable extends React.Component {
                       key={n.id}
                     >
                       <TableCell component="th" scope="row">
-                      {console.log(n.subject, n.id)}
+                      {console.log(n)}
                         <Link to={{ pathname: `/admin/jobs/${n.id}`, state: { job: n } }}>{n.subject}</Link>
                       </TableCell>
                       <TableCell numeric></TableCell>
