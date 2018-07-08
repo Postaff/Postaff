@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import FileUpload from '@material-ui/icons/FileUpload';
 import {
   Button,
@@ -24,14 +25,14 @@ class AdminJobRequestForm extends React.Component {
     super(props);
 
     this.state = {
-      school: '',
-      subject: '',
-      grade: '',
-      jobDescription: '',
-      startDate: '',
-      startTime: '',
-      endDate: '',
-      endTime: '',
+      school: this.props.location.state.schoolName,
+      subject: this.props.location.state.subject,
+      grade: this.props.location.state.grade,
+      jobDescription: this.props.location.state.description,
+      startDate: this.props.location.state.startDate,
+      startTime: this.props.location.state.startTime,
+      endDate: this.props.location.state.endDate,
+      endTime: this.props.location.state.endTime,
       additionalInformation: '',
     };
   }
@@ -40,49 +41,46 @@ class AdminJobRequestForm extends React.Component {
     this.setState({
       [event.target.name]: event.target.value,
     });
-    console.log(this.state);
   }
 
   submitForm(event) {
-    const {
-      school, subject, grade, jobDescription, startDate,
-      startTime, endDate, endTime, additionalInformation,
-    } = this.state;
-    this.props.mutate({
-      variables: {
-        input: {
-          schoolId: '1',
-          school,
-          subject,
-          grade,
-          jobDescription,
-          startDate,
-          endDate,
-          startTime,
-          endTime,
-          additionalInformation,
-        },
-      },
-    });
+    // const {
+    //   school, subject, grade, jobDescription, startDate,
+    //   startTime, endDate, endTime, additionalInformation,
+    // } = this.state;
+    // this.props.mutate({
+    //   variables: {
+    //     input: {
+    //       schoolId: '1',
+    //       school,
+    //       subject,
+    //       grade,
+    //       jobDescription,
+    //       startDate,
+    //       endDate,
+    //       startTime,
+    //       endTime,
+    //       additionalInformation,
+    //     },
+    //   },
+    // });
 
-    this.setState({
-      school: '',
-      subject: '',
-      grade: '',
-      jobDescription: '',
-      startDate: '',
-      startTime: '',
-      endDate: '',
-      endTime: '',
-      additionalInformation: '',
-    });
+    // this.setState({
+    //   school: '',
+    //   subject: '',
+    //   grade: '',
+    //   jobDescription: '',
+    //   startDate: '',
+    //   startTime: '',
+    //   endDate: '',
+    //   endTime: '',
+    //   additionalInformation: '',
+    // });
   }
 
   render() {
-    if(this.props.data.loading) {
-      return <div></div>;
-    }
     const { classes } = this.props;
+
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <form>
@@ -91,26 +89,16 @@ class AdminJobRequestForm extends React.Component {
               <Grid item xs={12}>
                 <Typography variant="display1">Job Request Form</Typography>
                 <TextField
-                  select
+                  InputProps={{
+                    readOnly: true,
+                  }}
                   label="School Name"
                   className={classes.textField}
                   margin="normal"
-                  onChange={this.handleChange.bind(this)}
                   value={this.state.school}
                   name="school"
-                  SelectProps={{
-                    MenuProps: {
-                      className: classes.menu,
-                    },
-                  }}
-                  helperText="Please select the school"
                   style={{ width: '90%' }}
                 >
-                  {this.props.data.schools.map(school => (
-                    <MenuItem key={school.id} value={school.school_name}>
-                      {school.school_name}
-                    </MenuItem>
-                  ))}
                 </TextField>
               </Grid>
               <Grid item xs={12}>
@@ -174,14 +162,7 @@ class AdminJobRequestForm extends React.Component {
                 />
                 <TextField
                   label="Start Time"
-                  type="time"
                   className={classes.textField}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  inputProps={{
-                    step: 300, // 5 min
-                  }}
                   name="startTime"
                   value={this.state.startTime}
                   onChange={this.handleChange.bind(this)}
@@ -201,14 +182,7 @@ class AdminJobRequestForm extends React.Component {
                 />
                 <TextField
                   label="End Time"
-                  type="time"
                   className={classes.textField}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  inputProps={{
-                    step: 300, // 5 min
-                  }}
                   name="endTime"
                   value={this.state.endTime}
                   onChange={this.handleChange.bind(this)}
@@ -242,9 +216,16 @@ class AdminJobRequestForm extends React.Component {
                 </label>
               </Grid>
               <Grid item xs={12}>
-                <Button variant="contained" color="primary" className={classes.button} onClick={this.submitForm.bind(this)}>
-                Submit
-                </Button>
+                <Link to={{pathname: '/school'}}>
+                  <Button variant="contained" color="primary" className={classes.button}>
+                  Cancel
+                  </Button>
+                </Link>
+                <Link to={{pathname: '/school'}}>
+                  <Button variant="contained" color="primary" className={classes.button} onClick={this.submitForm.bind(this)}>
+                  Update
+                  </Button>
+                </Link>
               </Grid>
             </Paper>
           </Grid>

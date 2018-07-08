@@ -11,10 +11,6 @@ import _ from 'lodash';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import IconButton from '@material-ui/core/IconButton';
 import Edit from '@material-ui/icons/Edit';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import SchoolJobRequestEdit from './SchoolJobRequestEdit.jsx';
 
 export const toolbarStyle = theme => ({
   root: {
@@ -111,7 +107,7 @@ class AdminTodayTable extends React.Component {
     } else {
     let tableData = [];
     _.each(this.props.data.jobs, (job)=>{
-      tableData.push(createData(job.id, job.subject, job.grade, job.start_date, job.claimed))
+      tableData.push(createData(job.id, job.subject, job.grade, job.start_date, job.claimed, job.description, job.start_time, job.end_date, job.end_time))
     })
     const { classes } = this.props;
     const { order, orderBy, rowsPerPage, page } = this.state;
@@ -145,13 +141,26 @@ class AdminTodayTable extends React.Component {
                           tabIndex={-1}
                           key={n.id}
                         >
-                          <TableCell component="th" scope="row"></TableCell>
+                          <TableCell component="th" scope="row">{n.subject}</TableCell>
                           <TableCell numeric>{n.grade}</TableCell>
                           <TableCell numeric>{n.start_date}</TableCell>
                           {n.claimed ? <TableCell numeric>Claimed</TableCell> : <TableCell numeric>Unclaimed</TableCell>}
                           {n.claimed ? <TableCell numeric>{subs[Math.floor(Math.random() * 6)]}</TableCell> : <TableCell numeric></TableCell>}
                           <TableCell numeric>
-                            <Link to={{pathname:`/school/job/edit/${n.id}`, state:{sub: n.subject, grade: n.grade}}} job={n}>
+                            <Link to={{
+                              pathname:`/school/job/edit/${n.id}`,
+                              state: {
+                                schoolName: this.props.schoolName.schoolByUsername.school_name,
+                                subject: n.subject,
+                                grade: n.grade,
+                                description: n.description,
+                                startDate: n.start_date,
+                                startTime: n.start_time,
+                                endDate: n.end_date,
+                                endTime: n.end_time,
+                                additionalInformation: '',
+                              },
+                            }}>
                               <IconButton aria-label="Edit">
                                 <Edit />
                               </IconButton>
@@ -189,8 +198,8 @@ class AdminTodayTable extends React.Component {
   }
 }
 
-function createData(id, subject, grade, start_date, claimed, employee) {
-  return { id, subject, grade, start_date, claimed, employee };
+function createData(id, subject, grade, start_date, claimed, description, start_time, end_date, end_time) {
+  return { id, subject, grade, start_date, claimed, description, start_time, end_date, end_time };
 }
 
 function getSorting(order, orderBy) {

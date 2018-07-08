@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 import SchoolLandingSubHistory from './SchoolLandingSubHistory.jsx';
@@ -19,12 +19,13 @@ const styles = theme => ({
 class SchoolLanding extends React.Component {
   render() {
     return (
-      <Fragment>
+      <div style={{ marginLeft: '2.5%', paddingLeft: '2.5%' }}>
         <Grid container spacing={24}>
-
+          <SchoolLandingSubHistory />
+          <SchoolLandingCharts />
           <SchoolLandingJobsTable />
         </Grid>
-      </Fragment>
+      </div>
     );
   }
 }
