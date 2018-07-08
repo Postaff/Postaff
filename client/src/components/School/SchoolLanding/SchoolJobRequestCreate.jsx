@@ -38,12 +38,6 @@ class SchoolJobRequestCreate extends React.Component {
     };
   }
 
-  fetchSchoolName(schoolName) {
-    this.setState({
-      school: schoolName,
-    });
-  }
-
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
@@ -108,7 +102,7 @@ class SchoolJobRequestCreate extends React.Component {
                   label="School Name"
                   className={classes.textField}
                   margin="normal"
-                  value={this.props.schoolName.schoolByUsername.school_name}
+                  value={this.state.school}
                   name="school"
                   style={{ width: '90%' }}
                 >
