@@ -18,7 +18,6 @@ import {
   Paper,
   Select,
   TextField,
-  Typography,
   withStyles,
 } from '@material-ui/core';
 import gql from 'graphql-tag';
@@ -27,6 +26,7 @@ import {
   GET_ALL_SCHOOLS,
   EDIT_JOB,
 } from '../../../queries/jobFormQueries.js';
+import SchoolNameFormField from './SchoolNameFormField';
 
 class SchoolJobRequestEdit extends React.Component {
   constructor(props) {
@@ -156,6 +156,7 @@ class SchoolJobRequestEdit extends React.Component {
         <form>
           <Grid container spacing={8}>
             <Paper className={classes.paper}>
+<<<<<<< HEAD
               <Grid item xs={12}>
                 <Typography variant="display1">Job Request Form</Typography>
                 <TextField
@@ -175,6 +176,9 @@ class SchoolJobRequestEdit extends React.Component {
                 >
                 </TextField>
               </Grid>
+=======
+              <SchoolNameFormField schoolName={this.state.school} />
+>>>>>>> Create separate school name form field component
               <Grid item xs={12}>
                 <TextField
                   label="Subject"

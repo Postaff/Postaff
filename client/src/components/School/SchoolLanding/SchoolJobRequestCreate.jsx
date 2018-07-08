@@ -10,7 +10,6 @@ import {
   Paper,
   Select,
   TextField,
-  Typography,
   withStyles,
 } from '@material-ui/core';
 import gql from 'graphql-tag';
@@ -19,6 +18,7 @@ import {
   GET_ALL_SCHOOLS,
   NEW_JOB,
 } from '../../../queries/jobFormQueries.js';
+import SchoolNameFormField from './SchoolNameFormField'
 
 class SchoolJobRequestCreate extends React.Component {
   constructor(props) {
@@ -88,6 +88,7 @@ class SchoolJobRequestCreate extends React.Component {
         <form>
           <Grid container spacing={8}>
             <Paper className={classes.paper}>
+<<<<<<< HEAD
               <Grid item xs={12}>
                 <Typography variant="display1">Job Request Form</Typography>
                 <TextField
@@ -112,8 +113,12 @@ class SchoolJobRequestCreate extends React.Component {
                 >
                 </TextField>
               </Grid>
+=======
+              <SchoolNameFormField />
+>>>>>>> Create separate school name form field component
               <Grid item xs={12}>
                 <TextField
+                  required
                   label="Subject"
                   className={classes.textField}
                   margin="normal"
@@ -123,7 +128,7 @@ class SchoolJobRequestCreate extends React.Component {
                   style={{ width: '65%' }}
                 />
                 <FormControl className={classes.formControl} style={{ width: '23%', textAlign: 'left' }}>
-                  <InputLabel>Grade</InputLabel>
+                  <InputLabel required>Grade</InputLabel>
                   <Select
                     name="grade"
                     value={this.state.grade}
@@ -148,6 +153,7 @@ class SchoolJobRequestCreate extends React.Component {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  required
                   label="Job Description"
                   className={classes.textField}
                   type="jobDescription"
@@ -160,6 +166,7 @@ class SchoolJobRequestCreate extends React.Component {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  required
                   label="Start Date"
                   type="date"
                   className={classes.textField}
@@ -172,6 +179,7 @@ class SchoolJobRequestCreate extends React.Component {
                   style={{ width: '28.5%' }}
                 />
                 <TextField
+                  required
                   label="Start Time"
                   className={classes.textField}
                   name="startTime"
@@ -180,6 +188,7 @@ class SchoolJobRequestCreate extends React.Component {
                   style={{ width: '13%' }}
                 />
                 <TextField
+                  required
                   label="End Date"
                   type="date"
                   className={classes.textField}
@@ -192,6 +201,7 @@ class SchoolJobRequestCreate extends React.Component {
                   style={{ width: '28%' }}
                 />
                 <TextField
+                  required
                   label="End Time"
                   className={classes.textField}
                   name="endTime"
