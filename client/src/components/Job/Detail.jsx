@@ -63,11 +63,9 @@ class Detail extends React.Component {
             </Grid>
             <Grid item xs={1}>
             </Grid>
-            <Grid item xs={3}>
-              {job.claimed ? 'Claimed' : approved ? 'Approved' : 'Awaiting Approval'}
-            </Grid>
-            <Grid item xs={3}>
-              {job.claimed ? null : <Button onClick={ () => this.adminApproveJob() }> Send to Subs </Button>}
+            <Grid item xs={8}>
+              {job.claimed ? 'Claimed' : approved ? 'Approved' : 'Awaiting Approval'} 
+              {job.claimed ? null : <Button onClick={ () => this.adminApproveJob() } style={{ marginLeft:'20px', backgroundColor:'#6200ea', color:'white' }}> Send to Subs </Button>}
             </Grid>
           </Grid>
         </Typography>

@@ -20,19 +20,15 @@ const Query = {
     ],
   }),
 
-  job: (root, { id }) => {
-    return Job.findById(id)
-      .then(foundJob => Job.findOne({
-        where: { id: foundJob.id },
-        include: [{
-          model: School, where: { id: foundJob.fk_school },
-        }],
-      }));
-  },
+  job: (root, { id }) => Job.findById(id)
+    .then(foundJob => Job.findOne({
+      where: { id: foundJob.id },
+      include: [{
+        model: School, where: { id: foundJob.fk_school },
+      }],
+    })),
 
-  jobsBySchool: (root, { id }) => {
-    return Job.findAll({ where: {fk_school: id}})
-  },
+  jobsBySchool: (root, { id }) => Job.findAll({ where: { fk_school: id } }),
 
   schools: () => School.findAll(),
 
@@ -44,10 +40,8 @@ const Query = {
   schoolById: (root, args) => School.findById(args.id),
 
   // returns school name with username for school job request form
-  schoolByUsername: (root, args) => {
-    return User.findOne({where: {username: args.username}})
-    .then(user => {return School.findById(user.fk_school)})
-  }
+  schoolByUsername: (root, args) => User.findOne({ where: { username: args.username } })
+    .then(user => School.findById(user.fk_school)),
 };
 
 const Mutation = {
@@ -82,13 +76,13 @@ const Mutation = {
   },
 
   // This is for changing approved field to 'true' when admin approves job
-  approveJob: (root, args) => { Job.update({ approved: args.input.approved }, { where: { id: args.input.id } })},
-  claimJob: (root, args) => { console.log('resolver', args); Job.update({ claimed: args.input.claimed, fk_sub: args.input.fk_sub }, { where: { id: args.input.id } })},
+  approveJob: (root, args) => { Job.update({ approved: args.input.approved }, { where: { id: args.input.id } }); },
+  claimJob: (root, args) => { console.log('resolver', args); Job.update({ claimed: args.input.claimed, fk_sub: args.input.fk_sub }, { where: { id: args.input.id } }); },
 };
 
 // this is for sublanding page
 const Subs = {
-  jobAvailable: () => Job.findAll({ where: { approved: true, claimed: false } , order: [['updatedAt', 'DESC']] }),
+  jobAvailable: () => Job.findAll({ where: { approved: true, claimed: false }, order: [['updatedAt', 'DESC']] }),
   jobsCompleted: (sub, args) => Job.findAll({ where: { fk_sub: args.id, completed: true } }),
   claimedJobs: (sub, args) => Job.findAll({ where: { fk_sub: args.id, claimed: true } }),
 };

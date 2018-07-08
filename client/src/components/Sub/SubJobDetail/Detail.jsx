@@ -62,11 +62,9 @@ class Detail extends React.Component {
             </Grid>
             <Grid item xs={1}>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={8}>
               { job.claimed ? 'Claimed' : claimed ? 'Claimed' : 'Ready to Claim' }
-            </Grid>
-            <Grid item xs={3}>
-              {job.claimed ? null : <Button onClick={() => this.subClaimJob()}> Claim Job </Button>}
+              {job.claimed || claimed ? null : <Button onClick={() => this.subClaimJob()} style={{ marginLeft:'20px', backgroundColor:'#6200ea', color:'white' }}> Claim Job </Button>}
             </Grid>
           </Grid>
         </Typography>
