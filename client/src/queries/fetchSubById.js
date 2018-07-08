@@ -15,8 +15,9 @@ query  SubById ($id: ID!){
         end_time
         start_date
         end_date
+        updatedAt
       }
-      jobsCompleted (id: "6") {
+      jobsCompleted (id: $id) {
         subject
         start_date
         end_date

@@ -3,8 +3,12 @@ import { Link } from 'react-router-dom';
 import {
   Typography,
   Paper,
-  Grid,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
 } from '@material-ui/core';
+import moment from 'moment';
 import { withStyles } from '@material-ui/core/styles';
 import { graphql, compose } from 'react-apollo';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -18,7 +22,7 @@ const styles = theme => ({
     width: '100%',
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15),
+    fontSize: theme.typography.pxToRem(8),
     fontWeight: theme.typography.fontWeightRegular,
   },
 });
@@ -42,7 +46,18 @@ class SubOpenJobs extends React.Component {
           {AvailableJobs.map((jobs, idx) => (
             <ExpansionPanel key={idx}>
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography className={classes.heading}><Link to={`/sub/${jobs.id}`}>{jobs.subject}</Link></Typography>
+                <Table>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>
+                        <Link to={`/sub/${jobs.id}`}>{jobs.subject}</Link>
+                      </TableCell>
+                      <TableCell >
+                        {moment(jobs.updatedAt).fromNow()}
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <Typography >
