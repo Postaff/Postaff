@@ -7,10 +7,9 @@ import {
   Paper,
   TableCell,
 } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 import { graphql } from 'react-apollo';
-import GET_ALL_SUBS from '../../../queries/fetchAllSubs';
-
+import SubsTable from '../../Shared/SubsTable';
+import { GET_ALL_SUBS } from '../../../queries/fetchAllSubs';
 
 class AdminSubsSummary extends React.Component {
   constructor(props) {
@@ -20,43 +19,10 @@ class AdminSubsSummary extends React.Component {
   render() {
     console.log('Am in AdminSubSummary', this.props.data);
 
-    if(!this.props.data.loading) {
-      return (
-        <div>
-          <Paper style={{
-            width: '100%',
-            marginTop: 50,
-            overflowX: 'auto',
-          }}>
-            <Table style={{ minWidth: 700 }}>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Sub Name</TableCell>
-                  <TableCell numeric>Phone Number</TableCell>
-                  <TableCell numeric>Email</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {this.props.data.subs.map(n => (
-                  <TableRow key={n.id}>
-                    <TableCell component="th" scope="row">
-                      <Link to={`/admin/subs/${n.name}`}>{n.name}</Link>
-                    </TableCell>
-                    <TableCell numeric>{n.phone}</TableCell>
-                    <TableCell numeric>{n.email}</TableCell>
-
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </Paper>
-        </div>
-      );
-    } return (
-      <div>
-          Loading
-      </div>
-    );
+    return this.props.data.loading ? <div>loading</div> :
+    <SubsTable subs={this.props.data.subs}>
+      
+    </SubsTable>
   }
 }
 
