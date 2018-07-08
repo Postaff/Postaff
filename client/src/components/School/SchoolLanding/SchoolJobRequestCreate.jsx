@@ -1,4 +1,5 @@
 import React from 'react';
+import {	withRouter } from 'react-router-dom';
 import FileUpload from '@material-ui/icons/FileUpload';
 import {
   Button,
@@ -76,6 +77,8 @@ class AdminJobRequestForm extends React.Component {
       endTime: '',
       additionalInformation: '',
     });
+
+    this.props.history.push('/school');
   }
 
   render() {
@@ -84,7 +87,7 @@ class AdminJobRequestForm extends React.Component {
     }
     const { classes } = this.props;
     return (
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' , marginTop: '2.5%', paddingTop: '2.5%'}}>
         <form>
           <Grid container spacing={8}>
             <Paper className={classes.paper}>
@@ -104,7 +107,7 @@ class AdminJobRequestForm extends React.Component {
                     },
                   }}
                   helperText="Please select the school"
-                  style={{ width: '90%' }}
+                  style={{ width: '90%', textAlign: 'left' }}
                 >
                   {this.props.data.schools.map(school => (
                     <MenuItem key={school.id} value={school.school_name}>
@@ -123,7 +126,7 @@ class AdminJobRequestForm extends React.Component {
                   onChange={this.handleChange.bind(this)}
                   style={{ width: '65%' }}
                 />
-                <FormControl className={classes.formControl} style={{ width: '23%' }}>
+                <FormControl className={classes.formControl} style={{ width: '23%', textAlign: 'left' }}>
                   <InputLabel>Grade</InputLabel>
                   <Select
                     name="grade"
@@ -174,14 +177,7 @@ class AdminJobRequestForm extends React.Component {
                 />
                 <TextField
                   label="Start Time"
-                  type="time"
                   className={classes.textField}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  inputProps={{
-                    step: 300, // 5 min
-                  }}
                   name="startTime"
                   value={this.state.startTime}
                   onChange={this.handleChange.bind(this)}
@@ -201,14 +197,7 @@ class AdminJobRequestForm extends React.Component {
                 />
                 <TextField
                   label="End Time"
-                  type="time"
                   className={classes.textField}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  inputProps={{
-                    step: 300, // 5 min
-                  }}
                   name="endTime"
                   value={this.state.endTime}
                   onChange={this.handleChange.bind(this)}

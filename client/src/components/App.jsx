@@ -8,6 +8,7 @@ import {
 import HomeLanding from './Home/HomeLanding';
 import Login from './Home/Login';
 import SchoolLanding from './School/SchoolLanding/SchoolLanding';
+import SchoolJobRequestCreate from './School/SchoolLanding/SchoolJobRequestCreate';
 import SchoolJobRequestEdit from './School/SchoolLanding/SchoolJobRequestEdit';
 import SubLanding from './Sub/SubLanding/SubLanding';
 import AdminLanding from './Admin/AdminLanding/AdminLanding';
@@ -76,6 +77,7 @@ class App extends React.Component {
                 <PrivateRoute exact path="/admin/subs/:subName" component={AdminSubsDetail} log={log} />
                 <PrivateRoute exact path="/admin/jobs/:jobId" component={AdminJob} log={log} />
                 <PrivateRoute exact path="/school" component={SchoolLanding} log={log} />
+                <PrivateRoute exact path="/school/job/create" component={SchoolJobRequestCreate} log={log} />
                 <PrivateRoute exact path="/school/job/edit/:jobId" component={SchoolJobRequestEdit} log={log} />
                 <PrivateRoute exact path="/sub" component={SubLanding} log={log} />
                 <PrivateRoute exact path="/sub/:subId" component={SubJobDetail} log={log} />

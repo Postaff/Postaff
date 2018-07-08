@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import FileUpload from '@material-ui/icons/FileUpload';
 import {
   Button,
@@ -44,45 +44,47 @@ class AdminJobRequestForm extends React.Component {
   }
 
   submitForm(event) {
-    // const {
-    //   school, subject, grade, jobDescription, startDate,
-    //   startTime, endDate, endTime, additionalInformation,
-    // } = this.state;
-    // this.props.mutate({
-    //   variables: {
-    //     input: {
-    //       schoolId: '1',
-    //       school,
-    //       subject,
-    //       grade,
-    //       jobDescription,
-    //       startDate,
-    //       endDate,
-    //       startTime,
-    //       endTime,
-    //       additionalInformation,
-    //     },
-    //   },
-    // });
+    const {
+      school, subject, grade, jobDescription, startDate,
+      startTime, endDate, endTime, additionalInformation,
+    } = this.state;
+    this.props.mutate({
+      variables: {
+        input: {
+          schoolId: '1',
+          school,
+          subject,
+          grade,
+          jobDescription,
+          startDate,
+          endDate,
+          startTime,
+          endTime,
+          additionalInformation,
+        },
+      },
+    });
 
-    // this.setState({
-    //   school: '',
-    //   subject: '',
-    //   grade: '',
-    //   jobDescription: '',
-    //   startDate: '',
-    //   startTime: '',
-    //   endDate: '',
-    //   endTime: '',
-    //   additionalInformation: '',
-    // });
+    this.setState({
+      school: '',
+      subject: '',
+      grade: '',
+      jobDescription: '',
+      startDate: '',
+      startTime: '',
+      endDate: '',
+      endTime: '',
+      additionalInformation: '',
+    });
+
+    this.props.history.push('/school');
   }
 
   render() {
     const { classes } = this.props;
 
     return (
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' , marginTop: '2.5%', paddingTop: '2.5%'}}>
         <form>
           <Grid container spacing={8}>
             <Paper className={classes.paper}>
@@ -221,11 +223,9 @@ class AdminJobRequestForm extends React.Component {
                   Cancel
                   </Button>
                 </Link>
-                <Link to={{pathname: '/school'}}>
-                  <Button variant="contained" color="primary" className={classes.button} onClick={this.submitForm.bind(this)}>
-                  Update
-                  </Button>
-                </Link>
+                <Button variant="contained" color="primary" className={classes.button} onClick={this.submitForm.bind(this)}>
+                Update
+                </Button>
               </Grid>
             </Paper>
           </Grid>
