@@ -6,7 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import { graphql, compose } from 'react-apollo';
-import GET_ALL_SUBBYID from '../../../queries/fetchSubById';
+import GET_ALL_JOB_BY_SUB from '../../../queries/fetchSubById';
 
 function TabContainer(props) {
   return (
@@ -54,10 +54,19 @@ class SubBookedJobs extends React.Component {
 
     const { claimedJobs } = this.props.data.subById;
     console.log('HEYHEY', this.props.data);
-
-
-    const schools = ['Horace Mann', 'Elm', 'Dr. King'];
-    const items = [1, 2, 3];
+    if(claimedJobs.length === 0) {
+      return (
+        <div className={classes.root}>
+        BOOKED JOBS
+          <AppBar position="static">
+            <Tabs value={value} onChange={this.handleChange}>
+              <Tab label="No Booked Jobs">
+              </Tab>
+            </Tabs>
+          </AppBar>
+        </div>
+      );
+    }
 
     return (
       <div className={classes.root}>
@@ -83,4 +92,10 @@ class SubBookedJobs extends React.Component {
 SubBookedJobs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-export default compose(withStyles(styles), graphql(GET_ALL_SUBBYID))(SubBookedJobs);
+export default compose(withStyles(styles), graphql(GET_ALL_JOB_BY_SUB, {
+  options: () => ({
+    variables: {
+      id: localStorage.getItem('subId'),
+    },
+  }),
+}))(SubBookedJobs);

@@ -57,4 +57,10 @@ class SubOpenJobs extends React.Component {
   }
 }
 
-export default compose(withStyles(styles), graphql(GET_ALL_SUBBYID))(SubOpenJobs);
+export default compose(withStyles(styles), graphql(GET_ALL_SUBBYID, {
+  options: () => ({
+    variables: {
+      id: localStorage.getItem('subId'),
+    },
+  }),
+}))(SubOpenJobs);

@@ -1,8 +1,8 @@
 import { gql } from 'apollo-boost';
 
 export default gql`
-query  {
-    subById (id: "6"){
+query  SubById ($id: ID!){
+    subById (id: $id){
       id
       name
       phone
@@ -24,7 +24,7 @@ query  {
         end_time
         grade
       }
-      claimedJobs(id: "6") {
+      claimedJobs(id: $id) {
         id
         description
         subject

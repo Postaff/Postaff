@@ -30,13 +30,15 @@ const styles = theme => ({
 
 class SubLanding extends React.Component {
   render() {
+    const subId = localStorage.getItem('subId');
+    console.log('SubLanding Page');
     const { classes } = this.props;
     return (
       <Fragment>
         <div className={classes.root}>
           <Grid container spacing={8} >
             <Grid item xs={4} >
-              <SubProfile />
+              <SubProfile subId={ subId }/>
             </Grid>
             <Grid item xs={8} >
               <Paper style={{
@@ -44,14 +46,14 @@ class SubLanding extends React.Component {
                 overflowX: 'auto',
                 marginTop: '50px',
               }}>
-                <SubBookedJobs />
+                <SubBookedJobs subId={ subId } />
               </Paper>
             </Grid>
             <Grid item xs={4} >
-              <SubOpenJobs />
+              <SubOpenJobs subId={ subId }/>
             </Grid>
             <Grid item xs={8} >
-              <SubPreviousJobs />
+              <SubPreviousJobs subId={ subId }/>
             </Grid>
           </Grid>
         </div>

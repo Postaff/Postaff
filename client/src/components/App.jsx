@@ -43,6 +43,7 @@ class App extends React.Component {
   }
 
   handleLogin(role) {
+    console.log('handlelogin/App.jsx', localStorage.getItem('subId'));
     this.setState({
       isLoggedIn: !!localStorage.getItem('token'),
       sasOption: localStorage.getItem('role'),
@@ -59,7 +60,7 @@ class App extends React.Component {
       <React.Fragment>
         <main>
           <div className={classes.toolbar} />
-          <BrowserRouter>
+          <BrowserRouter forceRefresh={true}>
             <div className={classes.content}>
               <NavBar username={this.state.username} isLoggedIn={log} option={option} clickLogout={this.clickLogout.bind(this)} onLogin={this.handleLogin.bind(this)}/>
               {/* <div className={classes.content} style={{ marginTop: '6vh' }}> */}
