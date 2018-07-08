@@ -70,9 +70,9 @@ class SubBookedJobs extends React.Component {
 
     return (
       <div className={classes.root}>
-      BOOKED JOBS
+        <h3> Booked Jobs </h3>
         <AppBar position="static">
-          <Tabs value={value} onChange={this.handleChange}>
+          <Tabs value={value} onChange={this.handleChange} scrollable scrollButtons="auto">
             {claimedJobs.map(job => (
               <Tab key={job.id} label={job.subject}>
                 {job.subject}
@@ -81,7 +81,19 @@ class SubBookedJobs extends React.Component {
           </Tabs>
         </AppBar>
 
-        { value === this.state.value && <TabContainer>{claimedJobs[this.state.value].description}</TabContainer>}
+        { value === this.state.value
+          && <TabContainer>
+            <Typography>
+              Description:- {claimedJobs[this.state.value].description}
+            </Typography>
+            <Typography>
+              Subject:- {claimedJobs[this.state.value].subject}
+            </Typography>
+            <Typography>
+              Grade:- {claimedJobs[this.state.value].grade}
+            </Typography>
+          </TabContainer>
+        }
 
 
       </div>

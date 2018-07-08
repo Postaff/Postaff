@@ -44,7 +44,7 @@ class SubLanding extends React.Component {
               <Paper style={{
                 width: '100%',
                 overflowX: 'auto',
-                marginTop: '50px',
+                marginTop: '1px',
               }}>
                 <SubBookedJobs subId={ subId } />
               </Paper>

@@ -20,7 +20,7 @@ export default gql`
         address_state
         address_zipcode
         contact_name
-        main_phone
+        phone
       }
     }
   }

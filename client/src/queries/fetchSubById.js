@@ -7,6 +7,7 @@ query  SubById ($id: ID!){
       name
       phone
       email
+      photo_url
       jobAvailable {
         id
         subject
