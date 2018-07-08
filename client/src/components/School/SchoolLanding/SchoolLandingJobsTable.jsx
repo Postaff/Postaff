@@ -6,6 +6,7 @@ TableSortLabel, Toolbar, Typography, Paper, Tooltip, Grid} from '@material-ui/co
 import { Link } from 'react-router-dom';
 import {graphql, compose, Query} from 'react-apollo';
 import GET_ALL_JOBS from '../../../queries/fetchAllJobs.js';
+import { GET_SCHOOL_BY_USERNAME } from '../../../queries/jobFormQueries';
 import _ from 'lodash';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import IconButton from '@material-ui/core/IconButton';
@@ -101,7 +102,7 @@ class SchoolLandingJobsTable extends React.Component {
   };
 
   render() {
-    if (this.props.data.loading) {
+    if(this.props.data.loading || this.props.schoolName.loading){
       return <div></div>
     } else {
     let tableData = [];
@@ -149,6 +150,7 @@ class SchoolLandingJobsTable extends React.Component {
                             <Link to={{
                               pathname:`/school/job/edit/${n.id}`,
                               state: {
+                                schoolName: this.props.schoolName.schoolByUsername.school_name,
                                 subject: n.subject,
                                 grade: n.grade,
                                 description: n.description,
@@ -277,5 +279,13 @@ AdminTodayTableToolbar = withStyles(toolbarStyle)(AdminTodayTableToolbar);
 
 export default compose(
   withStyles(tableStyle),
+  graphql(GET_SCHOOL_BY_USERNAME, {
+    name: 'schoolName',
+    options: () => ({
+      variables: {
+        username: (localStorage.getItem('username'))
+      }
+    })
+  }),
   graphql(GET_ALL_JOBS),
 )(SchoolLandingJobsTable);

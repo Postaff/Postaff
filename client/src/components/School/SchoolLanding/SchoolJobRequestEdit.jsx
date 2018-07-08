@@ -10,6 +10,7 @@ import {
   Paper,
   Select,
   TextField,
+  Typography,
   withStyles,
 } from '@material-ui/core';
 import gql from 'graphql-tag';
@@ -18,7 +19,6 @@ import {
   GET_ALL_SCHOOLS,
   NEW_JOB,
 } from '../../../queries/jobFormQueries.js';
-import SchoolNameFormField from './SchoolNameFormField';
 
 class SchoolJobRequestEdit extends React.Component {
   constructor(props) {
@@ -88,7 +88,21 @@ class SchoolJobRequestEdit extends React.Component {
         <form>
           <Grid container spacing={8}>
             <Paper className={classes.paper}>
-              <SchoolNameFormField schoolName={this.state.school} />
+              <Grid item xs={12}>
+                <Typography variant="display1">Job Request Form</Typography>
+                <TextField
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                  label="School Name"
+                  className={classes.textField}
+                  margin="normal"
+                  value={this.state.school}
+                  name="school"
+                  style={{ width: '90%' }}
+                >
+                </TextField>
+              </Grid>
               <Grid item xs={12}>
                 <TextField
                   label="Subject"
@@ -99,7 +113,7 @@ class SchoolJobRequestEdit extends React.Component {
                   onChange={this.handleChange.bind(this)}
                   style={{ width: '65%' }}
                 />
-                <FormControl className={classes.formControl} style={{ width: '23%', textAlign: 'left' }}>
+                <FormControl className={classes.formControl} style={{ width: '23%' }}>
                   <InputLabel>Grade</InputLabel>
                   <Select
                     name="grade"
@@ -187,7 +201,7 @@ class SchoolJobRequestEdit extends React.Component {
                   name="additionalInformation"
                   value={this.state.additionalInformation}
                   onChange={this.handleChange.bind(this)}
-                  style={{ width: '71%' }}
+                  style={{ width: '68.5%' }}
                 />
                 <input
                   accept="image/*"

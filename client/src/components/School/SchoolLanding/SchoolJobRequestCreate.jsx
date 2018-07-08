@@ -10,6 +10,7 @@ import {
   Paper,
   Select,
   TextField,
+  Typography,
   withStyles,
 } from '@material-ui/core';
 import gql from 'graphql-tag';
@@ -18,7 +19,7 @@ import {
   GET_ALL_SCHOOLS,
   NEW_JOB,
 } from '../../../queries/jobFormQueries.js';
-import SchoolNameFormField from './SchoolNameFormField'
+import { GET_SCHOOL_BY_USERNAME } from '../../../queries/jobFormQueries';
 
 class SchoolJobRequestCreate extends React.Component {
   constructor(props) {
@@ -37,11 +38,16 @@ class SchoolJobRequestCreate extends React.Component {
     };
   }
 
+  fetchSchoolName(schoolName) {
+    this.setState({
+      school: schoolName,
+    });
+  }
+
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
     });
-    console.log(this.state);
   }
 
   submitForm(event) {
@@ -82,16 +88,32 @@ class SchoolJobRequestCreate extends React.Component {
   }
 
   render() {
-    if(this.props.data.loading) {
+    if (this.props.data.loading || this.props.schoolName.loading) {
       return <div></div>;
     }
+
     const { classes } = this.props;
+
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' , marginTop: '2.5%', paddingTop: '2.5%'}}>
         <form>
           <Grid container spacing={8}>
             <Paper className={classes.paper}>
-              <SchoolNameFormField />
+              <Grid item xs={12}>
+                <Typography variant="display1">Job Request Form</Typography>
+                <TextField
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                  label="School Name"
+                  className={classes.textField}
+                  margin="normal"
+                  value={this.props.schoolName.schoolByUsername.school_name}
+                  name="school"
+                  style={{ width: '90%' }}
+                >
+                </TextField>
+               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
@@ -263,7 +285,15 @@ const styles = theme => ({
 });
 
 export default compose(
+  withStyles(styles),
   graphql(NEW_JOB),
   graphql(GET_ALL_SCHOOLS),
-  withStyles(styles),
+  graphql(GET_SCHOOL_BY_USERNAME, {
+    name: 'schoolName',
+    options: () => ({
+      variables: {
+        username: (localStorage.getItem('username'))
+      }
+    })
+  }),
 )(SchoolJobRequestCreate);
