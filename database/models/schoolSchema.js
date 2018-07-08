@@ -16,7 +16,6 @@ const School = db.sequelize.define('school', {
   completed_jobs: db.sequelize.Sequelize.INTEGER,
   unclaimed_jobs: db.sequelize.Sequelize.INTEGER,
   rating: db.sequelize.Sequelize.INTEGER,
-  notes: db.sequelize.Sequelize.TEXT,
 });
 
 School.sync();

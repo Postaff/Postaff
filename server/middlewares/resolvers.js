@@ -19,9 +19,9 @@ const Query = {
       ['start_date', 'ASC'],
     ],
   }),
-  job: (root, args) => {
-    console.log('job');
-    return Job.findById(args.id)
+
+  job: (root, { id }) => {
+    return Job.findById(id)
       .then(foundJob => Job.findOne({
         where: { id: foundJob.id },
         include: [{
@@ -29,7 +29,13 @@ const Query = {
         }],
       }));
   },
+
+  jobsBySchool: (root, { id }) => {
+    return Job.findAll({ where: {fk_school: id}})
+  },
+
   schools: () => School.findAll(),
+
   subs: () => Sub.findAll(),
   // this is for sublanding page
   subById: (root, args) => Sub.findById(args.id),

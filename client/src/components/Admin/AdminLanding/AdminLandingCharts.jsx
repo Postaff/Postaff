@@ -7,11 +7,6 @@ import {
 } from '@material-ui/core';
 import { Doughnut } from 'react-chartjs-2';
 
-// console.log(props);
-
-// let claimed = { this.props.claimed };
-
-
 class AdminLandingCharts extends React.Component {
   render() {
     const claimed = this.props.claimed;

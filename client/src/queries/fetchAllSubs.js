@@ -1,12 +1,14 @@
 import { gql } from 'apollo-boost';
 
-export default gql`
+export const GET_ALL_SUBS = gql`
   query {
     subs {
       id
       name
+      photo_url
       phone
       email
+      address_state
     }
   }
 `;

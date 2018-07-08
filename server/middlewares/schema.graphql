@@ -6,10 +6,10 @@
 type Query {
   job(id: ID!): Job
   jobs: [Job]
+  jobsBySchool(id: ID!): [Job]
   schools: [School]
   subs: [Subs]
   subById(id: ID!): Subs
-  # addClaimById(id: ID!): Subs
   schoolById(id: ID!): School
   schoolByUsername(username: String): School
 }
@@ -45,19 +45,32 @@ type Job {
 type School{
   id: ID!
   school_name: String
+  school_img: String
   address_street: String
   address_city: String
   address_state: String
   address_zipcode: String
   contact_name: String
-  main_phone: String
+  contact_title: String
+  contact_email: String
+  phone: String
+  phone_ext: String
 }
 
 type Subs{
   id: ID!
   name: String
+  photo_url: String
   phone: String
   email: String
+  address_street: String
+  address_city: String
+  address_state: String
+  address_zipcode: String
+  work_eligibility: Boolean
+  permitted: Boolean
+  permitted_exp_date: Boolean
+  special_ed: Boolean
   jobAvailable: [Job]
   jobsCompleted(id:ID!): [Job]
   claimedJobs(id:ID!): [Job]

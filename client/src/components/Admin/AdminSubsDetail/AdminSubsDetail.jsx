@@ -1,6 +1,6 @@
 import React from 'react';
 
-class AdminSubsDetail extends React.Component {
+class AdminSubsSummaryDetail extends React.Component {
   render() {
     console.log('this is in subdetails page', this.props);
     return (
@@ -11,4 +11,4 @@ class AdminSubsDetail extends React.Component {
   }
 }
 
-export default AdminSubsDetail;
+export default AdminSubsSummaryDetail;

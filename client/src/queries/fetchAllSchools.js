@@ -5,8 +5,14 @@ export default gql`
     schools {
       id
       school_name
-      contact_name
-      main_phone
+      school_img
+      address_street
+      address_city
+      address_state
+      address_zipcode
+      contact_email
+      phone
+      phone_ext
     }
   }
 `;
