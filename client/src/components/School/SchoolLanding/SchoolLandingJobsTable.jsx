@@ -6,6 +6,7 @@ TableSortLabel, Toolbar, Typography, Paper, Tooltip, Grid} from '@material-ui/co
 import { Link } from 'react-router-dom';
 import {graphql, compose, Query} from 'react-apollo';
 import GET_ALL_JOBS from '../../../queries/fetchAllJobs.js';
+import { GET_SCHOOL_BY_USERNAME } from '../../../queries/jobFormQueries';
 import _ from 'lodash';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import IconButton from '@material-ui/core/IconButton';
@@ -102,10 +103,14 @@ class SchoolLandingJobsTable extends React.Component {
 
   render() {
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (this.props.data.loading || this.props.schoolName.loading) {
 =======
     if (this.props.data.loading) {
 >>>>>>> Create separate school name form field component
+=======
+    if(this.props.data.loading || this.props.schoolName.loading){
+>>>>>>> Remove school name component
       return <div></div>
     } else {
     let tableData = [];
@@ -155,12 +160,16 @@ class SchoolLandingJobsTable extends React.Component {
                               state: {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 schoolId: n.id,
 =======
 >>>>>>> Update edit form function to populate with existing data
                                 schoolName: this.props.schoolName.schoolByUsername.school_name,
 =======
 >>>>>>> Create separate school name form field component
+=======
+                                schoolName: this.props.schoolName.schoolByUsername.school_name,
+>>>>>>> Remove school name component
                                 subject: n.subject,
                                 grade: n.grade,
                                 description: n.description,
@@ -289,5 +298,13 @@ AdminTodayTableToolbar = withStyles(toolbarStyle)(AdminTodayTableToolbar);
 
 export default compose(
   withStyles(tableStyle),
+  graphql(GET_SCHOOL_BY_USERNAME, {
+    name: 'schoolName',
+    options: () => ({
+      variables: {
+        username: (localStorage.getItem('username'))
+      }
+    })
+  }),
   graphql(GET_ALL_JOBS),
 )(SchoolLandingJobsTable);

@@ -18,6 +18,7 @@ import {
   Paper,
   Select,
   TextField,
+  Typography,
   withStyles,
 } from '@material-ui/core';
 import gql from 'graphql-tag';
@@ -26,7 +27,6 @@ import {
   GET_ALL_SCHOOLS,
   EDIT_JOB,
 } from '../../../queries/jobFormQueries.js';
-import SchoolNameFormField from './SchoolNameFormField';
 
 class SchoolJobRequestEdit extends React.Component {
   constructor(props) {
@@ -157,6 +157,9 @@ class SchoolJobRequestEdit extends React.Component {
           <Grid container spacing={8}>
             <Paper className={classes.paper}>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Remove school name component
               <Grid item xs={12}>
                 <Typography variant="display1">Job Request Form</Typography>
                 <TextField
@@ -169,6 +172,7 @@ class SchoolJobRequestEdit extends React.Component {
                   value={this.state.school}
                   name="school"
 <<<<<<< HEAD
+<<<<<<< HEAD
                   style={{ width: '90%', textAlign: 'left' }}
 =======
                   style={{ width: '90%' }}
@@ -179,6 +183,12 @@ class SchoolJobRequestEdit extends React.Component {
 =======
               <SchoolNameFormField schoolName={this.state.school} />
 >>>>>>> Create separate school name form field component
+=======
+                  style={{ width: '90%' }}
+                >
+                </TextField>
+              </Grid>
+>>>>>>> Remove school name component
               <Grid item xs={12}>
                 <TextField
                   label="Subject"
@@ -189,7 +199,7 @@ class SchoolJobRequestEdit extends React.Component {
                   onChange={this.handleChange.bind(this)}
                   style={{ width: '65%' }}
                 />
-                <FormControl className={classes.formControl} style={{ width: '23%', textAlign: 'left' }}>
+                <FormControl className={classes.formControl} style={{ width: '23%' }}>
                   <InputLabel>Grade</InputLabel>
                   <Select
                     name="grade"
@@ -277,7 +287,7 @@ class SchoolJobRequestEdit extends React.Component {
                   name="additionalInformation"
                   value={this.state.additionalInformation}
                   onChange={this.handleChange.bind(this)}
-                  style={{ width: '71%' }}
+                  style={{ width: '68.5%' }}
                 />
                 <input
                   accept="image/*"

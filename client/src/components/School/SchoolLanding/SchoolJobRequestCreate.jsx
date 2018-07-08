@@ -10,6 +10,7 @@ import {
   Paper,
   Select,
   TextField,
+  Typography,
   withStyles,
 } from '@material-ui/core';
 import gql from 'graphql-tag';
@@ -18,7 +19,7 @@ import {
   GET_ALL_SCHOOLS,
   NEW_JOB,
 } from '../../../queries/jobFormQueries.js';
-import SchoolNameFormField from './SchoolNameFormField'
+import { GET_SCHOOL_BY_USERNAME } from '../../../queries/jobFormQueries';
 
 class SchoolJobRequestCreate extends React.Component {
   constructor(props) {
@@ -35,6 +36,12 @@ class SchoolJobRequestCreate extends React.Component {
       endTime: '',
       additionalInformation: '',
     };
+  }
+
+  fetchSchoolName(schoolName) {
+    this.setState({
+      school: schoolName,
+    });
   }
 
   handleChange(event) {
@@ -81,6 +88,13 @@ class SchoolJobRequestCreate extends React.Component {
   }
 
   render() {
+<<<<<<< HEAD
+=======
+    if (this.props.data.loading || this.props.schoolName.loading) {
+      return <div></div>;
+    }
+
+>>>>>>> Remove school name component
     const { classes } = this.props;
 
     return (
@@ -89,6 +103,9 @@ class SchoolJobRequestCreate extends React.Component {
           <Grid container spacing={8}>
             <Paper className={classes.paper}>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Remove school name component
               <Grid item xs={12}>
                 <Typography variant="display1">Job Request Form</Typography>
                 <TextField
@@ -98,6 +115,7 @@ class SchoolJobRequestCreate extends React.Component {
                   label="School Name"
                   className={classes.textField}
                   margin="normal"
+<<<<<<< HEAD
                   value={this.state.school}
                   name="school"
 <<<<<<< HEAD
@@ -116,6 +134,14 @@ class SchoolJobRequestCreate extends React.Component {
 =======
               <SchoolNameFormField />
 >>>>>>> Create separate school name form field component
+=======
+                  value={this.props.schoolName.schoolByUsername.school_name}
+                  name="school"
+                  style={{ width: '90%' }}
+                >
+                </TextField>
+               </Grid>
+>>>>>>> Remove school name component
               <Grid item xs={12}>
                 <TextField
                   required
@@ -287,7 +313,15 @@ const styles = theme => ({
 });
 
 export default compose(
+  withStyles(styles),
   graphql(NEW_JOB),
   graphql(GET_ALL_SCHOOLS),
-  withStyles(styles),
+  graphql(GET_SCHOOL_BY_USERNAME, {
+    name: 'schoolName',
+    options: () => ({
+      variables: {
+        username: (localStorage.getItem('username'))
+      }
+    })
+  }),
 )(SchoolJobRequestCreate);
