@@ -1,9 +1,13 @@
 import React from 'react';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { Link, withRouter } from 'react-router-dom';
 =======
 import { Link } from 'react-router-dom';
 >>>>>>> Update edit form function to populate with existing data
+=======
+import { Link, withRouter } from 'react-router-dom';
+>>>>>>> Return user to dashboard once form is submitted
 import FileUpload from '@material-ui/icons/FileUpload';
 import {
   Button,
@@ -53,6 +57,7 @@ class SchoolJobRequestEdit extends React.Component {
 
   submitForm(event) {
 <<<<<<< HEAD
+<<<<<<< HEAD
     const {
       schoolId, subject, grade, jobDescription, startDate,
       startTime, endDate, endTime, additionalInformation,
@@ -62,6 +67,17 @@ class SchoolJobRequestEdit extends React.Component {
       variables: {
         input: {
           schoolId,
+=======
+    const {
+      school, subject, grade, jobDescription, startDate,
+      startTime, endDate, endTime, additionalInformation,
+    } = this.state;
+    this.props.mutate({
+      variables: {
+        input: {
+          schoolId: '1',
+          school,
+>>>>>>> Return user to dashboard once form is submitted
           subject,
           grade,
           jobDescription,
@@ -85,6 +101,7 @@ class SchoolJobRequestEdit extends React.Component {
       endTime: '',
       additionalInformation: '',
     });
+<<<<<<< HEAD
 
     this.props.history.push('/school');
 =======
@@ -121,6 +138,10 @@ class SchoolJobRequestEdit extends React.Component {
     //   additionalInformation: '',
     // });
 >>>>>>> Update edit form function to populate with existing data
+=======
+
+    this.props.history.push('/school');
+>>>>>>> Return user to dashboard once form is submitted
   }
 
   render() {
@@ -275,6 +296,7 @@ class SchoolJobRequestEdit extends React.Component {
                   </Button>
                 </Link>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <Button variant="contained" color="primary" className={classes.button} onClick={this.submitForm.bind(this)}>
                 Update
                 </Button>
@@ -285,6 +307,11 @@ class SchoolJobRequestEdit extends React.Component {
                   </Button>
                 </Link>
 >>>>>>> Update edit form function to populate with existing data
+=======
+                <Button variant="contained" color="primary" className={classes.button} onClick={this.submitForm.bind(this)}>
+                Update
+                </Button>
+>>>>>>> Return user to dashboard once form is submitted
               </Grid>
             </Paper>
           </Grid>

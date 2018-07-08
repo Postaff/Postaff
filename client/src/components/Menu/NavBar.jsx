@@ -134,12 +134,16 @@ class NavBar extends Component {
                   <ListItemText primary="Dashboard"/>
                 </ListItem>
               </Link>
+<<<<<<< HEAD
               <Link to={{
                 pathname: '/school/job/create',
                 state: {
                   schoolName: this.props.data.schoolByUsername.school_name,
                 }
               }}>
+=======
+              <Link to={'/school/job/create'}>
+>>>>>>> Return user to dashboard once form is submitted
                 <ListItem button>
                   <ListItemIcon>
                     <Create/>

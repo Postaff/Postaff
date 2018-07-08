@@ -99,6 +99,15 @@ class SchoolJobRequestCreate extends React.Component {
                   margin="normal"
                   value={this.state.school}
                   name="school"
+<<<<<<< HEAD
+=======
+                  SelectProps={{
+                    MenuProps: {
+                      className: classes.menu,
+                    },
+                  }}
+                  helperText="Please select the school"
+>>>>>>> Return user to dashboard once form is submitted
                   style={{ width: '90%', textAlign: 'left' }}
                 >
                 </TextField>
