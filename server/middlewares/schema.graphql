@@ -39,6 +39,7 @@ type Job {
   end_date: String
   approved: Boolean
   fk_sub: String
+  updatedAt: String
   school: School
 }
 
