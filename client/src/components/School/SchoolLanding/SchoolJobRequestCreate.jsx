@@ -38,12 +38,6 @@ class SchoolJobRequestCreate extends React.Component {
     };
   }
 
-  fetchSchoolName(schoolName) {
-    this.setState({
-      school: schoolName,
-    });
-  }
-
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
@@ -116,6 +110,7 @@ class SchoolJobRequestCreate extends React.Component {
                   className={classes.textField}
                   margin="normal"
 <<<<<<< HEAD
+<<<<<<< HEAD
                   value={this.state.school}
                   name="school"
 <<<<<<< HEAD
@@ -136,6 +131,9 @@ class SchoolJobRequestCreate extends React.Component {
 >>>>>>> Create separate school name form field component
 =======
                   value={this.props.schoolName.schoolByUsername.school_name}
+=======
+                  value={this.state.school}
+>>>>>>> Revert changes in new job request form
                   name="school"
                   style={{ width: '90%' }}
                 >
