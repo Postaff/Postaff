@@ -1,5 +1,9 @@
 import React from 'react';
+<<<<<<< HEAD
 import { Link, withRouter } from 'react-router-dom';
+=======
+import { Link } from 'react-router-dom';
+>>>>>>> Update edit form function to populate with existing data
 import FileUpload from '@material-ui/icons/FileUpload';
 import {
   Button,
@@ -25,7 +29,10 @@ class SchoolJobRequestEdit extends React.Component {
     super(props);
 
     this.state = {
+<<<<<<< HEAD
       schoolId: this.props.location.state.schoolId,
+=======
+>>>>>>> Update edit form function to populate with existing data
       school: this.props.location.state.schoolName,
       subject: this.props.location.state.subject,
       grade: this.props.location.state.grade,
@@ -45,6 +52,7 @@ class SchoolJobRequestEdit extends React.Component {
   }
 
   submitForm(event) {
+<<<<<<< HEAD
     const {
       schoolId, subject, grade, jobDescription, startDate,
       startTime, endDate, endTime, additionalInformation,
@@ -79,11 +87,49 @@ class SchoolJobRequestEdit extends React.Component {
     });
 
     this.props.history.push('/school');
+=======
+    // const {
+    //   school, subject, grade, jobDescription, startDate,
+    //   startTime, endDate, endTime, additionalInformation,
+    // } = this.state;
+    // this.props.mutate({
+    //   variables: {
+    //     input: {
+    //       schoolId: '1',
+    //       school,
+    //       subject,
+    //       grade,
+    //       jobDescription,
+    //       startDate,
+    //       endDate,
+    //       startTime,
+    //       endTime,
+    //       additionalInformation,
+    //     },
+    //   },
+    // });
+
+    // this.setState({
+    //   school: '',
+    //   subject: '',
+    //   grade: '',
+    //   jobDescription: '',
+    //   startDate: '',
+    //   startTime: '',
+    //   endDate: '',
+    //   endTime: '',
+    //   additionalInformation: '',
+    // });
+>>>>>>> Update edit form function to populate with existing data
   }
 
   render() {
     const { classes } = this.props;
+<<<<<<< HEAD
     console.log(this.props.mutate)
+=======
+
+>>>>>>> Update edit form function to populate with existing data
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' , marginTop: '2.5%', paddingTop: '2.5%'}}>
         <form>
@@ -100,7 +146,11 @@ class SchoolJobRequestEdit extends React.Component {
                   margin="normal"
                   value={this.state.school}
                   name="school"
+<<<<<<< HEAD
                   style={{ width: '90%', textAlign: 'left' }}
+=======
+                  style={{ width: '90%' }}
+>>>>>>> Update edit form function to populate with existing data
                 >
                 </TextField>
               </Grid>
@@ -224,9 +274,17 @@ class SchoolJobRequestEdit extends React.Component {
                   Cancel
                   </Button>
                 </Link>
+<<<<<<< HEAD
                 <Button variant="contained" color="primary" className={classes.button} onClick={this.submitForm.bind(this)}>
                 Update
                 </Button>
+=======
+                <Link to={{pathname: '/school'}}>
+                  <Button variant="contained" color="primary" className={classes.button} onClick={this.submitForm.bind(this)}>
+                  Update
+                  </Button>
+                </Link>
+>>>>>>> Update edit form function to populate with existing data
               </Grid>
             </Paper>
           </Grid>

@@ -21,7 +21,11 @@ class SchoolLanding extends React.Component {
     return (
       <div style={{ marginLeft: '2.5%', paddingLeft: '2.5%' }}>
         <Grid container spacing={24}>
+<<<<<<< HEAD
           <SchoolLandingSchoolProfile />
+=======
+          <SchoolLandingSubHistory />
+>>>>>>> Update edit form function to populate with existing data
           <SchoolLandingCharts />
           <SchoolLandingJobsTable />
         </Grid>

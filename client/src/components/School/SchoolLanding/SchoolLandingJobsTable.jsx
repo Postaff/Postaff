@@ -150,7 +150,10 @@ class SchoolLandingJobsTable extends React.Component {
                             <Link to={{
                               pathname:`/school/job/edit/${n.id}`,
                               state: {
+<<<<<<< HEAD
                                 schoolId: n.id,
+=======
+>>>>>>> Update edit form function to populate with existing data
                                 schoolName: this.props.schoolName.schoolByUsername.school_name,
                                 subject: n.subject,
                                 grade: n.grade,
