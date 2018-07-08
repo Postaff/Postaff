@@ -29,6 +29,9 @@ const theme = createMuiTheme({
       root: { // Name of the rule
         backgroundColor: grey[50],
       },
+      action: {
+        paddingLeft: '1vw',
+      },
     },
   },
   SnackbarContent: {
@@ -48,7 +51,7 @@ const theme = createMuiTheme({
   },
   messageId: {
     backgroundColor: grey[50],
-    margin: '2%',
+    margin: '2vw',
     maxWidth: 500,
   },
   wrapper: {
@@ -57,20 +60,20 @@ const theme = createMuiTheme({
   paper: {
     zIndex: 1,
     position: 'relative',
-    margin: '2%',
+    margin: '2vw',
   },
   container: {
     display: 'flex',
     flexWrap: 'wrap',
   },
   textField: {
-    marginLeft: '2%',
-    marginRight: '2%',
+    paddingLeft: '2vw',
+    paddingRight: '2vw',
     width: 200,
   },
   close: {
-    width: '2%' * 4,
-    height: '2%' * 4,
+    width: '2%' * 3,
+    height: '2%' * 3,
   },
   radio: {
     color: 'green',
@@ -198,6 +201,7 @@ class Login extends React.Component {
                     type="username"
                     margin="normal"
                   />
+                  <span style={{ marginLeft: '1vw' }} />
                   <TextField
                     name="password"
                     value={this.state.user.password}
@@ -208,6 +212,7 @@ class Login extends React.Component {
                     type="password"
                     margin="normal"
                   />
+                  <span style={{ marginLeft: '1vw' }} />
                   <Button
                     variant="contained"
                     color="secondary"
