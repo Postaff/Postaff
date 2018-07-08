@@ -76,13 +76,13 @@ const Mutation = {
   },
 
   // This is for changing approved field to 'true' when admin approves job
-  approveJob: (root, args) => { Job.update({ approved: args.input.approved }, { where: { id: args.input.id } }).then(job => job) },
-  claimJob: (root, args) => { console.log('resolver', args); Job.update({ claimed: args.input.claimed }, { where: { id: args.input.id } }).then(job => job) },
+  approveJob: (root, args) => { Job.update({ approved: args.input.approved }, { where: { id: args.input.id } })},
+  claimJob: (root, args) => { console.log('resolver', args); Job.update({ claimed: args.input.claimed, fk_sub: args.input.fk_sub }, { where: { id: args.input.id } })},
 };
 
 // this is for sublanding page
 const Subs = {
-  jobAvailable: () => Job.findAll({ where: { approved: true } , order: [['updatedAt', 'DESC']] }),
+  jobAvailable: () => Job.findAll({ where: { approved: true, claimed: false } , order: [['updatedAt', 'DESC']] }),
   jobsCompleted: (sub, args) => Job.findAll({ where: { fk_sub: args.id, completed: true } }),
   claimedJobs: (sub, args) => Job.findAll({ where: { fk_sub: args.id, claimed: true } }),
 };

@@ -25,8 +25,6 @@ type Mutation {
 # ! exclamation mark indicates the field cannot be null.
 # graphQL is statically typed, we need to specify what type the field is going to be
 # By default graphQL offers ID, Int, String, Boolean, Float.
-scalar Date
-scalar Time
 
 type Job {
   id: ID!
@@ -35,10 +33,10 @@ type Job {
   claimed: Boolean
   subject: String
   grade: String
-  start_time: Time
-  end_time: Time
-  start_date: Date
-  end_date: Date
+  start_time: String
+  end_time: String
+  start_date: String
+  end_date: String
   approved: Boolean
   fk_sub: String
   school: School
@@ -86,4 +84,5 @@ input ApproveJob {
 input ClaimJob {
   id: ID!
   claimed: Boolean
+  fk_sub: ID!
 }

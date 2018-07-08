@@ -8,9 +8,8 @@ import {
 import { graphql, compose } from 'react-apollo';
 import CLAIM_JOB from '../../../queries/claimNewJobs';
 import FETCH_JOB from '../../../queries/fetchJob';
- 
-class Detail extends React.Component {
 
+class Detail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,13 +18,14 @@ class Detail extends React.Component {
 
     this.subClaimJob = this.subClaimJob.bind(this);
   }
-  
+
   subClaimJob() {
     this.props.mutate({
       variables: {
         input: {
           id: this.props.job.id,
           claimed: true,
+          fk_sub: localStorage.getItem('subId'),
         },
       },
     }).then(() => this.setState({
@@ -37,7 +37,7 @@ class Detail extends React.Component {
   render() {
     const { job } = this.props;
     const claimed = this.state.claimed || job.claimed;
-    console.log('Am in Sub-Detail.jsx', claimed);
+    console.log('Am in Sub-Detail.jsx', localStorage.getItem('subID'));
     return (
       <Paper style={{ height: '100%' }}>
         <Typography variant="title" gutterBottom>

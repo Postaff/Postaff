@@ -55,7 +55,7 @@ export const tableStyle = theme => ({
   },
 });
 
-class AdminTodayTable extends React.Component {
+class SubPreviousJobs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -267,5 +267,11 @@ AdminTodayTableToolbar = withStyles(toolbarStyle)(AdminTodayTableToolbar);
 
 export default compose(
   withStyles(tableStyle),
-  graphql(GET_ALL_SUBBYID),
-)(AdminTodayTable);
+  graphql(GET_ALL_SUBBYID, {
+    options: () => ({
+      variables: {
+        id: localStorage.getItem('subId'),
+      },
+    }),
+  }),
+)(SubPreviousJobs);

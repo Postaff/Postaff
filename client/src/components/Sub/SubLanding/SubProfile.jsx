@@ -7,7 +7,7 @@ import {
   Paper,
 } from '@material-ui/core';
 import { graphql, compose } from 'react-apollo';
-import GET_ALL_SUBBYID from '../../../queries/fetchSubById';
+import GET_ALL_SUB_BY_ID from '../../../queries/fetchSubById';
 
 
 class SubProfile extends React.Component {
@@ -35,4 +35,10 @@ class SubProfile extends React.Component {
   }
 }
 
-export default compose(graphql(GET_ALL_SUBBYID))(SubProfile);
+export default graphql(GET_ALL_SUB_BY_ID, {
+  options: () => ({
+    variables: {
+      id: localStorage.getItem('subId'),
+    },
+  }),
+})(SubProfile);
