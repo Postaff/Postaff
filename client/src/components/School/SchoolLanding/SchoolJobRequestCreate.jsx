@@ -10,7 +10,6 @@ import {
   Paper,
   Select,
   TextField,
-  Typography,
   withStyles,
 } from '@material-ui/core';
 import gql from 'graphql-tag';
@@ -19,8 +18,9 @@ import {
   GET_ALL_SCHOOLS,
   NEW_JOB,
 } from '../../../queries/jobFormQueries.js';
+import SchoolNameFormField from './SchoolNameFormField'
 
-class AdminJobRequestForm extends React.Component {
+class SchoolJobRequestCreate extends React.Component {
   constructor(props) {
     super(props);
 
@@ -91,33 +91,10 @@ class AdminJobRequestForm extends React.Component {
         <form>
           <Grid container spacing={8}>
             <Paper className={classes.paper}>
-              <Grid item xs={12}>
-                <Typography variant="display1">Job Request Form</Typography>
-                <TextField
-                  select
-                  label="School Name"
-                  className={classes.textField}
-                  margin="normal"
-                  onChange={this.handleChange.bind(this)}
-                  value={this.state.school}
-                  name="school"
-                  SelectProps={{
-                    MenuProps: {
-                      className: classes.menu,
-                    },
-                  }}
-                  helperText="Please select the school"
-                  style={{ width: '90%', textAlign: 'left' }}
-                >
-                  {this.props.data.schools.map(school => (
-                    <MenuItem key={school.id} value={school.school_name}>
-                      {school.school_name}
-                    </MenuItem>
-                  ))}
-                </TextField>
-              </Grid>
+              <SchoolNameFormField />
               <Grid item xs={12}>
                 <TextField
+                  required
                   label="Subject"
                   className={classes.textField}
                   margin="normal"
@@ -127,7 +104,7 @@ class AdminJobRequestForm extends React.Component {
                   style={{ width: '65%' }}
                 />
                 <FormControl className={classes.formControl} style={{ width: '23%', textAlign: 'left' }}>
-                  <InputLabel>Grade</InputLabel>
+                  <InputLabel required>Grade</InputLabel>
                   <Select
                     name="grade"
                     value={this.state.grade}
@@ -152,6 +129,7 @@ class AdminJobRequestForm extends React.Component {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  required
                   label="Job Description"
                   className={classes.textField}
                   type="jobDescription"
@@ -164,6 +142,7 @@ class AdminJobRequestForm extends React.Component {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  required
                   label="Start Date"
                   type="date"
                   className={classes.textField}
@@ -176,6 +155,7 @@ class AdminJobRequestForm extends React.Component {
                   style={{ width: '28.5%' }}
                 />
                 <TextField
+                  required
                   label="Start Time"
                   className={classes.textField}
                   name="startTime"
@@ -184,6 +164,7 @@ class AdminJobRequestForm extends React.Component {
                   style={{ width: '13%' }}
                 />
                 <TextField
+                  required
                   label="End Date"
                   type="date"
                   className={classes.textField}
@@ -196,6 +177,7 @@ class AdminJobRequestForm extends React.Component {
                   style={{ width: '28%' }}
                 />
                 <TextField
+                  required
                   label="End Time"
                   className={classes.textField}
                   name="endTime"
@@ -214,7 +196,7 @@ class AdminJobRequestForm extends React.Component {
                   name="additionalInformation"
                   value={this.state.additionalInformation}
                   onChange={this.handleChange.bind(this)}
-                  style={{ width: '68.5%' }}
+                  style={{ width: '71%' }}
                 />
                 <input
                   accept="image/*"
@@ -284,4 +266,4 @@ export default compose(
   graphql(NEW_JOB),
   graphql(GET_ALL_SCHOOLS),
   withStyles(styles),
-)(AdminJobRequestForm);
+)(SchoolJobRequestCreate);
