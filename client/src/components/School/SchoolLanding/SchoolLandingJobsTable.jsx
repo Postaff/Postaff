@@ -39,8 +39,7 @@ export const toolbarStyle = theme => ({
 
 export const tableStyle = theme => ({
   root: {
-    width: '88%',
-    marginTop: theme.spacing.unit * 3,
+    width: '100%',
   },
   table: {
     width: '100%'
@@ -105,6 +104,7 @@ class SchoolLandingJobsTable extends React.Component {
     if (this.props.data.loading || this.props.schoolName.loading) {
       return <div></div>
     } else {
+      console.log(this.props.data.jobs)
     let tableData = [];
     _.each(this.props.data.jobs, (job)=>{
       tableData.push(createData(job.id, job.subject, job.grade, job.start_date, job.claimed, job.description, job.start_time, job.end_date, job.end_time))

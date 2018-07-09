@@ -144,7 +144,7 @@ class NavBar extends Component {
                   <ListItemIcon>
                     <Create/>
                   </ListItemIcon>
-                  <ListItemText primary="Request Sub"/>
+                  <ListItemText primary="New Request"/>
                 </ListItem>
               </Link>
               <Divider />
@@ -185,8 +185,8 @@ class NavBar extends Component {
               ? <Login clickLogout={this.props.clickLogout} onLogin={this.props.onLogin} />
               : <div>
                 <Grid container spacing={8} alignItems="center" justify="flex-start">
-                  <Grid item xs={6}>
-                    <Typography variant="subheading">{`Hi ${this.props.username}`}</Typography>
+                  <Grid item xs={6} >
+                    <Typography variant="subheading">{`Hello, ${this.props.username}!`}</Typography>
                   </Grid>
                   <Grid item xs={2} >
                     <Link to={{ pathname: '/', state: { clicked: false } }}>

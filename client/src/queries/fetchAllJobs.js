@@ -10,7 +10,9 @@ export default gql`
       subject
       grade
       start_date
+      start_time
       end_date
+      end_time
       school {
         school_img
         school_name
