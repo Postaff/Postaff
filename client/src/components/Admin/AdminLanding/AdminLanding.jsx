@@ -24,25 +24,28 @@ class AdminLanding extends React.Component {
     if(this.props.data.loading) {
       return <Fragment></Fragment>;
     }
+    console.log(this.props.data)
     const { jobs } = this.props.data;
+    console.log(jobs);
     const { classes } = this.props;
     const claimed = jobs.filter(job => job.claimed);
     const unclaimed = jobs.filter(job => !job.claimed);
     const pending = jobs.filter(job => !job.approved);
     console.log('Hey am in adminlanding.jsx');
     return (
-
-      <Grid container spacing={16} direction={'row'} alignItems={'flex-start'}>
-        <Grid item xs={4}>
-          <Grid container spacing={8} direction={'column'} alignItems={'center'} justify={'flex-start'}>
-            <Grid item xs={8}>
-              <AdminLandingCurrentStatus claimed={claimed.length} unclaimed={unclaimed.length}/>
-            </Grid>
-            <Grid item xs={8}>
-              <AdminLandingUnclaimedJobsList unclaimed={unclaimed}/>
-            </Grid>
-            <Grid item xs={8}>
-              <AdminLandingPendingReviewList pending={pending}/>
+      <div>
+        <Grid container spacing={16} direction={'row'} alignItems={'flex-start'}>
+          <Grid item xs={4}>
+            <Grid container spacing={8} direction={'column'} alignItems={'center'} justify={'flex-start'}>
+              <Grid item xs={8}>
+                <AdminLandingCurrentStatus claimed={claimed.length} unclaimed={unclaimed.length}/>
+              </Grid>
+              <Grid item xs={8}>
+                <AdminLandingUnclaimedJobsList unclaimed={unclaimed}/>
+              </Grid>
+              <Grid item xs={8}>
+                <AdminLandingPendingReviewList pending={pending}/>
+              </Grid>
             </Grid>
           </Grid>
           <Grid item xs={8} sm={6}>
@@ -56,8 +59,7 @@ class AdminLanding extends React.Component {
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
-
+      </div>
     );
   }
 }
