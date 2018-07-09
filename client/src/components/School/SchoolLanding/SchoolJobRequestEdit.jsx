@@ -83,14 +83,14 @@ class SchoolJobRequestEdit extends React.Component {
 
   render() {
     const { classes } = this.props;
-    console.log(this.props.mutate)
+    console.log(this.state)
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' , marginTop: '2.5%', paddingTop: '2.5%'}}>
         <form>
           <Grid container spacing={8}>
             <Paper className={classes.paper}>
               <Grid item xs={12}>
-                <Typography variant="display1">Job Request Form</Typography>
+                <Typography variant="display1">Substitute Teacher Request Form</Typography>
                 <TextField
                   InputProps={{
                     readOnly: true,

@@ -69,22 +69,3 @@ export default compose(
     })
   }),
 )(SchoolLandingSchoolProfile);
-
-{/* <Table>
-<TableHead>
-  <TableRow>
-    <TableCell>New Jobs to Review</TableCell>
-  </TableRow>
-</TableHead>
-<TableBody>
-  <TableRow>
-    <TableCell component="th" scope="row">Jobs Total: </TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell component="th" scope="row">Jobs </TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell component="th" scope="row">Job Description 3</TableCell>
-  </TableRow>
-</TableBody>
-</Table> */}

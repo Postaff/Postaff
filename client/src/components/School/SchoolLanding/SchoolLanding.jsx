@@ -19,7 +19,7 @@ const styles = theme => ({
 class SchoolLanding extends React.Component {
   render() {
     return (
-      <div style={{ marginLeft: '2.5%', paddingLeft: '2.5%' }}>
+      <div style={{ margin: '1%', padding: '2%', marginTop: '0' }}>
         <Grid container spacing={24}>
           <SchoolLandingSchoolProfile />
           <SchoolLandingCharts />

@@ -89,7 +89,7 @@ class SchoolJobRequestCreate extends React.Component {
           <Grid container spacing={8}>
             <Paper className={classes.paper}>
               <Grid item xs={12}>
-                <Typography variant="display1">Job Request Form</Typography>
+                <Typography variant="display1">Substitute Teacher Request Form</Typography>
                 <TextField
                   InputProps={{
                     readOnly: true,
