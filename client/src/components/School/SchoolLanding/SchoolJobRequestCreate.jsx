@@ -1,4 +1,5 @@
 import React from 'react';
+import {	withRouter } from 'react-router-dom';
 import FileUpload from '@material-ui/icons/FileUpload';
 import {
   Button,
@@ -19,12 +20,12 @@ import {
   NEW_JOB,
 } from '../../../queries/jobFormQueries.js';
 
-class AdminJobRequestForm extends React.Component {
+class SchoolJobRequestCreate extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      school: '',
+      school: this.props.location.state.schoolName,
       subject: '',
       grade: '',
       jobDescription: '',
@@ -40,7 +41,6 @@ class AdminJobRequestForm extends React.Component {
     this.setState({
       [event.target.name]: event.target.value,
     });
-    console.log(this.state);
   }
 
   submitForm(event) {
@@ -76,41 +76,31 @@ class AdminJobRequestForm extends React.Component {
       endTime: '',
       additionalInformation: '',
     });
+
+    this.props.history.push('/school');
   }
 
   render() {
-    if(this.props.data.loading) {
-      return <div></div>;
-    }
     const { classes } = this.props;
+
     return (
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' , marginTop: '2.5%', paddingTop: '2.5%'}}>
         <form>
           <Grid container spacing={8}>
             <Paper className={classes.paper}>
               <Grid item xs={12}>
                 <Typography variant="display1">Job Request Form</Typography>
                 <TextField
-                  select
+                  InputProps={{
+                    readOnly: true,
+                  }}
                   label="School Name"
                   className={classes.textField}
                   margin="normal"
-                  onChange={this.handleChange.bind(this)}
                   value={this.state.school}
                   name="school"
-                  SelectProps={{
-                    MenuProps: {
-                      className: classes.menu,
-                    },
-                  }}
-                  helperText="Please select the school"
-                  style={{ width: '90%' }}
+                  style={{ width: '90%', textAlign: 'left' }}
                 >
-                  {this.props.data.schools.map(school => (
-                    <MenuItem key={school.id} value={school.school_name}>
-                      {school.school_name}
-                    </MenuItem>
-                  ))}
                 </TextField>
               </Grid>
               <Grid item xs={12}>
@@ -123,7 +113,7 @@ class AdminJobRequestForm extends React.Component {
                   onChange={this.handleChange.bind(this)}
                   style={{ width: '65%' }}
                 />
-                <FormControl className={classes.formControl} style={{ width: '23%' }}>
+                <FormControl className={classes.formControl} style={{ width: '23%', textAlign: 'left' }}>
                   <InputLabel>Grade</InputLabel>
                   <Select
                     name="grade"
@@ -174,14 +164,7 @@ class AdminJobRequestForm extends React.Component {
                 />
                 <TextField
                   label="Start Time"
-                  type="time"
                   className={classes.textField}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  inputProps={{
-                    step: 300, // 5 min
-                  }}
                   name="startTime"
                   value={this.state.startTime}
                   onChange={this.handleChange.bind(this)}
@@ -201,14 +184,7 @@ class AdminJobRequestForm extends React.Component {
                 />
                 <TextField
                   label="End Time"
-                  type="time"
                   className={classes.textField}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  inputProps={{
-                    step: 300, // 5 min
-                  }}
                   name="endTime"
                   value={this.state.endTime}
                   onChange={this.handleChange.bind(this)}
@@ -225,7 +201,7 @@ class AdminJobRequestForm extends React.Component {
                   name="additionalInformation"
                   value={this.state.additionalInformation}
                   onChange={this.handleChange.bind(this)}
-                  style={{ width: '68.5%' }}
+                  style={{ width: '71%' }}
                 />
                 <input
                   accept="image/*"
@@ -295,4 +271,4 @@ export default compose(
   graphql(NEW_JOB),
   graphql(GET_ALL_SCHOOLS),
   withStyles(styles),
-)(AdminJobRequestForm);
+)(SchoolJobRequestCreate);

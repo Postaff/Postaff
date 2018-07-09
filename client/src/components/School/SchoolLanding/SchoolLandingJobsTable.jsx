@@ -11,10 +11,6 @@ import _ from 'lodash';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import IconButton from '@material-ui/core/IconButton';
 import Edit from '@material-ui/icons/Edit';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import SchoolJobRequestEdit from './SchoolJobRequestEdit.jsx';
 
 export const toolbarStyle = theme => ({
   root: {
@@ -59,7 +55,7 @@ export const tableStyle = theme => ({
   },
 });
 
-class AdminTodayTable extends React.Component {
+class SchoolLandingJobsTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -68,7 +64,6 @@ class AdminTodayTable extends React.Component {
       data: [],
       page: 0,
       rowsPerPage: 10,
-      open: false,
     };
     this.handleRequestSort = this.handleRequestSort.bind(this);
     this.handleChangePage = this.handleChangePage.bind(this);
@@ -106,29 +101,19 @@ class AdminTodayTable extends React.Component {
     this.setState({ rowsPerPage: event.target.value });
   };
 
-  handleClickOpen () {
-    this.setState({ open: true });
-  };
-
-  handleClose () {
-    this.setState({ open: false });
-  };
-
   render() {
-    if(this.props.data.loading){
+    if (this.props.data.loading || this.props.schoolName.loading) {
       return <div></div>
     } else {
     let tableData = [];
     _.each(this.props.data.jobs, (job)=>{
-      tableData.push(createData(job.subject, job.grade, job.start_date, job.claimed))
+      tableData.push(createData(job.id, job.subject, job.grade, job.start_date, job.claimed, job.description, job.start_time, job.end_date, job.end_time))
     })
     const { classes } = this.props;
     const { order, orderBy, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, tableData.length - page * rowsPerPage);
 
     let subs = ['Kiera Grady', 'Ellis Hermann', 'Bert Deckow', 'Cara Botsford', 'Cara Botsford', 'Augusta Kutch'];
-
-    console.log(this.props);
 
     return (
       <Fragment>
@@ -156,32 +141,31 @@ class AdminTodayTable extends React.Component {
                           tabIndex={-1}
                           key={n.id}
                         >
-                          <TableCell component="th" scope="row">
-                            <Link to={{pathname:'/admin/jobs', state:{sub: n.subject, grade: n.grade}}}>{n.subject}</Link>
-                          </TableCell>
+                          <TableCell component="th" scope="row">{n.subject}</TableCell>
                           <TableCell numeric>{n.grade}</TableCell>
                           <TableCell numeric>{n.start_date}</TableCell>
                           {n.claimed ? <TableCell numeric>Claimed</TableCell> : <TableCell numeric>Unclaimed</TableCell>}
                           {n.claimed ? <TableCell numeric>{subs[Math.floor(Math.random() * 6)]}</TableCell> : <TableCell numeric></TableCell>}
                           <TableCell numeric>
-                            <IconButton onClick={this.handleClickOpen.bind(this)} aria-label="Edit">
-                              <Edit />
-                            </IconButton>
-                            <Dialog
-                              open={this.state.open}
-                              onClose={this.handleClose.bind(this)}
-                              aria-labelledby="form-dialog-title"
-                            >
-                              <SchoolJobRequestEdit />
-                              <DialogActions>
-                                <Button onClick={this.handleClose.bind(this)} color="primary">
-                                  Cancel
-                                </Button>
-                                <Button onClick={this.handleClose.bind(this)} color="primary">
-                                  Update
-                                </Button>
-                              </DialogActions>
-                            </Dialog>
+                            <Link to={{
+                              pathname:`/school/job/edit/${n.id}`,
+                              state: {
+                                schoolId: n.id,
+                                schoolName: this.props.schoolName.schoolByUsername.school_name,
+                                subject: n.subject,
+                                grade: n.grade,
+                                description: n.description,
+                                startDate: n.start_date,
+                                startTime: n.start_time,
+                                endDate: n.end_date,
+                                endTime: n.end_time,
+                                additionalInformation: '',
+                              },
+                            }}>
+                              <IconButton aria-label="Edit">
+                                <Edit />
+                              </IconButton>
+                            </Link>
                           </TableCell>
                         </TableRow>
                       );
@@ -215,10 +199,8 @@ class AdminTodayTable extends React.Component {
   }
 }
 
-let counter = 0;
-function createData(subject, grade, start_date, claimed, employee) {
-  counter += 1;
-  return { id: counter, subject, grade, start_date, claimed, employee };
+function createData(id, subject, grade, start_date, claimed, description, start_time, end_date, end_time) {
+  return { id, subject, grade, start_date, claimed, description, start_time, end_date, end_time };
 }
 
 function getSorting(order, orderBy) {
@@ -307,4 +289,4 @@ export default compose(
     })
   }),
   graphql(GET_ALL_JOBS),
-)(AdminTodayTable);
+)(SchoolLandingJobsTable);
