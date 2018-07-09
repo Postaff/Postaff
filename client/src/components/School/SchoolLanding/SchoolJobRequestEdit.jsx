@@ -1,13 +1,5 @@
 import React from 'react';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { Link, withRouter } from 'react-router-dom';
-=======
-import { Link } from 'react-router-dom';
->>>>>>> Update edit form function to populate with existing data
-=======
-import { Link, withRouter } from 'react-router-dom';
->>>>>>> Return user to dashboard once form is submitted
 import FileUpload from '@material-ui/icons/FileUpload';
 import {
   Button,
@@ -33,14 +25,7 @@ class SchoolJobRequestEdit extends React.Component {
     super(props);
 
     this.state = {
-<<<<<<< HEAD
-<<<<<<< HEAD
       schoolId: this.props.location.state.schoolId,
-=======
->>>>>>> Update edit form function to populate with existing data
-=======
-      schoolId: this.props.location.state.schoolId,
->>>>>>> Add edit functionality to job request form
       school: this.props.location.state.schoolName,
       subject: this.props.location.state.subject,
       grade: this.props.location.state.grade,
@@ -60,8 +45,6 @@ class SchoolJobRequestEdit extends React.Component {
   }
 
   submitForm(event) {
-<<<<<<< HEAD
-<<<<<<< HEAD
     const {
       schoolId, subject, grade, jobDescription, startDate,
       startTime, endDate, endTime, additionalInformation,
@@ -71,22 +54,6 @@ class SchoolJobRequestEdit extends React.Component {
       variables: {
         input: {
           schoolId,
-=======
-    const {
-      schoolId, subject, grade, jobDescription, startDate,
-      startTime, endDate, endTime, additionalInformation,
-    } = this.state;
-
-    this.props.mutate({
-      variables: {
-        input: {
-<<<<<<< HEAD
-          schoolId: '1',
-          school,
->>>>>>> Return user to dashboard once form is submitted
-=======
-          schoolId,
->>>>>>> Add edit functionality to job request form
           subject,
           grade,
           jobDescription,
@@ -110,69 +77,18 @@ class SchoolJobRequestEdit extends React.Component {
       endTime: '',
       additionalInformation: '',
     });
-<<<<<<< HEAD
 
     this.props.history.push('/school');
-=======
-    // const {
-    //   school, subject, grade, jobDescription, startDate,
-    //   startTime, endDate, endTime, additionalInformation,
-    // } = this.state;
-    // this.props.mutate({
-    //   variables: {
-    //     input: {
-    //       schoolId: '1',
-    //       school,
-    //       subject,
-    //       grade,
-    //       jobDescription,
-    //       startDate,
-    //       endDate,
-    //       startTime,
-    //       endTime,
-    //       additionalInformation,
-    //     },
-    //   },
-    // });
-
-    // this.setState({
-    //   school: '',
-    //   subject: '',
-    //   grade: '',
-    //   jobDescription: '',
-    //   startDate: '',
-    //   startTime: '',
-    //   endDate: '',
-    //   endTime: '',
-    //   additionalInformation: '',
-    // });
->>>>>>> Update edit form function to populate with existing data
-=======
-
-    this.props.history.push('/school');
->>>>>>> Return user to dashboard once form is submitted
   }
 
   render() {
     const { classes } = this.props;
-<<<<<<< HEAD
-<<<<<<< HEAD
     console.log(this.props.mutate)
-=======
-
->>>>>>> Update edit form function to populate with existing data
-=======
-    console.log(this.props.mutate)
->>>>>>> Add edit functionality to job request form
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' , marginTop: '2.5%', paddingTop: '2.5%'}}>
         <form>
           <Grid container spacing={8}>
             <Paper className={classes.paper}>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Remove school name component
               <Grid item xs={12}>
                 <Typography variant="display1">Substitute Teacher Request Form</Typography>
                 <TextField
@@ -184,28 +100,10 @@ class SchoolJobRequestEdit extends React.Component {
                   margin="normal"
                   value={this.state.school}
                   name="school"
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                   style={{ width: '90%', textAlign: 'left' }}
-=======
-                  style={{ width: '90%' }}
->>>>>>> Update edit form function to populate with existing data
-=======
-                  style={{ width: '90%', textAlign: 'left' }}
->>>>>>> Fix styling of new and edit forms to be consistent
                 >
                 </TextField>
               </Grid>
-=======
-              <SchoolNameFormField schoolName={this.state.school} />
->>>>>>> Create separate school name form field component
-=======
-                  style={{ width: '90%' }}
-                >
-                </TextField>
-              </Grid>
->>>>>>> Remove school name component
               <Grid item xs={12}>
                 <TextField
                   label="Subject"
@@ -326,23 +224,9 @@ class SchoolJobRequestEdit extends React.Component {
                   Cancel
                   </Button>
                 </Link>
-<<<<<<< HEAD
-<<<<<<< HEAD
                 <Button variant="contained" color="primary" className={classes.button} onClick={this.submitForm.bind(this)}>
                 Update
                 </Button>
-=======
-                <Link to={{pathname: '/school'}}>
-                  <Button variant="contained" color="primary" className={classes.button} onClick={this.submitForm.bind(this)}>
-                  Update
-                  </Button>
-                </Link>
->>>>>>> Update edit form function to populate with existing data
-=======
-                <Button variant="contained" color="primary" className={classes.button} onClick={this.submitForm.bind(this)}>
-                Update
-                </Button>
->>>>>>> Return user to dashboard once form is submitted
               </Grid>
             </Paper>
           </Grid>

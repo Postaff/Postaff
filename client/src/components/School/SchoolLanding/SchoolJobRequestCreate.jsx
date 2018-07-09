@@ -81,22 +81,6 @@ class SchoolJobRequestCreate extends React.Component {
   }
 
   render() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    if (this.props.data.loading || this.props.schoolName.loading) {
-      return <div></div>;
-    }
-
->>>>>>> Remove school name component
-=======
-    if(this.props.data.loading) {
-      return <div></div>;
-    }
->>>>>>> Render school name by username on new job form via navbar
-=======
->>>>>>> Fix styling of new and edit forms to be consistent
     const { classes } = this.props;
 
     return (
@@ -104,10 +88,6 @@ class SchoolJobRequestCreate extends React.Component {
         <form>
           <Grid container spacing={8}>
             <Paper className={classes.paper}>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Remove school name component
               <Grid item xs={12}>
                 <Typography variant="display1">Substitute Teacher Request Form</Typography>
                 <TextField
@@ -117,48 +97,12 @@ class SchoolJobRequestCreate extends React.Component {
                   label="School Name"
                   className={classes.textField}
                   margin="normal"
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                   value={this.state.school}
                   name="school"
-<<<<<<< HEAD
-=======
-                  SelectProps={{
-                    MenuProps: {
-                      className: classes.menu,
-                    },
-                  }}
-                  helperText="Please select the school"
->>>>>>> Return user to dashboard once form is submitted
                   style={{ width: '90%', textAlign: 'left' }}
                 >
                 </TextField>
               </Grid>
-=======
-              <SchoolNameFormField />
->>>>>>> Create separate school name form field component
-=======
-                  value={this.props.schoolName.schoolByUsername.school_name}
-=======
-=======
-                  onChange={this.handleChange.bind(this)}
->>>>>>> Render school name by username on new job form via navbar
-=======
->>>>>>> Fix styling of new and edit forms to be consistent
-                  value={this.state.school}
->>>>>>> Revert changes in new job request form
-                  name="school"
-                  style={{ width: '90%', textAlign: 'left' }}
-                >
-                </TextField>
-<<<<<<< HEAD
-               </Grid>
->>>>>>> Remove school name component
-=======
-              </Grid>
->>>>>>> Render school name by username on new job form via navbar
               <Grid item xs={12}>
                 <TextField
                   label="Subject"

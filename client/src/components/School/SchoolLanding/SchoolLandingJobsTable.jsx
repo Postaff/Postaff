@@ -102,19 +102,7 @@ class SchoolLandingJobsTable extends React.Component {
   };
 
   render() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     if (this.props.data.loading || this.props.schoolName.loading) {
-=======
-    if (this.props.data.loading) {
->>>>>>> Create separate school name form field component
-=======
-    if(this.props.data.loading || this.props.schoolName.loading){
->>>>>>> Remove school name component
-=======
-    if (this.props.data.loading || this.props.schoolName.loading) {
->>>>>>> Fix styling of new and edit forms to be consistent
       return <div></div>
     } else {
     let tableData = [];
@@ -162,22 +150,8 @@ class SchoolLandingJobsTable extends React.Component {
                             <Link to={{
                               pathname:`/school/job/edit/${n.id}`,
                               state: {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                                 schoolId: n.id,
-=======
->>>>>>> Update edit form function to populate with existing data
                                 schoolName: this.props.schoolName.schoolByUsername.school_name,
-=======
->>>>>>> Create separate school name form field component
-=======
-=======
-                                schoolId: n.id,
->>>>>>> Add edit functionality to job request form
-                                schoolName: this.props.schoolName.schoolByUsername.school_name,
->>>>>>> Remove school name component
                                 subject: n.subject,
                                 grade: n.grade,
                                 description: n.description,

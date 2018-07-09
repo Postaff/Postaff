@@ -2,25 +2,10 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import {
-<<<<<<< HEAD
-<<<<<<< HEAD
   Card,
   CardContent,
   CardMedia,
   Grid,
-=======
-  Button,
-=======
->>>>>>> Update layout using Grid
-  Card,
-  CardContent,
-  CardMedia,
-  Grid,
-<<<<<<< HEAD
-  Paper,
->>>>>>> Add school profile component to school landing
-=======
->>>>>>> Update layout using Grid
   Typography,
 } from '@material-ui/core';
 import { graphql, compose, Query } from 'react-apollo';
@@ -46,10 +31,6 @@ class SchoolLandingSchoolProfile extends React.Component {
     } else {
       return (
         <Fragment>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Update layout using Grid
           <Grid item xs={4}>
             <Card className={classes.card}>
               <CardMedia
@@ -68,27 +49,6 @@ class SchoolLandingSchoolProfile extends React.Component {
               </CardContent>
             </Card>
           </Grid>
-<<<<<<< HEAD
-=======
-          <Card className={classes.card}>
-            <CardMedia
-              className={classes.media}
-              image={school.school_img}
-              title="Contemplative Reptile"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="headline" component="h2">
-                {school.school_name}
-              </Typography>
-              <Typography component="p">
-                {school.address_street}<br/>
-                {school.address_city}, {school.address_state} {school.address_zipcode}
-              </Typography>
-            </CardContent>
-          </Card>
->>>>>>> Add school profile component to school landing
-=======
->>>>>>> Update layout using Grid
         </Fragment>
       );
     }
@@ -109,22 +69,3 @@ export default compose(
     })
   }),
 )(SchoolLandingSchoolProfile);
-
-{/* <Table>
-<TableHead>
-  <TableRow>
-    <TableCell>New Jobs to Review</TableCell>
-  </TableRow>
-</TableHead>
-<TableBody>
-  <TableRow>
-    <TableCell component="th" scope="row">Jobs Total: </TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell component="th" scope="row">Jobs </TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell component="th" scope="row">Job Description 3</TableCell>
-  </TableRow>
-</TableBody>
-</Table> */}
