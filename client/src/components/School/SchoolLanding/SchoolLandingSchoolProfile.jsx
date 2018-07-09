@@ -3,19 +3,24 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import {
 <<<<<<< HEAD
+<<<<<<< HEAD
   Card,
   CardContent,
   CardMedia,
   Grid,
 =======
   Button,
+=======
+>>>>>>> Update layout using Grid
   Card,
-  CardActions,
   CardContent,
   CardMedia,
   Grid,
+<<<<<<< HEAD
   Paper,
 >>>>>>> Add school profile component to school landing
+=======
+>>>>>>> Update layout using Grid
   Typography,
 } from '@material-ui/core';
 import { graphql, compose, Query } from 'react-apollo';
@@ -42,6 +47,9 @@ class SchoolLandingSchoolProfile extends React.Component {
       return (
         <Fragment>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Update layout using Grid
           <Grid item xs={4}>
             <Card className={classes.card}>
               <CardMedia
@@ -60,6 +68,7 @@ class SchoolLandingSchoolProfile extends React.Component {
               </CardContent>
             </Card>
           </Grid>
+<<<<<<< HEAD
 =======
           <Card className={classes.card}>
             <CardMedia
@@ -78,6 +87,8 @@ class SchoolLandingSchoolProfile extends React.Component {
             </CardContent>
           </Card>
 >>>>>>> Add school profile component to school landing
+=======
+>>>>>>> Update layout using Grid
         </Fragment>
       );
     }

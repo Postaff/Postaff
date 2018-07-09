@@ -62,6 +62,9 @@ class SchoolLandingCharts extends React.Component {
       return (
         <Fragment>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Update layout using Grid
           <Grid item xs={8}>
             <Paper>
               <Grid container spacing={12} style={{ flexGrow: 1 }}>
@@ -83,6 +86,7 @@ class SchoolLandingCharts extends React.Component {
                     Grade
                   </Typography>
                 </Grid>
+<<<<<<< HEAD
               </Grid>
             </Paper>
           </Grid>
@@ -104,6 +108,11 @@ class SchoolLandingCharts extends React.Component {
             </Grid>
           </Paper>
 >>>>>>> Add school profile component to school landing
+=======
+              </Grid>
+            </Paper>
+          </Grid>
+>>>>>>> Update layout using Grid
         </Fragment>
       );
     }
