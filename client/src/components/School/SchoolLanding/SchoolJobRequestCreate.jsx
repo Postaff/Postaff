@@ -41,7 +41,6 @@ class SchoolJobRequestCreate extends React.Component {
     this.setState({
       [event.target.name]: event.target.value,
     });
-    console.log(this.state);
   }
 
   submitForm(event) {
@@ -82,10 +81,8 @@ class SchoolJobRequestCreate extends React.Component {
   }
 
   render() {
-    if(this.props.data.loading) {
-      return <div></div>;
-    }
     const { classes } = this.props;
+
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' , marginTop: '2.5%', paddingTop: '2.5%'}}>
         <form>
@@ -94,26 +91,16 @@ class SchoolJobRequestCreate extends React.Component {
               <Grid item xs={12}>
                 <Typography variant="display1">Job Request Form</Typography>
                 <TextField
-                  select
+                  InputProps={{
+                    readOnly: true,
+                  }}
                   label="School Name"
                   className={classes.textField}
                   margin="normal"
-                  onChange={this.handleChange.bind(this)}
                   value={this.state.school}
                   name="school"
-                  SelectProps={{
-                    MenuProps: {
-                      className: classes.menu,
-                    },
-                  }}
-                  helperText="Please select the school"
                   style={{ width: '90%', textAlign: 'left' }}
                 >
-                  {this.props.data.schools.map(school => (
-                    <MenuItem key={school.id} value={school.school_name}>
-                      {school.school_name}
-                    </MenuItem>
-                  ))}
                 </TextField>
               </Grid>
               <Grid item xs={12}>
@@ -214,7 +201,7 @@ class SchoolJobRequestCreate extends React.Component {
                   name="additionalInformation"
                   value={this.state.additionalInformation}
                   onChange={this.handleChange.bind(this)}
-                  style={{ width: '68.5%' }}
+                  style={{ width: '71%' }}
                 />
                 <input
                   accept="image/*"

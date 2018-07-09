@@ -102,7 +102,7 @@ class SchoolLandingJobsTable extends React.Component {
   };
 
   render() {
-    if(this.props.data.loading || this.props.schoolName.loading){
+    if (this.props.data.loading || this.props.schoolName.loading) {
       return <div></div>
     } else {
     let tableData = [];

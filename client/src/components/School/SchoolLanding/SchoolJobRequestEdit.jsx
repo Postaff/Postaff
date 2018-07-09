@@ -99,7 +99,7 @@ class SchoolJobRequestEdit extends React.Component {
                   margin="normal"
                   value={this.state.school}
                   name="school"
-                  style={{ width: '90%' }}
+                  style={{ width: '90%', textAlign: 'left' }}
                 >
                 </TextField>
               </Grid>
@@ -201,7 +201,7 @@ class SchoolJobRequestEdit extends React.Component {
                   name="additionalInformation"
                   value={this.state.additionalInformation}
                   onChange={this.handleChange.bind(this)}
-                  style={{ width: '68.5%' }}
+                  style={{ width: '71%' }}
                 />
                 <input
                   accept="image/*"
