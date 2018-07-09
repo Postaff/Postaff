@@ -2,13 +2,10 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import {
-  Button,
   Card,
-  CardActions,
   CardContent,
   CardMedia,
   Grid,
-  Paper,
   Typography,
 } from '@material-ui/core';
 import { graphql, compose, Query } from 'react-apollo';
@@ -34,22 +31,24 @@ class SchoolLandingSchoolProfile extends React.Component {
     } else {
       return (
         <Fragment>
-          <Card className={classes.card}>
-            <CardMedia
-              className={classes.media}
-              image={school.school_img}
-              title="Contemplative Reptile"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="headline" component="h2">
-                {school.school_name}
-              </Typography>
-              <Typography component="p">
-                {school.address_street}<br/>
-                {school.address_city}, {school.address_state} {school.address_zipcode}
-              </Typography>
-            </CardContent>
-          </Card>
+          <Grid item xs={4}>
+            <Card className={classes.card}>
+              <CardMedia
+                className={classes.media}
+                image={school.school_img}
+                title="Contemplative Reptile"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="headline" component="h2">
+                  {school.school_name}
+                </Typography>
+                <Typography component="p">
+                  {school.address_street}<br/>
+                  {school.address_city}, {school.address_state} {school.address_zipcode}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
         </Fragment>
       );
     }

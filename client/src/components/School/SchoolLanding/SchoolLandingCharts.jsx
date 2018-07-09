@@ -61,22 +61,30 @@ class SchoolLandingCharts extends React.Component {
       };
       return (
         <Fragment>
-          <Paper style={{ padding: '1.67%' }}>
-            <Grid container spacing={16} style={{ flexGrow: 1 }}>
-              <Grid item xs={8} sm={6}>
-                <Doughnut data={claimData} options={options} />
-                <Typography variant="title" align="center">
-                  {percentClaimed}% Claimed
-                </Typography>
+          <Grid item xs={8}>
+            <Paper>
+              <Grid container spacing={12} style={{ flexGrow: 1 }}>
+                <Grid item xs={4} sm={4}>
+                  <Doughnut data={claimData} options={options} />
+                  <Typography variant="title" align="center">
+                    {percentClaimed}% Claimed
+                  </Typography>
+                </Grid>
+                <Grid item xs={4} sm={4}>
+                  <Doughnut data={freeSubs} options={options} />
+                  <Typography variant="title" align="center">
+                    Subject
+                  </Typography>
+                </Grid>
+                <Grid item xs={4} sm={4}>
+                  <Doughnut data={freeSubs} options={options} />
+                  <Typography variant="title" align="center">
+                    Grade
+                  </Typography>
+                </Grid>
               </Grid>
-              <Grid item xs={8} sm={6}>
-                <Doughnut data={freeSubs} options={options} />
-                <Typography variant="title" align="center">
-                  {percentFree}% Subs Free
-                </Typography>
-              </Grid>
-            </Grid>
-          </Paper>
+            </Paper>
+          </Grid>
         </Fragment>
       );
     }
