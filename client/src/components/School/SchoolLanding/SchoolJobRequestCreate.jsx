@@ -169,7 +169,7 @@ class SchoolJobRequestCreate extends React.Component {
                   onChange={this.handleChange.bind(this)}
                   style={{ width: '65%' }}
                 />
-                <FormControl className={classes.formControl} style={{ width: '23%' }}>
+                <FormControl className={classes.formControl} style={{ width: '23%', textAlign: 'left' }}>
                   <InputLabel>Grade</InputLabel>
                   <Select
                     name="grade"

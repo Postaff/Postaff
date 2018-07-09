@@ -34,9 +34,13 @@ class SchoolJobRequestEdit extends React.Component {
 
     this.state = {
 <<<<<<< HEAD
+<<<<<<< HEAD
       schoolId: this.props.location.state.schoolId,
 =======
 >>>>>>> Update edit form function to populate with existing data
+=======
+      schoolId: this.props.location.state.schoolId,
+>>>>>>> Add edit functionality to job request form
       school: this.props.location.state.schoolName,
       subject: this.props.location.state.subject,
       grade: this.props.location.state.grade,
@@ -69,15 +73,20 @@ class SchoolJobRequestEdit extends React.Component {
           schoolId,
 =======
     const {
-      school, subject, grade, jobDescription, startDate,
+      schoolId, subject, grade, jobDescription, startDate,
       startTime, endDate, endTime, additionalInformation,
     } = this.state;
+
     this.props.mutate({
       variables: {
         input: {
+<<<<<<< HEAD
           schoolId: '1',
           school,
 >>>>>>> Return user to dashboard once form is submitted
+=======
+          schoolId,
+>>>>>>> Add edit functionality to job request form
           subject,
           grade,
           jobDescription,
@@ -147,10 +156,14 @@ class SchoolJobRequestEdit extends React.Component {
   render() {
     const { classes } = this.props;
 <<<<<<< HEAD
+<<<<<<< HEAD
     console.log(this.props.mutate)
 =======
 
 >>>>>>> Update edit form function to populate with existing data
+=======
+    console.log(this.props.mutate)
+>>>>>>> Add edit functionality to job request form
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' , marginTop: '2.5%', paddingTop: '2.5%'}}>
         <form>
@@ -203,7 +216,7 @@ class SchoolJobRequestEdit extends React.Component {
                   onChange={this.handleChange.bind(this)}
                   style={{ width: '65%' }}
                 />
-                <FormControl className={classes.formControl} style={{ width: '23%' }}>
+                <FormControl className={classes.formControl} style={{ width: '23%', textAlign: 'left' }}>
                   <InputLabel>Grade</InputLabel>
                   <Select
                     name="grade"

@@ -165,6 +165,7 @@ class SchoolLandingJobsTable extends React.Component {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 schoolId: n.id,
 =======
 >>>>>>> Update edit form function to populate with existing data
@@ -172,6 +173,9 @@ class SchoolLandingJobsTable extends React.Component {
 =======
 >>>>>>> Create separate school name form field component
 =======
+=======
+                                schoolId: n.id,
+>>>>>>> Add edit functionality to job request form
                                 schoolName: this.props.schoolName.schoolByUsername.school_name,
 >>>>>>> Remove school name component
                                 subject: n.subject,
