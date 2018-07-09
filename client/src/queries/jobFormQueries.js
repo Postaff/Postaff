@@ -16,6 +16,14 @@ export const NEW_JOB = gql`
   }
 `
 
+export const EDIT_JOB = gql`
+  mutation EditJob($input: EditJobInput) {
+    editJob(input: $input) {
+      id
+    }
+  }
+`
+
 // export const CLAIM_JOB_BY_SUB = gql`
 //   mutation AddClaim($id: ID){
 //     addClaim(id: $id){

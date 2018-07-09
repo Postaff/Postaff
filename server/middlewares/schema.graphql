@@ -16,8 +16,10 @@ type Query {
 
 type Mutation {
   createJob(input: CreateJobInput): Job
+  editJob(input: EditJobInput): Job
   approveJob(input: ApproveJob) : Job
   claimJob(input: ClaimJob) : Job
+
 }
 
 # Here we're creating a query DataType for Job
@@ -78,6 +80,19 @@ type Subs{
 }
 
 input CreateJobInput {
+  schoolId: ID
+  school: String
+  subject: String
+  grade: String
+  jobDescription: String
+  startDate: String
+  endDate: String
+  startTime: String
+  endTime: String
+  additionalInformation: String
+}
+
+input EditJobInput {
   schoolId: ID
   school: String
   subject: String

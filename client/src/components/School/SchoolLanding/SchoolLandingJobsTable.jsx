@@ -150,6 +150,7 @@ class SchoolLandingJobsTable extends React.Component {
                             <Link to={{
                               pathname:`/school/job/edit/${n.id}`,
                               state: {
+                                schoolId: n.id,
                                 schoolName: this.props.schoolName.schoolByUsername.school_name,
                                 subject: n.subject,
                                 grade: n.grade,

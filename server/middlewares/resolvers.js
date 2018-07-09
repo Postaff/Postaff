@@ -75,6 +75,44 @@ const Mutation = {
     }).then(job => job);
   },
 
+  editJob: (root, args) => {
+    const {
+      schoolId,
+      subject,
+      grade,
+      jobDescription,
+      startDate,
+      endDate,
+      startTime,
+      endTime,
+      additionalInformation,
+    } = args.input;
+
+    Job.update(
+      {
+        description: jobDescription,
+        start_time: startTime,
+        end_time: endTime,
+        start_date: startDate,
+        end_date: endDate,
+        subject: subject,
+        grade: grade,
+        note: additionalInformation,
+      },
+      {
+        where: {
+          id: schoolId
+        }
+      },
+    )
+    .then(job =>
+      console.log(job)
+    )
+    .catch(err =>
+      handleError(err)
+    )
+  },
+
   // This is for changing approved field to 'true' when admin approves job
   approveJob: (root, args) => { Job.update({ approved: args.input.approved }, { where: { id: args.input.id } }); },
   claimJob: (root, args) => { console.log('resolver', args); Job.update({ claimed: args.input.claimed, fk_sub: args.input.fk_sub }, { where: { id: args.input.id } }); },
