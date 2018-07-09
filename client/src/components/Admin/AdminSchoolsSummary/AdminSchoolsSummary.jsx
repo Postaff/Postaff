@@ -26,22 +26,6 @@ class AdminSchoolsSummary extends React.Component {
     <Fragment/> :
     <div className={classes.root}>
       <Grid container spacing={16}>
-        <Grid item xs={6}>
-          <Grid container spacing={16} direction={'column'} >
-            <Grid item xs={12}>
-              <AdminSchoolsSummaryReviewJobs />
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={6}>
-          <Grid container spacing={16} direction={'column'} >
-            <Grid item xs={12}>
-              <AdminSchoolsSummaryCharts />
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-      <Grid container spacing={16}>
         <Grid item xs={12}>
           <SchoolTable schools={this.props.data.schools} />
         </Grid>

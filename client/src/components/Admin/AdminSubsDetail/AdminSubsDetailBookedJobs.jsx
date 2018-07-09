@@ -5,8 +5,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import { graphql, compose } from 'react-apollo';
-import GET_ALL_JOB_BY_SUB from '../../../queries/fetchSubById';
 
 function TabContainer(props) {
   return (
@@ -43,20 +41,11 @@ class SubBookedJobs extends React.Component {
   render() {
     const { classes } = this.props;
     const { value } = this.state;
-
-    if(this.props.data.loading) {
-      return (
-        <div>
-          ....LOADING
-        </div>
-      );
-    }
-
-    const { claimedJobs } = this.props.data.subById;
+    const { claimedJobs } = this.props.sub;
     if(claimedJobs.length === 0) {
       return (
         <div className={classes.root}>
-        BOOKED JOBS
+        <Typography variant='subheading'>BOOKED JOBS</Typography>
           <AppBar position="static">
             <Tabs value={value} onChange={this.handleChange}>
               <Tab label="No Booked Jobs">
@@ -69,9 +58,9 @@ class SubBookedJobs extends React.Component {
 
     return (
       <div className={classes.root}>
-        <h3> Booked Jobs </h3>
+        <Typography variant='subheading'>BOOKED JOBS</Typography>
         <AppBar position="static">
-          <Tabs value={value} onChange={this.handleChange} scrollable scrollButtons="auto">
+          <Tabs value={value} onChange={this.handleChange}>
             {claimedJobs.map(job => (
               <Tab key={job.id} label={job.subject}>
                 {job.subject}
@@ -80,19 +69,7 @@ class SubBookedJobs extends React.Component {
           </Tabs>
         </AppBar>
 
-        { value === this.state.value
-          && <TabContainer>
-            <Typography>
-              Description:- {claimedJobs[this.state.value].description}
-            </Typography>
-            <Typography>
-              Subject:- {claimedJobs[this.state.value].subject}
-            </Typography>
-            <Typography>
-              Grade:- {claimedJobs[this.state.value].grade}
-            </Typography>
-          </TabContainer>
-        }
+        { value === this.state.value && <TabContainer>{claimedJobs[this.state.value].description}</TabContainer>}
 
 
       </div>
@@ -103,10 +80,5 @@ class SubBookedJobs extends React.Component {
 SubBookedJobs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-export default compose(withStyles(styles), graphql(GET_ALL_JOB_BY_SUB, {
-  options: () => ({
-    variables: {
-      id: localStorage.getItem('subId'),
-    },
-  }),
-}))(SubBookedJobs);
+
+export default withStyles(styles)(SubBookedJobs);

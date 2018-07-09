@@ -18,6 +18,9 @@ const Query = {
     order: [
       ['start_date', 'ASC'],
     ],
+    include: [{
+      model: School,
+    }],
   }),
 
   job: (root, { id }) => Job.findById(id)
@@ -29,6 +32,12 @@ const Query = {
     })),
 
   jobsBySchool: (root, { id }) => Job.findAll({ where: { fk_school: id } }),
+
+  jobsCompletedByUser: (root, { id }) => {
+    return Job.findAll({
+      where: { fk_sub: id, completed: true }
+    })
+  },
 
   schools: () => School.findAll(),
 

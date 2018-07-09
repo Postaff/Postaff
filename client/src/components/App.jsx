@@ -63,7 +63,6 @@ class App extends React.Component {
           <BrowserRouter forceRefresh={true}>
             <div className={classes.content}>
               <NavBar username={this.state.username} isLoggedIn={log} option={option} clickLogout={this.clickLogout.bind(this)} onLogin={this.handleLogin.bind(this)}/>
-              {/* <div className={classes.content} style={{ marginTop: '6vh' }}> */}
               <Switch>
                 <Route exact path="/" component={HomeLanding} />
                 <Route path="/login" render={props => <Login {...props} clickLogout={this.clickLogout.bind(this)} slide={this.state.slide}/>}/>
@@ -72,7 +71,7 @@ class App extends React.Component {
                 <PrivateRoute exact path="/admin/schools" component={AdminSchoolsSummary} log={log} />
                 <PrivateRoute exact path="/admin/schools/:schoolId" component={AdminSchoolsDetail} log={log} />
                 <PrivateRoute exact path="/admin/subs" component={AdminSubsSummary} log={log} />
-                <PrivateRoute exact path="/admin/subs/:subName" component={AdminSubsDetail} log={log} />
+                <PrivateRoute exact path="/admin/subs/:subId" component={AdminSubsDetail} log={log} />
                 <PrivateRoute exact path="/admin/jobs/:jobId" component={AdminJob} log={log} />
                 <PrivateRoute exact path="/school" component={SchoolLanding} log={log} />
                 <PrivateRoute exact path="/sub" component={SubLanding} log={log} />

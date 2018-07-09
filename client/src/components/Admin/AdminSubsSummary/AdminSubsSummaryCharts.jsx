@@ -7,20 +7,22 @@ import {
 } from '@material-ui/core';
 import { Doughnut } from 'react-chartjs-2';
 
-class AdminSubsSummaryCharts extends React.Component {
+// console.log(props);
+
+// let claimed = { this.props.claimed };
+
+
+
+class AdminSchoolsSummaryCharts extends React.Component {
   render() {
-    const claimed = this.props.claimed;
-    const unclaimed = this.props.unclaimed.length;
-    const percentClaimed = Math.round((this.props.claimed / (this.props.claimed + this.props.unclaimed.length)) * 100);
-    const percentFree = Math.round((15 / (26 + 15)) * 100);
-    console.log(claimed, unclaimed);
+    const { totalSubs, specialEds } = this.props;
     const claimData = {
       labels: [
         'Claimed',
         'UnClaimed',
       ],
       datasets: [{
-        data: [claimed, unclaimed],
+        data: [totalSubs, specialEds.length],
         backgroundColor: [
           '#0a00b6',
           '#9d46ff',
@@ -31,20 +33,20 @@ class AdminSubsSummaryCharts extends React.Component {
         ],
       }],
     };
-
+    
     const options = {
       legend: {
         display: false,
       },
     };
-
+    
     const freeSubs = {
       labels: [
         'Booked',
         'Free',
       ],
       datasets: [{
-        data: [26, 15],
+        data: [8, 32],
         backgroundColor: [
           '#0a00b6',
           '#9d46ff',
@@ -55,13 +57,15 @@ class AdminSubsSummaryCharts extends React.Component {
         ],
       }],
     };
+    const percentSpecial = Math.round((specialEds.length / totalSubs) * 100);
+    const percentFree = Math.round((32 / (8 + 32)) * 100);
     return (
       <Paper style={{ height: '100%', padding: '5%' }}>
         <Grid container spacing={16} style={{ flexGrow: 1 }}>
           <Grid item xs={8} sm={6}>
             <Doughnut data={claimData} options={options} />
             <Typography variant="title" align="center">
-              {percentClaimed}% Claimed
+              {percentSpecial}% Special Ed
             </Typography>
           </Grid>
           <Grid item xs={8} sm={6}>
@@ -76,4 +80,4 @@ class AdminSubsSummaryCharts extends React.Component {
   }
 }
 
-export default AdminSubsSummaryCharts;
+export default AdminSchoolsSummaryCharts;

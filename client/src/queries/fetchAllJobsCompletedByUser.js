@@ -1,8 +1,8 @@
 import { gql } from 'apollo-boost';
 
 export default gql`
-  query {
-    jobs {
+  query FetchCompletedJobs($id: ID!) {
+    jobsCompletedByUser(id: $id) {
       id
       description
       claimed

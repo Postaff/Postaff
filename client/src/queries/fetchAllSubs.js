@@ -9,6 +9,8 @@ export const GET_ALL_SUBS = gql`
       phone
       email
       address_state
+      permitted
+      special_ed
     }
   }
 `;

@@ -111,5 +111,4 @@ class AdminSchoolsDetail extends React.Component {
 
 export default compose(
   withStyles(styles),
-  graphql(GET_ALL_JOBS),
 )(AdminSchoolsDetail);
