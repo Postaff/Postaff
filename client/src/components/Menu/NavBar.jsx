@@ -135,15 +135,21 @@ class NavBar extends Component {
                 </ListItem>
               </Link>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Render school name by username on new job form via navbar
               <Link to={{
                 pathname: '/school/job/create',
                 state: {
                   schoolName: this.props.data.schoolByUsername.school_name,
                 }
               }}>
+<<<<<<< HEAD
 =======
               <Link to={'/school/job/create'}>
 >>>>>>> Return user to dashboard once form is submitted
+=======
+>>>>>>> Render school name by username on new job form via navbar
                 <ListItem button>
                   <ListItemIcon>
                     <Create/>
