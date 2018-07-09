@@ -14,6 +14,7 @@ export default gql`
       start_date
       end_date
       school {
+        school_img
         school_name
         address_street
         address_city

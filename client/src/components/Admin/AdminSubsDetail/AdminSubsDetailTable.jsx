@@ -53,7 +53,7 @@ export const tableStyle = theme => ({
   },
 });
 
-class AdminTodayTable extends React.Component {
+class AdminSubsJobsTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -99,6 +99,9 @@ class AdminTodayTable extends React.Component {
   }
 
   render() {
+    if(!this.props.jobs.completed_jobs || this.props.jobs.completed_jobs.jobsCompletedByUser.length === 0){
+      return <EmptyJobTable/>
+    }
     const tableData = [];
     console.log(this.props)
     _.each(this.props.jobs, (job) => {
@@ -295,9 +298,4 @@ EmptyJobTable = withStyles(toolbarStyle)(EmptyJobTable);
 
 export default compose(
   withStyles(tableStyle),
-  // graphql(GET_ALL_JOBS, {
-  //   options: (ownProps) => ({
-  //     refetchQueries: [{ query: GET_ALL_JOBS}]
-  //   })
-  // })
-)(AdminTodayTable);
+)(AdminSubsJobsTable);

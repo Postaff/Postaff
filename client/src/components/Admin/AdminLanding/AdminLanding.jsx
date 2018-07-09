@@ -54,7 +54,7 @@ class AdminLanding extends React.Component {
                 <AdminLandingCharts claimed={claimed.length} unclaimed={unclaimed}/>
               </Grid>
               <Grid item xs={12}>
-                <JobsTable />
+                <JobsTable jobs={ jobs }/>
               </Grid>
             </Grid>
           </Grid>

@@ -129,7 +129,7 @@ class AdminTodayTable extends React.Component {
                             <Avatar src={n.photo}/>
                           </TableCell>
                           <TableCell component="th" scope="row">
-                            <Link to={{pathname:'/admin/jobs'}}>{n.name}</Link>
+                            <Link to={{pathname:`/admin/subs/${n.id}`}}>{n.name}</Link>
                           </TableCell>
                           <TableCell>{n.phone}</TableCell>
                           <TableCell>{n.location}</TableCell>

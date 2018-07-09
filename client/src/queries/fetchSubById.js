@@ -8,6 +8,10 @@ query  SubById ($id: ID!){
       phone
       email
       photo_url
+      address_street
+      address_city
+      address_state
+      address_zipcode
       jobAvailable {
         id
         subject
