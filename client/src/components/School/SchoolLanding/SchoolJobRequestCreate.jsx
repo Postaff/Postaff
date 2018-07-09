@@ -19,14 +19,13 @@ import {
   GET_ALL_SCHOOLS,
   NEW_JOB,
 } from '../../../queries/jobFormQueries.js';
-import { GET_SCHOOL_BY_USERNAME } from '../../../queries/jobFormQueries';
 
 class SchoolJobRequestCreate extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      school: '',
+      school: this.props.location.state.schoolName,
       subject: '',
       grade: '',
       jobDescription: '',
@@ -42,6 +41,7 @@ class SchoolJobRequestCreate extends React.Component {
     this.setState({
       [event.target.name]: event.target.value,
     });
+    console.log(this.state);
   }
 
   submitForm(event) {
@@ -82,12 +82,10 @@ class SchoolJobRequestCreate extends React.Component {
   }
 
   render() {
-    if (this.props.data.loading || this.props.schoolName.loading) {
+    if(this.props.data.loading) {
       return <div></div>;
     }
-
     const { classes } = this.props;
-
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' , marginTop: '2.5%', paddingTop: '2.5%'}}>
         <form>
@@ -96,21 +94,30 @@ class SchoolJobRequestCreate extends React.Component {
               <Grid item xs={12}>
                 <Typography variant="display1">Job Request Form</Typography>
                 <TextField
-                  InputProps={{
-                    readOnly: true,
-                  }}
+                  select
                   label="School Name"
                   className={classes.textField}
                   margin="normal"
+                  onChange={this.handleChange.bind(this)}
                   value={this.state.school}
                   name="school"
-                  style={{ width: '90%' }}
+                  SelectProps={{
+                    MenuProps: {
+                      className: classes.menu,
+                    },
+                  }}
+                  helperText="Please select the school"
+                  style={{ width: '90%', textAlign: 'left' }}
                 >
+                  {this.props.data.schools.map(school => (
+                    <MenuItem key={school.id} value={school.school_name}>
+                      {school.school_name}
+                    </MenuItem>
+                  ))}
                 </TextField>
-               </Grid>
+              </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
                   label="Subject"
                   className={classes.textField}
                   margin="normal"
@@ -119,8 +126,8 @@ class SchoolJobRequestCreate extends React.Component {
                   onChange={this.handleChange.bind(this)}
                   style={{ width: '65%' }}
                 />
-                <FormControl className={classes.formControl} style={{ width: '23%', textAlign: 'left' }}>
-                  <InputLabel required>Grade</InputLabel>
+                <FormControl className={classes.formControl} style={{ width: '23%' }}>
+                  <InputLabel>Grade</InputLabel>
                   <Select
                     name="grade"
                     value={this.state.grade}
@@ -145,7 +152,6 @@ class SchoolJobRequestCreate extends React.Component {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
                   label="Job Description"
                   className={classes.textField}
                   type="jobDescription"
@@ -158,7 +164,6 @@ class SchoolJobRequestCreate extends React.Component {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
                   label="Start Date"
                   type="date"
                   className={classes.textField}
@@ -171,7 +176,6 @@ class SchoolJobRequestCreate extends React.Component {
                   style={{ width: '28.5%' }}
                 />
                 <TextField
-                  required
                   label="Start Time"
                   className={classes.textField}
                   name="startTime"
@@ -180,7 +184,6 @@ class SchoolJobRequestCreate extends React.Component {
                   style={{ width: '13%' }}
                 />
                 <TextField
-                  required
                   label="End Date"
                   type="date"
                   className={classes.textField}
@@ -193,7 +196,6 @@ class SchoolJobRequestCreate extends React.Component {
                   style={{ width: '28%' }}
                 />
                 <TextField
-                  required
                   label="End Time"
                   className={classes.textField}
                   name="endTime"
@@ -212,7 +214,7 @@ class SchoolJobRequestCreate extends React.Component {
                   name="additionalInformation"
                   value={this.state.additionalInformation}
                   onChange={this.handleChange.bind(this)}
-                  style={{ width: '71%' }}
+                  style={{ width: '68.5%' }}
                 />
                 <input
                   accept="image/*"
@@ -279,15 +281,7 @@ const styles = theme => ({
 });
 
 export default compose(
-  withStyles(styles),
   graphql(NEW_JOB),
   graphql(GET_ALL_SCHOOLS),
-  graphql(GET_SCHOOL_BY_USERNAME, {
-    name: 'schoolName',
-    options: () => ({
-      variables: {
-        username: (localStorage.getItem('username'))
-      }
-    })
-  }),
+  withStyles(styles),
 )(SchoolJobRequestCreate);
