@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'react-apollo';
 import { withStyles } from '@material-ui/core/styles';
 import {
-  BrowserRouter, Route, Switch,
+  BrowserRouter, Route, Switch, Redirect,
 } from 'react-router-dom';
 import HomeLanding from './Home/HomeLanding';
 import Login from './Home/Login';
