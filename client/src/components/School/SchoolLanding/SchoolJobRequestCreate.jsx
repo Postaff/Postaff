@@ -41,7 +41,6 @@ class SchoolJobRequestCreate extends React.Component {
     this.setState({
       [event.target.name]: event.target.value,
     });
-    console.log(this.state);
   }
 
   submitForm(event) {
@@ -84,6 +83,7 @@ class SchoolJobRequestCreate extends React.Component {
   render() {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     if (this.props.data.loading || this.props.schoolName.loading) {
       return <div></div>;
@@ -95,7 +95,10 @@ class SchoolJobRequestCreate extends React.Component {
       return <div></div>;
     }
 >>>>>>> Render school name by username on new job form via navbar
+=======
+>>>>>>> Fix styling of new and edit forms to be consistent
     const { classes } = this.props;
+
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' , marginTop: '2.5%', paddingTop: '2.5%'}}>
         <form>
@@ -108,10 +111,13 @@ class SchoolJobRequestCreate extends React.Component {
               <Grid item xs={12}>
                 <Typography variant="display1">Job Request Form</Typography>
                 <TextField
-                  select
+                  InputProps={{
+                    readOnly: true,
+                  }}
                   label="School Name"
                   className={classes.textField}
                   margin="normal"
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -139,22 +145,13 @@ class SchoolJobRequestCreate extends React.Component {
 =======
                   onChange={this.handleChange.bind(this)}
 >>>>>>> Render school name by username on new job form via navbar
+=======
+>>>>>>> Fix styling of new and edit forms to be consistent
                   value={this.state.school}
 >>>>>>> Revert changes in new job request form
                   name="school"
-                  SelectProps={{
-                    MenuProps: {
-                      className: classes.menu,
-                    },
-                  }}
-                  helperText="Please select the school"
                   style={{ width: '90%', textAlign: 'left' }}
                 >
-                  {this.props.data.schools.map(school => (
-                    <MenuItem key={school.id} value={school.school_name}>
-                      {school.school_name}
-                    </MenuItem>
-                  ))}
                 </TextField>
 <<<<<<< HEAD
                </Grid>
@@ -260,7 +257,7 @@ class SchoolJobRequestCreate extends React.Component {
                   name="additionalInformation"
                   value={this.state.additionalInformation}
                   onChange={this.handleChange.bind(this)}
-                  style={{ width: '68.5%' }}
+                  style={{ width: '71%' }}
                 />
                 <input
                   accept="image/*"

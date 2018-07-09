@@ -104,6 +104,7 @@ class SchoolLandingJobsTable extends React.Component {
   render() {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (this.props.data.loading || this.props.schoolName.loading) {
 =======
     if (this.props.data.loading) {
@@ -111,6 +112,9 @@ class SchoolLandingJobsTable extends React.Component {
 =======
     if(this.props.data.loading || this.props.schoolName.loading){
 >>>>>>> Remove school name component
+=======
+    if (this.props.data.loading || this.props.schoolName.loading) {
+>>>>>>> Fix styling of new and edit forms to be consistent
       return <div></div>
     } else {
     let tableData = [];

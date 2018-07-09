@@ -173,10 +173,14 @@ class SchoolJobRequestEdit extends React.Component {
                   name="school"
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                   style={{ width: '90%', textAlign: 'left' }}
 =======
                   style={{ width: '90%' }}
 >>>>>>> Update edit form function to populate with existing data
+=======
+                  style={{ width: '90%', textAlign: 'left' }}
+>>>>>>> Fix styling of new and edit forms to be consistent
                 >
                 </TextField>
               </Grid>
@@ -287,7 +291,7 @@ class SchoolJobRequestEdit extends React.Component {
                   name="additionalInformation"
                   value={this.state.additionalInformation}
                   onChange={this.handleChange.bind(this)}
-                  style={{ width: '68.5%' }}
+                  style={{ width: '71%' }}
                 />
                 <input
                   accept="image/*"
