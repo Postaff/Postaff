@@ -36,6 +36,16 @@ export const GET_SCHOOL_BY_USERNAME = gql`
   query SchoolByUsername ($username: String) {
     schoolByUsername (username: $username) {
       school_name
+      school_img
+      address_street
+      address_city
+      address_state
+      address_zipcode
+      contact_name
+      contact_title
+      contact_email
+      phone
+      phone_ext
     }
   }
 `;

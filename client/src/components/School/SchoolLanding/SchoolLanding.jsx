@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
-import SchoolLandingSubHistory from './SchoolLandingSubHistory.jsx';
+import SchoolLandingSchoolProfile from './SchoolLandingSchoolProfile.jsx';
 import SchoolLandingCharts from './SchoolLandingCharts.jsx';
 import SchoolLandingJobsTable from './SchoolLandingJobsTable.jsx';
 
@@ -21,7 +21,7 @@ class SchoolLanding extends React.Component {
     return (
       <div style={{ marginLeft: '2.5%', paddingLeft: '2.5%' }}>
         <Grid container spacing={24}>
-          <SchoolLandingSubHistory />
+          <SchoolLandingSchoolProfile />
           <SchoolLandingCharts />
           <SchoolLandingJobsTable />
         </Grid>
