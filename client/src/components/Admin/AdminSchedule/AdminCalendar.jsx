@@ -15,10 +15,10 @@ class AdminCalendar extends React.Component {
   } 
 
   render() {
+    console.log("Calendar", this.props);
     return (
       <div>
         <Calendar
-          style={{ color: 'blue' }}
           onChange={this.onChange}
           value={this.state.date}
         />
