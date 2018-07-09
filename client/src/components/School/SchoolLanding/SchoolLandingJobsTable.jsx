@@ -293,7 +293,7 @@ let AdminTodayTableToolbar = props => {
     >
       <div className={classes.title}>
           <Typography variant="title" id="tableTitle">
-            Job Requests
+            Substitute Teacher Requests
           </Typography>
       </div>
       <div className={classes.spacer} />

@@ -174,7 +174,7 @@ class SchoolJobRequestEdit extends React.Component {
 =======
 >>>>>>> Remove school name component
               <Grid item xs={12}>
-                <Typography variant="display1">Job Request Form</Typography>
+                <Typography variant="display1">Substitute Teacher Request Form</Typography>
                 <TextField
                   InputProps={{
                     readOnly: true,

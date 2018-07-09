@@ -215,7 +215,7 @@ class Login extends React.Component {
                   <span style={{ marginLeft: '1vw' }} />
                   <Button
                     variant="contained"
-                    color="secondary"
+                    color="primary"
                     className={classes.button}
                     onClick={this.onSubmit.bind(this)}
                   >
@@ -227,7 +227,7 @@ class Login extends React.Component {
                   <IconButton
                     key="close"
                     aria-label="Close"
-                    color="secondary"
+                    color="primary"
                     className={classes.close}
                     onClick={this.handleClose}
                   >

@@ -154,7 +154,7 @@ class NavBar extends Component {
                   <ListItemIcon>
                     <Create/>
                   </ListItemIcon>
-                  <ListItemText primary="Request Job"/>
+                  <ListItemText primary="Request Sub"/>
                 </ListItem>
               </Link>
               <Divider />
