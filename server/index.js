@@ -8,6 +8,7 @@ const passport = require('passport');
 const session = require('express-session');
 const path = require('path');
 const dotenv = require('dotenv').config();
+const nodemailer = require('nodemailer');
 const routes = require('./routes.js');
 
 
@@ -28,7 +29,7 @@ const resolvers = require('./middlewares/resolvers.js');
 const typeDefs = gql(fs.readFileSync(path.join(__dirname, './middlewares/schema.graphql'), 'utf8'));
 const app = express();
 const PORT = process.env.PORT || 3000;
-
+const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -42,6 +43,37 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.post('/api/subs/notify', (req, res) => {
+  const transport = nodemailer.createTransport({
+    service: 'gmail',
+    host: 'smtp.gmail.com',
+    auth: {
+      type: 'login',
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_PASS,
+    },
+  });
+  const mailOptions = {
+    from: process.env.GMAIL_USER,
+    to: process.env.GMAIL_USER,
+    subject: 'POSTAFF: New Job Oppurtunities',
+    html: 'Please visit Postaff and login to see your new opportunities',
+  };
+  transport.sendMail(mailOptions, (err, response) => {
+    if(err) {
+      res.render('contact-failure', err);
+    } else {
+      res.end('contact-success', response);
+    }
+  });
+  client.messages.create({
+    to: process.env.TWILIO_TO_PHONE,
+    from: process.env.TWILIO_FROM_PHONE,
+    body: 'POSTAFF: You have new job openings!',
+  }).then(message => console.log(message.sid));
+});
+
 app.get('/*', (req, res) => {
   console.log('HEYHEYHEY', req.url);
   res.sendFile(path.join(__dirname, '../client/dist/index.html'), (err) => {

@@ -6,11 +6,11 @@ import {
   Button,
 } from '@material-ui/core';
 import { graphql, compose } from 'react-apollo';
+import $ from 'jquery';
 import APPROVE_JOB from '../../queries/approveSubJobs';
 import FETCH_JOB from '../../queries/fetchJob';
- 
-class Detail extends React.Component {
 
+class Detail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,8 +18,9 @@ class Detail extends React.Component {
     };
 
     this.adminApproveJob.bind(this);
+    this.notifySubs.bind(this);
   }
-  
+
   adminApproveJob() {
     this.props.mutate({
       variables: {
@@ -33,12 +34,27 @@ class Detail extends React.Component {
     }));
   }
 
+  notifySubs() {
+    // event.preventDefault();
+    $.ajax({
+      method: 'POST',
+      url: '/api/subs/notify',
+      contentType: 'application/json',
+    })
+      .done((data) => {
+        console.log('notification sent', data);
+        alert('Available subs will be notified');
+      })
+      .fail(() => {
+        console.log('failed to send notification');
+      });
+  }
 
   render() {
     const { job } = this.props;
     console.log('Am in Detail.jsx', this.props);
     const approved = this.state.approved || job.approved;
-    
+
     return (
       <Paper style={{ height: '100%' }}>
         <Typography variant="title" gutterBottom>
@@ -64,8 +80,8 @@ class Detail extends React.Component {
             <Grid item xs={1}>
             </Grid>
             <Grid item xs={8}>
-              {job.claimed ? 'Claimed' : approved ? 'Approved' : 'Awaiting Approval'} 
-              {job.claimed ? null : <Button onClick={ () => this.adminApproveJob() } style={{ marginLeft:'20px', backgroundColor:'#6200ea', color:'white' }}> Send to Subs </Button>}
+              {job.claimed ? 'Claimed' : approved ? 'Approved' : 'Awaiting Approval'}
+              {job.claimed ? null : <Button onClick={ this.adminApproveJob, this.notifySubs } style={{ marginLeft: '20px', backgroundColor: '#6200ea', color: 'white' }}> Notify Subs </Button>}
             </Grid>
           </Grid>
         </Typography>

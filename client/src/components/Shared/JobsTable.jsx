@@ -73,14 +73,14 @@ class AdminTodayTable extends React.Component {
   handleRequestSort(event, property) {
     const orderBy = property;
     let order = 'desc';
-    if (this.state.orderBy === property && this.state.order === 'desc') {
+    if(this.state.orderBy === property && this.state.order === 'desc') {
       order = 'asc';
     }
     this.setState({ order, orderBy });
   }
 
   handleSelectAllClick(event, checked) {
-    if (checked) {
+    if(checked) {
       this.setState({ selected: this.state.data.map(n => n.id) });
       return;
     }
@@ -100,16 +100,16 @@ class AdminTodayTable extends React.Component {
 
   render() {
     const tableData = [];
-    console.log(this.props)
+    console.log(this.props);
     _.each(this.props.jobs, (job) => {
       tableData.push(createData(
-        job.id, 
-        job.school.school_img, 
-        job.subject, 
+        job.id,
+        job.school.school_img,
+        job.subject,
         `${job.school.address_city}, ${job.school.address_state} ${job.school.address_zipcode}`,
         job.grade,
-        job.start_date,
-        job.school.school_name
+        job.end_date,
+        job.school.school_name,
       ));
     });
     const { classes } = this.props;
@@ -135,23 +135,23 @@ class AdminTodayTable extends React.Component {
                 .sort(getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => (
-                    <TableRow
-                      hover
-                      onClick={event => this.handleClick(event, n.id)}
-                      tabIndex={-1}
-                      key={n.id}
-                    >
-                      <TableCell>
-                        <Avatar src={n.img}/> 
-                      </TableCell>
-                      <TableCell component="th" scope="row">
-                        <Link to={{ pathname: `/admin/jobs/${n.id}`, state: { job: n } }}>{n.subject}</Link>
-                      </TableCell>
-                      <TableCell numeric>{n.location}</TableCell>
-                      <TableCell numeric>{n.grade}</TableCell>
-                      <TableCell numeric>{n.date}</TableCell>
-                      <TableCell numeric>{n.employee}</TableCell>
-                    </TableRow>
+                  <TableRow
+                    hover
+                    onClick={event => this.handleClick(event, n.id)}
+                    tabIndex={-1}
+                    key={n.id}
+                  >
+                    <TableCell>
+                      <Avatar src={n.img}/>
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      <Link to={{ pathname: `/admin/jobs/${n.id}`, state: { job: n } }}>{n.subject}</Link>
+                    </TableCell>
+                    <TableCell numeric>{n.location}</TableCell>
+                    <TableCell numeric>{n.grade}</TableCell>
+                    <TableCell numeric>{n.date}</TableCell>
+                    <TableCell numeric>{n.employee}</TableCell>
+                  </TableRow>
                 ))}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 49 * emptyRows }}>
@@ -197,7 +197,7 @@ const columnData = [
     id: 'img', numeric: false, disablePadding: false, label: '',
   },
   {
-    id: 'subject', numeric: false, disablePadding: false, label: 'Job',
+    id: 'subject', numeric: false, disablePadding: false, label: 'Subject',
   },
   {
     id: 'location', numeric: true, disablePadding: false, label: 'Location',
@@ -206,7 +206,7 @@ const columnData = [
     id: 'grade', numeric: true, disablePadding: false, label: 'Grade',
   },
   {
-    id: 'date', numeric: true, disablePadding: false, label: 'Start Date',
+    id: 'date', numeric: true, disablePadding: false, label: 'End Date',
   },
   {
     id: 'employee', numeric: true, disablePadding: false, label: 'Employee',
@@ -228,26 +228,26 @@ class AdminTodayTableHead extends React.Component {
       <TableHead>
         <TableRow>
           {columnData.map(column => (
-              <TableCell
-                key={column.id}
-                numeric={column.numeric}
-                padding={column.disablePadding ? 'none' : 'default'}
-                sortDirection={orderBy === column.id ? order : false}
+            <TableCell
+              key={column.id}
+              numeric={column.numeric}
+              padding={column.disablePadding ? 'none' : 'default'}
+              sortDirection={orderBy === column.id ? order : false}
+            >
+              <Tooltip
+                title="Sort"
+                placement={column.numeric ? 'bottom-end' : 'bottom-start'}
+                enterDelay={300}
               >
-                <Tooltip
-                  title="Sort"
-                  placement={column.numeric ? 'bottom-end' : 'bottom-start'}
-                  enterDelay={300}
+                <TableSortLabel
+                  active={orderBy === column.id}
+                  direction={order}
+                  onClick={this.createSortHandler(column.id)}
                 >
-                  <TableSortLabel
-                    active={orderBy === column.id}
-                    direction={order}
-                    onClick={this.createSortHandler(column.id)}
-                  >
-                    {column.label}
-                  </TableSortLabel>
-                </Tooltip>
-              </TableCell>
+                  {column.label}
+                </TableSortLabel>
+              </Tooltip>
+            </TableCell>
           ), this)}
         </TableRow>
       </TableHead>
@@ -262,9 +262,9 @@ let AdminTodayTableToolbar = (props) => {
       className={classNames(classes.root)}
     >
       <div className={classes.title}>
-          <Typography variant="title" id="tableTitle">
+        <Typography variant="title" id="tableTitle">
             Today's Jobs
-          </Typography>
+        </Typography>
       </div>
       <div className={classes.spacer} />
       <div className={classes.actions}>
@@ -281,9 +281,9 @@ let EmptyJobTable = (props) => {
       className={classNames(classes.root)}
     >
       <div className={classes.title}>
-          <Typography variant="title" id="tableTitle">
-            This sub hasn't completed any job yet.
-          </Typography>
+        <Typography variant="title" id="tableTitle">
+            This sub hasn't completed any jobs yet.
+        </Typography>
       </div>
       <div className={classes.spacer} />
       <div className={classes.actions}>
