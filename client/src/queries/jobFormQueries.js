@@ -35,6 +35,7 @@ export const EDIT_JOB = gql`
 export const GET_SCHOOL_BY_USERNAME = gql`
   query SchoolByUsername ($username: String) {
     schoolByUsername (username: $username) {
+      id
       school_name
       school_img
       address_street

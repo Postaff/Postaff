@@ -14,6 +14,7 @@ export default gql`
       end_date
       end_time
       school {
+        id
         school_img
         school_name
         address_city

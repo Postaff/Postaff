@@ -83,7 +83,7 @@ class SchoolJobRequestEdit extends React.Component {
 
   render() {
     const { classes } = this.props;
-    console.log(this.state)
+
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' , marginTop: '2.5%', paddingTop: '2.5%'}}>
         <form>

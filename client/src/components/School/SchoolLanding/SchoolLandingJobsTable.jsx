@@ -4,10 +4,9 @@ import { withStyles } from '@material-ui/core/styles';
 import {Table, TableBody, TableCell, TableHead, TablePagination, TableRow,
 TableSortLabel, Toolbar, Typography, Paper, Tooltip, Grid} from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import {graphql, compose, Query} from 'react-apollo';
+import { graphql, compose, Query } from 'react-apollo';
 import GET_ALL_JOBS from '../../../queries/fetchAllJobs.js';
 import { GET_SCHOOL_BY_USERNAME } from '../../../queries/jobFormQueries';
-import _ from 'lodash';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import IconButton from '@material-ui/core/IconButton';
 import Edit from '@material-ui/icons/Edit';
@@ -62,7 +61,7 @@ class SchoolLandingJobsTable extends React.Component {
       orderBy: 'start_date',
       data: [],
       page: 0,
-      rowsPerPage: 10,
+      rowsPerPage: 5,
     };
     this.handleRequestSort = this.handleRequestSort.bind(this);
     this.handleChangePage = this.handleChangePage.bind(this);
@@ -104,98 +103,103 @@ class SchoolLandingJobsTable extends React.Component {
     if (this.props.data.loading || this.props.schoolName.loading) {
       return <div></div>
     } else {
-      console.log(this.props.data.jobs)
-    let tableData = [];
-    _.each(this.props.data.jobs, (job)=>{
-      tableData.push(createData(job.id, job.subject, job.grade, job.start_date, job.claimed, job.description, job.start_time, job.end_date, job.end_time))
-    })
-    const { classes } = this.props;
-    const { order, orderBy, rowsPerPage, page } = this.state;
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, tableData.length - page * rowsPerPage);
+      let uniqueSchoolId = this.props.schoolName.schoolByUsername.id;
+      let tableData = [];
 
-    let subs = ['Kiera Grady', 'Ellis Hermann', 'Bert Deckow', 'Cara Botsford', 'Cara Botsford', 'Augusta Kutch'];
+      this.props.data.jobs.map(function(job) {
+        if (job.school.id === uniqueSchoolId) {
+          tableData.push(createData(job.id, job.subject, job.grade, job.start_date, job.claimed, job.description, job.start_time, job.end_date, job.end_time));
+        }
+      })
 
-    return (
-      <Fragment>
-        <Grid item xs={12}>
-          <Paper elevation={4} className={classes.root}>
-            <AdminTodayTableToolbar />
-            <div className={classes.tableWrapper}>
-              <Table className={classes.table} aria-labelledby="tableTitle">
-                <AdminTodayTableHead
-                  order={order}
-                  orderBy={orderBy}
-                  onSelectAllClick={this.handleSelectAllClick}
-                  onRequestSort={this.handleRequestSort}
-                  rowCount={tableData.length}
-                />
-                <TableBody>
-                  {tableData
-                    .sort(getSorting(order, orderBy))
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map(n => {
-                      return (
-                        <TableRow
-                          hover
-                          onClick={event => this.handleClick(event, n.id)}
-                          tabIndex={-1}
-                          key={n.id}
-                        >
-                          <TableCell component="th" scope="row">{n.subject}</TableCell>
-                          <TableCell numeric>{n.grade}</TableCell>
-                          <TableCell numeric>{n.start_date}</TableCell>
-                          {n.claimed ? <TableCell numeric>Claimed</TableCell> : <TableCell numeric>Unclaimed</TableCell>}
-                          {n.claimed ? <TableCell numeric>{subs[Math.floor(Math.random() * 6)]}</TableCell> : <TableCell numeric></TableCell>}
-                          <TableCell numeric>
-                            <Link to={{
-                              pathname:`/school/job/edit/${n.id}`,
-                              state: {
-                                schoolId: n.id,
-                                schoolName: this.props.schoolName.schoolByUsername.school_name,
-                                subject: n.subject,
-                                grade: n.grade,
-                                description: n.description,
-                                startDate: n.start_date,
-                                startTime: n.start_time,
-                                endDate: n.end_date,
-                                endTime: n.end_time,
-                                additionalInformation: '',
-                              },
-                            }}>
-                              <IconButton aria-label="Edit">
-                                <Edit />
-                              </IconButton>
-                            </Link>
-                          </TableCell>
-                        </TableRow>
-                      );
-                    })}
-                  {emptyRows > 0 && (
-                    <TableRow style={{ height: 49 * emptyRows }}>
-                      <TableCell colSpan={6} />
-                    </TableRow>
-                  )}
-                </TableBody>
-              </Table>
-            </div>
-            <TablePagination
-              component="div"
-              count={tableData.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              backIconButtonProps={{
-                'aria-label': 'Previous Page',
-              }}
-              nextIconButtonProps={{
-                'aria-label': 'Next Page',
-              }}
-              onChangePage={this.handleChangePage}
-              onChangeRowsPerPage={this.handleChangeRowsPerPage}
-            />
-          </Paper>
-        </Grid>
-      </Fragment>
-    );}
+      const { classes } = this.props;
+      const { order, orderBy, rowsPerPage, page } = this.state;
+      const emptyRows = rowsPerPage - Math.min(rowsPerPage, tableData.length - page * rowsPerPage);
+
+      let subs = ['Kiera Grady', 'Ellis Hermann', 'Bert Deckow', 'Cara Botsford', 'Cara Botsford', 'Augusta Kutch'];
+
+      return (
+        <Fragment>
+          <Grid item xs={12}>
+            <Paper elevation={4} className={classes.root}>
+              <AdminTodayTableToolbar />
+              <div className={classes.tableWrapper}>
+                <Table className={classes.table} aria-labelledby="tableTitle">
+                  <AdminTodayTableHead
+                    order={order}
+                    orderBy={orderBy}
+                    onSelectAllClick={this.handleSelectAllClick}
+                    onRequestSort={this.handleRequestSort}
+                    rowCount={tableData.length}
+                  />
+                  <TableBody>
+                    {tableData
+                      .sort(getSorting(order, orderBy))
+                      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                      .map(n => {
+                        return (
+                          <TableRow
+                            hover
+                            onClick={event => this.handleClick(event, n.id)}
+                            tabIndex={-1}
+                            key={n.id}
+                          >
+                            <TableCell component="th" scope="row">{n.subject}</TableCell>
+                            <TableCell>{n.grade}</TableCell>
+                            <TableCell>{n.start_date}</TableCell>
+                            {n.claimed ? <TableCell>Claimed</TableCell> : <TableCell>Unclaimed</TableCell>}
+                            {n.claimed ? <TableCell>{subs[Math.floor(Math.random() * 6)]}</TableCell> : <TableCell ></TableCell>}
+                            <TableCell>
+                              <Link to={{
+                                pathname:`/school/job/edit/${n.id}`,
+                                state: {
+                                  schoolId: n.id,
+                                  schoolName: this.props.schoolName.schoolByUsername.school_name,
+                                  subject: n.subject,
+                                  grade: n.grade,
+                                  description: n.description,
+                                  startDate: n.start_date,
+                                  startTime: n.start_time,
+                                  endDate: n.end_date,
+                                  endTime: n.end_time,
+                                  additionalInformation: '',
+                                },
+                              }}>
+                                <IconButton aria-label="Edit">
+                                  <Edit />
+                                </IconButton>
+                              </Link>
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })}
+                    {emptyRows > 0 && (
+                      <TableRow style={{ height: 49 * emptyRows }}>
+                        <TableCell colSpan={6} />
+                      </TableRow>
+                    )}
+                  </TableBody>
+                </Table>
+              </div>
+              <TablePagination
+                component="div"
+                count={tableData.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                backIconButtonProps={{
+                  'aria-label': 'Previous Page',
+                }}
+                nextIconButtonProps={{
+                  'aria-label': 'Next Page',
+                }}
+                onChangePage={this.handleChangePage}
+                onChangeRowsPerPage={this.handleChangeRowsPerPage}
+              />
+            </Paper>
+          </Grid>
+        </Fragment>
+      );
+    }
   }
 }
 
@@ -211,8 +215,8 @@ function getSorting(order, orderBy) {
 
 const columnData = [
   { id: 'subject', numeric: false, disablePadding: false, label: 'Subject' },
-  { id: 'grade', numeric: true, disablePadding: false, label: 'Grade' },
-  { id: 'start_date', numeric: true, disablePadding: false, label: 'Start Date' },
+  { id: 'grade', numeric: false, disablePadding: false, label: 'Grade' },
+  { id: 'start_date', numeric: false, disablePadding: false, label: 'Start Date' },
   { id: 'claimed', numeric: false, disablePadding: false, label: 'Status' },
   { id: 'employee', numeric: false, disablePadding: false, label: 'Substitute Teacher' },
   { id: 'edit', numeric: false, disablePadding: false, label: '' },
