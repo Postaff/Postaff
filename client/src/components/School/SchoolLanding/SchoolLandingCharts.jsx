@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
-import {graphql, compose, Query} from 'react-apollo';
+import { graphql, compose, Query } from 'react-apollo';
 import GET_ALL_JOBS from '../../../queries/fetchAllJobs.js';
+import { GET_SCHOOL_BY_USERNAME } from '../../../queries/jobFormQueries';
 import {
   Typography,
   Paper,
@@ -10,16 +11,29 @@ import { Doughnut } from 'react-chartjs-2';
 
 class SchoolLandingCharts extends React.Component {
   render() {
-    if (this.props.data.loading) {
+    if (this.props.data.loading || this.props.schoolName.loading) {
       return null;
     } else {
+      let uniqueSchoolId = this.props.schoolName.schoolByUsername.id;
 
       // CLAIM DATA
+      var calculateTotal = function(jobs) {
+        var counter = 0;
+        for (var i = 0; i < jobs.length; i++) {
+          if (jobs[i].school.id === uniqueSchoolId) {
+            counter++;
+          }
+        }
+        return counter;
+      }
+
       var countClaimed = function(jobs) {
         var counter = 0;
         for (var i = 0; i < jobs.length; i++) {
-          if (jobs[i].claimed === true) {
-            counter++;
+          if (jobs[i].school.id === uniqueSchoolId) {
+            if (jobs[i].claimed === true) {
+              counter++;
+            }
           }
         }
         return counter;
@@ -27,7 +41,7 @@ class SchoolLandingCharts extends React.Component {
 
       var claimed = countClaimed(this.props.data.jobs);
 
-      var unclaimed = this.props.data.jobs.length - claimed;
+      var unclaimed = calculateTotal(this.props.data.jobs) - claimed;
 
       const claimData = {
         labels: [
@@ -47,10 +61,12 @@ class SchoolLandingCharts extends React.Component {
       var generateGrades = function(jobs) {
         var result = {};
         for (var i = 0; i < jobs.length; i++) {
-          if (!result[jobs[i].grade]) {
-            result[jobs[i].grade] = 1
-          } else {
-            result[jobs[i].grade] += 1;
+          if (jobs[i].school.id === uniqueSchoolId) {
+            if (!result[jobs[i].grade]) {
+              result[jobs[i].grade] = 1
+            } else {
+              result[jobs[i].grade] += 1;
+            }
           }
         }
         return Object.keys(result);
@@ -61,10 +77,12 @@ class SchoolLandingCharts extends React.Component {
       var generateGradeCount = function(jobs) {
         var result = {};
         for (var i = 0; i < jobs.length; i++) {
-          if (!result[jobs[i].grade]) {
-            result[jobs[i].grade] = 1
-          } else {
-            result[jobs[i].grade] += 1;
+          if (jobs[i].school.id === uniqueSchoolId) {
+            if (!result[jobs[i].grade]) {
+              result[jobs[i].grade] = 1
+            } else {
+              result[jobs[i].grade] += 1;
+            }
           }
         }
         return Object.values(result);
@@ -77,8 +95,6 @@ class SchoolLandingCharts extends React.Component {
         datasets: [{
           data: gradeCount,
           backgroundColor: [
-            'indigo',
-            'midnightblue',
             'rebeccapurple',
             'darkblue',
             'darkslateblue',
@@ -91,6 +107,8 @@ class SchoolLandingCharts extends React.Component {
             'lightsteelblue',
             'purple',
             'darkmagenta',
+            'indigo',
+            'midnightblue',
           ],
         }],
       };
@@ -99,10 +117,12 @@ class SchoolLandingCharts extends React.Component {
       var generateSubjects = function(jobs) {
         var result = {};
         for (var i = 0; i < jobs.length; i++) {
-          if (!result[jobs[i].subject]) {
-            result[jobs[i].subject] = 1
-          } else {
-            result[jobs[i].subject] += 1;
+          if (jobs[i].school.id === uniqueSchoolId) {
+            if (!result[jobs[i].subject]) {
+              result[jobs[i].subject] = 1
+            } else {
+              result[jobs[i].subject] += 1;
+            }
           }
         }
         return Object.keys(result);
@@ -113,10 +133,12 @@ class SchoolLandingCharts extends React.Component {
       var generateSubjectCount = function(jobs) {
         var result = {};
         for (var i = 0; i < jobs.length; i++) {
-          if (!result[jobs[i].subject]) {
-            result[jobs[i].subject] = 1
-          } else {
-            result[jobs[i].subject] += 1;
+          if (jobs[i].school.id === uniqueSchoolId) {
+            if (!result[jobs[i].subject]) {
+              result[jobs[i].subject] = 1
+            } else {
+              result[jobs[i].subject] += 1;
+            }
           }
         }
         return Object.values(result);
@@ -129,14 +151,6 @@ class SchoolLandingCharts extends React.Component {
         datasets: [{
           data: subjectCount,
           backgroundColor: [
-            'purple',
-            'lightsteelblue',
-            'darkmagenta',
-            'mediumpurple',
-            'blueviolet',
-            'cornflowerblue',
-            'darkviolet',
-            'mediumslateblue',
             'darkorchid',
             'slateblue',
             'blue',
@@ -145,6 +159,14 @@ class SchoolLandingCharts extends React.Component {
             'rebeccapurple',
             'midnightblue',
             'indigo',
+            'purple',
+            'lightsteelblue',
+            'darkmagenta',
+            'mediumpurple',
+            'blueviolet',
+            'cornflowerblue',
+            'darkviolet',
+            'mediumslateblue',
           ],
         }],
       };
@@ -187,4 +209,14 @@ class SchoolLandingCharts extends React.Component {
   }
 }
 
-export default graphql(GET_ALL_JOBS)(SchoolLandingCharts);
+export default compose(
+  graphql(GET_SCHOOL_BY_USERNAME, {
+    name: 'schoolName',
+    options: () => ({
+      variables: {
+        username: (localStorage.getItem('username'))
+      }
+    })
+  }),
+  graphql(GET_ALL_JOBS),
+)(SchoolLandingCharts);
