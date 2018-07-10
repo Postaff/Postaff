@@ -12,8 +12,6 @@ import { Link } from 'react-router-dom';
 import Tooltip from '@material-ui/core/Tooltip';
 import Grid from '@material-ui/core/Grid';
 import Login from '../Home/Login.jsx';
-import {graphql, compose, Query} from 'react-apollo';
-import { GET_SCHOOL_BY_USERNAME } from '../../queries/jobFormQueries';
 
 const styles = theme => ({
   root: {
@@ -124,7 +122,7 @@ class NavBar extends Component {
               <Divider />
             </List>
             : <div></div>}
-          {this.props.isLoggedIn && this.props.option === 'school' && !this.props.data.loading
+          {this.props.isLoggedIn && this.props.option === 'school'
             ? <List>
               <Link to={'/school'}>
                 <ListItem button>
@@ -134,12 +132,7 @@ class NavBar extends Component {
                   <ListItemText primary="Dashboard"/>
                 </ListItem>
               </Link>
-              <Link to={{
-                pathname: '/school/job/create',
-                state: {
-                  schoolName: this.props.data.schoolByUsername.school_name,
-                }
-              }}>
+              <Link to={'/school/job/create'}>
                 <ListItem button>
                   <ListItemIcon>
                     <Create/>
@@ -236,13 +229,4 @@ class NavBar extends Component {
   }
 }
 
-export default compose(
-  withStyles(styles),
-  graphql(GET_SCHOOL_BY_USERNAME, {
-    options: () => ({
-      variables: {
-        username: (localStorage.getItem('username'))
-      }
-    })
-  }),
-)(NavBar);
+export default withStyles(styles)(NavBar);

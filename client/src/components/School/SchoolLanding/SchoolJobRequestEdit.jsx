@@ -92,6 +92,7 @@ class SchoolJobRequestEdit extends React.Component {
               <Grid item xs={12}>
                 <Typography variant="display1">Substitute Teacher Request Form</Typography>
                 <TextField
+                  required={true}
                   InputProps={{
                     readOnly: true,
                   }}
@@ -106,6 +107,7 @@ class SchoolJobRequestEdit extends React.Component {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  required={true}
                   label="Subject"
                   className={classes.textField}
                   margin="normal"
@@ -114,7 +116,7 @@ class SchoolJobRequestEdit extends React.Component {
                   onChange={this.handleChange.bind(this)}
                   style={{ width: '65%' }}
                 />
-                <FormControl className={classes.formControl} style={{ width: '23%', textAlign: 'left' }}>
+                <FormControl required={true} className={classes.formControl} style={{ width: '23%', textAlign: 'left' }}>
                   <InputLabel>Grade</InputLabel>
                   <Select
                     name="grade"
@@ -140,6 +142,7 @@ class SchoolJobRequestEdit extends React.Component {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  required={true}
                   label="Job Description"
                   className={classes.textField}
                   type="jobDescription"
@@ -152,6 +155,7 @@ class SchoolJobRequestEdit extends React.Component {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  required={true}
                   label="Start Date"
                   type="date"
                   className={classes.textField}
@@ -164,6 +168,7 @@ class SchoolJobRequestEdit extends React.Component {
                   style={{ width: '28.5%' }}
                 />
                 <TextField
+                  required={true}
                   label="Start Time"
                   className={classes.textField}
                   name="startTime"
@@ -172,6 +177,7 @@ class SchoolJobRequestEdit extends React.Component {
                   style={{ width: '13%' }}
                 />
                 <TextField
+                  required={true}
                   label="End Date"
                   type="date"
                   className={classes.textField}
@@ -184,6 +190,7 @@ class SchoolJobRequestEdit extends React.Component {
                   style={{ width: '28%' }}
                 />
                 <TextField
+                  required={true}
                   label="End Time"
                   className={classes.textField}
                   name="endTime"
