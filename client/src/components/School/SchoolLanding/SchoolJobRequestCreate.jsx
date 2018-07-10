@@ -1,5 +1,5 @@
 import React from 'react';
-import {	withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import FileUpload from '@material-ui/icons/FileUpload';
 import {
   Button,
@@ -16,8 +16,8 @@ import {
 import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
 import {
-  GET_ALL_SCHOOLS,
   NEW_JOB,
+  GET_SCHOOL_BY_USERNAME,
 } from '../../../queries/jobFormQueries.js';
 
 class SchoolJobRequestCreate extends React.Component {
@@ -25,7 +25,8 @@ class SchoolJobRequestCreate extends React.Component {
     super(props);
 
     this.state = {
-      school: this.props.location.state.schoolName,
+      schoolId: '',
+      school: '',
       subject: '',
       grade: '',
       jobDescription: '',
@@ -39,19 +40,22 @@ class SchoolJobRequestCreate extends React.Component {
 
   handleChange(event) {
     this.setState({
+      schoolId: this.props.schoolName.schoolByUsername.id,
+      school: this.props.schoolName.schoolByUsername.school_name,
       [event.target.name]: event.target.value,
     });
   }
 
   submitForm(event) {
     const {
-      school, subject, grade, jobDescription, startDate,
+      schoolId, school, subject, grade, jobDescription, startDate,
       startTime, endDate, endTime, additionalInformation,
     } = this.state;
+
     this.props.mutate({
       variables: {
         input: {
-          schoolId: '1',
+          schoolId,
           school,
           subject,
           grade,
@@ -66,7 +70,6 @@ class SchoolJobRequestCreate extends React.Component {
     });
 
     this.setState({
-      school: '',
       subject: '',
       grade: '',
       jobDescription: '',
@@ -83,6 +86,10 @@ class SchoolJobRequestCreate extends React.Component {
   render() {
     const { classes } = this.props;
 
+    if (this.props.schoolName.loading) {
+      return null;
+    }
+
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' , marginTop: '2.5%', paddingTop: '2.5%'}}>
         <form>
@@ -91,13 +98,14 @@ class SchoolJobRequestCreate extends React.Component {
               <Grid item xs={12}>
                 <Typography variant="display1">Substitute Teacher Request Form</Typography>
                 <TextField
+                  required={true}
                   InputProps={{
                     readOnly: true,
                   }}
                   label="School Name"
                   className={classes.textField}
                   margin="normal"
-                  value={this.state.school}
+                  value={this.props.schoolName.schoolByUsername.school_name}
                   name="school"
                   style={{ width: '90%', textAlign: 'left' }}
                 >
@@ -105,6 +113,7 @@ class SchoolJobRequestCreate extends React.Component {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  required={true}
                   label="Subject"
                   className={classes.textField}
                   margin="normal"
@@ -113,7 +122,7 @@ class SchoolJobRequestCreate extends React.Component {
                   onChange={this.handleChange.bind(this)}
                   style={{ width: '65%' }}
                 />
-                <FormControl className={classes.formControl} style={{ width: '23%', textAlign: 'left' }}>
+                <FormControl required={true} className={classes.formControl} style={{ width: '23%', textAlign: 'left' }}>
                   <InputLabel>Grade</InputLabel>
                   <Select
                     name="grade"
@@ -139,6 +148,7 @@ class SchoolJobRequestCreate extends React.Component {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  required={true}
                   label="Job Description"
                   className={classes.textField}
                   type="jobDescription"
@@ -151,6 +161,7 @@ class SchoolJobRequestCreate extends React.Component {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  required={true}
                   label="Start Date"
                   type="date"
                   className={classes.textField}
@@ -163,6 +174,7 @@ class SchoolJobRequestCreate extends React.Component {
                   style={{ width: '28.5%' }}
                 />
                 <TextField
+                  required={true}
                   label="Start Time"
                   className={classes.textField}
                   name="startTime"
@@ -171,6 +183,7 @@ class SchoolJobRequestCreate extends React.Component {
                   style={{ width: '13%' }}
                 />
                 <TextField
+                  required={true}
                   label="End Date"
                   type="date"
                   className={classes.textField}
@@ -183,6 +196,7 @@ class SchoolJobRequestCreate extends React.Component {
                   style={{ width: '28%' }}
                 />
                 <TextField
+                  required={true}
                   label="End Time"
                   className={classes.textField}
                   name="endTime"
@@ -218,6 +232,11 @@ class SchoolJobRequestCreate extends React.Component {
                 </label>
               </Grid>
               <Grid item xs={12}>
+                <Link to={{pathname: '/school'}}>
+                  <Button variant="contained" color="primary" className={classes.button}>
+                  Cancel
+                  </Button>
+                </Link>
                 <Button variant="contained" color="primary" className={classes.button} onClick={this.submitForm.bind(this)}>
                 Submit
                 </Button>
@@ -268,7 +287,14 @@ const styles = theme => ({
 });
 
 export default compose(
+  graphql(GET_SCHOOL_BY_USERNAME, {
+    name: 'schoolName',
+    options: () => ({
+      variables: {
+        username: (localStorage.getItem('username'))
+      }
+    })
+  }),
   graphql(NEW_JOB),
-  graphql(GET_ALL_SCHOOLS),
   withStyles(styles),
 )(SchoolJobRequestCreate);
