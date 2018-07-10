@@ -147,7 +147,7 @@ class SchoolLandingJobsTable extends React.Component {
                             <TableCell component="th" scope="row">{n.subject}</TableCell>
                             <TableCell>{n.grade}</TableCell>
                             <TableCell>{n.start_date}</TableCell>
-                            {n.claimed ? <TableCell>Claimed</TableCell> : <TableCell>Unclaimed</TableCell>}
+                            {n.claimed ? <TableCell>Claimed</TableCell> : <TableCell>Pending</TableCell>}
                             {n.claimed ? <TableCell>{subs[Math.floor(Math.random() * 6)]}</TableCell> : <TableCell ></TableCell>}
                             <TableCell>
                               <Link to={{

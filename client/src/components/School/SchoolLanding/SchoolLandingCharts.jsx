@@ -185,18 +185,23 @@ class SchoolLandingCharts extends React.Component {
                 <Grid item xs={4} sm={4}>
                   <Doughnut data={claimData} options={options} />
                   <Typography variant="title" align="center">
-                    Claimed: {claimed}/{claimed + unclaimed}
+                    <br/>
+                    Claimed: {claimed}
+                    <br/>
+                    Pending: {unclaimed}
                   </Typography>
                 </Grid>
                 <Grid item xs={4} sm={4}>
                   <Doughnut data={gradeData} options={options} />
                   <Typography variant="title" align="center">
+                    <br/>
                     Grades
                   </Typography>
                 </Grid>
                 <Grid item xs={4} sm={4}>
                   <Doughnut data={subjectData} options={options} />
                   <Typography variant="title" align="center">
+                    <br/>
                     Subjects
                   </Typography>
                 </Grid>
