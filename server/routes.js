@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const passport = require('passport');
+const nodemailer = require('nodemailer');
 const GenData = require('./dataGenerator');
 const AuthCtrl = require('./controllers/authenticationController');
 
@@ -16,6 +17,9 @@ router.route('/users/generate')
   .get(GenData.initDB);
 
 router.route('/jobs/sms/:subId')
-  .post()
+  .post();
+
+// router.route('/jobs/email/:subId')
+//   .post();
 
 module.exports = router;
