@@ -116,7 +116,7 @@ exports.initDB = (req, res) => {
     }
     let grade = faker.helpers.randomize(grades);
     let subject = faker.helpers.randomize(subjects);
-    let future = faker.date.recent((Math.floor(Math.random() * 21) + 7));
+    let future = faker.date.recent((Math.floor(Math.random() * 19) + 7));
 
     Job.create({
       description: `${subject} Substitue teacher needed for grade ${grade}`,
