@@ -30,6 +30,13 @@ const Query = {
         model: School, where: { id: foundJob.fk_school },
       }],
     })),
+  
+  schedule: () => Job.findAll({
+    where: { claimed: true },
+    include: [{
+      model: Sub,
+    }],
+  }),
 
   jobsBySchool: (root, { id }) => Job.findAll({ where: { fk_school: id } }),
 

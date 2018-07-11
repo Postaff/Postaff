@@ -6,7 +6,6 @@ import {
   Card,
   Paper,
 } from '@material-ui/core';
-import sampleData from './sampleData.js';
 
 class Profile extends React.Component {
 

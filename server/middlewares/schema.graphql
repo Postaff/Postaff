@@ -13,6 +13,7 @@ type Query {
   subById(id: ID!): Subs
   schoolById(id: ID!): School
   schoolByUsername(username: String): School
+  schedule: [Job]
 }
 
 type Mutation {
@@ -44,6 +45,7 @@ type Job {
   fk_sub: String
   updatedAt: String
   school: School
+  sub: Subs
 }
 
 type School{

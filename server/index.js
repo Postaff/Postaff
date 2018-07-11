@@ -75,7 +75,6 @@ app.post('/api/subs/notify', (req, res) => {
 });
 
 app.get('/*', (req, res) => {
-  console.log('HEYHEYHEY', req.url);
   res.sendFile(path.join(__dirname, '../client/dist/index.html'), (err) => {
     if(err) {
       res.status(500).send(err);
