@@ -4,6 +4,7 @@ import {
   Paper,
   Grid,
   Button,
+  Snackbar
 } from '@material-ui/core';
 import { graphql, compose } from 'react-apollo';
 import APPROVE_JOB from '../../queries/approveSubJobs';
