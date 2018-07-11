@@ -4,11 +4,13 @@ import {
   Paper,
   Grid,
   Button,
+  Snackbar
 } from '@material-ui/core';
 import { graphql, compose } from 'react-apollo';
-import $ from 'jquery';
 import APPROVE_JOB from '../../queries/approveSubJobs';
 import FETCH_JOB from '../../queries/fetchJob';
+import axios from 'axios';
+
 
 class Detail extends React.Component {
   constructor(props) {
@@ -36,17 +38,14 @@ class Detail extends React.Component {
 
   notifySubs() {
     // event.preventDefault();
-    $.ajax({
-      method: 'POST',
-      url: '/api/subs/notify',
-      contentType: 'application/json',
+    axios.post('/api/subs/notify', {
     })
-      .done((data) => {
-        console.log('notification sent', data);
+      .then(function (response) {
+        console.log('notification sent', response);
         alert('Available subs will be notified');
       })
-      .fail(() => {
-        console.log('failed to send notification');
+      .catch(function (error) {
+        console.log('failed to send notification', error);
       });
   }
 
