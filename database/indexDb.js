@@ -1,10 +1,10 @@
 const Sequelize = require('sequelize');
 const dotenv = require('dotenv').config();
 
-const sequelize = null;
+var sequelize = null;
 
 if (process.env.CLEARDB_DATABASE_URL) {
-  sequelize = new Sequelize(process.env.HEROKU_POSTGRESQL_BRONZE_URL, {
+  sequelize = new Sequelize(process.env.CLEARDB_DATABASE_URL, {
     dialect: 'mysql',
     host: 'us-cdbr-iron-east-04.cleardb.net',
   });
