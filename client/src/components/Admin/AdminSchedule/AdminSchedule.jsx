@@ -1,11 +1,11 @@
 import React from 'react';
-import AdminCalendar from './AdminCalendar.jsx';
+import AdminSubTimeline from './AdminSubTimeline.jsx';
 
 class AdminSchedule extends React.Component {
   render() {
     return (
       <div>
-        <AdminCalendar />
+        <AdminSubTimeline />
       </div>
     );
   }
