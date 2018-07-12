@@ -80,7 +80,7 @@ class AdminJobRequestForm extends React.Component {
 
   render() {
     if(this.props.data.loading) {
-      return <div></div>;
+      return <div>loading</div>;
     }
     const { classes } = this.props;
     return (

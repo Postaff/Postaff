@@ -21,7 +21,6 @@ type Mutation {
   editJob(input: EditJobInput): Job
   approveJob(input: ApproveJob) : Job
   claimJob(input: ClaimJob) : Job
-
 }
 
 # Here we're creating a query DataType for Job
