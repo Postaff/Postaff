@@ -70,7 +70,7 @@ app.post('/api/subs/notify', (req, res) => {
   client.messages.create({
     to: process.env.TWILIO_TO_PHONE,
     from: process.env.TWILIO_FROM_PHONE,
-    body: 'POSTAFF: You have new job openings!',
+    body: 'POSTAFF: You have new job openings! https://postaff.herokuapp.com/',
   }).then(message => console.log(message.sid));
 });
 
