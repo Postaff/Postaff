@@ -97,7 +97,7 @@
     cursor: pointer;
     border-left: 2px solid #bbb;
     color: #ffffff;
-    background: #3f51b5;
+    background: #c52020;
     border-bottom: 1px solid #bbb;
     cursor: pointer; }
     .react-calendar-timeline .rct-header .rct-label-group.rct-has-right-sidebar {
@@ -112,20 +112,20 @@
     text-align: center;
     cursor: pointer;
     border-left: 1px solid #bbb;
-    color: white;
-    background: #3f51b5;
+    color: #333333;
+    background: #f0f0f0;
     border-bottom: 1px solid #bbb;
     cursor: pointer; }
     .react-calendar-timeline .rct-header .rct-label.rct-label-only {
       color: #ffffff;
-      background: #3f51b5; }
+      background: #c52020; }
     .react-calendar-timeline .rct-header .rct-label.rct-first-of-type {
       border-left: 2px solid #bbb; }
 
 .react-calendar-timeline .rct-sidebar-header {
   margin: 0;
   color: #ffffff;
-  background: #3f51b5;
+  background: #c52020;
   border-right: 1px solid #bbb;
   box-sizing: border-box;
   border-bottom: 1px solid #bbb;
@@ -154,9 +154,9 @@
     margin: 0;
     border-bottom: 1px solid #bbb; }
     .react-calendar-timeline .rct-sidebar .rct-sidebar-row.rct-sidebar-row-odd {
-      background: rgb(225, 225, 225); }
+      background: rgba(0, 0, 0, 0.05); }
     .react-calendar-timeline .rct-sidebar .rct-sidebar-row.rct-sidebar-row-even {
-      background: rgb(245, 245, 245); }
+      background: transparent; }
 
 .react-calendar-timeline .rct-vertical-lines .rct-vl {
   position: absolute;
@@ -174,15 +174,15 @@
   z-index: 40; }
 
 .react-calendar-timeline .rct-horizontal-lines .rct-hl-odd {
-  background: rgb(225, 225, 225); }
+  background: rgba(0, 0, 0, 0.05); }
 
 .react-calendar-timeline .rct-horizontal-lines .rct-hl-even {
-  background: rgb(245, 245, 245); }
+  background: transparent; }
 
 .react-calendar-timeline .rct-today {
   position: absolute;
   width: 2px;
-  background: #f44336;
+  background: red;
   z-index: 50; }
 
 .react-calendar-timeline .rct-cursor-line {
@@ -201,3 +201,4 @@
   font-size: 20px;
   border-radius: 5px;
   z-index: 85; }
+
