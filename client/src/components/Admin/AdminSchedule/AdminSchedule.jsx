@@ -5,7 +5,9 @@ class AdminSchedule extends React.Component {
   render() {
     return (
       <div>
-        <AdminSubTimeline />
+        <div style={{ padding: '1.5%' }}>
+          <AdminSubTimeline />
+        </div>
       </div>
     );
   }

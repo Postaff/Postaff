@@ -107,6 +107,8 @@ const styles = theme => ({
     // padding: theme.spacing.unit * 3,
     minWidth: 0, // So the Typography noWrap works
     marginLeft: 200,
+    height: '96vh',
+    // background: '#f5f5f5',
   },
   toolbar: theme.mixins.toolbar,
 });

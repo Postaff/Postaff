@@ -84,7 +84,14 @@ class AdminJobRequestForm extends React.Component {
     }
     const { classes } = this.props;
     return (
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingTop: '4vh',
+        // background: 'linear-gradient(to bottom, #8e2de2, #6200ea)',
+        // height: '100%',
+      }}>
         <form>
           <Grid container spacing={8}>
             <Paper className={classes.paper}>
