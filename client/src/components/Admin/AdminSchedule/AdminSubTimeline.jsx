@@ -5,7 +5,6 @@ import moment from 'moment';
 import { graphql, compose } from 'react-apollo';
 import { GET_ALL_SUBS } from '../../../queries/fetchAllSubs';
 import GET_ALL_JOBS from '../../../queries/fetchAllJobs';
-import { Paper, Typography } from '@material-ui/core';
 
 class AdminSubTimeline extends React.Component {
   render() {
@@ -35,19 +34,16 @@ class AdminSubTimeline extends React.Component {
     });
 
     return (
-      <div style={{margin: '1%', padding: '1%'}}>
-        <Paper elevation={1} style={{borderRadius: '.5%', margin: '.5%', padding: '.5%'}}>
-          <Typography>
-            <Timeline
-              groups={groups}
-              items={items}
-              defaultTimeStart={moment().add(-12, 'hour')}
-              defaultTimeEnd={moment().add(12, 'hour')}
-              sidebarContent="Substitute Teachers"
-              fullUpdate="false"
-            />
-          </Typography>
-        </Paper>
+      <div>
+        <Timeline
+          groups={groups}
+          items={items}
+          defaultTimeStart={moment().add(-12, 'hour')}
+          defaultTimeEnd={moment().add(12, 'hour')}
+          sidebarContent="Substitute Teachers"
+          fullUpdate="false"
+          style={{ backgroundColor: 'lightgrey' }}
+        />
       </div>
     );
   }

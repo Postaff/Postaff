@@ -13,7 +13,7 @@ class HomeLanding extends React.Component {
         <div style={{
           padding: '4em', display: 'flex', alignItems: 'center', justifyContent: 'center',
         }}>
-          {/* <img src="../stack.png" style={{ width: '40%' }}></img> */}
+          <img src="../stack.png" style={{ width: '40%' }}></img>
         </div>
       </Fragment>
     );
