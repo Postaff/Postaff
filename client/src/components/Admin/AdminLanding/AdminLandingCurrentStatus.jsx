@@ -8,7 +8,7 @@ import {
 class AdminLandingCurrentStatus extends React.Component {
   render() {
     return (
-      <Paper style={{ height: '100%', padding: '5%' }}>
+      <Paper style={{ height: '100%' }}>
         <Typography variant="display1" gutterBottom>
          Current Status
         </Typography>

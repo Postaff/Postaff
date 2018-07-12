@@ -31,8 +31,8 @@ class AdminLanding extends React.Component {
     const pending = jobs.filter(job => !job.approved);
     return (
       <div>
-        <Grid container spacing={16} direction={'row'} alignItems={'flex-start'}>
-          <Grid item xs={4}>
+        <Grid container spacing={24} direction={'row'} alignItems={'flex-start'}>
+          <Grid item xs={8} sm={8}>
             <Grid container spacing={8} direction={'column'} alignItems={'center'} justify={'flex-start'}>
               <Grid item xs={8}>
                 <AdminLandingCurrentStatus claimed={claimed.length} unclaimed={unclaimed.length}/>
@@ -45,12 +45,12 @@ class AdminLanding extends React.Component {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={8} sm={6}>
+          <Grid item xs={16} sm={16}>
             <Grid container spacing={16} direction={'column'} alignItems={'flex-start'} justify={'flex-start'}>
-              <Grid item xs={12}>
+              <Grid item xs={8}>
                 <AdminLandingCharts claimed={claimed.length} unclaimed={unclaimed}/>
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={8}>
                 <JobsTable jobs={ jobs }/>
               </Grid>
             </Grid>
