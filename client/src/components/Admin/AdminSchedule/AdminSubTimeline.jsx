@@ -36,7 +36,7 @@ class AdminSubTimeline extends React.Component {
 
     return (
       <div style={{margin: '1%', padding: '1%'}}>
-        <Paper elevation={1} style={{borderRadius: '1%', margin: '.5%', padding: '.5%'}}>
+        <Paper elevation={1} style={{borderRadius: '.5%', margin: '.5%', padding: '.5%'}}>
           <Typography>
             <Timeline
               groups={groups}
