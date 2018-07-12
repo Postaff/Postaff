@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { compose } from 'react-apollo';
 import _ from 'lodash';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
+import moment from 'moment';
 
 export const toolbarStyle = theme => ({
   root: {
@@ -99,18 +100,22 @@ class AdminTodayTable extends React.Component {
   }
 
   render() {
-    const tableData = [];
+    let dateToday = moment().format('YYYY-MM-D');
     console.log(this.props);
+    const tableData = [];
     _.each(this.props.jobs, (job) => {
-      tableData.push(createData(
-        job.id,
-        job.school.school_img,
-        job.subject,
-        `${job.school.address_city}, ${job.school.address_state} ${job.school.address_zipcode}`,
-        job.grade,
-        job.end_date,
-        job.school.school_name,
-      ));
+      console.log(dateToday === job.start_date);
+      if(dateToday === job.start_date || (job.start_date <= dateToday && dateToday <= job.end_date)) {
+        tableData.push(createData(
+          job.id,
+          job.school.school_img,
+          job.subject,
+          `${job.school.address_city}, ${job.school.address_state} ${job.school.address_zipcode}`,
+          job.grade,
+          job.end_date,
+          job.school.school_name,
+        ));
+      }
     });
     const { classes } = this.props;
     const {

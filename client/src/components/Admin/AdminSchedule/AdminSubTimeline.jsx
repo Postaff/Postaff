@@ -6,32 +6,6 @@ import { graphql, compose } from 'react-apollo';
 import { GET_ALL_SUBS } from '../../../queries/fetchAllSubs';
 import GET_ALL_JOBS from '../../../queries/fetchAllJobs';
 
-const groups = [{ id: 3, title: 'group 1' }, { id: 2, title: 'group 2' }];
-
-// const items = [
-//   {
-//     id: 1,
-//     group: 3,
-//     title: 'item 1',
-//     start_time: moment(),
-//     end_time: moment().add(1, 'hour'),
-//   },
-//   {
-//     id: 2,
-//     group: 2,
-//     title: 'item 2',
-//     start_time: moment().add(-0.5, 'hour'),
-//     end_time: moment().add(0.5, 'hour'),
-//   },
-//   {
-//     id: 3,
-//     group: 3,
-//     title: 'item 3',
-//     start_time: moment().add(2, 'hour'),
-//     end_time: moment().add(8, 'hour'),
-//   },
-// ];
-
 class AdminSubTimeline extends React.Component {
   render() {
     if(this.props.subs.loading) {
@@ -49,7 +23,7 @@ class AdminSubTimeline extends React.Component {
     const items = jobs.map((job) => {
       const startTime = job.start_time.split(' ');
       const endTime = job.end_time.split(' ');
-     return {
+      return {
         id: job.id,
         group: job.fk_sub,
         title: job.subject,
