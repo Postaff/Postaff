@@ -42,6 +42,7 @@ class SubBookedJobs extends React.Component {
     const { classes } = this.props;
     const { value } = this.state;
     const { claimedJobs } = this.props.sub;
+    console.log(claimedJobs)
     if(claimedJobs.length === 0) {
       return (
         <div className={classes.root}>
