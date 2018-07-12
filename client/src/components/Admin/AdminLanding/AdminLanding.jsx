@@ -20,7 +20,6 @@ const styles = theme => ({
 });
 
 class AdminLanding extends React.Component {
-  
   render() {
     console.log('this is adminlanding page', this.props);
     if(this.props.data.loading) {
@@ -33,25 +32,31 @@ class AdminLanding extends React.Component {
     const pending = jobs.filter(job => !job.approved);
     return (
       <div>
-        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
-          <div style={{width: '25%', margin: '.5%', padding: '.5%'}}>
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+          <div style={{ width: '25%', margin: '.5%', padding: '.5%' }}>
             <AdminLandingCurrentStatus claimed={claimed.length} unclaimed={unclaimed.length}/>
           </div>
-          <div style={{width: '65%', height:'75%', margin: '.5%', padding: '.5%'}}>
+          <div style={{
+            width: '65%', height: '75%', margin: '.5%', padding: '.5%',
+          }}>
             <AdminLandingCharts claimed={claimed} unclaimed={unclaimed}/>
           </div>
         </div>
-        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
-          <div style={{width: '25%', display: 'flex', flexDirection: 'column', margin: '.5%', padding: '.5%'}}>
-            <div style={{marginBottom: '1%'}}>
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+          <div style={{
+            width: '25%', display: 'flex', flexDirection: 'column', margin: '.5%', padding: '.5%',
+          }}>
+            <div style={{ marginBottom: '1%' }}>
               <AdminLandingUnclaimedJobsList unclaimed={unclaimed}/>
             </div>
             <br/>
-            <div style={{marginTop: '1%'}}>
+            <div style={{ marginTop: '1%' }}>
               <AdminLandingPendingReviewList pending={pending}/>
             </div>
           </div>
-          <div style={{width: '65%', margin: '0 .5% 0 .5%', padding: '0 .5% 0 .5%', marginTop: '-1%'}}>
+          <div style={{
+            width: '65%', margin: '0 .5% 0 .5%', padding: '0 .5% 0 .5%', marginTop: '-1%',
+          }}>
             <JobsTable jobs={jobs}/>
           </div>
         </div>
