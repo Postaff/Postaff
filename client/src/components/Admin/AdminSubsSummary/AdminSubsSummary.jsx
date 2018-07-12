@@ -10,6 +10,7 @@ import AdminSubsSummaryReviewJobs from './AdminSubsSummaryReviewJobs';
 const styles = theme => ({
   root: {
     flexGrow: 1,
+    paddingTop: '2vh',
   },
   paper: {
     padding: theme.spacing.unit * 2,
@@ -25,40 +26,44 @@ class AdminSubsSummary extends React.Component {
 
   render() {
     const { classes } = this.props;
-    return this.props.data.loading ? <div>loading</div> :
-    <div className={classes.root}>
-      <Grid container spacing={16}>
-        <Grid item xs={6}>
-          <Grid container spacing={16} direction={'column'} >
-            <Grid item xs={12}>
-              <AdminSubsSummaryReviewJobs 
-                totalSubs={this.props.data.subs.length}
-                specialEds={this.props.data.subs.filter(sub => sub.special_ed === true)}
-              />
+    return this.props.data.loading ? <div></div>
+      : <div>
+        <div className={classes.root}>
+          <div style={{ padding: '0 1.5% 0 1.5%' }}>
+            <Grid container spacing={16}>
+              <Grid item xs={6}>
+                <Grid container spacing={16} direction={'column'} >
+                  <Grid item xs={12}>
+                    <AdminSubsSummaryReviewJobs
+                      totalSubs={this.props.data.subs.length}
+                      specialEds={this.props.data.subs.filter(sub => sub.special_ed === true)}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item xs={6}>
+                <Grid container spacing={16} direction={'column'} >
+                  <Grid item xs={12}>
+                    <AdminSubsSummaryCharts
+                      totalSubs={this.props.data.subs.length}
+                      specialEds={this.props.data.subs.filter(sub => sub.special_ed === true)}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
             </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={6}>
-          <Grid container spacing={16} direction={'column'} >
-            <Grid item xs={12}>
-              <AdminSubsSummaryCharts 
-                totalSubs={this.props.data.subs.length}
-                specialEds={this.props.data.subs.filter(sub => sub.special_ed === true)}
-              />
+            <Grid container spacing={16}>
+              <Grid item xs={12}>
+                <SubsTable subs={this.props.data.subs}/>
+              </Grid>
             </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-      <Grid container spacing={16}>
-        <Grid item xs={12}>
-          <SubsTable subs={this.props.data.subs}/>
-        </Grid>
-      </Grid>
-    </div>
+          </div>
+        </div>
+      </div>;
   }
 }
 
 export default compose(
   graphql(GET_ALL_SUBS),
-  withStyles(styles)
+  withStyles(styles),
 )(AdminSubsSummary);
