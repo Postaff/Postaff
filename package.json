@@ -10,7 +10,7 @@
     "react-dev": "webpack --mode development --watch",
     "react-build": "webpack --mode production",
     "test": "jest --coverage || true",
-    "postinstall": "npm run react-build",
+    "postinstall": "npm run react-build"
   },
   "repository": {
     "type": "git",
