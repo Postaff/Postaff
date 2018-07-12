@@ -60,9 +60,19 @@ class SubOpenJobs extends React.Component {
                 </Table>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <Typography >
-          Grade:- ({jobs.grade})   Time:- ({jobs.start_time}) - ({jobs.end_time})   Date:- ({jobs.start_date}) - ({jobs.end_date})
-                </Typography>
+                <Table>
+                  <TableBody>
+                    <TableRow>
+                       Grade:- {jobs.grade}
+                    </TableRow> 
+                    <TableRow>
+                      Time:- {jobs.start_time} - {jobs.end_time} 
+                    </TableRow>  
+                    <TableRow>
+                      Date:- {moment(jobs.start_date).format('MMMM Do YYYY')} - {moment(jobs.end_date).format('MMMM Do YYYY')}
+                    </TableRow>  
+                  </TableBody>  
+                </Table> 
               </ExpansionPanelDetails>
             </ExpansionPanel>
           ))}
