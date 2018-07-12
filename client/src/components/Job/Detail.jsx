@@ -4,13 +4,11 @@ import {
   Paper,
   Grid,
   Button,
-  Snackbar
+  Snackbar,
 } from '@material-ui/core';
 import { graphql, compose } from 'react-apollo';
-import APPROVE_JOB from '../../queries/approveSubJobs';
-import FETCH_JOB from '../../queries/fetchJob';
 import axios from 'axios';
-
+import APPROVE_JOB from '../../queries/approveSubJobs';
 
 class Detail extends React.Component {
   constructor(props) {
@@ -19,11 +17,12 @@ class Detail extends React.Component {
       approved: false,
     };
 
-    this.adminApproveJob.bind(this);
+
     this.notifySubs.bind(this);
   }
 
-  adminApproveJob() {
+  notifySubs() {
+    event.preventDefault();
     this.props.mutate({
       variables: {
         input: {
@@ -34,23 +33,20 @@ class Detail extends React.Component {
     }).then(() => this.setState({
       approved: true,
     }));
-  }
 
-  notifySubs() {
-    // event.preventDefault();
     axios.post('/api/subs/notify', {
     })
-      .then(function (response) {
+      .then((response) => {
         console.log('notification sent', response);
         alert('Available subs will be notified');
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log('failed to send notification', error);
       });
   }
 
   render() {
-    const { job } = this.props;
+    const job = this.props.job || this.props.location.state.job;
     console.log('Am in Detail.jsx', this.props);
     const approved = this.state.approved || job.approved;
 
@@ -80,7 +76,7 @@ class Detail extends React.Component {
             </Grid>
             <Grid item xs={8}>
               {job.claimed ? 'Claimed' : approved ? 'Approved' : 'Awaiting Approval'}
-              {job.claimed ? null : <Button onClick={ this.adminApproveJob, this.notifySubs } style={{ marginLeft: '20px', backgroundColor: '#6200ea', color: 'white' }}> Notify Subs </Button>}
+              {job.claimed ? null : <Button onClick={() => this.notifySubs()} style={{ marginLeft: '20px', backgroundColor: '#6200ea', color: 'white' }}> Notify Subs </Button>}
             </Grid>
           </Grid>
         </Typography>
@@ -126,5 +122,5 @@ class Detail extends React.Component {
 }
 
 export default compose(
-  graphql(APPROVE_JOB, FETCH_JOB),
+  graphql(APPROVE_JOB),
 )(Detail);

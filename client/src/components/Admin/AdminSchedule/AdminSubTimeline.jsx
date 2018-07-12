@@ -39,7 +39,7 @@ class AdminSubTimeline extends React.Component {
         <div> Loading </div>
       );
     }
-
+    console.log(this.props);
     const { subs } = this.props.subs;
     const groups = subs.map((sub) => {
       return { id: sub.id, title: sub.name };
@@ -68,7 +68,7 @@ class AdminSubTimeline extends React.Component {
           defaultTimeEnd={moment().add(12, 'hour')}
           sidebarContent="Substitute Teachers"
           fullUpdate="false"
-          style={{backgroundColor: 'lightgrey'}}
+          style={{ backgroundColor: 'lightgrey' }}
         />
       </div>
     );
