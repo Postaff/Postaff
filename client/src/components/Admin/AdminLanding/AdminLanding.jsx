@@ -20,7 +20,9 @@ const styles = theme => ({
 });
 
 class AdminLanding extends React.Component {
+  
   render() {
+    console.log('this is adminlanding page', this.props);
     if(this.props.data.loading) {
       return <Fragment></Fragment>;
     }
@@ -51,7 +53,7 @@ class AdminLanding extends React.Component {
                 <AdminLandingCharts claimed={claimed.length} unclaimed={unclaimed}/>
               </Grid>
               <Grid item xs={12}>
-                <JobsTable jobs={ jobs }/>
+                <JobsTable jobs={ claimed }/>
               </Grid>
             </Grid>
           </Grid>
