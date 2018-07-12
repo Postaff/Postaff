@@ -40,13 +40,13 @@ class AdminLandingUnclaimedJobsList extends Component {
     return (
       <Fragment>
         <Paper style={{ height: '90%', padding: '5%' }}>
-          <Typography align='left' variant='title' gutterBottom>
+          <Typography align="left" variant="title" gutterBottom>
             Unclaimed Jobs
           </Typography>
           <TableHead>
             <TableRow>
-              <TableCell><Typography variant='caption'>Subject</Typography></TableCell>
-              <TableCell><Typography variant='caption'>Start Date</Typography></TableCell>
+              <TableCell><Typography variant="caption">Subject</Typography></TableCell>
+              <TableCell><Typography variant="caption">Start Date</Typography></TableCell>
             </TableRow>
           </TableHead>
           <List className={classes.root}>
@@ -54,9 +54,9 @@ class AdminLandingUnclaimedJobsList extends Component {
               <ul className={classes.ul}>
                 <Table>
                   <TableBody>
-                  {this.props.unclaimed.map(job => (
-                  <UnclaimedJobsEntry key={job.id} job={job}/>
-                ))}
+                    {this.props.unclaimed.map(job => (
+                      <UnclaimedJobsEntry key={job.id} job={job}/>
+                    ))}
                   </TableBody>
                 </Table>
 
@@ -66,7 +66,7 @@ class AdminLandingUnclaimedJobsList extends Component {
         </Paper>
       </Fragment>
     );
-  };
-};
+  }
+}
 
 export default withStyles(styles)(AdminLandingUnclaimedJobsList);

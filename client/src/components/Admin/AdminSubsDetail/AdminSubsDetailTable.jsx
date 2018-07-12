@@ -103,7 +103,7 @@ class AdminSubsJobsTable extends React.Component {
       return <EmptyJobTable/>
     }
     const tableData = [];
-    console.log(this.props)
+    console.log('adminsubdetail table',this.props)
     _.each(this.props.jobs, (job) => {
       tableData.push(createData(
         job.id, 
