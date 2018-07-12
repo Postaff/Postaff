@@ -27,7 +27,7 @@ class AdminLanding extends React.Component {
     const { jobs } = this.props.data;
     const { classes } = this.props;
     const claimed = jobs.filter(job => job.claimed);
-    const unclaimed = jobs.filter(job => !job.claimed);
+    const unclaimed = jobs.filter(job => !job.claimed && job.approved);
     const pending = jobs.filter(job => !job.approved);
     return (
       <div>

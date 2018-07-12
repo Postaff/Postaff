@@ -13,7 +13,7 @@ class AdminLandingPendingReviewEntry extends React.Component {
     return (
       <TableRow>
         <TableCell>
-          <Link to={'/jobs/id'}>{subject}</Link>
+          <Link to={{ pathname:`/jobs/${id}`, state:{ job: this.props.job } }}>{subject}</Link>
         </TableCell>
         <TableCell>{moment(start_date).fromNow()}</TableCell>
       </TableRow>
