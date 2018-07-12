@@ -6,14 +6,28 @@ import {
   Grid,
 } from '@material-ui/core';
 import { Doughnut } from 'react-chartjs-2';
+import { graphql, compose } from 'react-apollo';
+import { GET_ALL_SUBS } from '../../../queries/fetchAllSubs';
 
 class AdminLandingCharts extends React.Component {
   render() {
-    const claimed = this.props.claimed;
+    if(this.props.data.loading) {
+      return <div> ...LOADING </div>;
+    }
+    let claimedSubs = [];
+    let cs;
+    this.props.claimed.forEach((sub) => {
+      claimedSubs.push(sub.fk_sub)
+      cs = new Set(claimedSubs);
+    });
+    
+    const totalClaimedSubs = cs.size;
+    const totalSubs = this.props.data.subs.length;
+    const claimed = this.props.claimed.length;
     const unclaimed = this.props.unclaimed.length;
-    const percentClaimed = Math.round((this.props.claimed / (this.props.claimed + this.props.unclaimed.length)) * 100);
-    const percentFree = Math.round((15 / (26 + 15)) * 100);
-    console.log(claimed, unclaimed);
+    const percentClaimed = Math.round((this.props.claimed.length / (this.props.claimed.length + this.props.unclaimed.length)) * 100);
+    const percentFree = Math.round((totalClaimedSubs / totalSubs) * 100);
+
     const claimData = {
       labels: [
         'Claimed',
@@ -44,7 +58,7 @@ class AdminLandingCharts extends React.Component {
         'Free',
       ],
       datasets: [{
-        data: [26, 15],
+        data: [(totalSubs - totalClaimedSubs), totalClaimedSubs],
         backgroundColor: [
           '#0a00b6',
           '#9d46ff',
@@ -56,7 +70,7 @@ class AdminLandingCharts extends React.Component {
       }],
     };
     return (
-    <Fragment>
+      <Fragment>
         <Paper style={{ height: '75%', padding: '5%' }}>
           <Grid container spacing={16} style={{ flexGrow: 1 }}>
             <Grid item xs={8} sm={6}>
@@ -73,9 +87,11 @@ class AdminLandingCharts extends React.Component {
             </Grid>
           </Grid>
         </Paper>
-    </Fragment>
+      </Fragment>
     );
   }
 }
 
-export default AdminLandingCharts;
+export default compose(
+  graphql(GET_ALL_SUBS),
+)(AdminLandingCharts);

@@ -101,10 +101,8 @@ class AdminTodayTable extends React.Component {
 
   render() {
     let dateToday = moment().format('YYYY-MM-D');
-    console.log(this.props);
     const tableData = [];
     _.each(this.props.jobs, (job) => {
-      console.log(dateToday === job.start_date);
       if(dateToday === job.start_date || (job.start_date <= dateToday && dateToday <= job.end_date)) {
         tableData.push(createData(
           job.id,

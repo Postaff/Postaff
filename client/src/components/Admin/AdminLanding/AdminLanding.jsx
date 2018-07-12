@@ -38,7 +38,7 @@ class AdminLanding extends React.Component {
             <AdminLandingCurrentStatus claimed={claimed.length} unclaimed={unclaimed.length}/>
           </div>
           <div style={{width: '65%', height:'75%', margin: '.5%', padding: '.5%'}}>
-            <AdminLandingCharts claimed={claimed.length} unclaimed={unclaimed}/>
+            <AdminLandingCharts claimed={claimed} unclaimed={unclaimed}/>
           </div>
         </div>
         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
