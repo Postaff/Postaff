@@ -15,9 +15,7 @@ class AdminSubTimeline extends React.Component {
     }
     console.log(this.props);
     const { subs } = this.props.subs;
-    const groups = subs.map((sub) => {
-      return { id: sub.id, title: sub.name };
-    });
+    const groups = subs.map(sub => ({ id: sub.id, title: sub.name }));
 
     const { jobs } = this.props.jobs;
     const items = jobs.map((job) => {
@@ -29,12 +27,12 @@ class AdminSubTimeline extends React.Component {
         title: job.subject,
         start_time: moment(`${job.start_date} ${startTime[0]}:00:00 ${startTime[1]}`, 'YYYY-MM-DD hh:mm:ss a'),
         end_time: moment(`${job.end_date} ${endTime[0]}:00:00 ${endTime[1]}`, 'YYYY-MM-DD hh:mm:ss a'),
-        style:{ backgroundColor: 'purple' },
+        style: { backgroundColor: '#f5f5f5' },
       };
     });
 
     return (
-      <div>
+      <div style={{ borderRadius: '5px' }}>
         <Timeline
           groups={groups}
           items={items}
@@ -42,7 +40,7 @@ class AdminSubTimeline extends React.Component {
           defaultTimeEnd={moment().add(12, 'hour')}
           sidebarContent="Substitute Teachers"
           fullUpdate="false"
-          style={{ backgroundColor: 'lightgrey' }}
+          style={{ backgroundColor: 'f5f5f5' }}
         />
       </div>
     );
