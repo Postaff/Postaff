@@ -139,7 +139,7 @@ class SchoolTable extends React.Component {
                             <img className={classes.bigAvatar} src={n.photo}/>
                           </TableCell>
                           <TableCell component='th' scope='row'>
-                            <Link to={{pathname:`/admin/school/${n.id}`}}>{n.name}</Link>
+                            <Link to={{pathname:`/admin/schools/${n.id}`}}>{n.name}</Link>
                           </TableCell>
                           <TableCell>{n.phone}</TableCell>
                           <TableCell>{n.location}</TableCell>

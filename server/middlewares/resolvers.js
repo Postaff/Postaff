@@ -1,4 +1,3 @@
-
 const { Job } = require('../../database/models/jobSchema');
 const { School } = require('../../database/models/schoolSchema');
 const { Sub } = require('../../database/models/subSchema');
