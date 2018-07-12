@@ -24,32 +24,32 @@ const styles = theme => ({
 
 class AdminSubsSummaryDetail extends Component {
   render() {
-    console.log(this.props)
+    console.log(this.props);
     const { classes } = this.props;
-    return this.props.data.loading ? <Fragment/> : 
-    <Fragment>
-      <div className={classes.root}>
-        <Grid container spacing={16} >
-          <Grid item xs={4} >
-            <SubProfile sub={ this.props.data.subById }/>
+    return this.props.data.loading ? <Fragment/>
+    : <Fragment>
+        <div className={classes.root}>
+          <Grid container spacing={16} >
+            <Grid item xs={4} >
+              <SubProfile sub={ this.props.data.subById }/>
+            </Grid>
+            <Grid item xs={8} >
+              <Paper style={{
+                width: '100%',
+                overflowX: 'auto',
+                marginTop: '50px',
+              }}>
+                <SubBookedJobs sub={ this.props.data.subById } />
+              </Paper>
+            </Grid>
           </Grid>
-          <Grid item xs={8} >
-            <Paper style={{
-              width: '100%',
-              overflowX: 'auto',
-              marginTop: '50px',
-            }}>
-            <SubBookedJobs sub={ this.props.data.subById } />
-            </Paper>
+          <Grid container spacing={16} >
+            <Grid item xs={12}>
+              <JobsTable jobs={this.props}/>
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid container spacing={16} >
-          <Grid item xs={12}>
-            <JobsTable jobs={this.props}/>
-          </Grid>
-        </Grid>
-      </div>
-    </Fragment>
+        </div>
+      </Fragment>;
   }
 }
 
@@ -61,7 +61,7 @@ export default compose(
         id: ownProps.match.params.subId,
       },
     }),
-  }),  
+  }),
   graphql(FETCH_SUB_BY_ID, {
     options: ownProps => ({
       variables: {
@@ -69,5 +69,5 @@ export default compose(
       },
     }),
   }),
-  withStyles(styles)
+  withStyles(styles),
 )(AdminSubsSummaryDetail);
