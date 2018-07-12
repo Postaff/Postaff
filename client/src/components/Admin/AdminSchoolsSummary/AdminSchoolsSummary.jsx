@@ -3,8 +3,6 @@ import { graphql, compose } from 'react-apollo';
 import { withStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 import GET_ALL_SCHOOLS from '../../../queries/fetchAllSchools';
-import AdminSchoolsSummaryCharts from './AdminSchoolsSummaryCharts';
-import AdminSchoolsSummaryReviewJobs from './AdminSchoolsSummaryReviewJobs';
 import SchoolTable from '../../Shared/SchoolsTable';
 
 const styles = theme => ({

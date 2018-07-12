@@ -24,14 +24,11 @@ class AdminLanding extends React.Component {
     if(this.props.data.loading) {
       return <Fragment></Fragment>;
     }
-    console.log(this.props.data)
     const { jobs } = this.props.data;
-    console.log(jobs);
     const { classes } = this.props;
     const claimed = jobs.filter(job => job.claimed);
     const unclaimed = jobs.filter(job => !job.claimed);
     const pending = jobs.filter(job => !job.approved);
-    console.log('Hey am in adminlanding.jsx');
     return (
       <div>
         <Grid container spacing={16} direction={'row'} alignItems={'flex-start'}>
