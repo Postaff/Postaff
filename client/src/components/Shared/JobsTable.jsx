@@ -58,7 +58,7 @@ class AdminTodayTable extends React.Component {
     super(props);
     this.state = {
       order: 'asc',
-      orderBy: 'location',
+      orderBy: 'date',
       data: [],
       page: 0,
       rowsPerPage: 10,
