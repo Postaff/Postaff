@@ -36,13 +36,13 @@ class AdminLandingUnclaimedJobsList extends Component {
     const { classes } = this.props;
     return (
       <Paper style={{ height: '100%', padding: '5%' }}>
-        <Typography align='center' variant='title' gutterBottom>
+        <Typography align="center" variant="title" gutterBottom>
           Unclaimed Jobs
         </Typography>
         <TableHead>
           <TableRow>
             <TableCell>Subject</TableCell>
-            <TableCell>Start Date</TableCell>              
+            <TableCell>Start Date</TableCell>
           </TableRow>
         </TableHead>
         <List className={classes.root}>
@@ -50,42 +50,18 @@ class AdminLandingUnclaimedJobsList extends Component {
             <ul className={classes.ul}>
               <Table>
                 <TableBody>
-                {this.props.unclaimed.map(job => (
-                <UnclaimedJobsEntry key={job.id} job={job}/>
-              ))}
+                  {this.props.unclaimed.map(job => (
+                    <UnclaimedJobsEntry key={job.id} job={job}/>
+                  ))}
                 </TableBody>
               </Table>
 
             </ul>
           </li>
         </List>
-        {/* <GridList>
-          <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-          </GridListTile>
-        <Typography variant="subheading" gutterBottom>
-          <Grid container spacing={8}>
-            <Grid item xs={4}>
-              Job
-            </Grid>
-            <Grid item xs={4}>
-              Date
-            </Grid>
-          </Grid>
-        </Typography>
-        <Typography variant="subheading" gutterBottom>
-          <Grid container spacing={8}>
-            <Grid item xs={4}>
-              PE / General Ed
-            </Grid>
-            <Grid item xs={4}>
-              07/06/18 8:55am
-            </Grid>
-          </Grid>
-        </Typography>
-        </GridList> */}
       </Paper>
     );
-  };
+  }
 };
 
 export default withStyles(styles)(AdminLandingUnclaimedJobsList);
