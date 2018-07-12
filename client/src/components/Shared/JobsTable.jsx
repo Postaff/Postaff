@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import {
@@ -119,63 +119,66 @@ class AdminTodayTable extends React.Component {
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, tableData.length - page * rowsPerPage);
 
     return (
-      <Paper elevation={4} className={classes.root}>
-        <AdminTodayTableToolbar />
-        <div className={classes.tableWrapper}>
-          <Table className={classes.table} aria-labelledby="tableTitle">
-            <AdminTodayTableHead
-              order={order}
-              orderBy={orderBy}
-              onSelectAllClick={this.handleSelectAllClick}
-              onRequestSort={this.handleRequestSort}
-              rowCount={tableData.length}
-            />
-            <TableBody>
-              {tableData
-                .sort(getSorting(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(n => (
-                  <TableRow
-                    hover
-                    onClick={event => this.handleClick(event, n.id)}
-                    tabIndex={-1}
-                    key={n.id}
-                  >
-                    <TableCell>
-                      <Avatar src={n.img}/>
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      <Link to={{ pathname: `/admin/jobs/${n.id}`, state: { job: n } }}>{n.subject}</Link>
-                    </TableCell>
-                    <TableCell numeric>{n.location}</TableCell>
-                    <TableCell numeric>{n.grade}</TableCell>
-                    <TableCell numeric>{n.date}</TableCell>
-                    <TableCell numeric>{n.employee}</TableCell>
+      <Fragment>
+        <Paper elevation={4} className={classes.root} style={{height: '95%'}}>
+          <AdminTodayTableToolbar />
+          <div className={classes.tableWrapper}>
+            <Table className={classes.table} aria-labelledby="tableTitle">
+              <AdminTodayTableHead
+                order={order}
+                orderBy={orderBy}
+                onSelectAllClick={this.handleSelectAllClick}
+                onRequestSort={this.handleRequestSort}
+                rowCount={tableData.length}
+              />
+              <TableBody style={{padding: '4px 0 4px 24px'}}>
+                {tableData
+                  .sort(getSorting(order, orderBy))
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map(n => (
+                    <TableRow
+                      hover
+                      onClick={event => this.handleClick(event, n.id)}
+                      tabIndex={-1}
+                      key={n.id}
+                      style={{padding: '4px 0 4px 0px'}}
+                    >
+                      <TableCell style={{padding: '4px 28px 4px 24px'}}>
+                        <Avatar src={n.img}/>
+                      </TableCell>
+                      <TableCell component="th" scope="row" style={{padding: '4px 0 4px 0px'}}>
+                        <Link to={{ pathname: `/admin/jobs/${n.id}`, state: { job: n } }}>{n.subject}</Link>
+                      </TableCell>
+                      <TableCell style={{padding: '4px 0 4px 0'}}>{n.employee}</TableCell>
+                      <TableCell style={{padding: '4px 0 4px 0'}}>{n.location}</TableCell>
+                      <TableCell style={{padding: '4px 0 4px 0'}}>{n.grade}</TableCell>
+                      <TableCell style={{padding: '4px 0 4px 0'}}>{n.date}</TableCell>
+                    </TableRow>
+                  ))}
+                {emptyRows > 0 && (
+                  <TableRow style={{ height: 49 * emptyRows }}>
+                    <TableCell colSpan={6} />
                   </TableRow>
-                ))}
-              {emptyRows > 0 && (
-                <TableRow style={{ height: 49 * emptyRows }}>
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </div>
-        <TablePagination
-          component="div"
-          count={tableData.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          backIconButtonProps={{
-            'aria-label': 'Previous Page',
-          }}
-          nextIconButtonProps={{
-            'aria-label': 'Next Page',
-          }}
-          onChangePage={this.handleChangePage}
-          onChangeRowsPerPage={this.handleChangeRowsPerPage}
-        />
-      </Paper>
+                )}
+              </TableBody>
+            </Table>
+          </div>
+          <TablePagination
+            component="div"
+            count={tableData.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            backIconButtonProps={{
+              'aria-label': 'Previous Page',
+            }}
+            nextIconButtonProps={{
+              'aria-label': 'Next Page',
+            }}
+            onChangePage={this.handleChangePage}
+            onChangeRowsPerPage={this.handleChangeRowsPerPage}
+          />
+        </Paper>
+      </Fragment>
     );
   }
 }
@@ -194,22 +197,22 @@ function getSorting(order, orderBy) {
 
 const columnData = [
   {
-    id: 'img', numeric: false, disablePadding: false, label: '',
+    id: 'img', numeric: false, disablePadding: true, label: '',
   },
   {
-    id: 'subject', numeric: false, disablePadding: false, label: 'Subject',
+    id: 'subject', numeric: false, disablePadding: true, label: 'Subject',
   },
   {
-    id: 'location', numeric: true, disablePadding: false, label: 'Location',
+    id: 'employee', numeric: false, disablePadding: true, label: 'School',
   },
   {
-    id: 'grade', numeric: true, disablePadding: false, label: 'Grade',
+    id: 'location', numeric: false, disablePadding: true, label: 'Location',
   },
   {
-    id: 'date', numeric: true, disablePadding: false, label: 'End Date',
+    id: 'grade', numeric: false, disablePadding: true, label: 'Grade',
   },
   {
-    id: 'employee', numeric: true, disablePadding: false, label: 'Employee',
+    id: 'date', numeric: false, disablePadding: true, label: 'End Date',
   },
 ];
 

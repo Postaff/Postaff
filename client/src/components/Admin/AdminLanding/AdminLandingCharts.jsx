@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import {
   Typography,
   Paper,
@@ -56,46 +56,24 @@ class AdminLandingCharts extends React.Component {
       }],
     };
     return (
-      <Paper style={{ height: '100%', padding: '5%' }}>
-        <Grid container spacing={16} style={{ flexGrow: 1 }}>
-          <Grid item xs={8} sm={6}>
-            <Doughnut data={claimData} options={options} />
-            <Typography variant="title" align="center">
-              {percentClaimed}% Claimed
-            </Typography>
+    <Fragment>
+        <Paper style={{ height: '75%', padding: '5%' }}>
+          <Grid container spacing={16} style={{ flexGrow: 1 }}>
+            <Grid item xs={8} sm={6}>
+              <Doughnut data={claimData} options={options} />
+              <Typography variant="title" align="center">
+                {percentClaimed}% Claimed
+              </Typography>
+            </Grid>
+            <Grid item xs={8} sm={6}>
+              <Doughnut data={freeSubs} options={options} />
+              <Typography variant="title" align="center">
+                {percentFree}% Subs Free
+              </Typography>
+            </Grid>
           </Grid>
-          <Grid item xs={8} sm={6}>
-            <Doughnut data={freeSubs} options={options} />
-            <Typography variant="title" align="center">
-              {percentFree}% Subs Free
-            </Typography>
-          </Grid>
-          {/* <Typography variant="subheading" gutterBottom>
-        <Grid container spacing={8}>
-          <Grid item xs={6}>
-            <Doughnut data={data} />
-          </Grid>
-          <Grid item xs={1}>
-          </Grid>
-          <Grid item xs={1}>
-            27
-          </Grid>
-        </Grid>
-      </Typography>
-      <Typography variant="subheading" gutterBottom>
-        <Grid container spacing={8}>
-          <Grid item xs={6}>
-            Stats
-          </Grid>
-          <Grid item xs={1}>
-          </Grid>
-          <Grid item xs={1}>
-            144
-          </Grid>
-        </Grid>
-      </Typography> */}
-        </Grid>
-      </Paper>
+        </Paper>
+    </Fragment>
     );
   }
 }
