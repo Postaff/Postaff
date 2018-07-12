@@ -20,15 +20,17 @@ class AdminSchoolsSummary extends React.Component {
   render() {
     const { classes } = this.props;
 
-    return this.props.data.loading ? 
-    <Fragment/> :
-    <div className={classes.root}>
-      <Grid container spacing={16}>
-        <Grid item xs={12}>
-          <SchoolTable schools={this.props.data.schools} />
-        </Grid>
-      </Grid>
-    </div>
+    return this.props.data.loading
+      ? <Fragment/>
+      : <div className={classes.root}>
+        <div style={{ padding: '0 1.5% 0 1.5%' }}>
+          <Grid container spacing={16}>
+            <Grid item xs={12}>
+              <SchoolTable schools={this.props.data.schools} />
+            </Grid>
+          </Grid>
+        </div>
+      </div>;
   }
 }
 
