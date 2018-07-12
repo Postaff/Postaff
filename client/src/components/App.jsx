@@ -45,7 +45,7 @@ class App extends React.Component {
   }
 
   handleLogin(role) {
-    console.log('handlelogin/App.jsx', localStorage.getItem('subId'));
+    console.log('handlelogin/App.jsx', localStorage.getItem('schoolId'));
     this.setState({
       isLoggedIn: !!localStorage.getItem('token'),
       sasOption: localStorage.getItem('role'),

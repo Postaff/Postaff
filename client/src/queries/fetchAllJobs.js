@@ -13,6 +13,7 @@ export default gql`
       start_time
       end_date
       end_time
+      fk_sub
       school {
         id
         school_img

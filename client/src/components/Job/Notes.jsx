@@ -6,13 +6,11 @@ import {
   Paper,
   Typography,
 } from '@material-ui/core';
-import sampleData from './sampleData.js';
 
 class Notes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageInfo: sampleData,
       name: 'Notes for this job...',
     };
   }

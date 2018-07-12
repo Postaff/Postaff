@@ -8,7 +8,6 @@ import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import FileUpload from '@material-ui/icons/FileUpload';
-import sampleData from './sampleData.js';
 
 const styles = theme => ({
   button: {
