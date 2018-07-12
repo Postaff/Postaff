@@ -31,31 +31,28 @@ class AdminLanding extends React.Component {
     const pending = jobs.filter(job => !job.approved);
     return (
       <div>
-        <Grid container spacing={24} direction={'row'} alignItems={'flex-start'}>
-          <Grid item xs={8} sm={8}>
-            <Grid container spacing={8} direction={'column'} alignItems={'center'} justify={'flex-start'}>
-              <Grid item xs={8}>
-                <AdminLandingCurrentStatus claimed={claimed.length} unclaimed={unclaimed.length}/>
-              </Grid>
-              <Grid item xs={8}>
-                <AdminLandingUnclaimedJobsList unclaimed={unclaimed}/>
-              </Grid>
-              <Grid item xs={8}>
-                <AdminLandingPendingReviewList pending={pending}/>
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item xs={16} sm={16}>
-            <Grid container spacing={16} direction={'column'} alignItems={'flex-start'} justify={'flex-start'}>
-              <Grid item xs={8}>
-                <AdminLandingCharts claimed={claimed.length} unclaimed={unclaimed}/>
-              </Grid>
-              <Grid item xs={8}>
-                <JobsTable jobs={ jobs }/>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
+        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+          <div style={{width: '25%', margin: '.5%', padding: '.5%'}}>
+            <AdminLandingCurrentStatus claimed={claimed.length} unclaimed={unclaimed.length}/>
+          </div>
+          <div style={{width: '65%', height:'75%', margin: '.5%', padding: '.5%'}}>
+            <AdminLandingCharts claimed={claimed.length} unclaimed={unclaimed}/>
+          </div>
+        </div>
+        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+          <div style={{width: '25%', display: 'flex', flexDirection: 'column', margin: '.5%', padding: '.5%'}}>
+            <div style={{marginBottom: '1%'}}>
+              <AdminLandingUnclaimedJobsList unclaimed={unclaimed}/>
+            </div>
+            <br/>
+            <div style={{marginTop: '1%'}}>
+              <AdminLandingPendingReviewList pending={pending}/>
+            </div>
+          </div>
+          <div style={{width: '65%', margin: '0 .5% 0 .5%', padding: '0 .5% 0 .5%', marginTop: '-1%'}}>
+            <JobsTable jobs={jobs}/>
+          </div>
+        </div>
       </div>
     );
   }
