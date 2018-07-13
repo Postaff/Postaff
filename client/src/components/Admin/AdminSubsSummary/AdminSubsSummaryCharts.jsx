@@ -12,7 +12,6 @@ import { Doughnut } from 'react-chartjs-2';
 // let claimed = { this.props.claimed };
 
 
-
 class AdminSchoolsSummaryCharts extends React.Component {
   render() {
     const { totalSubs, specialEds } = this.props;
@@ -33,20 +32,20 @@ class AdminSchoolsSummaryCharts extends React.Component {
         ],
       }],
     };
-    
+
     const options = {
       legend: {
         display: false,
       },
     };
-    
+
     const freeSubs = {
       labels: [
         'Booked',
         'Free',
       ],
       datasets: [{
-        data: [8, 32],
+        data: [29, 11],
         backgroundColor: [
           '#0a00b6',
           '#9d46ff',
@@ -58,7 +57,7 @@ class AdminSchoolsSummaryCharts extends React.Component {
       }],
     };
     const percentSpecial = Math.round((specialEds.length / totalSubs) * 100);
-    const percentFree = Math.round((32 / (8 + 32)) * 100);
+    const percentFree = Math.round((11 / 40) * 100);
     return (
       <Paper style={{ height: '100%', padding: '5%' }}>
         <Grid container spacing={16} style={{ flexGrow: 1 }}>

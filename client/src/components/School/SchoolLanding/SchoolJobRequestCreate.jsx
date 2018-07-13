@@ -86,30 +86,19 @@ class SchoolJobRequestCreate extends React.Component {
   render() {
     const { classes } = this.props;
 
-    if (this.props.schoolName.loading) {
+    if(this.props.schoolName.loading) {
       return null;
     }
 
     return (
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' , marginTop: '2.5%', paddingTop: '2.5%'}}>
+      <div style={{
+        display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '2.5%', paddingTop: '2.5%',
+      }}>
         <form>
           <Grid container spacing={8}>
             <Paper className={classes.paper}>
               <Grid item xs={12}>
                 <Typography variant="display1">Substitute Teacher Request Form</Typography>
-                <TextField
-                  required={true}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                  label="School Name"
-                  className={classes.textField}
-                  margin="normal"
-                  value={this.props.schoolName.schoolByUsername.school_name}
-                  name="school"
-                  style={{ width: '90%', textAlign: 'left' }}
-                >
-                </TextField>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -232,7 +221,7 @@ class SchoolJobRequestCreate extends React.Component {
                 </label>
               </Grid>
               <Grid item xs={12}>
-                <Link to={{pathname: '/school'}}>
+                <Link to={{ pathname: '/school' }}>
                   <Button variant="contained" color="primary" className={classes.button}>
                   Cancel
                   </Button>
@@ -291,9 +280,9 @@ export default compose(
     name: 'schoolName',
     options: () => ({
       variables: {
-        username: (localStorage.getItem('username'))
-      }
-    })
+        username: (localStorage.getItem('username')),
+      },
+    }),
   }),
   graphql(NEW_JOB),
   withStyles(styles),
