@@ -12,7 +12,7 @@ class AdminJob extends React.Component {
     console.log('am in AdminJob.jsx ', this.props);
     const { job } = this.props.data;
     return !this.props.data.job ? <div>{console.log(this.props.data)} loading</div>
-    : <div>
+      : <div style={{ padding: '1.5% 1.5% 0 1.5%' }}>
         <Grid container spacing={24}>
           <Grid item xs={6} sm={4}>
             <Profile school={job.school}/>
