@@ -108,7 +108,7 @@ exports.initDB = (req, res) => {
   const grades = ['Pre-K', '1', '2', '3', '4', '5', '6', '7', 
     '8', '9', '10', '11', '12', 'Special Ed'];
 
-  for(let l = 1; l <= 50; l++) {
+  for(let l = 1; l <= 100; l++) {
     let claimed = false;
     let approved = faker.helpers.randomize([true,false]);
     if(approved){
@@ -116,13 +116,15 @@ exports.initDB = (req, res) => {
     }
     let grade = faker.helpers.randomize(grades);
     let subject = faker.helpers.randomize(subjects);
-    let future = faker.date.recent((Math.floor(Math.random() * 19) + 7));
+    let today = new Date();
+    let future = new Date();
+    // let future = faker.date.recent((Math.floor(Math.random() * 19) + 7));
 
     Job.create({
       description: `${subject} Substitue teacher needed for grade ${grade}`,
       start_time: `${Math.floor(Math.random() * 4) + 8} AM`,
       end_time: `${Math.floor(Math.random() * 8) + 1} PM`,
-      start_date: future,
+      start_date: today,
       end_date: future.setDate(future.getDate() + Math.floor(Math.random() * 4) + 1),
       subject,
       grade,
