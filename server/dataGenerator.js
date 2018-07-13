@@ -114,17 +114,10 @@ exports.initDB = (req, res) => {
     if(approved) {
       claimed = faker.helpers.randomize([true, false]);
     }
-<<<<<<< HEAD
-    let grade = faker.helpers.randomize(grades);
-    let subject = faker.helpers.randomize(subjects);
-    let today = new Date();
-    let future = new Date();
-=======
     const grade = faker.helpers.randomize(grades);
     const subject = faker.helpers.randomize(subjects);
     const today = new Date();
     const future = new Date();
->>>>>>> Update for presentations
     // let future = faker.date.recent((Math.floor(Math.random() * 19) + 7));
 
     Job.create({
