@@ -74,13 +74,13 @@ app.post('/api/subs/notify', (req, res) => {
   }).then(message => console.log(message.sid));
 });
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/dist/index.html'), (err) => {
-    if(err) {
-      res.status(500).send(err);
-    }
-  });
-});
+// app.get('/*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../client/dist/index.html'), (err) => {
+//     if(err) {
+//       res.status(500).send(err);
+//     }
+//   });
+// });
 
 /**
  *  Create a new instance of ApolloServer using typeDefs and resolvers
