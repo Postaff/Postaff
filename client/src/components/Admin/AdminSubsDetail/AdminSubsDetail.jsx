@@ -27,7 +27,7 @@ class AdminSubsSummaryDetail extends Component {
     console.log(this.props);
     const { classes } = this.props;
     return this.props.data.loading ? <Fragment/>
-    : <Fragment>
+      : <div style={{ padding: '1.5% 1.5% 0 1.5%' }}>
         <div className={classes.root}>
           <Grid container spacing={16} >
             <Grid item xs={4} >
@@ -49,7 +49,7 @@ class AdminSubsSummaryDetail extends Component {
             </Grid>
           </Grid>
         </div>
-      </Fragment>;
+      </div>;
   }
 }
 
