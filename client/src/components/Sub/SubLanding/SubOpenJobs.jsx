@@ -42,7 +42,7 @@ class SubOpenJobs extends React.Component {
     return (
       <div className={classes.root}>
         <Paper>
-          <h3> Open Jobs </h3>
+          <Typography variant="title">Open Jobs</Typography>
           {AvailableJobs.map((jobs, idx) => (
             <ExpansionPanel key={idx}>
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
@@ -64,15 +64,15 @@ class SubOpenJobs extends React.Component {
                   <TableBody>
                     <TableRow>
                        Grade:- {jobs.grade}
-                    </TableRow> 
+                    </TableRow>
                     <TableRow>
-                      Time:- {jobs.start_time} - {jobs.end_time} 
-                    </TableRow>  
+                      Time:- {jobs.start_time} - {jobs.end_time}
+                    </TableRow>
                     <TableRow>
                       Date:- {moment(jobs.start_date).format('MMMM Do YYYY')} - {moment(jobs.end_date).format('MMMM Do YYYY')}
-                    </TableRow>  
-                  </TableBody>  
-                </Table> 
+                    </TableRow>
+                  </TableBody>
+                </Table>
               </ExpansionPanelDetails>
             </ExpansionPanel>
           ))}
