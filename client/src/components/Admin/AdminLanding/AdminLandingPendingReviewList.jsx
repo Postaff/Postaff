@@ -40,23 +40,23 @@ class AdminLandingPendingReviewList extends Component {
     return (
       <Fragment>
         <Paper style={{ height: '90%', padding: '5%' }}>
-          <Typography align='left' variant='title' gutterBottom>
+          <Typography align="left" variant="title" gutterBottom>
             Pending Review
           </Typography>
           <TableHead>
             <TableRow>
-              <TableCell><Typography variant='caption'>Subject</Typography></TableCell>
-              <TableCell><Typography variant='caption'>Start Date</Typography></TableCell>
-              </TableRow>
+              <TableCell><Typography variant="caption">Subject</Typography></TableCell>
+              <TableCell><Typography variant="caption">Start Date</Typography></TableCell>
+            </TableRow>
           </TableHead>
           <List className={classes.root}>
             <li className={classes.listSection}>
               <ul className={classes.ul}>
                 <Table>
                   <TableBody>
-                  {this.props.pending.map(job => (
-                  <PendingReviewEntry key={job.id} job={job}/>
-                ))}
+                    {this.props.pending.reverse().map(job => (
+                      <PendingReviewEntry key={job.id} job={job}/>
+                    ))}
                   </TableBody>
                 </Table>
               </ul>
@@ -65,7 +65,7 @@ class AdminLandingPendingReviewList extends Component {
         </Paper>
       </Fragment>
     );
-  };
-};
+  }
+}
 
 export default withStyles(styles)(AdminLandingPendingReviewList);

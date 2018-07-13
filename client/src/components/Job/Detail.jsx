@@ -23,13 +23,8 @@ class Detail extends React.Component {
 
   notifySubs() {
     event.preventDefault();
-    
-    let jobId;
-    if(!this.props.job === undefined) {
-      jobId = this.props.job.id;
-    } else {
-      jobId = this.props.match.params.jobId;
-    }
+
+    const jobId = this.props.job.id;
     this.props.mutate({
       variables: {
         input: {

@@ -85,25 +85,14 @@ class SchoolJobRequestEdit extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' , marginTop: '2.5%', paddingTop: '2.5%'}}>
+      <div style={{
+ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '2.5%', paddingTop: '2.5%' 
+}}>
         <form>
           <Grid container spacing={8}>
             <Paper className={classes.paper}>
               <Grid item xs={12}>
                 <Typography variant="display1">Substitute Teacher Request Form</Typography>
-                <TextField
-                  required={true}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                  label="School Name"
-                  className={classes.textField}
-                  margin="normal"
-                  value={this.state.school}
-                  name="school"
-                  style={{ width: '90%', textAlign: 'left' }}
-                >
-                </TextField>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -226,7 +215,7 @@ class SchoolJobRequestEdit extends React.Component {
                 </label>
               </Grid>
               <Grid item xs={12}>
-                <Link to={{pathname: '/school'}}>
+                <Link to={{ pathname: '/school' }}>
                   <Button variant="contained" color="primary" className={classes.button}>
                   Cancel
                   </Button>

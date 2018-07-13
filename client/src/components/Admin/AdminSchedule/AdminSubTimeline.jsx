@@ -40,7 +40,7 @@ class AdminSubTimeline extends React.Component {
           defaultTimeEnd={moment().add(12, 'hour')}
           sidebarContent="Substitute Teachers"
           fullUpdate="false"
-          style={{ backgroundColor: 'f5f5f5' }}
+          style={{ color: 'black', backgroundColor: 'f5f5f5' }}
         />
       </div>
     );
