@@ -56,7 +56,7 @@ class SubBookedJobs extends React.Component {
     if(claimedJobs.length === 0) {
       return (
         <div className={classes.root}>
-        BOOKED JOBS
+          <Typography variant="display2" gutterBottom>Booked Jobs</Typography>
           <AppBar position="static">
             <Tabs value={value} onChange={this.handleChange}>
               <Tab label="No Booked Jobs">
@@ -69,7 +69,7 @@ class SubBookedJobs extends React.Component {
 
     return (
       <div className={classes.root}>
-        <h3> Booked Jobs </h3>
+        <Typography variant="display2" gutterBottom>Booked Jobs</Typography>
         <AppBar position="static">
           <Tabs value={value} onChange={this.handleChange} scrollable scrollButtons="auto">
             {claimedJobs.map(job => (

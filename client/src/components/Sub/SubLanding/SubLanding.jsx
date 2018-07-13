@@ -34,7 +34,7 @@ class SubLanding extends React.Component {
     console.log('SubLanding Page');
     const { classes } = this.props;
     return (
-      <Fragment>
+      <div style={{ padding: '1.5% 1.5% 0 1.5%' }}>
         <div className={classes.root}>
           <Grid container spacing={8} >
             <Grid item xs={4} >
@@ -57,7 +57,7 @@ class SubLanding extends React.Component {
             </Grid>
           </Grid>
         </div>
-      </Fragment>
+      </div>
     );
   }
 }

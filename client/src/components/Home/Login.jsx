@@ -190,37 +190,41 @@ class Login extends React.Component {
               message={
                 <span id="message-id"><div className={classes.messageId}>
                   <Typography variant="display1">Please Log In</Typography>
-                  <Typography className={classes.error} variant="subheading">{this.props.errorMessage}</Typography>
-                  <TextField
-                    name="username"
-                    value={this.state.user.username}
-                    onChange={this.handleInput.bind(this, 'username')}
-                    id="username-input"
-                    label="Username"
-                    className={classes.textField}
-                    type="username"
-                    margin="normal"
-                  />
-                  <span style={{ marginLeft: '1vw' }} />
-                  <TextField
-                    name="password"
-                    value={this.state.user.password}
-                    onChange={this.handleInput.bind(this, 'password')}
-                    id="password-input"
-                    label="Password"
-                    className={classes.textField}
-                    type="password"
-                    margin="normal"
-                  />
-                  <span style={{ marginLeft: '1vw' }} />
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    className={classes.button}
-                    onClick={this.onSubmit.bind(this)}
-                  >
+                  <form autoComplete="off">
+                    <Typography className={classes.error} variant="subheading">{this.props.errorMessage}</Typography>
+                    <TextField
+                      name="username"
+                      value={this.state.user.username}
+                      onChange={this.handleInput.bind(this, 'username')}
+                      id="username-input"
+                      label="Username"
+                      className={classes.textField}
+                      type="username"
+                      margin="normal"
+                      autocomplete="off"
+                    />
+                    <span style={{ marginLeft: '1vw' }} />
+                    <TextField
+                      name="password"
+                      value={this.state.user.password}
+                      onChange={this.handleInput.bind(this, 'password')}
+                      id="password-input"
+                      label="Password"
+                      className={classes.textField}
+                      type="password"
+                      margin="normal"
+                      autocomplete="off"
+                    />
+                    <span style={{ marginLeft: '1vw' }} />
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={classes.button}
+                      onClick={this.onSubmit.bind(this)}
+                    >
                   Submit
-                  </Button>
+                    </Button>
+                  </form>
                 </div></span>}
               action={[
                 <Tooltip key={++count} id="tooltip-icon" title="Cancel">
