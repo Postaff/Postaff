@@ -37,7 +37,6 @@ class Detail extends React.Component {
   render() {
     const { job } = this.props;
     const claimed = this.state.claimed || job.claimed;
-    console.log('Am in Sub-Detail.jsx', localStorage.getItem('subID'));
     return (
       <Paper style={{ height: '100%' }}>
         <Typography variant="title" gutterBottom>

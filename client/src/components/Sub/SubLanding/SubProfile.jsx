@@ -1,18 +1,14 @@
 import React from 'react';
 import {
-  CardContent,
   Typography,
-  CardMedia,
-  Card,
   Paper,
 } from '@material-ui/core';
-import { graphql, compose } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import GET_ALL_SUB_BY_ID from '../../../queries/fetchSubById';
 
 
 class SubProfile extends React.Component {
   render() {
-    console.log('this is in sublanding/subprofile page', this.props.data);
     if(this.props.data.loading) {
       return <div></div>;
     }

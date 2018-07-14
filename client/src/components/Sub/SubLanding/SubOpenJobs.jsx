@@ -38,7 +38,6 @@ class SubOpenJobs extends React.Component {
       );
     }
     const AvailableJobs = this.props.data.subById.jobAvailable;
-    console.log('this is the sub open jobs', this.props);
     return (
       <div className={classes.root}>
         <Paper>

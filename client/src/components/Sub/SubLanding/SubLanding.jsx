@@ -1,17 +1,10 @@
-import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import { graphql, compose } from 'react-apollo';
+import React from 'react';
+import { compose } from 'react-apollo';
 import { withStyles } from '@material-ui/core/styles';
 import {
-  Table,
-  TableBody,
-  TableHead,
-  TableRow,
   Paper,
-  TableCell,
   Grid,
 } from '@material-ui/core';
-import SubLandingCurrentJobsEntry from './SubLandingCurrentJobsEntry.jsx';
 import SubProfile from './SubProfile';
 import SubOpenJobs from './SubOpenJobs';
 import SubBookedJobs from './SubBookedJobs';
@@ -31,7 +24,6 @@ const styles = theme => ({
 class SubLanding extends React.Component {
   render() {
     const subId = localStorage.getItem('subId');
-    console.log('SubLanding Page');
     const { classes } = this.props;
     return (
       <div style={{ padding: '1.5% 1.5% 0 1.5%' }}>

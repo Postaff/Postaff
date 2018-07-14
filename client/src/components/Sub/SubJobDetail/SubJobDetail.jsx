@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, compose } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import Grid from '@material-ui/core/Grid';
 import Profile from '../../Job/Profile.jsx';
 import Detail from './Detail.jsx';
@@ -9,9 +9,8 @@ import FETCH_JOB from '../../../queries/fetchJob';
 
 class SubJobDetail extends React.Component {
   render() {
-    console.log('am in SubJobDetail.jsx ', this.props);
     const { job } = this.props.data;
-    return !this.props.data.job ? <div>{console.log(this.props.data)} loading</div>
+    return !this.props.data.job ? <div></div>
       : <div style={{ padding: '0 1.5% 0 1.5%' }}>
         <Grid container spacing={24}>
           <Grid item xs={6} sm={4}>
