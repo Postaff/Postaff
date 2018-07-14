@@ -29,7 +29,7 @@ const Query = {
         model: School, where: { id: foundJob.fk_school },
       }],
     })),
-  
+
   schedule: () => Job.findAll({
     where: { claimed: true },
     include: [{
@@ -39,11 +39,9 @@ const Query = {
 
   jobsBySchool: (root, { id }) => Job.findAll({ where: { fk_school: id } }),
 
-  jobsCompletedByUser: (root, { id }) => {
-    return Job.findAll({
-      where: { fk_sub: id, completed: true }
-    })
-  },
+  jobsCompletedByUser: (root, { id }) => Job.findAll({
+    where: { fk_sub: id, completed: true }
+  }),
 
   schools: () => School.findAll(),
 
@@ -110,27 +108,27 @@ const Mutation = {
         end_time: endTime,
         start_date: startDate,
         end_date: endDate,
-        subject: subject,
-        grade: grade,
+        subject,
+        grade,
         note: additionalInformation,
       },
       {
         where: {
-          id: schoolId
-        }
+          id: schoolId,
+        },
       },
-    )
-    .then(job =>
-      console.log(job)
-    )
-    .catch(err =>
-      handleError(err)
-    )
+    );
   },
 
   // This is for changing approved field to 'true' when admin approves job
-  approveJob: (root, args) => { Job.update({ approved: args.input.approved }, { where: { id: args.input.id } }); },
-  claimJob: (root, args) => { console.log('resolver', args); Job.update({ claimed: args.input.claimed, fk_sub: args.input.fk_sub }, { where: { id: args.input.id } }); },
+  approveJob: (root, args) => {
+    Job.update({ approved: args.input.approved }, { where: { id: args.input.id } });
+  },
+  claimJob: (root, args) => { 
+    Job.update({ 
+      claimed: args.input.claimed, fk_sub: args.input.fk_sub,
+    }, { where: { id: args.input.id } });
+  },
 };
 
 // this is for sublanding page

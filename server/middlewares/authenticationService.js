@@ -1,10 +1,10 @@
 const passport = require('passport');
 const JwtStrategy = require('passport-jwt').Strategy;
-const ExtractJwt = require('passport-jwt').ExtractJwt;
+const { ExtractJwt } = require('passport-jwt');
 const LocalStrategy = require('passport-local');
 const bcrypt = require('bcrypt');
 const jwt = require('jwt-simple');
-const dotenv = require('dotenv').config();
+require('dotenv').config();
 const { User } = require('../../database/models/userSchema');
 
 const comparePassword = (pwFromClient, pwFromDB, callback) => {

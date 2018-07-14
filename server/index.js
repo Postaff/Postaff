@@ -7,10 +7,10 @@ const fs = require('fs');
 const passport = require('passport');
 const session = require('express-session');
 const path = require('path');
-const dotenv = require('dotenv').config();
 const nodemailer = require('nodemailer');
+require('dotenv').config();
+const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 const routes = require('./routes.js');
-
 
 /**
  *  Import the resolvers.
@@ -21,7 +21,6 @@ const routes = require('./routes.js');
  *  Here we're just importing it so we can connect it with our apollo server
  */
 const resolvers = require('./middlewares/resolvers.js');
-
 /**
  *  Have fs module reads the file schema.graphql
  *  then gql method from apollo-server will help us parse the file to something readable by apollo
@@ -29,7 +28,6 @@ const resolvers = require('./middlewares/resolvers.js');
 const typeDefs = gql(fs.readFileSync(path.join(__dirname, './middlewares/schema.graphql'), 'utf8'));
 const app = express();
 const PORT = process.env.PORT || 3000;
-const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

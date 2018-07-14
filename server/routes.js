@@ -1,10 +1,8 @@
 const router = require('express').Router();
 const passport = require('passport');
-const nodemailer = require('nodemailer');
 const GenData = require('./dataGenerator');
 const AuthCtrl = require('./controllers/authenticationController');
 
-const requireAuth = passport.authenticate('jwt', { session: false });
 const requireLogin = passport.authenticate('local', { session: false });
 
 router.route('/users/login')
@@ -18,8 +16,5 @@ router.route('/users/generate')
 
 router.route('/jobs/sms/:subId')
   .post();
-
-// router.route('/jobs/email/:subId')
-//   .post();
 
 module.exports = router;
