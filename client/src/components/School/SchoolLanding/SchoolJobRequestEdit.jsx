@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import FileUpload from '@material-ui/icons/FileUpload';
 import {
   Button,
@@ -13,7 +13,6 @@ import {
   Typography,
   withStyles,
 } from '@material-ui/core';
-import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
 import {
   GET_ALL_SCHOOLS,
@@ -86,8 +85,8 @@ class SchoolJobRequestEdit extends React.Component {
 
     return (
       <div style={{
- display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '2.5%', paddingTop: '2.5%' 
-}}>
+        display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '2.5%', paddingTop: '2.5%',
+      }}>
         <form>
           <Grid container spacing={8}>
             <Paper className={classes.paper}>

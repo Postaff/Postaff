@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { graphql, compose } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import _ from 'lodash';
 import GET_ALL_JOBS from '../../queries/fetchAllJobs';
 import JobsEntry from './SharedJobsEntry.jsx';
@@ -11,9 +11,9 @@ class SharedJobsList extends React.Component {
    */
   renderJobs() {
     return _.map(this.props.data.jobs, job => (
-        <div>
-          <JobsEntry key={job.id} job={job}/>
-        </div>
+      <div>
+        <JobsEntry key={job.id} job={job}/>
+      </div>
     ));
   }
 

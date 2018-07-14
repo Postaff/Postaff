@@ -1,17 +1,12 @@
 import React from 'react';
 import {
-  CardContent,
   Typography,
-  CardMedia,
-  Card,
   Paper,
 } from '@material-ui/core';
 
 class Profile extends React.Component {
-
   render() {
-    const { school } = this.props
-    console.log(school)
+    const { school } = this.props;
     return (
       <Paper>
         <center><img src="http://image.al.com/home/bama-media/width600/img/news_birmingham_impact/photo/gardendale-high-schooljpg-a90b5be907fd546b.jpg" alt="School Image" style={{

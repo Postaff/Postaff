@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import FileUpload from '@material-ui/icons/FileUpload';
 import {
   Button,
@@ -13,7 +13,6 @@ import {
   Typography,
   withStyles,
 } from '@material-ui/core';
-import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
 import {
   NEW_JOB,

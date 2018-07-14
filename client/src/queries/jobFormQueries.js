@@ -6,7 +6,7 @@ export const GET_ALL_SCHOOLS = gql`
     id
     school_name
   }
-}`
+}`;
 
 export const NEW_JOB = gql`
   mutation CreateJob($input: CreateJobInput) {
@@ -14,7 +14,7 @@ export const NEW_JOB = gql`
       id
     }
   }
-`
+`;
 
 export const EDIT_JOB = gql`
   mutation EditJob($input: EditJobInput) {
@@ -22,15 +22,7 @@ export const EDIT_JOB = gql`
       id
     }
   }
-`
-
-// export const CLAIM_JOB_BY_SUB = gql`
-//   mutation AddClaim($id: ID){
-//     addClaim(id: $id){
-//       id
-//     }
-//   }
-// `
+`;
 
 export const GET_SCHOOL_BY_USERNAME = gql`
   query SchoolByUsername ($username: String) {

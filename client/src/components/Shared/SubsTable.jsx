@@ -1,9 +1,11 @@
 import React, { Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import {Table, TableBody, TableCell, TableHead, TablePagination, TableRow,
-TableSortLabel, Avatar, Typography, Paper, Tooltip, Grid} from '@material-ui/core';
+import {
+ Table, TableBody, TableCell, TableHead, TablePagination, TableRow,
+  TableSortLabel, Avatar, Paper, Tooltip, Grid
+ } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import {compose} from 'react-apollo';
+import { compose } from 'react-apollo';
 import _ from 'lodash';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 
@@ -14,13 +16,13 @@ export const toolbarStyle = theme => ({
   highlight:
     theme.palette.type === 'light'
       ? {
-          color: theme.palette.secondary.main,
-          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
-        }
+        color: theme.palette.secondary.main,
+        backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+      }
       : {
-          color: theme.palette.text.primary,
-          backgroundColor: theme.palette.secondary.dark,
-        },
+        color: theme.palette.text.primary,
+        backgroundColor: theme.palette.secondary.dark,
+      },
   spacer: {
     flex: '1 1 100%',
   },
@@ -38,7 +40,7 @@ export const tableStyle = theme => ({
     marginTop: theme.spacing.unit * 3,
   },
   table: {
-    width: '100%'
+    width: '100%',
   },
   tableWrapper: {
     overflowX: 'auto',
@@ -66,38 +68,40 @@ class AdminTodayTable extends React.Component {
     this.handleSelectAllClick = this.handleSelectAllClick.bind(this);
   }
 
-  handleRequestSort (event, property) {
+  handleRequestSort(event, property) {
     const orderBy = property;
     let order = 'desc';
-    if (this.state.orderBy === property && this.state.order === 'desc') {
+    if(this.state.orderBy === property && this.state.order === 'desc') {
       order = 'asc';
     }
     this.setState({ order, orderBy });
-  };
+  }
 
-  handleSelectAllClick (event, checked) {
-    if (checked) {
+  handleSelectAllClick(event, checked) {
+    if(checked) {
       this.setState({ selected: this.state.data.map(n => n.id) });
       return;
     }
     this.setState({ selected: [] });
-  };
+  }
 
-  handleChangePage (event, page) {
+  handleChangePage(event, page) {
     this.setState({ page });
-  };
+  }
 
-  handleChangeRowsPerPage (event) {
+  handleChangeRowsPerPage(event) {
     this.setState({ rowsPerPage: event.target.value });
-  };
+  }
 
   render() {
-    let tableData = [];
-    _.each(this.props.subs, (sub)=>{
-      tableData.push(createData(sub.id, sub.photo_url, sub.name, sub.phone, sub.address_state, sub.email))
-    })
+    const tableData = [];
+    _.each(this.props.subs, (sub) => {
+      tableData.push(createData(sub.id, sub.photo_url, sub.name, sub.phone, sub.address_state, sub.email));
+    });
     const { classes } = this.props;
-    const { order, orderBy, rowsPerPage, page } = this.state;
+    const {
+ order, orderBy, rowsPerPage, page 
+} = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, tableData.length - page * rowsPerPage);
 
     return (
@@ -117,8 +121,7 @@ class AdminTodayTable extends React.Component {
                   {tableData
                     .sort(getSorting(order, orderBy))
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map(n => {
-                      return (
+                    .map((n) => (
                         <TableRow
                           hover
                           onClick={event => this.handleClick(event, n.id)}
@@ -135,8 +138,7 @@ class AdminTodayTable extends React.Component {
                           <TableCell>{n.location}</TableCell>
                           <TableCell>{n.email}</TableCell>
                         </TableRow>
-                      );
-                    })}
+                      ))}
                   {emptyRows > 0 && (
                     <TableRow style={{ height: 49 * emptyRows }}>
                       <TableCell colSpan={6} />
@@ -162,12 +164,13 @@ class AdminTodayTable extends React.Component {
           </Paper>
         </Grid>
       </Fragment>
-    );}
+    ); 
+}
 }
 
 function createData(id, photo, name, phone, location, email) {
-  return { 
-    id, photo, name, phone, location, email
+  return {
+    id, photo, name, phone, location, email,
   };
 }
 
@@ -178,11 +181,21 @@ function getSorting(order, orderBy) {
 }
 
 const columnData = [
-  { id: 'avatar', numeric: false, disablePadding: false, label: '' },
-  { id: 'name', numeric: false, disablePadding: false, label: 'Name' },
-  { id: 'phone', numeric: false, disablePadding: false, label: 'Phone' },
-  { id: 'location', numeric: false, disablePadding: false, label: 'Location' },
-  { id: 'email', numeric: false, disablePadding: false, label: 'Email' },
+  {
+ id: 'avatar', numeric: false, disablePadding: false, label: '' 
+},
+  {
+ id: 'name', numeric: false, disablePadding: false, label: 'Name' 
+},
+  {
+ id: 'phone', numeric: false, disablePadding: false, label: 'Phone' 
+},
+  {
+ id: 'location', numeric: false, disablePadding: false, label: 'Location' 
+},
+  {
+ id: 'email', numeric: false, disablePadding: false, label: 'Email' 
+},
 ];
 
 class AdminTodayTableHead extends React.Component {
@@ -191,13 +204,15 @@ class AdminTodayTableHead extends React.Component {
       this.props.onRequestSort(event, property);
     };
   }
+
   render() {
-    const { onSelectAllClick, order, orderBy, rowCount } = this.props;
+    const {
+ onSelectAllClick, order, orderBy, rowCount 
+} = this.props;
     return (
       <TableHead>
         <TableRow>
-          {columnData.map(column => {
-            return (
+          {columnData.map((column) => (
               <TableCell
                 key={column.id}
                 numeric={column.numeric}
@@ -218,8 +233,7 @@ class AdminTodayTableHead extends React.Component {
                   </TableSortLabel>
                 </Tooltip>
               </TableCell>
-            );
-          }, this)}
+            ), this)}
         </TableRow>
       </TableHead>
     );

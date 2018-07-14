@@ -1,8 +1,5 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 class HomeLanding extends React.Component {
   render() {

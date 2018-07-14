@@ -1,22 +1,15 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { compose } from 'react-apollo';
 import { connect } from 'react-redux';
-import { Route, Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Slide from '@material-ui/core/Slide';
 import Snackbar from '@material-ui/core/Snackbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import Radio from '@material-ui/core/Radio';
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import grey from '@material-ui/core/colors/grey';
 import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -25,8 +18,8 @@ import * as actions from '../../actions/indexAction.js';
 
 const theme = createMuiTheme({
   overrides: {
-    MuiSnackbarContent: { // Name of the component ⚛️ / style sheet
-      root: { // Name of the rule
+    MuiSnackbarContent: {
+      root: {
         backgroundColor: grey[50],
       },
       action: {
@@ -34,18 +27,7 @@ const theme = createMuiTheme({
       },
     },
   },
-  SnackbarContent: {
-    // color: rgb(49, 49, 49),
-    // display: flex;
-    // padding: ,
-    // flex - wrap: wrap;
-    // align - items: center;
-    // pointer - events: initial;
-    // backgroundColor: grey[100],
-  },
   root: {
-    // height: '100%',
-    // maxheight: 500,
     float: 'right',
     backgroundColor: grey[50],
   },
@@ -95,8 +77,6 @@ const theme = createMuiTheme({
 });
 
 
-// const LoginWrapper = withStyles(styles)(MySnackbarContent);
-
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -120,7 +100,6 @@ class Login extends React.Component {
   onSubmit(event) {
     this.props.login(this.state.user, () => {
       this.props.onLogin(this.state.role);
-      // this.handleClose();
     });
   }
 
@@ -162,7 +141,6 @@ class Login extends React.Component {
 
 
   render(props) {
-    console.log('This is LoginComponent', this.props);
     const { handleSubmit } = this.props;
     let count = 0;
 
@@ -181,7 +159,6 @@ class Login extends React.Component {
                 horizontal: 'right',
               }}
               open={this.state.open}
-              // className={classes.SnackbarContent}
               resumeHideDuration={6000}
               onClose={this.handleClose}
               ContentProps={{

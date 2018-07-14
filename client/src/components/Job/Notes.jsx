@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   FormControl,
-  InputLabel,
   Input,
   Paper,
   Typography,
@@ -23,10 +22,10 @@ class Notes extends React.Component {
     return (
       <Paper style={{ height: '100%' }}>
         <FormControl>
-       <Typography variant="display1" gutterBottom>
+          <Typography variant="display1" gutterBottom>
          Notes
-        </Typography>
-        <Input value={this.state.name} onChange={this.handleChange.bind(this)} />
+          </Typography>
+          <Input value={this.state.name} onChange={this.handleChange.bind(this)} />
         </FormControl>
       </Paper>
     );

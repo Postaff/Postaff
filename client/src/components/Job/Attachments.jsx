@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  CardContent,
   Typography,
   Paper,
 } from '@material-ui/core';
@@ -28,23 +27,23 @@ function Attachments(props) {
   const { classes } = props;
   return (
     <Paper style={{ height: '100%' }}>
-    <div>
-      <Typography variant="display1" gutterBottom>
+      <div>
+        <Typography variant="display1" gutterBottom>
         Attachments
-      </Typography>
-      <input
-      accept="image/*"
-      className={classes.input}
-      id="flat-button-file"
-      multiple
-      type="file"
-      />
-      <label htmlFor="flat-button-file">
-        <Button component="span" color="primary" className={classes.button}>
+        </Typography>
+        <input
+          accept="image/*"
+          className={classes.input}
+          id="flat-button-file"
+          multiple
+          type="file"
+        />
+        <label htmlFor="flat-button-file">
+          <Button component="span" color="primary" className={classes.button}>
          Upload
-         <FileUpload className={classes.rightIcon} />
-        </Button>
-      </label>
+            <FileUpload className={classes.rightIcon} />
+          </Button>
+        </label>
       </div>
     </Paper>
   );
