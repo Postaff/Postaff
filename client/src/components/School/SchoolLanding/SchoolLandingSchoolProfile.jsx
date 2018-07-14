@@ -8,7 +8,7 @@ import {
   Grid,
   Typography,
 } from '@material-ui/core';
-import { graphql, compose, Query } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import { GET_SCHOOL_BY_USERNAME } from '../../../queries/jobFormQueries';
 
 const styles = {
@@ -17,7 +17,7 @@ const styles = {
   },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%',
   },
 };
 
@@ -28,7 +28,7 @@ class SchoolLandingSchoolProfile extends React.Component {
 
     if (this.props.data.loading) {
       return null;
-    } else {
+    } 
       return (
         <Fragment>
           <Grid item xs={4}>
@@ -51,7 +51,7 @@ class SchoolLandingSchoolProfile extends React.Component {
           </Grid>
         </Fragment>
       );
-    }
+    
   }
 }
 
@@ -64,8 +64,8 @@ export default compose(
   graphql(GET_SCHOOL_BY_USERNAME, {
     options: () => ({
       variables: {
-        username: (localStorage.getItem('username'))
-      }
-    })
+        username: (localStorage.getItem('username')),
+      },
+    }),
   }),
 )(SchoolLandingSchoolProfile);

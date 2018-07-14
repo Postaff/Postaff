@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
 import {
   Drawer, List, ListItem, ListItemIcon, ListItemText,
-  Divider, AppBar, Toolbar, Typography, Button, IconButton,
+  Divider, AppBar, Toolbar, Typography, Button,
 } from '@material-ui/core';
 import {
-  Home, Dashboard, Schedule, People, LocationCity, Work, Create,
+  Dashboard, Schedule, People, LocationCity, Work, Create,
 } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -53,7 +52,7 @@ const styles = theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
-    minWidth: 0, // So the Typography noWrap works
+    minWidth: 0,
   },
   toolbar: theme.mixins.toolbar,
 });
@@ -161,7 +160,6 @@ class NavBar extends Component {
     );
   }
 
-  // style = {{ marginTop: '64px' }}
   render() {
     console.log('this navbar.jsx', this.props);
     const { classes } = this.props;

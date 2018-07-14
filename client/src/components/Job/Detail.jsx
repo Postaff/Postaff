@@ -4,7 +4,6 @@ import {
   Paper,
   Grid,
   Button,
-  Snackbar,
 } from '@material-ui/core';
 import { graphql, compose } from 'react-apollo';
 import axios from 'axios';
@@ -49,7 +48,6 @@ class Detail extends React.Component {
 
   render() {
     const job = this.props.job || this.props.location.state.job;
-    console.log('Am in Detail.jsx', this.props);
     const approved = this.state.approved || job.approved;
 
     return (

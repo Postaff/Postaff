@@ -1,15 +1,17 @@
 import React, { Fragment } from 'react';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import {Table, TableBody, TableCell, TableHead, TablePagination, TableRow,
-TableSortLabel, Toolbar, Typography, Paper, Tooltip, Grid} from '@material-ui/core';
+import { 
+Table, TableBody, TableCell, TableHead, TablePagination, TableRow,
+  TableSortLabel, Toolbar, Typography, Paper, Tooltip, Grid 
+} from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { graphql, compose, Query } from 'react-apollo';
-import GET_ALL_JOBS from '../../../queries/fetchAllJobs.js';
+import { graphql, compose } from 'react-apollo';
 import { GET_SCHOOL_BY_USERNAME } from '../../../queries/jobFormQueries';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import IconButton from '@material-ui/core/IconButton';
 import Edit from '@material-ui/icons/Edit';
+import GET_ALL_JOBS from '../../../queries/fetchAllJobs.js';
 
 export const toolbarStyle = theme => ({
   root: {
@@ -18,13 +20,13 @@ export const toolbarStyle = theme => ({
   highlight:
     theme.palette.type === 'light'
       ? {
-          color: theme.palette.secondary.main,
-          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
-        }
+        color: theme.palette.secondary.main,
+        backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+      }
       : {
-          color: theme.palette.text.primary,
-          backgroundColor: theme.palette.secondary.dark,
-        },
+        color: theme.palette.text.primary,
+        backgroundColor: theme.palette.secondary.dark,
+      },
   spacer: {
     flex: '1 1 100%',
   },
@@ -41,7 +43,7 @@ export const tableStyle = theme => ({
     width: '100%',
   },
   table: {
-    width: '100%'
+    width: '100%',
   },
   tableWrapper: {
     overflowX: 'auto',
@@ -71,38 +73,38 @@ class SchoolLandingJobsTable extends React.Component {
   }
 
 
-  handleRequestSort (event, property) {
+  handleRequestSort(event, property) {
     const orderBy = property;
     let order = 'desc';
-    if (this.state.orderBy === property && this.state.order === 'desc') {
+    if(this.state.orderBy === property && this.state.order === 'desc') {
       order = 'asc';
     }
     this.setState({ order, orderBy });
-  };
+  }
 
-  handleSelectAllClick (event, checked) {
-    if (checked) {
+  handleSelectAllClick(event, checked) {
+    if(checked) {
       this.setState({ selected: this.state.data.map(n => n.id) });
       return;
     }
     this.setState({ selected: [] });
-  };
+  }
 
-  handleClick (event, id) {
-  };
+  handleClick(event, id) {
+  }
 
-  handleChangePage (event, page) {
+  handleChangePage(event, page) {
     this.setState({ page });
-  };
+  }
 
-  handleChangeRowsPerPage (event) {
+  handleChangeRowsPerPage(event) {
     this.setState({ rowsPerPage: event.target.value });
-  };
+  }
 
   render() {
     if (this.props.data.loading || this.props.schoolName.loading) {
       return <div></div>
-    } else {
+    } 
       let uniqueSchoolId = this.props.schoolName.schoolByUsername.id;
       let tableData = [];
 
@@ -199,12 +201,14 @@ class SchoolLandingJobsTable extends React.Component {
           </Grid>
         </Fragment>
       );
-    }
+    
   }
 }
 
 function createData(id, subject, grade, start_date, claimed, description, start_time, end_date, end_time) {
-  return { id, subject, grade, start_date, claimed, description, start_time, end_date, end_time };
+  return {
+ id, subject, grade, start_date, claimed, description, start_time, end_date, end_time 
+};
 }
 
 function getSorting(order, orderBy) {
@@ -214,12 +218,24 @@ function getSorting(order, orderBy) {
 }
 
 const columnData = [
-  { id: 'subject', numeric: false, disablePadding: false, label: 'Subject' },
-  { id: 'grade', numeric: false, disablePadding: false, label: 'Grade' },
-  { id: 'start_date', numeric: false, disablePadding: false, label: 'Start Date' },
-  { id: 'claimed', numeric: false, disablePadding: false, label: 'Status' },
-  { id: 'employee', numeric: false, disablePadding: false, label: 'Substitute Teacher' },
-  { id: 'edit', numeric: false, disablePadding: false, label: '' },
+  {
+ id: 'subject', numeric: false, disablePadding: false, label: 'Subject' 
+},
+  {
+ id: 'grade', numeric: false, disablePadding: false, label: 'Grade' 
+},
+  {
+ id: 'start_date', numeric: false, disablePadding: false, label: 'Start Date' 
+},
+  {
+ id: 'claimed', numeric: false, disablePadding: false, label: 'Status' 
+},
+  {
+ id: 'employee', numeric: false, disablePadding: false, label: 'Substitute Teacher' 
+},
+  {
+ id: 'edit', numeric: false, disablePadding: false, label: '' 
+},
 ];
 
 class AdminTodayTableHead extends React.Component {
@@ -228,13 +244,15 @@ class AdminTodayTableHead extends React.Component {
       this.props.onRequestSort(event, property);
     };
   }
+
   render() {
-    const { onSelectAllClick, order, orderBy, rowCount } = this.props;
+    const {
+ onSelectAllClick, order, orderBy, rowCount 
+} = this.props;
     return (
       <TableHead>
         <TableRow>
-          {columnData.map(column => {
-            return (
+          {columnData.map((column) => (
               <TableCell
                 key={column.id}
                 numeric={column.numeric}
@@ -255,24 +273,23 @@ class AdminTodayTableHead extends React.Component {
                   </TableSortLabel>
                 </Tooltip>
               </TableCell>
-            );
-          }, this)}
+            ), this)}
         </TableRow>
       </TableHead>
     );
   }
 }
 
-let AdminTodayTableToolbar = props => {
+let AdminTodayTableToolbar = (props) => {
   const { classes } = props;
   return (
     <Toolbar
       className={classNames(classes.root)}
     >
       <div className={classes.title}>
-          <Typography variant="title" id="tableTitle">
+        <Typography variant="title" id="tableTitle">
             Substitute Teacher Requests
-          </Typography>
+        </Typography>
       </div>
       <div className={classes.spacer} />
       <div className={classes.actions}>
@@ -288,9 +305,9 @@ export default compose(
     name: 'schoolName',
     options: () => ({
       variables: {
-        username: (localStorage.getItem('username'))
-      }
-    })
+        username: (localStorage.getItem('username')),
+      },
+    }),
   }),
   graphql(GET_ALL_JOBS),
 )(SchoolLandingJobsTable);

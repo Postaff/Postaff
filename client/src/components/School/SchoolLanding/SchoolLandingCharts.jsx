@@ -1,22 +1,21 @@
 import React, { Fragment } from 'react';
-import { graphql, compose, Query } from 'react-apollo';
-import GET_ALL_JOBS from '../../../queries/fetchAllJobs.js';
-import { GET_SCHOOL_BY_USERNAME } from '../../../queries/jobFormQueries';
+import { graphql, compose } from 'react-apollo';
 import {
   Typography,
   Paper,
   Grid,
 } from '@material-ui/core';
+import GET_ALL_JOBS from '../../../queries/fetchAllJobs.js';
+import { GET_SCHOOL_BY_USERNAME } from '../../../queries/jobFormQueries';
 import { Doughnut } from 'react-chartjs-2';
 
 class SchoolLandingCharts extends React.Component {
   render() {
     if (this.props.data.loading || this.props.schoolName.loading) {
       return null;
-    } else {
+    } 
       let uniqueSchoolId = this.props.schoolName.schoolByUsername.id;
 
-      // CLAIM DATA
       var calculateTotal = function(jobs) {
         var counter = 0;
         for (var i = 0; i < jobs.length; i++) {
@@ -57,7 +56,6 @@ class SchoolLandingCharts extends React.Component {
         }],
       };
 
-      // GRADE DATA
       var generateGrades = function(jobs) {
         var result = {};
         for (var i = 0; i < jobs.length; i++) {
@@ -210,7 +208,7 @@ class SchoolLandingCharts extends React.Component {
           </Grid>
         </Fragment>
       );
-    }
+    
   }
 }
 
@@ -219,9 +217,9 @@ export default compose(
     name: 'schoolName',
     options: () => ({
       variables: {
-        username: (localStorage.getItem('username'))
-      }
-    })
+        username: (localStorage.getItem('username')),
+      },
+    }),
   }),
   graphql(GET_ALL_JOBS),
 )(SchoolLandingCharts);

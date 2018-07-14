@@ -100,7 +100,7 @@ class AdminTodayTable extends React.Component {
   }
 
   render() {
-    let dateToday = moment().format('YYYY-MM-D');
+    const dateToday = moment().format('YYYY-MM-D');
     const tableData = [];
     _.each(this.props.jobs, (job) => {
       if(dateToday === job.start_date || (job.start_date <= dateToday && dateToday <= job.end_date)) {
@@ -123,7 +123,7 @@ class AdminTodayTable extends React.Component {
 
     return (
       <Fragment>
-        <Paper elevation={4} className={classes.root} style={{height: '95%'}}>
+        <Paper elevation={4} className={classes.root} style={{ height: '95%' }}>
           <AdminTodayTableToolbar />
           <div className={classes.tableWrapper}>
             <Table className={classes.table} aria-labelledby="tableTitle">
@@ -134,7 +134,7 @@ class AdminTodayTable extends React.Component {
                 onRequestSort={this.handleRequestSort}
                 rowCount={tableData.length}
               />
-              <TableBody style={{padding: '4px 0 4px 24px'}}>
+              <TableBody style={{ padding: '4px 0 4px 24px' }}>
                 {tableData
                   .sort(getSorting(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -144,18 +144,18 @@ class AdminTodayTable extends React.Component {
                       onClick={event => this.handleClick(event, n.id)}
                       tabIndex={-1}
                       key={n.id}
-                      style={{padding: '4px 0 4px 0px'}}
+                      style={{ padding: '4px 0 4px 0px' }}
                     >
-                      <TableCell style={{padding: '4px 28px 4px 24px'}}>
+                      <TableCell style={{ padding: '4px 28px 4px 24px' }}>
                         <Avatar src={n.img}/>
                       </TableCell>
-                      <TableCell component="th" scope="row" style={{padding: '4px 0 4px 0px'}}>
+                      <TableCell component="th" scope="row" style={{ padding: '4px 0 4px 0px' }}>
                         <Link to={{ pathname: `/admin/jobs/${n.id}`, state: { job: n } }}>{n.subject}</Link>
                       </TableCell>
-                      <TableCell style={{padding: '4px 0 4px 0'}}>{n.employee}</TableCell>
-                      <TableCell style={{padding: '4px 0 4px 0'}}>{n.location}</TableCell>
-                      <TableCell style={{padding: '4px 0 4px 0'}}>{n.grade}</TableCell>
-                      <TableCell style={{padding: '4px 0 4px 0'}}>{n.date}</TableCell>
+                      <TableCell style={{ padding: '4px 0 4px 0' }}>{n.employee}</TableCell>
+                      <TableCell style={{ padding: '4px 0 4px 0' }}>{n.location}</TableCell>
+                      <TableCell style={{ padding: '4px 0 4px 0' }}>{n.grade}</TableCell>
+                      <TableCell style={{ padding: '4px 0 4px 0' }}>{n.date}</TableCell>
                     </TableRow>
                   ))}
                 {emptyRows > 0 && (
@@ -301,9 +301,4 @@ EmptyJobTable = withStyles(toolbarStyle)(EmptyJobTable);
 
 export default compose(
   withStyles(tableStyle),
-  // graphql(GET_ALL_JOBS, {
-  //   options: (ownProps) => ({
-  //     refetchQueries: [{ query: GET_ALL_JOBS}]
-  //   })
-  // })
 )(AdminTodayTable);
