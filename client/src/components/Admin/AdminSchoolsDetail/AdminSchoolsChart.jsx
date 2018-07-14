@@ -1,18 +1,18 @@
 import React, { Fragment } from 'react';
 import { graphql, compose, Query } from 'react-apollo';
-import GET_ALL_JOBS from '../../../queries/fetchAllJobs.js';
 import {
   Typography,
   Paper,
   Grid,
 } from '@material-ui/core';
 import { Doughnut } from 'react-chartjs-2';
+import GET_ALL_JOBS from '../../../queries/fetchAllJobs.js';
 
 class SchoolLandingCharts extends React.Component {
   render() {
     if (this.props.data.loading) {
       return null;
-    } else {
+    } 
       let uniqueSchoolId = this.props.school.id;
 
       // CLAIM DATA
@@ -209,7 +209,7 @@ class SchoolLandingCharts extends React.Component {
           </Grid>
         </Fragment>
       );
-    }
+    
   }
 }
 

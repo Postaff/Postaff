@@ -40,7 +40,6 @@ class AdminJobRequestForm extends React.Component {
     this.setState({
       [event.target.name]: event.target.value,
     });
-    console.log(this.state);
   }
 
   submitForm(event) {
@@ -89,8 +88,6 @@ class AdminJobRequestForm extends React.Component {
         alignItems: 'center',
         justifyContent: 'center',
         paddingTop: '4vh',
-        // background: 'linear-gradient(to bottom, #8e2de2, #6200ea)',
-        // height: '100%',
       }}>
         <form>
           <Grid container spacing={8}>

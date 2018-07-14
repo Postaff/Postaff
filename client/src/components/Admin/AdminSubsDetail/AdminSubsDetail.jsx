@@ -24,7 +24,6 @@ const styles = theme => ({
 
 class AdminSubsSummaryDetail extends Component {
   render() {
-    console.log(this.props);
     const { classes } = this.props;
     return this.props.data.loading ? <Fragment/>
       : <div style={{ padding: '1.5% 1.5% 0 1.5%' }}>
