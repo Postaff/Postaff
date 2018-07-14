@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Card,
@@ -24,7 +23,6 @@ class AdminSchoolsDetailProfile extends React.Component {
   render() {
     const { classes } = this.props;
     let { school } = this.props;
-    console.log(this.props)
     return (
       <Fragment>
         <Grid item xs={4}>

@@ -30,7 +30,6 @@ const styles = theme => ({
   },
 });
 
-
 class AdminSchoolsSummaryReviewJobs extends React.Component {
   render() {
     const { classes } = this.props;

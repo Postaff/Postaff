@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { graphql, compose } from 'react-apollo';
 import {
@@ -21,13 +21,11 @@ const styles = theme => ({
 });
 class AdminSchoolsDetail extends React.Component {
   render() {
-    const { classes } = this.props;
-    let school = this.props.data.schoolById;
-    console.log(this.props)
-    if (this.props.data.loading) {
+    const school = this.props.data.schoolById;
+    if(this.props.data.loading) {
       return null;
-    } else {
-      return (
+    }
+    return (
       <div style={{ margin: '1%', padding: '2%', marginTop: '0' }}>
         <Grid container spacing={24}>
           <AdminSchoolsDetailProfile school={school}/>
@@ -35,8 +33,7 @@ class AdminSchoolsDetail extends React.Component {
           <AdminSchoolsTable school={school}/>
         </Grid>
       </div>
-      );
-    }
+    );
   }
 }
 
@@ -46,7 +43,7 @@ export default compose(
     options: ownProps => ({
       variables: {
         id: ownProps.match.params.schoolId,
-      }
-    })
+      },
+    }),
   }),
 )(AdminSchoolsDetail);

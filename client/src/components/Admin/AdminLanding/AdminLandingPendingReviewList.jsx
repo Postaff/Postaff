@@ -10,7 +10,7 @@ import {
   TableHead,
   TableRow,
 } from '@material-ui/core';
-import PendingReviewEntry from './AdminLandingPendingReviewEntry';
+import PendingReviewEntry from './AdminLandingPendingReviewEntry.jsx';
 
 const styles = theme => ({
   root: {

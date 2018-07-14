@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import {
   Table,
   TableBody,
@@ -27,7 +27,6 @@ const styles = theme => ({
     padding: 0,
   },
 });
-
 
 class AdminSubsSummaryReviewJobs extends React.Component {
   render() {
