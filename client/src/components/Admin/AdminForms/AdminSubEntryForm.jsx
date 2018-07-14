@@ -100,7 +100,6 @@ class AdminSubEntryForm extends React.Component {
   }
 
   submitForm(event) {
-    console.log(this.state);
     this.setState({
       name: '',
       phone: '',

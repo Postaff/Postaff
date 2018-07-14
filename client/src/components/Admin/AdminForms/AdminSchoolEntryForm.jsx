@@ -76,7 +76,6 @@ class AdminSchoolEntryForm extends React.Component {
   }
 
   submitForm(event) {
-    console.log(this.state);
     this.setState({
       schoolName: '',
       street: '',

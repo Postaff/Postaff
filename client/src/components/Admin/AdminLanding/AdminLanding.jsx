@@ -21,7 +21,6 @@ const styles = theme => ({
 
 class AdminLanding extends React.Component {
   render() {
-    console.log('this is adminlanding page', this.props);
     if(this.props.data.loading) {
       return <Fragment></Fragment>;
     }

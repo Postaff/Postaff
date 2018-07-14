@@ -2,15 +2,9 @@ import React from 'react';
 import {
   Typography,
   Paper,
-  Card,
   Grid,
 } from '@material-ui/core';
 import { Doughnut } from 'react-chartjs-2';
-
-// console.log(props);
-
-// let claimed = { this.props.claimed };
-
 
 class AdminSchoolsSummaryCharts extends React.Component {
   render() {

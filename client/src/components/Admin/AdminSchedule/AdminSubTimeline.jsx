@@ -13,7 +13,6 @@ class AdminSubTimeline extends React.Component {
         <div> Loading </div>
       );
     }
-    console.log(this.props);
     const { subs } = this.props.subs;
     const groups = subs.map(sub => ({ id: sub.id, title: sub.name }));
 

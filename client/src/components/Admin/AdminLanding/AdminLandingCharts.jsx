@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import {
   Typography,
   Paper,
-  Card,
   Grid,
 } from '@material-ui/core';
 import { Doughnut } from 'react-chartjs-2';
