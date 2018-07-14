@@ -7,7 +7,6 @@ import {
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { graphql, compose } from 'react-apollo';
-import _ from 'lodash';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import GET_ALL_SUBBYID from '../../../queries/fetchSubById';
 
@@ -90,9 +89,6 @@ class SubPreviousJobs extends React.Component {
     this.setState({ selected: [] });
   }
 
-  handleClick(event, id) {
-  }
-
   handleChangePage(event, page) {
     this.setState({ page });
   }
@@ -105,7 +101,6 @@ class SubPreviousJobs extends React.Component {
     if(this.props.data.loading) {
       return <div></div>;
     }
-    console.log('this is in previous jobs in sublanding', this.props.data.subById.jobsCompleted);
     const { subById } = this.props.data;
     const { classes } = this.props;
     const {
