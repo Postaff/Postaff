@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'react-apollo';
 import { withStyles } from '@material-ui/core/styles';
 import {
-  BrowserRouter, Route, Switch, Redirect,
+  BrowserRouter, Route, Switch,
 } from 'react-router-dom';
 import HomeLanding from './Home/HomeLanding';
 import Login from './Home/Login';
@@ -45,7 +45,6 @@ class App extends React.Component {
   }
 
   handleLogin(role) {
-    console.log('handlelogin/App.jsx', localStorage.getItem('schoolId'));
     this.setState({
       isLoggedIn: !!localStorage.getItem('token'),
       sasOption: localStorage.getItem('role'),
@@ -57,7 +56,6 @@ class App extends React.Component {
     const { classes } = this.props;
     const log = this.state.isLoggedIn;
     const option = this.state.sasOption;
-    console.log('I am in App.jsx', option);
     return (
       <React.Fragment>
         <main>
@@ -84,7 +82,6 @@ class App extends React.Component {
                 <PrivateRoute exact path="/jobs/:jobId" component={JobDetail} log={log} />
               </Switch>
             </div>
-            {/* </div> */}
           </BrowserRouter>
         </main>
       </React.Fragment>
@@ -94,21 +91,12 @@ class App extends React.Component {
 
 const styles = theme => ({
   root: {
-    // flexGrow: 1,
-    // height: '100%',
-    // zIndex: 1,
-    // overflow: 'hidden',
-    // position: 'relative',
-    // display: 'flex',
   },
   content: {
     flexGrow: 1,
-    // backgroundColor: theme.palette.background.default,
-    // padding: theme.spacing.unit * 3,
-    minWidth: 0, // So the Typography noWrap works
+    minWidth: 0,
     marginLeft: 200,
     height: '96vh',
-    // background: '#f5f5f5',
   },
   toolbar: theme.mixins.toolbar,
 });
