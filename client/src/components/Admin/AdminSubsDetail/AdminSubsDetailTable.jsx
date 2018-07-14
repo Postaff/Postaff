@@ -67,7 +67,6 @@ class AdminSubsJobsTable extends React.Component {
     this.handleChangePage = this.handleChangePage.bind(this);
     this.handleChangeRowsPerPage = this.handleChangeRowsPerPage.bind(this);
     this.handleSelectAllClick = this.handleSelectAllClick.bind(this);
-    this.handleClick = this.handleClick.bind(this);
   }
 
   handleRequestSort(event, property) {
@@ -136,7 +135,6 @@ class AdminSubsJobsTable extends React.Component {
                 .map(n => (
                   <TableRow
                     hover
-                    onClick={event => this.handleClick(event, n.id)}
                     tabIndex={-1}
                     key={n.id}
                   >
