@@ -17,18 +17,6 @@ class HomeLanding extends React.Component {
           <Typography variant="display4" gutterBottom>
           Staffing Solutions
           </Typography>
-
-          <Typography variant="display2" gutterBottom>
-            Feng Chen | Ainslie Hsu | Heshie London | Mayank Patel
-          </Typography>
-        </div>
-        <div style={{
-          padding: '4em', display: 'flex', alignItems: 'center', justifyContent: 'center',
-        }}>
-          <video width="80%" controls loop>
-            <source src="/teamSquare.mp4" type="video/mp4" />
-          </video>
-          {/* <img src="../stack.png" style={{ width: '80%' }}></img> */}
         </div>
       </Fragment>
     );
