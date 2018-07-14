@@ -1,13 +1,13 @@
+const faker = require('faker');
 const { User } = require('../database/models/userSchema');
 const { Admin } = require('../database/models/adminSchema');
 const { School } = require('../database/models/schoolSchema');
 const { Sub } = require('../database/models/subSchema');
 const { Job } = require('../database/models/jobSchema');
 const AuthService = require('./middlewares/authenticationService');
-const faker = require('faker');
 
 exports.initDB = (req, res) => {
-  for(let i = 1; i <= 4; i++) {
+  for(let i = 1; i <= 4; i += 1) {
     Admin.build({
       name: `admin${i}`,
       email: `admin${i}@postaff.com`,
@@ -28,7 +28,7 @@ exports.initDB = (req, res) => {
   const schools = ['Long Beach Elementary School', 'Lakeside Middle School',
     'Spring Hill School of Fine Arts', 'East Shores Middle School', 'Deer River School for Girls',
     'Edward R. Murrow High School', 'John R. McKinney High School', 'Highland Charter School',
-    'Garyville High School', 'Hawking Middle School]'];
+    'Garyville High School', 'Hawking Middle School'];
 
   const schoolImgUrls = [
     'http://www.diamond-build.com/wp-content/uploads/2013/11/welbourne-1.jpg',
@@ -72,7 +72,7 @@ exports.initDB = (req, res) => {
       });
   }
 
-  for(let k = 1; k <= 40; k++) {
+  for(let k = 1; k <= 40; k += 1) {
     const firstName = faker.name.firstName();
     const lastName = faker.name.lastName();
     Sub.build({
@@ -81,7 +81,6 @@ exports.initDB = (req, res) => {
       phone_alt: faker.phone.phoneNumberFormat(0),
       email: faker.internet.email(),
       photo_url: faker.image.avatar(),
-
       address_street: faker.address.streetAddress(true),
       address_city: faker.address.city(),
       address_state: faker.address.stateAbbr(),
@@ -105,10 +104,9 @@ exports.initDB = (req, res) => {
   const subjects = ['English', 'Literature', 'Math', 'Geography',
     'History', 'Social Studies', 'Science', 'Art', 'Music', 'Language Arts',
     'Biology', 'Health', 'PE', 'Chemistry', 'Computer Science', 'Philosophy'];
-  const grades = ['Pre-K', '1', '2', '3', '4', '5', '6', '7',
-    '8', '9', '10', '11', '12', 'Special Ed'];
+  const grades = ['Pre-K', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'Special Ed'];
 
-  for(let l = 1; l <= 100; l++) {
+  for(let l = 1; l <= 50; l += 1) {
     let claimed = false;
     const approved = faker.helpers.randomize([true, false]);
     if(approved) {
@@ -118,7 +116,6 @@ exports.initDB = (req, res) => {
     const subject = faker.helpers.randomize(subjects);
     const today = new Date();
     const future = new Date();
-    // let future = faker.date.recent((Math.floor(Math.random() * 19) + 7));
 
     Job.create({
       description: `${subject} Substitue teacher needed for grade ${grade}`,
@@ -136,6 +133,5 @@ exports.initDB = (req, res) => {
       fk_sub: (claimed ? Math.floor(Math.random() * 40) + 1 : null),
     });
   }
-
   res.status(200).send('data generated successfully');
 };

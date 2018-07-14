@@ -1,4 +1,3 @@
-const bcrypt = require('bcrypt');
 const db = require('../indexDb.js');
 const { Sub } = require('./subSchema.js');
 const { School } = require('./schoolSchema.js');

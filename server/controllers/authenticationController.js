@@ -5,24 +5,23 @@ const { Sub } = require('../../database/models/subSchema');
 const AuthService = require('../middlewares/authenticationService');
 
 exports.login = (req, res) => {
-  res.send({ 
+  res.send({
     token: AuthService.tokenForUser(req.user),
     role: req.user.role,
     username: req.user.username,
     schoolId: req.user.fk_school,
     subId: req.user.fk_sub,
     adminId: req.user.fk_admin,
-  })
-}
+  });
+};
 
 exports.signup = (req, res) => {
-  console.log(req.body)
   const user = req.body;
   if(!user.username || !user.password) {
     return res.status(422).send({ error: 'You must provide an username or password.'})
   }
   User.findOne({where: { username: user.username }})
-    .then((existingUser)=>{
+    .then((existingUser) => {
       if(existingUser) {
         res.status(422).send({ error: 'username already exist.'});
       }
@@ -48,25 +47,24 @@ exports.signup = (req, res) => {
                     subId: savedUser.fk_sub,
                     adminId: savedUser.fk_admin,
                   });
-                })
-            })
-        })
+                });
+            });
+        });
     })
     .catch((error) => {
-      res.status(404).send(error, "error");
-    })
-}
+      res.status(404).send(error, 'error');
+    });
+};
 
 exports.createSchool = (req, res) => {
-  console.log(req.body)
   const user = req.body;
   if(!user.username || !user.password) {
-    return res.status(422).send({ error: 'You must provide an username or password.'})
+    return res.status(422).send({ error: 'You must provide an username or password.'});
   }
-  User.findOne({where: { username: user.username }})
-    .then((existingUser)=>{
+  User.findOne({ where: { username: user.username } })
+    .then((existingUser) => {
       if(existingUser) {
-        res.status(422).send({ error: 'username already exist.'});
+        res.status(422).send({ error: 'username already exist.' });
       }
       School.build({
         school_name: user.school.schoolName,
@@ -91,7 +89,7 @@ exports.createSchool = (req, res) => {
                 fk_admin: savedSchool.id,
               }).save()
                 .then((savedUser) => {
-                  res.status(201).send({ 
+                  res.status(201).send({
                     token: AuthService.tokenForUser(savedUser),
                     role: savedUser.role,
                     username: savedUser.username,
@@ -99,25 +97,24 @@ exports.createSchool = (req, res) => {
                     subId: savedUser.fk_sub,
                     adminId: savedUser.fk_admin,
                   });
-                })
-            })
-        })
+                });
+            });
+        });
     })
     .catch((error) => {
-      res.status(404).send(error, "error");
-    })
-}
+      res.status(404).send(error, 'error');
+    });
+};
 
 exports.createSub = (req, res) => {
-  console.log(req.body)
   const user = req.body;
   if(!user.username || !user.password) {
-    return res.status(422).send({ error: 'You must provide an username or password.'})
+    return res.status(422).send({ error: 'You must provide an username or password.' });
   }
-  User.findOne({where: { username: user.username }})
-    .then((existingUser)=>{
+  User.findOne({ where: { username: user.username } })
+    .then((existingUser) => {
       if(existingUser) {
-        res.status(422).send({ error: 'username already exist.'});
+        res.status(422).send({ error: 'username already exist.' });
       }
       Sub.build({
         name: user.sub.name,
@@ -142,7 +139,7 @@ exports.createSub = (req, res) => {
                 fk_admin: savedSub.id,
               }).save()
                 .then((savedUser) => {
-                  res.status(201).send({ 
+                  res.status(201).send({
                     token: AuthService.tokenForUser(savedUser),
                     role: savedUser.role,
                     username: savedUser.username,
@@ -150,11 +147,11 @@ exports.createSub = (req, res) => {
                     subId: savedUser.fk_sub,
                     adminId: savedUser.fk_admin,
                   });
-                })
-            })
-        })
+                });
+            });
+        });
     })
     .catch((error) => {
-      res.status(404).send(error, "error");
-    })
-}
+      res.status(404).send(error, 'error');
+    });
+};

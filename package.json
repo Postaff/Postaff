@@ -54,7 +54,6 @@
     "lodash": "^4.17.10",
     "material-ui-rating": "^2.0.0",
     "moment": "^2.22.2",
-    "moment-business": "^3.0.1",
     "morgan": "^1.9.0",
     "mysql2": "^1.5.3",
     "nodemailer": "^4.6.7",

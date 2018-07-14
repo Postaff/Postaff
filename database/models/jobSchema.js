@@ -26,8 +26,7 @@ const Job = db.sequelize.define('job', {
 });
 
 Job.belongsTo(School, { foreignKey: 'fk_school' });
-Job.belongsTo(Sub, {foreignKey: 'fk_sub'});
-
+Job.belongsTo(Sub, { foreignKey: 'fk_sub' });
 Job.sync();
 
 module.exports.Job = Job;

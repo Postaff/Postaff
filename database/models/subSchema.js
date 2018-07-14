@@ -1,8 +1,6 @@
 const db = require('../indexDb.js');
 
-
 const Sub = db.sequelize.define('sub', {
-
   name: db.sequelize.Sequelize.STRING,
   phone: db.sequelize.Sequelize.STRING,
   phone_alt: db.sequelize.Sequelize.STRING,
@@ -19,7 +17,6 @@ const Sub = db.sequelize.define('sub', {
   jobs_completed: db.sequelize.Sequelize.INTEGER,
   jobs_cancelled: db.sequelize.Sequelize.INTEGER,
   jobs_claimed: db.sequelize.Sequelize.INTEGER,
-
 });
 
 Sub.sync();
