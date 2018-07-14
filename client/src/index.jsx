@@ -17,7 +17,7 @@ import reducers from './reducers/indexReducer.js';
  * https://www.apollographql.com/docs/react/advanced/caching.html#normalization
  */
 const client = new ApolloClient({
-  link: new HttpLink({ uri: 'http://localhost:3000/graphql' }),
+  link: new HttpLink({ uri: '/graphql' }),
   dataIdFromObject: o => o.id,
   cache: new InMemoryCache(),
 });
