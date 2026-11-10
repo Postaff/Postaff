@@ -1,49 +1,46 @@
 # Postaff
-A software for staffing companies, staffing clients, and job seekers; 
-Intended to be adaptable to any industry, built first for substitute teacher staffing. 
 
-## Notes before getting started
+Full-stack staffing and scheduling platform connecting staffing agencies, client organizations, and job seekers. Designed with a modular industry-agnostic schema and initially configured for substitute teacher dispatch and shift management.
 
-#### API Keys
-This project utilizes dotenv to store some values,
-they are 
-*SQL_DBUSER for sql database username,
-*SQL_DBPASS for sql database password,
-*JWT_SECRET for json web token's secret (this could be anything),
-*TWILIO_AUTH_TOKEN = twilio authenticate token,
-*TWILIO_ACCOUNT_SID = twilio account sid,
+*(2018 engineering archive)*
+
+## Stack
+
+- Frontend: React, Redux, Material-UI, Webpack, Babel (ES6+)
+- API and Data Query: GraphQL, Apollo Client, Apollo Server
+- Backend and Database: Node.js, Express, MySQL, Sequelize ORM
+- Integrations and Auth: JWT Authentication, Twilio SMS Notifications
+
+## Environment Configuration
+
+Create a `.env` file in the project root with the following variables before starting the server:
+
+- `SQL_DBUSER` - MySQL database username
+- `SQL_DBPASS` - MySQL database password
+- `JWT_SECRET` - Secret key for signing JSON Web Tokens
+- `TWILIO_ACCOUNT_SID` - Twilio account SID for SMS dispatch
+- `TWILIO_AUTH_TOKEN` - Twilio authentication token
 
 ## Getting Started
-To install all dependencies
-```
+
+Install dependencies:
+
+```sh
 npm install
 ```
 
-To run transpiler
-```
+Compile the frontend bundle with Webpack and Babel:
+
+```sh
 npm run react-build
 ```
 
-To run local server
-```
+Start the local Express and GraphQL server:
+
+```sh
 npm run start
 ```
 
-## Built With
-* Reactjs `Main framework`
-* Material-UI `CSS framework`
-* Redux `State Container`
-* GraphQL/Apollo `Data query middleware` 
-* Node/Express `Run-time environment/ web framework` 
-* MySQL/Sequelize `Database/ORM`
-* Webpack `Build tool`
-* Babel `ECMA6 compiling`
+## Contributors
 
-## Running the tests
-Currently there is no test for this application.
-
-## Authors
-Ainslie Hsu / 
-Feng Chen / 
-Heshie London / 
-Mayank Patel
+Hesh London | Ainslie Hsu | Feng Chen | Mayank Patel
