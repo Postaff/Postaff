@@ -41,6 +41,15 @@ Start the local Express and GraphQL server:
 npm run start
 ```
 
+## Decisions
+
+- One GraphQL API (Apollo Server and Apollo Client) instead of a REST route per screen. The admin, school and substitute dashboards read the same jobs, schools and substitutes in different shapes, so each view asks only for the fields it needs.
+- The job lifecycle is a set of mutations: a school creates a job, a substitute claims it, an admin approves it (createJob, claimJob, approveJob, editJob).
+- MySQL with Sequelize, because the data is relational: a job belongs to one school and one substitute, and each user account links to an admin, school or substitute profile.
+- One login for three roles: Passport with a local strategy (bcrypt) to sign in, then a JWT on each request.
+- Job alerts on two channels: Twilio for SMS, Nodemailer for email.
+- Seed data generated with Faker (server/dataGenerator.js), so the dashboards can be shown without real records.
+
 ## Contributors
 
 Hesh London | Ainslie Hsu | Feng Chen | Mayank Patel
